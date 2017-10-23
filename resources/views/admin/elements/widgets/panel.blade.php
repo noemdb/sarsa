@@ -3,14 +3,14 @@
         <div class="panel-heading">
             <h3 class="panel-title">
                 {{ $panelTitle }}
-                @if (isset($panelControls))
-                    <div class="panel-control pull-right">
+                <div class="panel-control pull-right">
+                    <span class="label label-info">{{ $badge or '' }}</span>&nbsp;
+                    @if (isset($panelControls))
                         {{-- <a class="panelButton"><i class="fa fa-refresh"></i></a> --}}
-                        {{-- <a class="panelButton"><i class="fa fa-minus"></i></a> --}}
-                        <a id="minimizer-{{ $id or '1' }}" data-id="collapse-{{ $id or '1' }}" class="panelButton"><i class="fa fa-minus"></i></a>
-                        <a id="close-{{ $id or '1' }}" data-id="panel-{{ $id or '1' }}" class="panelButton" ><i class="fa fa-remove"></i></a>
-                    </div>
-                @endif
+                        <a id="minimizer-{{ $id or '1' }}" data-id="collapse-{{ $id or '1' }}" class="panelButton-info"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                        <a id="close-{{ $id or '1' }}" data-id="panel-{{ $id or '1' }}" class="panelButton-danger" ><i class="fa fa-remove"></i></a>
+                    @endif
+                </div>
             </h3>
         </div>
     @endif
@@ -43,9 +43,9 @@
         $('#minimizer-{{ $id or '1' }}').on('click',function(){
                 var collapse = $(this).data('id'); //alert(collapse);
                 $('#'+collapse).collapse('toggle');
+                $(this).children('i').toggleClass('glyphicon glyphicon-chevron-up glyphicon glyphicon-chevron-down')
             })
         })
     </script>
-
 @endsection
 

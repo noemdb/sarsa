@@ -45,27 +45,15 @@
         <div class="row">
             <div class="col-lg-8">
                 {{-- INI timeline --}}
-                {{-- @component('admin.elements.widgets.panel')
+                @component('admin.elements.widgets.panel')
                     @slot('panelTitle', 'Responsive Timeline')
                     @slot('panelControls', 'true')
                     @slot('id', 'timeline')
                     @slot('panelBody')
                          @include('admin.elements.timeline')
                     @endslot
-                @endcomponent --}}
-                {{-- FIN timeline --}}
-
-                {{-- INI timeline2 --}}
-                @component('admin.elements.widgets.collapse')
-                    @slot('header', 'Responsive Timeline')
-                    {{-- @slot('panelControls', 'true') --}}
-                    @slot('id', 'timeline')
-                    @slot('collapseIn', 'true')
-                    @slot('body')
-                         @include('admin.elements.timeline')
-                    @endslot
                 @endcomponent
-                {{-- FIN timeline2 --}}
+                {{-- FIN timeline --}}
             </div>
             <!-- /.col-lg-8 -->
 
@@ -73,6 +61,8 @@
                 {{-- INI Line Chart panel --}}
                 @component('admin.elements.widgets.panel')
                     @slot('panelTitle', 'Line Chart')
+                    @slot('panelControls', 'true')
+                    @slot('id', 'clinechart')
                     @slot('panelBody')
                         @include('admin.elements.charts.widgets.clinechart')
                     @endslot
@@ -93,6 +83,9 @@
                 {{-- INI chat panel --}}
                 @component('admin.elements.widgets.panel')
                     @slot('class','success')
+                    {{-- @slot('panelControls', 'true') --}}
+                    @slot('id', 'chats')
+                    @slot('badge', '24')
                     @slot('panelTitle')
                         @include('admin.elements.chats.header')
                     @endslot

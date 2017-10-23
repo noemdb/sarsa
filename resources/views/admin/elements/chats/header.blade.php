@@ -1,8 +1,8 @@
 Chat
 <div class="btn-group pull-right">
-    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-        <i class="fa fa-chevron-down"></i>
-    </button>
+    <a class="btn btn-warning btn-xs dropdown-toggle" data-toggle="dropdown">
+        <i class="glyphicon glyphicon-cog"></i>
+    </a>
     <ul class="dropdown-menu slidedown">
         <li>
             <a href="#">
