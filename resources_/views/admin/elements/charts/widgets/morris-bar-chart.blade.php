@@ -1,0 +1,1 @@
+<div id="morris-bar-chart"></div>

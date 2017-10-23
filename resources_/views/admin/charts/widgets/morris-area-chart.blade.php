@@ -1,0 +1,1 @@
+<div id="morris-area-chart"></div>

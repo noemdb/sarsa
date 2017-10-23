@@ -45,15 +45,27 @@
         <div class="row">
             <div class="col-lg-8">
                 {{-- INI timeline --}}
-                @component('admin.elements.widgets.panel')
+                {{-- @component('admin.elements.widgets.panel')
                     @slot('panelTitle', 'Responsive Timeline')
                     @slot('panelControls', 'true')
                     @slot('id', 'timeline')
                     @slot('panelBody')
                          @include('admin.elements.timeline')
                     @endslot
-                @endcomponent
+                @endcomponent --}}
                 {{-- FIN timeline --}}
+
+                {{-- INI timeline2 --}}
+                @component('admin.elements.widgets.collapse')
+                    @slot('header', 'Responsive Timeline')
+                    {{-- @slot('panelControls', 'true') --}}
+                    @slot('id', 'timeline')
+                    @slot('collapseIn', 'true')
+                    @slot('body')
+                         @include('admin.elements.timeline')
+                    @endslot
+                @endcomponent
+                {{-- FIN timeline2 --}}
             </div>
             <!-- /.col-lg-8 -->
 
