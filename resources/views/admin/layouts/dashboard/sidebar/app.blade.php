@@ -10,7 +10,7 @@
         </li>
 
         <li>
-            <a href="{{ url ('dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+            <a href="{{ url ('admin/dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
         </li>
 
         <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>

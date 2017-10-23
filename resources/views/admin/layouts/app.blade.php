@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('css/sb-admin-2.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('vendor/font-awesome/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('ionicons/css/ionicons.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('ionicons/css/ionicons.min.css') }}"> --}}
 
 
 

@@ -8,18 +8,18 @@
 
         <div class="row">
             <div class="col-sm-6">
-                @component('admin.widgets.panel')
+                @component('admin.elements.widgets.panel')
                     @slot('panelTitle', 'Area Chart Example')
                     @slot('panelBody')
-                        @include('admin.charts.widgets.morris-area-chart')
+                        @include('admin.elements.charts.widgets.morris-area-chart')
                     @endslot
                 @endcomponent
             </div>
             <div class="col-sm-6">
-                @component('admin.widgets.panel')
+                @component('admin.elements.widgets.panel')
                     @slot('panelTitle', 'Bar Chart Example')
                     @slot('panelBody')
-                        @include('admin.charts.widgets.morris-bar-chart')
+                        @include('admin.elements.charts.widgets.morris-bar-chart')
                     @endslot
                 @endcomponent
             </div>
@@ -28,10 +28,10 @@
 
         <div class="row">
             <div class="col-sm-6">
-                @component('admin.widgets.panel')
+                @component('admin.elements.widgets.panel')
                     @slot('panelTitle', 'Donut Chart Example')
                     @slot('panelBody')
-                        @include('admin.charts.widgets.morris-donut-chart')
+                        @include('admin.elements.charts.widgets.morris-donut-chart')
                     @endslot
                 @endcomponent
             </div>

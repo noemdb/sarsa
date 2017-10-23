@@ -8,10 +8,10 @@
 
         <div class="row">
             <div class="col-sm-6">
-                @component('admin.widgets.panel')
+                @component('admin.elements.widgets.panel')
                     @slot('panelTitle', 'Line Chart')
                     @slot('panelBody')
-                        @include('admin.charts.widgets.flot-chart')
+                        @include('admin.elements.charts.widgets.flot-chart')
                     @endslot
                 @endcomponent
             </div>

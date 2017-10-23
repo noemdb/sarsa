@@ -4,6 +4,6 @@
         <a href="{{ url ('admin/tables/simple') }}"><i class="fa fa-table fa-fw"></i> Tables</a>
     </li>
     <li>
-        <a href="{{ url ('admin/tables/tableavance') }}"><i class="fa fa-table fa-fw"></i> Tables Advance</a>
+        <a href="{{ url ('admin/tables/datatables') }}"><i class="fa fa-table fa-fw"></i> Data Tables</a>
     </li>
 </ul>

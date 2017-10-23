@@ -7,36 +7,36 @@
     <div class="col-md-12">
         <div class="row">
             <div class="col-sm-6">
-                @component('admin.widgets.panel')
+                @component('admin.elements.widgets.panel')
                     @slot('panelTitle', 'Regular Table')
                     @slot('panelBody')
-                        @include('admin.widgets.table', array('class'=>''))
+                        @include('admin.elements.tables.widgets.table', array('class'=>''))
                     @endslot
                 @endcomponent
             </div>
             <div class="col-sm-6">
-                @component('admin.widgets.panel')
+                @component('admin.elements.widgets.panel')
                     @slot('panelTitle', 'Bordered Table')
                     @slot('panelBody')
-                        @include('admin.widgets.table', array('class'=>'table-bordered'))
+                        @include('admin.elements.tables.widgets.table', array('class'=>'table-bordered'))
                     @endslot
                 @endcomponent
             </div>
         </div>
         <div class="row">
             <div class="col-sm-6">
-                @component('admin.widgets.panel')
+                @component('admin.elements.widgets.panel')
                     @slot('panelTitle', 'Striped Table')
                     @slot('panelBody')
-                        @include('admin.widgets.table', array('class'=>'table-striped'))
+                        @include('admin.elements.tables.widgets.table', array('class'=>'table-striped'))
                     @endslot
                 @endcomponent
             </div>
             <div class="col-sm-6">
-                @component('admin.widgets.panel')
+                @component('admin.elements.widgets.panel')
                     @slot('panelTitle', 'Hover Table')
                     @slot('panelBody')
-                        @include('admin.widgets.table', array('class'=>'table-hover'))
+                        @include('admin.elements.tables.widgets.table', array('class'=>'table-hover'))
                     @endslot
                 @endcomponent
             </div>
@@ -44,25 +44,25 @@
 
         <div class="row">
             <div class="col-sm-6">
-                @component('admin.widgets.panel')
+                @component('admin.elements.widgets.panel')
                     @slot('panelTitle', 'Condensed Table')
                     @slot('panelBody')
-                        @include('admin.widgets.table', array('class'=>'table-condensed'))
+                        @include('admin.elements.tables.widgets.table', array('class'=>'table-condensed'))
                     @endslot
                 @endcomponent
             </div>
             <div class="col-sm-6">
-                @component('admin.widgets.panel')
+                @component('admin.elements.widgets.panel')
                     @slot('panelTitle', 'Condensed, Bordered, Striped Table')
                     @slot('panelBody')
-                        @include('admin.widgets.table', array('class'=>'table-condensed table-bordered table-striped'))
+                        @include('admin.elements.tables.widgets.table', array('class'=>'table-condensed table-bordered table-striped'))
                     @endslot
                 @endcomponent
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
-                @component('admin.widgets.panel')
+                @component('admin.elements.widgets.panel')
                     @slot('panelTitle', 'Coloured Table')
                     @slot('panelBody')
                         <table class="table table-bordered">

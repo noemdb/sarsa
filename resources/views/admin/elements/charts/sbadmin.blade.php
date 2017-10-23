@@ -8,18 +8,18 @@
 
         <div class="row">
             <div class="col-sm-6">
-                @component('admin.widgets.panel')
+                @component('admin.elements.widgets.panel')
                     @slot('panelTitle', 'Line Chart')
                     @slot('panelBody')
-                        @include('admin.charts.widgets.clinechart')
+                        @include('admin.elements.charts.widgets.clinechart')
                     @endslot
                 @endcomponent
             </div>
             <div class="col-sm-6">
-                @component('admin.widgets.panel')
+                @component('admin.elements.widgets.panel')
                     @slot('panelTitle', 'Donut Chart')
                     @slot('panelBody')
-                        <div style="max-width:400px; margin:0 auto;">@include('admin.charts.widgets.cdonutchart')</div>
+                        <div style="max-width:400px; margin:0 auto;">@include('admin.elements.charts.widgets.cdonutchart')</div>
                     @endslot
                 @endcomponent
             </div>
@@ -29,18 +29,18 @@
     
         <div class="row">
             <div class="col-sm-6">
-                @component('admin.widgets.panel')
+                @component('admin.elements.widgets.panel')
                     @slot('panelTitle', 'Pie Chart')
                     @slot('panelBody')
-                        @include('admin.charts.widgets.cpiechart')
+                        @include('admin.elements.charts.widgets.cpiechart')
                     @endslot
                 @endcomponent
             </div>
             <div class="col-sm-6">
-                @component('admin.widgets.panel')
+                @component('admin.elements.widgets.panel')
                     @slot('panelTitle', 'Bar Chart')
                     @slot('panelBody')
-                        @include('admin.charts.widgets.cbarchart')
+                        @include('admin.elements.charts.widgets.cbarchart')
                     @endslot
                 @endcomponent
             </div>
@@ -49,18 +49,18 @@
 
         <div class="row">
             <div class="col-sm-6">
-                @component('admin.widgets.panel')
+                @component('admin.elements.widgets.panel')
                     @slot('panelTitle', 'Polar Chart')
                     @slot('panelBody')
-                        @include('admin.charts.widgets.cpolar')
+                        @include('admin.elements.charts.widgets.cpolar')
                     @endslot
                 @endcomponent
             </div>
             <div class="col-sm-6">
-                @component('admin.widgets.panel')
+                @component('admin.elements.widgets.panel')
                     @slot('panelTitle', 'Donut1 Chart')
                     @slot('panelBody')
-                        @include('admin.charts.widgets.cdonut1')
+                        @include('admin.elements.charts.widgets.cdonut1')
                     @endslot
                 @endcomponent
             </div>
