@@ -64,7 +64,10 @@
                     @slot('panelControls', 'true')
                     @slot('id', 'clinechart')
                     @slot('panelBody')
-                        @include('admin.elements.charts.widgets.clinechart')
+                        {{-- @include('admin.elements.charts.widgets.clinechart') --}}
+                        @component('admin.elements.charts.widgets.canvas')
+                            @slot('id', 'cline')
+                        @endcomponent
                     @endslot
                 @endcomponent
                 {{-- INI Line Chart panel --}}

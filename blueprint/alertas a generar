@@ -1,0 +1,20 @@
+Alertas Tipo 1 (Generadas al momento de insertar o actualizar base de datos)
+	-. Solicitudes de prorrogas
+	-. 
+
+Alertas Tipo 2 (Generadas por el sistema)
+	-. Lapso a vencer de cualquier actividad o tarea: finalización de solicitudes, de prorrogas, de actividades, de tareas, fases
+
+
+##############################################################################################################
+
+F2:
+	-. COMCP:
+		-. Solicitud de prorrogas para la entraga de información: Establecimiento de los lapsos para la prorroga
+			*. Actor responsable: COMCP
+			*. Evento que dispara el alerta: Registro de Solicitud de Prorroga
+
+F3:
+	-. DIRCP
+		*. Comunicación dirigida  al ENTE  del cierre de la misma.
+		*. Evento que dispara el alerta: Registro del Informe.

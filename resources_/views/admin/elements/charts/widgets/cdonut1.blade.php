@@ -1,1 +1,0 @@
-<canvas id="cdonut1"></canvas>

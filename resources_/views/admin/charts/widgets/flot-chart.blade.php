@@ -1,1 +1,0 @@
-<div class="flot-chart"></div>
