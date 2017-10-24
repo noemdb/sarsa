@@ -1,3 +1,4 @@
+{{-- variables de entrada class,id,panelTitle,badge,panelBody,panelFooter --}}
 <div class="panel panel-{{ $class or 'default' }}" id="panel-{{ $id or '' }}">
     @if (isset($panelTitle))
         <div class="panel-heading">

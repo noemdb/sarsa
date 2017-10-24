@@ -10370,7 +10370,7 @@ var lineChartData = {
 
 };
 
-if (typeof document.getElementById("cline")){
+if (document.getElementById("cline")){
 	var cline = document.getElementById("cline").getContext("2d");
 	new Chart(cline).Line(lineChartData, {
 	    responsive: true

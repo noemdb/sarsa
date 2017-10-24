@@ -6,11 +6,11 @@
             SBAdmin
         </a>
     </li>
-    <li>
+    {{-- <li>
         <a href="{{ url ('admin/charts/morris') }}">
             <i class="fa fa-bar-chart" aria-hidden="true"></i>
             Morris.js
         </a>
-    </li>
+    </li> --}}
 </ul>
 <!-- /.nav-second-level -->
