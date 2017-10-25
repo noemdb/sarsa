@@ -11,17 +11,18 @@
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 
                             <div class="col-md-12">
-                                <label for="email" class="control-label">E-Mail Address</label>
+                                {{-- <label for="email" class="control-label">E-Mail Address</label> --}}
+                                <label for="username" class="control-label">Nombre de Usuario</label>
                                 {{-- <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus> --}}
 
                                 <div class="input-group">
                                   <span class="input-group-addon" id="basic-addon1">@</span>
-                                  <input type="text" class="form-control" id="email" name="email" placeholder="email" aria-describedby="basic-addon1" value="{{ old('email') }}" required>
+                                  <input type="text" class="form-control" id="username" name="username" placeholder="Nombre de Usuario" aria-describedby="basic-addon1" value="{{ old('username') }}" required>
                                 </div>
 
-                                @if ($errors->has('email'))
+                                @if ($errors->has('username'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('username') }}</strong>
                                     </span>
                                 @endif
                             </div>

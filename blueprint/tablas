@@ -1,0 +1,71 @@
+-. users
+	*. username
+	*. password
+-. profiles
+	*. user_id
+	*. email
+	*. firstname
+	*. lastname
+	*. url_img
+-. roles
+	*. user_id
+	*. rol (CONTRA, DIRCP, CORCP, COMCP, admin)
+	*. rango (root, user)
+	*. finicial
+	*. ffinal
+-. loginout
+	*. user_id
+	*. action ('Registered', 'Attempting','LogAuthenticated','LogSuccessfulLogin','LogFailedLogin','LogSuccessfulLogout','LogLockout','LogPasswordReset')
+	*. message
+	*. ip
+-. logdb
+	*. user_id
+	*. action
+	*. ip
+	*. model_class
+	*. url
+	*. pathInfo
+-. task
+	*. user_id
+	*. codigo
+	*. descripcion
+	*. tipo
+	*. evento
+	*. estado
+-. messeges
+	*. user_id
+	*. destino
+	*. mensaje
+	*. tipo
+	*. estado
+-. alert
+	*. user_id
+	*. mensaje
+	*. tipo
+	*. estado
+####################################################################################
+-. entes (entes objeto de actuaciones fiscales)
+-. planopers (planes operativos -> registros de auditorias)
+-. prorrogas (prorrogas para lapso de auditorias o de solicitudes de información)
+-. naturalezas (naturalezas de la auditoria)
+-. fuenteauds (fuentes de la auditoria)
+-. fases (fases de la auditoria)
+-. actividades (actividades de la auditoria)
+-. credenciales (crenciales de la auditoria)
+-. ofnotents (Oficio de Notificación al ENTE de la actuación fiscal)
+-. memoplans (Memorando de Planeación)
+-. progtrabs (Programa de Trabajo)
+-. actins (Acta de instalación)
+-. solrecs (Solicitudes de Recaudos)
+-. actas (Acta de "Hacer Constar" y/o Acta Fiscal)
+-. cedtrabs (Cédulas de trabajo)
+-. paptra (papeles de trabajo)
+-. evidencias (Evidencias encontradas)
+-. hallazgos (Cédulas de hallazgos)
+-. conclupres (Conclusiones Preliminares)
+-. obsdiscons (Observaciones de la discusión de las conclusiones preliminares)
+-. obsconpres (Observaciones y hallazgos conclusiones del Informe Preliminar)
+-. ofreip (Oficio de remisión del Informe Preliminar)
+-. ofreenfs (Oficio de recepsión del ENTE firmado y sellado)
+-. desobs (Descargo de las Observaciones)
+-. ofreids (Oficio de remisión del Informe Definitivo)

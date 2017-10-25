@@ -1,0 +1,2 @@
+definicion de modelos con sus repectivas migraciones
+php artisan make:model profiles -m

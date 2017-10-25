@@ -15,7 +15,7 @@ F2:
 		*. Solicitudes de Recaudos (SOLRECCOD)
 		*. Informe preliminar
 		*. Solicitudes de prorrogas
-		*. Acta de Hacer Constar” y/o Acta Fiscal
+		*. Acta de Hacer Constar” y/o Acta Fiscal (ACTHCAF)
 		*. Cédulas de trabajo (CEDTRACOD)
 		*. Papeles de trabajo (PAPTRACOD)
 		*. Evidencias (EVIDENCOD)
@@ -26,7 +26,7 @@ F2:
 F3:
 
 	-. COMCP
-		*. Conclusiones del Informe Preliminar (CONIPCOD)
+		*. Observaciones y hallazgos conclusiones del Informe Preliminar (OHCIPCOD)
 		*. Sintesis digital del Informe Preliminar (SDIPCOD)
 		*. Oficio de remisión del Informe Preliminar (OFREIPCOD)
 		*. Sintesis Digital del informe definitivo (INFDEFCOD)

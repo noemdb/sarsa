@@ -10,14 +10,8 @@ F1:
 
 F2:
 	-. COMCP:
+		*. Registro de las OBSCONPRECOD -> (CORCP, ) :: (Evento: (ACF1N20) Generación de la CREDENTCOD)
 		*. Finalización de Fase 2 -> DIRCP, CONTRA, CORCP :: Evento: ACF2N10
-
-
-
-
-		-. Solicitud de información: Establecimiento de los lapsos para la entrega de información para el ENTE
-			*. Actor responsable: COMCP
-			*. Evento que dispara el alerta: Registro de Solicitud de información
 
 F3:
 	-. COMCP

@@ -56,7 +56,7 @@ F2
 
 F3
 	-. COMCP
-		*.(ACF3N1) Registro de CONIPCOD
+		*.(ACF3N1) Registro de OHCIPCOD
 		*.(ACF3N2) Registro de remisión del IPCOD a CORCP
 		*.(ACF3N14) Registrar recepción del OFREENFSCOD de parte del DIRCP
 		*.(ACF3N20) Registrar recepción DESOBSCOD por parte de CORCP
@@ -77,7 +77,7 @@ F3
 		*.(ACF3N5) Registrar recepción del IPCOD de parte del CORCP
 		*.(ACF3N6) Generar OFREIPCOD
 		*.(ACF3N7) Registrar remisión del OFREIPCOD al CONTRA
-		*.(ACF3N10) Registrar recepción del OFREIPCOD y OFREIPCOD de parte del CONTRA
+		*.(ACF3N10) Registrar recepción del OFREIPCOD de parte del CONTRA
 		*.(ACF3N11) Registrar remisión del OFREENFSCOD, OFREIPCOD y IPCOD al ENTE
 		*.(ACF3N12) Registrar recepción del OFREENFSCOD, OFREIPCOD y IPCOD de parte del ENTE
 		*.(ACF3N13) Registrar remisión del OFREENFSCOD a COMCP

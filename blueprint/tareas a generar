@@ -55,9 +55,40 @@ F2:
 F3:
 	-. COMCP
 		*. Registrar remisión del IPCOD al DIRCP (Evento: (ACF3N1) Registro de CONIPCOD.)
+		*. Registrar la recepción de OFREENFSCOD (Evento: ACF3N13 Remision de OFREENFSCOD)
+		*. Registrar recepción de DESOBSCOD de parte de CORCP. (Evento: ACF3N19 remisión del DESOBSCOD)
+		*. Generar INFDEFCOD (Evento: ACF3N20 recepción DESOBSCOD)
+		*. Registrar remisión del INFDEFCOD al CORCP (Evento: ACF3N21 Generar INFDEFCOD.)
+		*. Registrar recepción de OFREIDCOD de parte de DIRCP. (Evento: ACF3N30 remisión OFREIDCOD al COMCP)
 
 	-. CORCP
 		*. Registrar recepción de IPCOD de parte de COMCP. (Evento: (ACF3N2) remisión del IPCOD)
+		*. Registrar remisión del IPCOD al DIRCP (Evento: ACF3N3 recepción del IPCOD)
+		*. Registrar recepción de DESOBSCOD de parte de DIRCP. (Evento: ACF3N17 remisión del DESOBSCOD)
+		*. Registrar remisión DESOBSCOD a la COMCP (Evento: ACF3N18 recepción DESOBSCOD)
+		*. Registrar recepción de INFDEFCOD de parte de COMCP. (Evento: ACF3N22 remisión del INFDEFCOD)
+		*. Registrar remisión INFDEFCOD al DIRCP (Evento: ACF3N23 recepción INFDEFCOD)
+
+	-. DIRCP
+		*. Registrar recepción de IPCOD de parte de CORCP. (Evento: (ACF3N4) remisión del IPCOD)
+		*. Registrar remisión del OFREIPCOD al CONTRA (Evento: ACF3N5 recepción del IPCOD)
+		*. Registrar recepción de OFREIPCOD de parte de CONTRA. (Evento: (ACF3N9) remisión del OFREIPCOD)
+		*. Registrar remisión del OFREENFSCOD, OFREIPCOD y IPCOD al ENTE (Evento: ACF3N10 recepción del OFREIPCOD)
+		*. Registrar recepción de OFREENFSCOD, OFREIPCOD y IPCOD de parte del ENTE. (Evento: (ACF3N11) remisión del OFREENFSCOD, OFREIPCOD y IPCOD)
+		*. Registrar remisión del OFREENFSCOD a COMCP (Evento: (ACF3N12) recepción del OFREENFSCOD, OFREIPCOD y IPCOD)
+		*. Registrar recepción de DESOBSCOD de parte de ENTE. (Evento: (ACF3N12) recepción del OFREENFSCOD, OFREIPCOD y IPCOD)
+		*. Registrar remisión DESOBSCOD al CORCP (Evento: ACF3N16 recepción de las DESOBSCOD)
+		*. Registrar recepción de INFDEFCOD de parte de CORCP. (Evento: (ACF3N24) remisión INFDEFCOD)
+		*. Registrar remisión OFREIDCOD al CONTRA (Evento: ACF3N25 recepción INFDEFCOD)
+		*. Registrar recepción OFREIDCOD por parte de CONTRA (Evento: ACF3N28 remisión OFREIDCOD al DIRCP)
+		*. Registrar remisión OFREIDCOD al COMCP (Evento: ACF3N29 recepción OFREIDCOD)
+
+
+	-. CONTRA
+		*. Registrar recepción de OFREIPCOD de parte de DIRCP. (Evento: (ACF3N7) remisión del OFREIPCOD)
+		*. Registrar remisión del OFREIPCOD al DIRCP (Evento: ACF3N8 recepción del OFREIPCOD)
+		*. Registrar recepción OFREIDCOD por parte de DIRCP (Evento: ACF3N26 remisión OFREIDCOD al CONTRA)
+		*. Registrar remisión del OFREIDCOD al DIRCP (Evento: ACF3N27 recepción del OFREIDCOD)
 
 
 	-. DIRCP: Notificar mediante comunicación dirigida  al ENTE  del cierre de la misma.
