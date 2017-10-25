@@ -1,25 +1,126 @@
 Director
 
-Fase Planeación:
+F1:
 	-. DIRCP:
 		*. Registrar plan operativo anual.
 			+. Registrar auditorias.
-				/. Determinar la naturaleza de la auditoría
-				/. Lapsos para el desarrollo de las auditorías (Credencial que  emita para el COMCP)
-				/. Lapsos para la presentación de los alegatos derivados de los hallazgos reflejados en el informe preliminar (Credencial que  emita para el auditor o comisión de auditoría)
-				/. Seleccionar Comisión de Auditoría (en acuerdo con CORCP).
-				/. Emitir y registrar emisión del oficio (cuatro (04) originales) de credencial donde designa a la COMCP
-				/. Emitir y registrar emisión del oficio en 3 ó 4 originales en donde notifica al ENTE la actuación fiscal.
-		*.
+				/.(ACF1N1) Determinar la naturaleza de la auditoría.
+				/.(ACF1N2) Lapsos para el desarrollo de las auditorías (CREDENTCOD que  emita para el COMCP)
+				/.(ACF1N3) Lapsos para la presentación de los alegatos derivados de los hallazgos reflejados en el informe preliminar (Credencial que  emita para el auditor o comisión de auditoría)
+				/.(ACF1N4) Seleccionar COMCP (en acuerdo con CORCP).
+		*.(ACF1N5) Registrar la CREDENTCOD donde designa a la COMCP.
+		*.(ACF1N6) Generar el OFNOTENTCOD.
+		*.(ACF1N7) Registrar remisión del OFNOTENTCOD al CONTRA.
+		*.(ACF1N10) Registrar la recepción del OFNOTENTCOD-FS-CONTRA.
+		*.(ACF1N11) Registrar la remisión al ENTE del OFNOTENTCOD-FS-CONTRA.
+		*.(ACF1N12) Registrar la remisión al CORCP del OFNOTENTCOD-FS-CONTRA.
+		*.(ACF1N13) Registrar la remisión al COMCP del OFNOTENTCOD-FS-CONTRA.
+		*.(ACF1N14) Registrar la recepción de parte de COMCP del CREDENTCOD-FS-COMCP.
+		*.(ACF1N20) Geración del MEMOPLANCOD.
+		*.(ACF1N21) Registrar la remisión del MEMOPLANCOD a la COMCP.
+		*.(ACF1N27) Registrar la recepción del PDTCOD de parte del CORCP
+		*.(ACF1N28) Registrar la remisión del PDTCOD a la COMCP
+
 	-. CORCP
-		*. Seleccionar Comisión de Auditoría (en acuerdo con DIRCP).
+		*.(ACF1N4.1) Seleccionar COMCP (en acuerdo con DIRCP).
+		*.(ACF1N15) Registrar la recepción de CREDENTCOD y OFNOTENTCOD-FS-CONTRA de parte de DIRCP. 
+		*.(ACF1N16) Registrar la remisión a la COMCP del OFNOTENTCOD-FS-CONTRA.
+		*.(ACF1N17) Registrar la recepción de parte de COMCP del CREDENTCOD-FS-COMCP.
+		*.(ACF1N25) Registrar la recepción de PDTCOD de parte de COMCP.
+		*.(ACF1N26) Registrar la remisión de PDTCOD al DIRCP.
 
 	-. CONTRA
-		*. Registrar la recepción de Notificación de actuación Fiscal de parte del DIRCP.
-		*. Registrar la remisión de las originales del oficio de notificación al DIRCP
+		*.(ACF1N8) Registrar la recepción de OFNOTENTCOD de parte del DIRCP.
+		*.(ACF1N9) Registrar la remisión de las originales del OFNOTENTCOD al DIRCP		
+
+	-. COMCP
+		*.(ACF1N18) Registrar la recepción de CREDENTCOD y OFNOTENTCOD de parte del CORCP.
+		*.(ACF1N19) Registrar remisión de la CREDENTCOD firmada y sellada al DIRCP.
+		*.(ACF1N22) Registrar recepción del MEMOPLANCOD de parte DIRCP.
+		*.(ACF1N23) Generar PDTCOD.
+		*.(ACF1N24) Registrar remisión del PDTCOD al CORCP
+		*.(ACF1N29) Registrar recepción del PDTCOD de parte del DIRCP
+
+F2
+	-. COMCP
+		*.(ACF2N1) Genración de ACTINSCOD
+		*.(ACF2N2) Generación de SOLRECCOD al ENTE
+		*.(ACF2N3) Registrar recepción de SOLRECCOD al ENTE
+		*.(ACF2N4) Registrar recepción Recaudos
+		*.(ACF2N5) Registrar CEDTRACOD
+		*.(ACF2N6) Registrar PAPTRACOD
+		*.(ACF2N7) Registrar EVIDENCOD
+		*.(ACF2N8) Registrar CEDHALCOD
+		*.(ACF2N9) Registrar CONPRECOD
+		*.(ACF2N10) Registrar OBSCONPRECOD
+
+F3
+	-. COMCP
+		*.(ACF3N1) Registro de CONIPCOD
+		*.(ACF3N2) Registro de remisión del IPCOD a CORCP
+		*.(ACF3N14) Registrar recepción del OFREENFSCOD de parte del DIRCP
+		*.(ACF3N20) Registrar recepción DESOBSCOD por parte de CORCP
+		*.(ACF3N21) Generar INFDEFCOD (observaciones o hallazgos (causas y efectos de los mismos), conclusiones y recomendaciones - Ratificar o desvirtuar)
+		*.(ACF3N22) Registro de remisión INFDEFCOD al CORCP
+		*.(ACF3N31) Registrar recepción OFREIDCOD por parte de DIRCP
 
 
-Fase Ejecución
+	-. CORCP
+		*.(ACF3N3) Registrar recepción del IPCOD de parte del COMCP
+		*.(ACF3N4) Registrar remisión del IPCOD al DIRCP
+		*.(ACF3N18) Registrar recepción DESOBSCOD por parte de DIRCP
+		*.(ACF3N19) Registrar remisión DESOBSCOD a la COMCP
+		*.(ACF3N23) Registrar recepción INFDEFCOD por parte de COMCP
+		*.(ACF3N24) Registrar remisión INFDEFCOD al DIRCP
+
+	-. DIRCP
+		*.(ACF3N5) Registrar recepción del IPCOD de parte del CORCP
+		*.(ACF3N6) Generar OFREIPCOD
+		*.(ACF3N7) Registrar remisión del OFREIPCOD al CONTRA
+		*.(ACF3N10) Registrar recepción del OFREIPCOD y OFREIPCOD de parte del CONTRA
+		*.(ACF3N11) Registrar remisión del OFREENFSCOD, OFREIPCOD y IPCOD al ENTE
+		*.(ACF3N12) Registrar recepción del OFREENFSCOD, OFREIPCOD y IPCOD de parte del ENTE
+		*.(ACF3N13) Registrar remisión del OFREENFSCOD a COMCP
+		*.(ACF3N16) Registrar recepción de las respuestas enviadas (DESOBSCOD) del ENTE de parte del CONTRA
+		*.(ACF3N17) Registrar remisión DESOBSCOD al CORCP
+		*.(ACF3N25) Registrar recepción INFDEFCOD por parte de CORCP
+		*.(ACF3N26) Registrar remisión OFREIDCOD al CONTRA
+		*.(ACF3N29) Registrar recepción OFREIDCOD por parte de CONTRA
+		*.(ACF3N30) Registrar remisión OFREIDCOD al COMCP
+
+	-. CONTRA
+		*.(ACF3N8) Registrar recepción del OFREIPCOD de parte del DIRCP
+		*.(ACF3N9) Registrar remisión del OFREIPCOD al DIRCP
+		*.(ACF3N14) Registrar recepción respuestas enviadas por parte del ENTE
+		*.(ACF3N15) Registrar remisión de las respuestas enviadas (DESOBSCOD) por parte del ENTE al DIRCP
+		*.(ACF3N27) Registrar recepción OFREIDCOD por parte de DIRCP
+		*.(ACF3N28) Registrar remisión OFREIDCOD al DIRCP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	-. DIRCP:
 		*. Aprobar prorrogas.
 

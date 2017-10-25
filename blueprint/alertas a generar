@@ -1,12 +1,16 @@
 Alertas Tipo 1 (Generadas al momento de insertar o actualizar base de datos)
 	-. Solicitudes de prorrogas
-	-. 
+	-. Finalizacion de Auditorías
+	-. Finalización de Fases de Auditorías
 
 Alertas Tipo 2 (Generadas por el sistema)
 	-. Lapso a vencer de cualquier actividad o tarea: finalización de solicitudes, de prorrogas, de actividades, de tareas, fases
 
 
 ##############################################################################################################
+F1:
+
+
 
 F2:
 	-. COMCP:

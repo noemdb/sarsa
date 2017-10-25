@@ -1,18 +1,64 @@
 Tareas a generar
 
-Fase Planeación:
+F1:
 	-. DIRCP:
-		*. Registrar emisión de credencial (Evento: Resgistro de Credencial)
-		*. Registrar emisión del Oficio notificacion al ENTE de la actuación fiscal (Evento: Resgistro de Credencial)
+		*. Registrar remisión del OFNOTENTCOD al CONTRA (Evento: (ACF1N6) Generación de OFNOTENTCOD)
+		*. Registrar recepción del OFNOTENTCOD de parte de CONTRA (Evento: (ACF1N9) Generación de OFNOTENTCOD)
+		*. Registrar remisión del OFNOTENTCOD-FS->CONTRA al ENTE (Evento: (ACF1N10) recepción del OFNOTENTCOD)  
+		*. Registrar remisión del OFNOTENTCOD-FS->CONTRA al CORCP (Evento: (ACF1N10) recepción del OFNOTENTCOD)
+		*. Registrar remisión del OFNOTENTCOD-FS->CONTRA a COMCP (Evento: (ACF1N10) recepción del OFNOTENTCOD)
+		*. Registrar recepción del CREDENTCOD-FS->COMCP de parte de COMCP (Evento: (ACF1N19) Recepción de CREDENTCOD)
+		*. Registrar remisión del MENOPLAN a la COMCP (Evento: (ACF1N20) Recepción de CREDENTCOD)
+		*. Registrar recepción del PDT de parte de CORCP (Evento: (ACF1N26) Remisión de CREDENTCOD)
+		*. Registrar remisión del PDT a la COMCP (Evento: (ACF1N27) remisión del PDT a la COMCP)
+
+	-. CONTRA:
+		*. Registrar recepción del OFNOTENTCOD de parte del DIRCP (Evento: (ACF1N7) remisión del OFNOTENTCOD)
+
+	-. CORCP:
+		*. Registrar la recepción de la CREDENTCOD y el OFNOTENTCOD de parte de DIRCP (Evento: (ACF1N12) Resgistro de OFNOTENTCOD)
+		*. Registrar la remisión de la CREDENTCOD y el OFNOTENTCOD a COMCP. (Evento: (ACF1N15) Recepción de CREDENTCOD)
+		*. Registrar la recepción de la CREDENTCOD-FS_COMCP. (Evento: (ACF1N19) Recepción de CREDENTCOD)
+		*. Registrar la recepción de PDTCOD de parte de COMCP. (Evento: (ACF1N24) remisión de PDTCOD)
+		*. Registrar la remisión del PDTCOD al DIRCP. (Evento: (ACF1N25) recepción de PDTCOD)
 
 
-Fase de Ejecución:
-	ENTE:
-	CORCP, COMCP: Discusión del Informes  Preliminar. (discusión del Informes  Preliminar.)
-	CORCP, COMCP: Discusión de los resultados de la actuación (previo al envió del informe  preliminar)
-	CORCP, COMCP: Evaluar los alegatos presentados por el ENTE (Discusión del IP)
+	-. COMCP
+		*. Registrar recepción de la CREDENTCOD de parte del DIRCP. (Evento: (ACF1N16) Registro de OFNOTENTCOD)
+		*. Registrar remisión de la CREDENTCOD firmada y sellada al DIRCP. (Evento: (ACF1N18) Registro de OFNOTENTCOD)
+		*. Registrar recepción del MEMOPLAN de parte de DIRCP (Evento: (ACF1N21) remisión del MENOPLAN a la COMCP.)
+		*. Registrar generación del PDTCOD (Evento: (ACF1N22) remisión del MENOPLAN a la COMCP.)
+		*. Registrar remisión del PDTCOD al CORCP (Evento: (ACF1N23) Generar PDTCOD.)
+		*. Registrar recepción del PDTCOD de parte de DIRCP (Evento: (ACF1N28) remisión del MENOPLAN de parte de DIRCP.)
 
-Fase de Informe:
+
+F2:
+	-. COMCP
+		*. Registrar recepción de SOLRECCOD al ENTE. (Evento: (ACF2N2) Solicitudes de Recaudos al ENTE)
+		*. Registrar recepción de recaudos por parte del ENTE. (Evento: (ACF2N3) Solicitudes de Recaudos al ENTE)
+		*. Registrar CONPRECOD. (Evento: ACF2N8: Registrar CEDHALCOD)
+		*. Realizar discusión de las CONPRECOD con el supervisor y los responsables de las áreas involucradas. (Evento: (ACF2N9) Registro CONIPCOD)
+		*. Registrar Observaciones de la Discusión de las Conclusiones de. (Evento: (ACF2N9) Solicitudes de Recaudos al ENTE)
+	
+	-. CORCP
+		*. Realizar discusión de las CONPRECOD con el supervisor y los responsables de las áreas involucradas. (Evento: (ACF2N9) Registro CONIPCOD)
+
+
+
+	-. ENTE:
+
+	-. CORCP, COMCP: 
+		*. Discusión del Informes  Preliminar. (discusión del Informes  Preliminar.)
+		*. Discusión de los resultados de la actuación (previo al envió del informe  preliminar)
+		*. Evaluar los alegatos presentados por el ENTE (Discusión del IP)
+
+F3:
+	-. COMCP
+		*. Registrar remisión del IPCOD al DIRCP (Evento: (ACF3N1) Registro de CONIPCOD.)
+
+	-. CORCP
+		*. Registrar recepción de IPCOD de parte de COMCP. (Evento: (ACF3N2) remisión del IPCOD)
+
 
 	-. DIRCP: Notificar mediante comunicación dirigida  al ENTE  del cierre de la misma.
 	-. COMCP: Elavoración del informe definitivo y el resumen ejecutivo de la actuación.

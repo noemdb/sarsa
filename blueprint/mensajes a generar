@@ -1,11 +1,24 @@
 F1:
 	-. DIRCP:
-		*. Emisión de Credencial para la COMCP -> COMCP (Evento: Registro de la Emisión de Credencial)
-		*. Emisión de Oficio de Notificación al ENTE de la actuación fiscal -> CONTRA (Evento: Registro de la Emisión de Notificación)
+		*. Generación de la CREDENTCOD -> (COMCP) :: (Evento: (ACF1N5) Registro de la CREDENTCOD)
+		*. Generación de OFNOTENTCOD -> (CONTRA, COMCP) :: (Evento: (ACF1N6) Generación OFNOTENTCOD)
+		*. Generación del MEMOPLAN -> (COMCP) :: (Evento: (ACF1N20) Generación de la CREDENTCOD)
+	-. COMCP
+		*. Finalización de Fase 1 -> DIRCP, CONTRA, CORCP :: Evento: ACF1N29
+		
 
-Fase de Ejecución:
+
+F2:
 	-. COMCP:
+		*. Finalización de Fase 2 -> DIRCP, CONTRA, CORCP :: Evento: ACF2N10
+
+
+
+
 		-. Solicitud de información: Establecimiento de los lapsos para la entrega de información para el ENTE
 			*. Actor responsable: COMCP
 			*. Evento que dispara el alerta: Registro de Solicitud de información
 
+F3:
+	-. COMCP
+		*. Finalización de Fase 3 -> DIRCP, CONTRA, CORCP :: Evento: ACF3N31
