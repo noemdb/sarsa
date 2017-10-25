@@ -1,2 +1,8 @@
 definicion de modelos con sus repectivas migraciones
-php artisan make:model profiles -m
+php artisan make:model 'Models\sys\profile' -m
+php artisan make:model 'Models\sys\rol' -m
+php artisan make:model 'Models\sys\task' -m
+php artisan make:model 'Models\sys\messeges' -m
+php artisan make:model 'Models\sys\alert' -m
+php artisan make:model 'Models\sys\loginout' -m
+php artisan make:model 'Models\sys\logdb' -m

@@ -7,24 +7,13 @@
 	*. firstname
 	*. lastname
 	*. url_img
--. roles
+-. rols
 	*. user_id
 	*. rol (CONTRA, DIRCP, CORCP, COMCP, admin)
 	*. rango (root, user)
+	*. descripcion
 	*. finicial
 	*. ffinal
--. loginout
-	*. user_id
-	*. action ('Registered', 'Attempting','LogAuthenticated','LogSuccessfulLogin','LogFailedLogin','LogSuccessfulLogout','LogLockout','LogPasswordReset')
-	*. message
-	*. ip
--. logdb
-	*. user_id
-	*. action
-	*. ip
-	*. model_class
-	*. url
-	*. pathInfo
 -. task
 	*. user_id
 	*. codigo
@@ -42,7 +31,20 @@
 	*. user_id
 	*. mensaje
 	*. tipo
-	*. estado
+	*. finicial
+	*. ffinal
+-. loginout
+	*. user_id
+	*. action ('Registered', 'Attempting','LogAuthenticated','LogSuccessfulLogin','LogFailedLogin','LogSuccessfulLogout','LogLockout','LogPasswordReset')
+	*. message
+	*. ip
+-. logdb
+	*. user_id
+	*. action
+	*. ip
+	*. model_class
+	*. url
+	*. pathInfo
 ####################################################################################
 -. entes (entes objeto de actuaciones fiscales)
 -. planopers (planes operativos -> registros de auditorias)

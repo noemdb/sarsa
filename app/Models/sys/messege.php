@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models\sys;
 
 use Illuminate\Database\Eloquent\Model;
 
-class profiles extends Model
+class messege extends Model
 {
     //
 }
