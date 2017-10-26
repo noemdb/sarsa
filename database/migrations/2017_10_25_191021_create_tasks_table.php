@@ -15,7 +15,7 @@ class CreateTasksTable extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->unique();
+            $table->integer('user_id')->unsigned();
             $table->string('codigo',32);
             $table->string('descripcion');
             $table->enum('tipo', ['primary', 'suscess', 'info', 'warning', 'danger', 'default'])->default('default');

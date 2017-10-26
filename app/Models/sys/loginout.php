@@ -4,7 +4,7 @@ namespace App\Models\sys;
 
 use Illuminate\Database\Eloquent\Model;
 
-class loginout extends Model
+class Loginout extends Model
 {
     //
 }

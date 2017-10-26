@@ -4,7 +4,7 @@ namespace App\Models\sys;
 
 use Illuminate\Database\Eloquent\Model;
 
-class messege extends Model
+class Messege extends Model
 {
     //
 }

@@ -15,7 +15,7 @@ class CreateMessegesTable extends Migration
     {
         Schema::create('messeges', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->unique();
+            $table->integer('user_id')->unsigned();
             $table->integer('destino_user_id')->unsigned();
             $table->string('mensaje');
             $table->enum('tipo', ['primary', 'suscess', 'info', 'warning', 'danger','default'])->default('default');

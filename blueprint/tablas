@@ -35,7 +35,7 @@
 	*. ffinal
 -. loginout
 	*. user_id
-	*. action ('Registered', 'Attempting','LogAuthenticated','LogSuccessfulLogin','LogFailedLogin','LogSuccessfulLogout','LogLockout','LogPasswordReset')
+	*. action
 	*. message
 	*. ip
 -. logdb

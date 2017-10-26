@@ -15,10 +15,11 @@ class CreateAlertsTable extends Migration
     {
         Schema::create('alerts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->unique();
+            $table->integer('user_id')->unsigned();
             $table->integer('destino_user_id')->unsigned();
             $table->string('mensaje');
             $table->enum('tipo', ['primary', 'suscess', 'info', 'warning', 'danger','default'])->default('default');
+            $table->enum('estado',['Visto','No Visto'])->default('No Visto');
             $table->date('finicial');
             $table->date('ffinal');
             
