@@ -71,7 +71,7 @@
                     @auth
                         <a href="{{ url('/home') }}">Inicio</a>
                     @else
-                        <a href="{{ route('login') }}">Igresar</a>
+                        <a href="{{ route('login') }}">Ingresar</a>
                         <a href="{{ route('register') }}">Registrar</a>
                     @endauth
                 </div>
@@ -91,6 +91,7 @@
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
                 --}}
+                
             </div>
         </div>
     </body>

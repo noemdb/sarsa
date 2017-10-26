@@ -21,6 +21,7 @@ class CreateRolsTable extends Migration
             $table->string('descripcion');
             $table->date('finicial');
             $table->date('ffinal');
+            $table->softDeletes();
             $table->timestamps();
             $table->foreign('user_id')
                   ->references('id')

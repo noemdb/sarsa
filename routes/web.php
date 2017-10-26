@@ -22,9 +22,18 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin', function () {
-    return view('admin.home');
-})->middleware('auth');
+Route::get('/webmaster', function () { return view('webmaster.home'); })->middleware('auth');
+
+Route::group(['prefix'=>'webmaster','middleware'=>['auth'],'namespace'=>'Webmaster'], function(){
+
+    // Route::get('/dashboard', function () {
+    //     return view('webmaster.home');
+    // });
+    Route::get('/', 'HomeController@index')->name('home');
+
+});
+
+Route::get('/admin', function () { return view('admin.home'); })->middleware('auth');
 
 Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], function(){
 
