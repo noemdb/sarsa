@@ -19,7 +19,7 @@
                 @component('elements.widgets.card')
                     @slot('class', 'green')
                     @slot('class_icon', 'fa fa-tasks fa-5x')
-                    @slot('total', $users)
+                    @slot('total', $tasks->notdone)
                     @slot('text', 'Nuevas Tareas')
                 @endcomponent
             </div>

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
 /*Clases adicionadas*/
 use Illuminate\Http\Request;
@@ -32,10 +33,15 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    // nuemro de registros en User getCountAttribute
     public function getCountAttribute()
     {
-      // return $this->firstname .' ' .$this->lastname;
-      return User::count();
+      return $this->count();
+    }
+    // nuemro de perfiles registrados
+    public function getCountTasksAttribute()
+    {
+      return $this->tasks->count();
     }
 
     /*INI relaciones entre modelos*/

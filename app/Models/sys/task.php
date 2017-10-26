@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
+	//usada para el softdelete
+    protected $dates = ['deleted_at'];
+    
+	protected $appends = ['count','notdone'];
+
 	/*INI relaciones entre modelos*/
 	public function user()
     {
@@ -16,6 +21,11 @@ class Task extends Model
     public function getCountAttribute()
     {
       // return $this->firstname .' ' .$this->lastname;
-      return Task::count();
+      return $this->count();
+    }
+
+    public function getNotDoneAttribute()
+    {
+      return $this->where('estado','iniciada')->count();
     }
 }

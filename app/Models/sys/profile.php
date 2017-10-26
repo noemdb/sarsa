@@ -17,4 +17,9 @@ class Profile extends Model
     {
       return $this->firstname .' ' . $this->lastname;
     }
+    public function getCountAttribute()
+    {
+      // return $this->firstname .' ' .$this->lastname;
+      return $this->count();
+    }
 }
