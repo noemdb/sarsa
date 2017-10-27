@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Task extends Model
 {
 	//usada para el softdelete
-    protected $dates = ['deleted_at'];
+  protected $dates = ['deleted_at'];
     
-	protected $appends = ['count','notdone'];
+	protected $appends = ['count','notdone','done','codeve'];
 
 	/*INI relaciones entre modelos*/
 	public function user()
@@ -18,14 +18,33 @@ class Task extends Model
     }
     /*FIN relaciones entre modelos*/
 
-    public function getCountAttribute()
+    // public function getCountAttribute()
+    // {
+    //   // return $this->firstname .' ' .$this->lastname;
+    //   return $this->count();
+    // }
+
+    public function getCodEveAttribute()
     {
-      // return $this->firstname .' ' .$this->lastname;
-      return $this->count();
+        return $this->codigo.' '.$this->evento;
     }
 
-    public function getNotDoneAttribute()
+    // public function getNotDoneAttribute()
+    // {
+    //   return Task::where('estado','finalizada')->count();
+    // }
+
+    // public function getDoneAttribute()
+    // {
+    //   return Task::where('estado','iniciada')->count();
+    // }
+
+    public function notdone()
     {
-      return $this->where('estado','iniciada')->count();
+      return Task::where('estado','iniciada')->count();
     }
+    // public static function done()
+    // {
+    //   return Task::where('estado','finalizada')->count();
+    // }
 }

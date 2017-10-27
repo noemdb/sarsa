@@ -12,7 +12,7 @@ class MessegeTableSeeder extends Seeder
     public function run()
     {
         //
-        for ($i=0; $i < 10; $i++) { 
+        for ($i=0; $i < 100; $i++) { 
             factory(App\Models\sys\Messege::class)->times(1)->create();
         }
     }

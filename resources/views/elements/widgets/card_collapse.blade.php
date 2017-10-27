@@ -10,11 +10,18 @@
             </div>
         </div>
     </div>
-    <a href="#">
+        
         <div class="panel-footer">
-            <span class="pull-left">{{ $text_footer or 'Mas detalles' }}</span>
-            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-            <div class="clearfix"></div>
+            <a href="#{{ $idcollapse or 'idcollapse' }}" data-toggle="collapse">
+                {{ $headercollapse or 'headercollapse' }}
+
+                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                <div class="clearfix"></div>
+            </a>        
+
+            <div id="{{ $idcollapse or 'idcollapse' }}" class="collapse">
+            {{ $bodycollapse or 'bodycollapse' }}
+            </div>
+
         </div>
-    </a>
 </div>

@@ -12,7 +12,7 @@ class TaskTableSeeder extends Seeder
     public function run()
     {
         //
-        for ($i=0; $i < 15; $i++) { 
+        for ($i=0; $i < 150; $i++) { 
             factory(App\Models\sys\Task::class)->times(1)->create();
         }
     }

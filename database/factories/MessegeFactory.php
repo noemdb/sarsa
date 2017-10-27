@@ -3,7 +3,7 @@
 use Faker\Generator as Faker;
 
 $factory->define(App\Models\sys\Messege::class, function (Faker $faker) {
-	$arr_tipo = ['primary'=>'primary','suscess'=>'suscess','info'=>'info','warning'=>'warning','danger'=>'danger','default'=>'default'];
+	$arr_tipo = ['success'=>'success','info'=>'info','warning'=>'warning','danger'=>'danger','default'=>'default'];
 	$arr_estado = ['Visto'=>'Visto','No Visto'=>'No Visto'];
 
     return [

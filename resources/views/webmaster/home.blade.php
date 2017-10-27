@@ -8,27 +8,50 @@
     <div class="col-sm-12">
         <div class="row">
             <div class="col-lg-3 col-md-6">
+                {{--
                 @component('elements.widgets.card')
                     @slot('class', 'primary')
                     @slot('class_icon', 'fa fa-comments fa-5x')
-                    @slot('total', '105')
-                    @slot('text', 'Nuevos Comentarios')
+                    @slot('total', $messeges->where('estado','No Visto')->count())
+                    @slot('text', 'Nuevos Mensajes')
+                @endcomponent
+                --}}
+
+                @component('elements.widgets.card_collapse')
+                    @slot('class', 'primary')
+                    @slot('class_icon', 'fa fa-comments fa-5x')
+                    @slot('total', $messeges->where('estado','No Visto')->count())
+                    @slot('text', 'Nuevos Mensajes')
+                    @slot('headercollapse', 'Mas detalles')
+                    @slot('idcollapse', 'idnotificaciones1')
+                    @slot('bodycollapse')
+                        {{-- INI Notification panel --}}
+                        @component('elements.widgets.panel')
+                            @slot('badge',$messeges->where('estado','No Visto')->count())
+                            @slot('class','info')
+                            @slot('panelTitle', 'Nuevos Mensajes')
+                            @slot('panelBody')
+                                @include('elements.widgets.messeges-list',['messeges_unread'=>$messeges->where('estado','No Visto')])
+                            @endslot
+                        @endcomponent
+                        {{-- FIN Notification panel --}}
+                    @endslot
                 @endcomponent
             </div>
             <div class="col-lg-3 col-md-6">
                 @component('elements.widgets.card')
                     @slot('class', 'green')
                     @slot('class_icon', 'fa fa-tasks fa-5x')
-                    @slot('total', $tasks->notdone)
-                    @slot('text', 'Nuevas Tareas')
+                    @slot('total', $tasks->where('estado','iniciada')->count())
+                    @slot('text', 'Tareas no Terminadas')
                 @endcomponent
             </div>
             <div class="col-lg-3 col-md-6">
                 @component('elements.widgets.card')
                     @slot('class', 'yellow')
-                    @slot('class_icon', 'fa fa-shopping fa-5x')
-                    @slot('total', '15')
-                    @slot('text', 'Nuevas Ventas')
+                    @slot('class_icon', 'fa fa-warning fa-5x')
+                    @slot('total', $alerts->where('estado','No Visto')->count())
+                    @slot('text', 'Nuevas Alertas')
                 @endcomponent
             </div>
             <div class="col-lg-3 col-md-6">
