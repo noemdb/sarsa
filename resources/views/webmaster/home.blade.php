@@ -23,7 +23,10 @@
                             @slot('class','info')
                             @slot('panelTitle', 'Nuevos')
                             @slot('panelBody')
-                                @include('elements.widgets.messeges.list',['messeges'=>$messeges->where('estado','No Visto')])
+                                @include('elements.widgets.messeges.list',[
+                                    'messeges'=>$messeges->where('estado','No Visto'),
+                                    'show_messeges'=>'true'
+                                    ])
                             @endslot
                         @endcomponent
                         {{-- FIN messeges-list panel --}}
@@ -47,7 +50,10 @@
                             @slot('class','success')
                             @slot('panelTitle', 'Pendientes')
                             @slot('panelBody')
-                                @include('elements.widgets.tasks.list',['tasks'=>$tasks->where('estado','iniciada')])
+                                @include('elements.widgets.tasks.list',[
+                                    'tasks'=>$tasks->where('estado','iniciada'),
+                                    'show_task'=>'true'
+                                    ])
                             @endslot
                         @endcomponent
                         {{-- FIN tasks-list --}}
@@ -56,12 +62,6 @@
                 {{-- INI card-collapse tasks --}}
             </div>
             <div class="col-lg-3 col-md-6">
-                {{-- @component('elements.widgets.card')
-                    @slot('class', 'yellow')
-                    @slot('class_icon', 'fa fa-warning fa-5x')
-                    @slot('total', $alerts->where('estado','No Visto')->count())
-                    @slot('text', 'Nuevas Alertas')
-                @endcomponent --}}
 
                 {{-- INI card-collapse alert --}}
                 @component('elements.widgets.card_collapse')
@@ -78,7 +78,10 @@
                             @slot('class','warning')
                             @slot('panelTitle', 'Pendientes')
                             @slot('panelBody')
-                                @include('elements.widgets.alerts-list',['alerts'=>$alerts->where('estado','No Visto')])
+                                @include('elements.widgets.alerts.list',[
+                                    'alerts'=>$alerts->where('estado','No Visto'),
+                                    'show_alerts'=>'true'
+                                    ])
                             @endslot
                         @endcomponent
                         {{-- FIN alert-list --}}
