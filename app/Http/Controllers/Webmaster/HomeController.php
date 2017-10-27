@@ -38,14 +38,23 @@ class HomeController extends Controller
         $users = User::all();
         $profiles = Profile::paginate(15);
         $rols = Rol::all();
-        $tasks = Task::all();        
+        $tasks = Task::where('user_id',\Auth::user()->id)
+                    ->with('user')
+                    ->orderBy('estado', 'asc')
+                    ->orderBy('created_at', 'desc')
+                    ->get();        
         $messeges = Messege::where('destino_user_id',\Auth::user()->id)
                     ->with('user')
                     ->orderBy('estado', 'asc')
                     ->orderBy('created_at', 'desc')
                     ->get();
-        // dd($messeges);
-        $alerts = Alert::all();
+
+        $alerts = Alert::where('destino_user_id',\Auth::user()->id)
+                    ->with('user')
+                    ->orderBy('estado', 'asc')
+                    ->orderBy('created_at', 'desc')
+                    ->get();
+
         $loginouts = Alert::all();
         $logdbs = Loginout::all();
 

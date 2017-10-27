@@ -8,15 +8,7 @@
     <div class="col-sm-12">
         <div class="row">
             <div class="col-lg-3 col-md-6">
-                {{--
-                @component('elements.widgets.card')
-                    @slot('class', 'primary')
-                    @slot('class_icon', 'fa fa-comments fa-5x')
-                    @slot('total', $messeges->where('estado','No Visto')->count())
-                    @slot('text', 'Nuevos Mensajes')
-                @endcomponent
-                --}}
-
+                {{-- INI card-collapse mensajes --}}
                 @component('elements.widgets.card_collapse')
                     @slot('class', 'primary')
                     @slot('class_icon', 'fa fa-comments fa-5x')
@@ -25,34 +17,74 @@
                     @slot('headercollapse', 'Mas detalles')
                     @slot('idcollapse', 'idnotificaciones1')
                     @slot('bodycollapse')
-                        {{-- INI Notification panel --}}
+                        {{-- INI messeges-list panel --}}
                         @component('elements.widgets.panel')
                             @slot('badge',$messeges->where('estado','No Visto')->count())
                             @slot('class','info')
-                            @slot('panelTitle', 'Nuevos Mensajes')
+                            @slot('panelTitle', 'Nuevos')
                             @slot('panelBody')
-                                @include('elements.widgets.messeges-list',['messeges_unread'=>$messeges->where('estado','No Visto')])
+                                @include('elements.widgets.messeges.list',['messeges'=>$messeges->where('estado','No Visto')])
                             @endslot
                         @endcomponent
-                        {{-- FIN Notification panel --}}
+                        {{-- FIN messeges-list panel --}}
                     @endslot
                 @endcomponent
+                {{-- FIN card-collapse mensajes --}}
             </div>
             <div class="col-lg-3 col-md-6">
-                @component('elements.widgets.card')
+                {{-- INI card-collapse tasks --}}
+                @component('elements.widgets.card_collapse')
                     @slot('class', 'green')
                     @slot('class_icon', 'fa fa-tasks fa-5x')
                     @slot('total', $tasks->where('estado','iniciada')->count())
-                    @slot('text', 'Tareas no Terminadas')
+                    @slot('text', 'Tareas Pendientes')
+                    @slot('headercollapse', 'Mas detalles')
+                    @slot('idcollapse', 'idtareas1')
+                    @slot('bodycollapse')
+                        {{-- INI tasks-list --}}
+                        @component('elements.widgets.panel')
+                            @slot('badge',$tasks->where('estado','iniciada')->count())
+                            @slot('class','success')
+                            @slot('panelTitle', 'Pendientes')
+                            @slot('panelBody')
+                                @include('elements.widgets.tasks.list',['tasks'=>$tasks->where('estado','iniciada')])
+                            @endslot
+                        @endcomponent
+                        {{-- FIN tasks-list --}}
+                    @endslot
                 @endcomponent
+                {{-- INI card-collapse tasks --}}
             </div>
             <div class="col-lg-3 col-md-6">
-                @component('elements.widgets.card')
+                {{-- @component('elements.widgets.card')
                     @slot('class', 'yellow')
                     @slot('class_icon', 'fa fa-warning fa-5x')
                     @slot('total', $alerts->where('estado','No Visto')->count())
                     @slot('text', 'Nuevas Alertas')
+                @endcomponent --}}
+
+                {{-- INI card-collapse alert --}}
+                @component('elements.widgets.card_collapse')
+                    @slot('class', 'yellow')
+                    @slot('class_icon', 'fa fa-warning fa-5x')
+                    @slot('total', $alerts->where('estado','No Visto')->count())
+                    @slot('text', 'Alertas Pendientes')
+                    @slot('headercollapse', 'Mas detalles')
+                    @slot('idcollapse', 'idalertas1')
+                    @slot('bodycollapse')
+                        {{-- INI alert-list --}}
+                        @component('elements.widgets.panel')
+                            @slot('badge',$alerts->where('estado','No Visto')->count())
+                            @slot('class','warning')
+                            @slot('panelTitle', 'Pendientes')
+                            @slot('panelBody')
+                                @include('elements.widgets.alerts-list',['alerts'=>$alerts->where('estado','No Visto')])
+                            @endslot
+                        @endcomponent
+                        {{-- FIN alert-list --}}
+                    @endslot
                 @endcomponent
+                {{-- INI card-collapse alert --}}
             </div>
             <div class="col-lg-3 col-md-6">
                 @component('elements.widgets.card')
