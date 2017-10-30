@@ -12,7 +12,7 @@
             @slot('panelTitle', 'Nuevos')
             @slot('panelBody')
                 @include('elements.widgets.alerts.list',[
-                    'alerts'=>$alerts->where('estado','No Visto'),
+                    'alerts'=>$alerts->where('estado','No Visto')->take(5),
                     'show_alert'=>'true'
                     ])
             @endslot

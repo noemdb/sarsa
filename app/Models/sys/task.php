@@ -3,13 +3,15 @@
 namespace App\Models\sys;
 
 use Illuminate\Database\Eloquent\Model;
+// use App\User;
 
 class Task extends Model
 {
 	//usada para el softdelete
-  protected $dates = ['deleted_at'];
+ 	protected $dates = ['deleted_at'];
     
-	// protected $appends = ['count','notdone','done','codeve'];
+    //para obtener los getAttribute
+	// protected $appends = ['userlist'];
 
 	/*INI relaciones entre modelos*/
 	public function user()
@@ -18,6 +20,9 @@ class Task extends Model
     }
     /*FIN relaciones entre modelos*/
 
-    
-
+   // public function getUserListAttribute()
+   //  {
+   //    return User::orderBy('username','desc')->has('tasks')->pluck('username', 'id');
+   //    // return $this->firstname .' ' . $this->lastname;
+   //  }
 }

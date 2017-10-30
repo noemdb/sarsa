@@ -40,18 +40,44 @@ class ChartController extends Controller
 		//   ])
 		//   ->toJSON();
 
+		// User::orderBy('username','desc')->has('tasks')->pluck('username', 'id');
+
 		$tasks = Task::join('users', 'users.id', '=', 'tasks.user_id')
 			->groupBy('tasks.user_id')
 			->orderBy('tasks.user_id', 'ASC')
 		    ->get([
+		    	'tasks.user_id',
 		    	'users.username',
 			    DB::raw('COUNT(*) as value')
-			])
-		    ->toJSON();
+			]);
+
+		$labels = $tasks->pluck('username');
+		$values = $tasks->pluck('value');
+
+		$lineChartDataSQL = [
+			'labels'=>$labels,
+			'datasets'=>[
+				[
+	                "label"=>"Tareas Asignadas",
+	                "fillColor"=>"rgba(151,187,205,0.2)",
+	                "strokeColor"=>"rgba(151,187,205,1)",
+	                "pointColor"=>"rgba(151,187,205,1)",
+	                "pointStrokeColor"=>"#fff",
+	                "pointHighlightFill"=>"#fff",
+	                "pointHighlightStroke"=>"rgba(244, 204, 11, 1)",
+	                "data"=>$values
+                ]
+            ]
+        ];
+
+		// $task_notdone = ;
+
+		// $list_user = User::orderBy('username','asc')->has('tasks')->pluck('username', 'id');
+
+		// dd($lineChartDataSQL);
 
 		// dd($tasks);
 
-
-		return $tasks;
+		return json_encode($lineChartDataSQL);
 	}
 }

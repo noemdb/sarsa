@@ -24,7 +24,7 @@
                             @slot('panelTitle', 'Nuevos')
                             @slot('panelBody')
                                 @include('elements.widgets.messeges.list',[
-                                    'messeges'=>$messeges->where('estado','No Visto'),
+                                    'messeges'=>$messeges->where('estado','No Visto')->take(5),
                                     'show_messeges'=>'true'
                                     ])
                             @endslot
@@ -51,7 +51,7 @@
                             @slot('panelTitle', 'Pendientes')
                             @slot('panelBody')
                                 @include('elements.widgets.tasks.list',[
-                                    'tasks'=>$tasks->where('estado','iniciada'),
+                                    'tasks'=>$tasks->where('estado','iniciada')->take(5),
                                     'show_task'=>'true'
                                     ])
                             @endslot
@@ -62,7 +62,6 @@
                 {{-- INI card-collapse tasks --}}
             </div>
             <div class="col-lg-3 col-md-6">
-
                 {{-- INI card-collapse alert --}}
                 @component('elements.widgets.card_collapse')
                     @slot('class', 'yellow')
@@ -79,7 +78,7 @@
                             @slot('panelTitle', 'Pendientes')
                             @slot('panelBody')
                                 @include('elements.widgets.alerts.list',[
-                                    'alerts'=>$alerts->where('estado','No Visto'),
+                                    'alerts'=>$alerts->where('estado','No Visto')->take(5),
                                     'show_alert'=>'true'
                                     ])
                             @endslot
@@ -90,12 +89,14 @@
                 {{-- INI card-collapse alert --}}
             </div>
             <div class="col-lg-3 col-md-6">
+                {{-- INI card-collapse disponibles --}}
                 @component('elements.widgets.card')
                     @slot('class', 'red')
                     @slot('class_icon', 'fa fa-support fa-5x')
                     @slot('total', '158')
                     @slot('text', 'Nuevas Tickets!')
                 @endcomponent
+                {{-- INI card-collapse disponibles --}}
             </div>
         </div>
          {{-- /.row FIN card --}}
@@ -129,6 +130,21 @@
                 @endcomponent
                 {{-- INI Line Chart panel --}}
 
+                {{-- INI chart con ajax-sql --}}
+                @component('elements.widgets.panel')
+                    @slot('class', 'success')
+                    @slot('panelControls', 'true')
+                    @slot('id', 'clinesqldashboard')
+                    @slot('panelTitle', 'Tareas por Usuario')
+                    @slot('panelBody')
+                        @component('elements.charts.widgets.canvas')
+                            @slot('id', 'clinesqldashboard')
+                        @endcomponent
+                    @endslot
+                @endcomponent
+                {{-- FIN chart con ajax-sql --}}
+
+                {{-- INI chart con ajax --}}
                 @component('elements.widgets.panel')
                     @slot('class', 'success')
                     @slot('panelControls', 'true')
@@ -140,6 +156,7 @@
                         @endcomponent
                     @endslot
                 @endcomponent
+                {{-- FIN chart con ajax --}}
 
                 {{-- INI alert-list --}}
                 @component('elements.widgets.panel')
@@ -197,30 +214,54 @@
 {{-- INI data for linechart --}}
     <script>
  
-     // Create a function that will handle AJAX requests
-      function requestData(days, chart){
-        // alert('in');
-        $.ajax({
-          type: "GET",
-          url: "{{url('admin/api/charts/uservrstask')}}", // This is the URL to the API
-          data: { days: days }
-        })
-        .done(function( data ) {
-          // When the response to the AJAX request comes back render the chart with new data
-          console.log(data);
-          // chart.setData(JSON.parse(data));
-        })
-        .fail(function() {
-          // If there is no communication between the server, show an error
-          alert( "error occured" );
+        $(function() {
+          // Create a function that will handle AJAX requests
+          function requestData(days){
+            $.ajax({
+              type: "GET",
+              url: "{{url('admin/api/charts/uservrstask')}}", // This is the URL to the API
+              data: { days: days }
+            })
+            .done(function( data ) {
+                
+                var apidata = JSON.parse(data);
+                // console.log(apidata);
+                // console.log(lineChartDataSQL);
+        
+                if (document.getElementById("clinesqldashboard")){
+                    var cline = document.getElementById("clinesqldashboard").getContext("2d");
+                    new Chart(cline).Line(apidata, {
+                        responsive: true
+                    });
+                }
+            })
+            .fail(function() {
+              // If there is no communication between the server, show an error
+              console.log( "error occured" );
+            });
+          }
+          
+          var lineChartDataSQL = {
+                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                datasets: [{
+                    label: "Tareas Asignadas",
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(244, 204, 11, 1)",
+                    data: [65, 59, 80, 209, 56, 55, 305]
+                }]
+
+            };
+          // Request initial data for the past 7 days:
+          requestData(7, lineChartDataSQL);
         });
-      }
-
-
 
         $(document).ready(function() {
             
-            requestData(7, 'chart');
+            // requestData(7, 'chart');
 
             var lineChartData = {
                 labels: ["January", "February", "March", "April", "May", "June", "July"],

@@ -12,7 +12,7 @@
             @slot('panelTitle', 'Nuevos')
             @slot('panelBody')
                 @include('elements.widgets.messeges.list',[
-                    'messeges'=>$messeges->where('estado','No Visto'),
+                    'messeges'=>$messeges->where('estado','No Visto')->take(5),
                     'show_messeges'=>'true'
                     ])
             @endslot

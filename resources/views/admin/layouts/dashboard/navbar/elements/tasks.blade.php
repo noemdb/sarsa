@@ -12,7 +12,7 @@
             @slot('panelTitle', 'Nuevos')
             @slot('panelBody')
                 @include('elements.widgets.tasks.list',[
-                    'tasks'=>$tasks->where('estado','iniciada'),
+                    'tasks'=>$tasks->where('estado','iniciada')->take(5),
                     'show_task'=>'true'
                     ])
             @endslot

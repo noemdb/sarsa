@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row" style="margin-top: 25px;">
             <div class="col-md-4 col-md-offset-4 centered">
-                @component('admin.elements.widgets.panel')
+                @component('elements.widgets.panel')
                     @slot ('panelTitle', 'Please Sign In')
                     @slot ('panelBody')
                         <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">

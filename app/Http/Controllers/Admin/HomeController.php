@@ -40,18 +40,18 @@ class HomeController extends Controller
         $rols = Rol::all();
         $tasks = Task::where('user_id',\Auth::user()->id)
                     ->with('user')
-                    ->orderBy('estado', 'asc')
-                    ->orderBy('id', 'desc')
+                    ->orderBy('created_at', 'desc')
+                    // ->orderBy('id', 'desc')
                     ->get();        
         $messeges = Messege::where('destino_user_id',\Auth::user()->id)
                     ->with('user')
-                    ->orderBy('estado', 'asc')
-                    ->orderBy('id', 'desc')
+                    ->orderBy('created_at', 'desc')
+                    // ->orderBy('id', 'desc')
                     ->get();
 
         $alerts = Alert::where('destino_user_id',\Auth::user()->id)
                     ->with('user')
-                    ->orderBy('estado', 'asc')
+                    ->orderBy('created_at', 'desc')
                     ->orderBy('id', 'desc')
                     ->get();
 
