@@ -12,7 +12,7 @@ class LoginoutTableSeeder extends Seeder
     public function run()
     {
         //
-        for ($i=0; $i < 15; $i++) { 
+        for ($i=0; $i < 200; $i++) { 
             factory(App\Models\sys\Loginout::class)->times(1)->create();
         }
     }

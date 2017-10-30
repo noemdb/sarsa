@@ -6,8 +6,8 @@ $factory->define(App\Models\sys\Rol::class, function (Faker $faker) {
     
 	$arr_rol = ['CONTRA'=>'CONTRA','DIRCP'=>'DIRCP','CORCP'=>'CORCP','COMCP'=>'COMCP','admin'=>'admin','user'=>'user'];
 	$arr_rango = ['root'=>'root','user'=>'user'];
-	$ffinal = $faker->dateTimeBetween('-12 month','2017-01-01');
-	$finicial = $faker->dateTimeBetween('2016-01-01',$ffinal);
+	$ffinal = $faker->dateTimeBetween('2017-01-01','2017-12-31');
+	$finicial = $faker->dateTimeBetween('2017-01-01',$ffinal);
     return [
         'rol' => array_rand($arr_rol,1),
         'rango' => array_rand($arr_rango,1),

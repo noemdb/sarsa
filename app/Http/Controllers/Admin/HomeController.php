@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Webmaster;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -41,23 +41,24 @@ class HomeController extends Controller
         $tasks = Task::where('user_id',\Auth::user()->id)
                     ->with('user')
                     ->orderBy('estado', 'asc')
-                    ->orderBy('created_at', 'desc')
+                    ->orderBy('id', 'desc')
                     ->get();        
         $messeges = Messege::where('destino_user_id',\Auth::user()->id)
                     ->with('user')
                     ->orderBy('estado', 'asc')
-                    ->orderBy('created_at', 'desc')
+                    ->orderBy('id', 'desc')
                     ->get();
 
         $alerts = Alert::where('destino_user_id',\Auth::user()->id)
                     ->with('user')
                     ->orderBy('estado', 'asc')
-                    ->orderBy('created_at', 'desc')
+                    ->orderBy('id', 'desc')
                     ->get();
 
         $loginouts = Alert::all();
         $logdbs = Loginout::all();
 
-        return view('webmaster.home',compact('users','profiles','rols','tasks','messeges','alerts','loginouts','logdbs'));
+        return view('admin.home',compact('users','profiles','rols','tasks','messeges','alerts','loginouts','logdbs'));
     }
+
 }

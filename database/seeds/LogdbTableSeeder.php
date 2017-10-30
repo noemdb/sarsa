@@ -12,7 +12,7 @@ class LogdbTableSeeder extends Seeder
     public function run()
     {
         //
-        for ($i=0; $i < 15; $i++) { 
+        for ($i=0; $i < 200; $i++) { 
             factory(App\Models\sys\Logdb::class)->times(1)->create();
         }
     }

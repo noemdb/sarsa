@@ -6,6 +6,7 @@ $factory->define(App\Models\sys\Task::class, function (Faker $faker) {
 	
 	$arr_tipo = ['primary'=>'primary','suscess'=>'suscess','info'=>'info','warning'=>'warning','danger'=>'danger','default'=>'default'];
 	$arr_estado = ['iniciada'=>'iniciada','finalizada'=>'finalizada'];
+    $created_at = $faker->dateTimeBetween('2017-01-01','2017-12-31');
 
     return [
         'codigo' => str_random(10),
@@ -13,6 +14,8 @@ $factory->define(App\Models\sys\Task::class, function (Faker $faker) {
         'tipo' => array_rand($arr_tipo,1),
         'evento' => str_random(10),
         'estado' => array_rand($arr_estado,1),
+        'created_at'=>$created_at,
+        'updated_at'=>$created_at,
 
         'user_id' => function () { 
         	return 

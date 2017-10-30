@@ -2,58 +2,58 @@
     <ul class="nav" id="side-menu">
         
         <li>
-            @include('webmaster.layouts.dashboard.sidebar.elements.profile')
+            @include('admin.layouts.dashboard.sidebar.elements.profile')
         </li>
 
         <li class="sidebar-search">
-            @include('webmaster.layouts.dashboard.sidebar.elements.sidebar-search')
+            @include('admin.layouts.dashboard.sidebar.elements.sidebar-search')
         </li>
 
         <li>
-            <a href="{{ url ('webmaster/dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+            <a href="{{ url ('admin/dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
         </li>
 
         <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
-            @include('webmaster.layouts.dashboard.sidebar.elements.charts')
+            @include('admin.layouts.dashboard.sidebar.elements.charts')
         </li>
 
         <li {{ (Request::is('*tables') ? 'class="active"' : '') }}>
-            @include('webmaster.layouts.dashboard.sidebar.elements.tables')
+            @include('admin.layouts.dashboard.sidebar.elements.tables')
         </li>
 
         <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
-            <a href="{{ url ('webmaster/forms') }}"><i class="fa fa-edit fa-fw"></i> Forms</a>
+            <a href="{{ url ('admin/forms') }}"><i class="fa fa-edit fa-fw"></i> Forms</a>
         </li>
         
         <li>
             <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
                 <li {{ (Request::is('*panels') ? 'class="active"' : '') }}>
-                    <a href="{{ url ('webmaster/panels') }}">Panels and Collapsibles</a>
+                    <a href="{{ url ('admin/panels') }}">Panels and Collapsibles</a>
                 </li>
                 <li {{ (Request::is('*buttons') ? 'class="active"' : '') }}>
-                    <a href="{{ url ('webmaster/buttons' ) }}">Buttons</a>
+                    <a href="{{ url ('admin/buttons' ) }}">Buttons</a>
                 </li>
                 <li {{ (Request::is('*notifications') ? 'class="active"' : '') }}>
-                    <a href="{{ url('webmaster/notifications') }}">Alerts</a>
+                    <a href="{{ url('admin/notifications') }}">Alerts</a>
                 </li>
                 <li {{ (Request::is('*typography') ? 'class="active"' : '') }}>
-                    <a href="{{ url ('webmaster/typography') }}">Typography</a>
+                    <a href="{{ url ('admin/typography') }}">Typography</a>
                 </li>
                 <li {{ (Request::is('*icons') ? 'class="active"' : '') }}>
-                    <a href="{{ url ('webmaster/icons') }}"> Icons</a>
+                    <a href="{{ url ('admin/icons') }}"> Icons</a>
                 </li>
                 <li {{ (Request::is('*grid') ? 'class="active"' : '') }}>
-                    <a href="{{ url ('webmaster/grid') }}">Grid</a>
+                    <a href="{{ url ('admin/grid') }}">Grid</a>
                 </li>
                 <li {{ (Request::is('*progressbars') ? 'class="active"' : '') }}>
-                    <a href="{{ url ('webmaster/progressbars') }}">Progressbars</a>
+                    <a href="{{ url ('admin/progressbars') }}">Progressbars</a>
                 </li>
                 <li {{ (Request::is('*collapse') ? 'class="active"' : '') }}>
-                    <a href="{{ url ('webmaster/collapse') }}">Collapse</a>
+                    <a href="{{ url ('admin/collapse') }}">Collapse</a>
                 </li>
                 <li {{ (Request::is('*stats') ? 'class="active"' : '') }}>
-                    <a href="{{ url ('webmaster/stats') }}">Stats</a>
+                    <a href="{{ url ('admin/stats') }}">Stats</a>
                 </li>
             </ul>
             <!-- /.nav-second-level -->

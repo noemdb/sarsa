@@ -6,7 +6,7 @@
         {{-- INI navbar --}}
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             
-            @include('webmaster.layouts.dashboard.navbar.app')
+            @include('admin.layouts.dashboard.navbar.app')
             
         </nav>
         {{-- FIN navbar --}}
@@ -14,7 +14,7 @@
         {{-- INI sidebar --}}
         <nav class="navbar-default sidebar" role="navigation" id="sidebar">
 
-            @include('webmaster.layouts.dashboard.sidebar.app')
+            @include('admin.layouts.dashboard.sidebar.app')
 
         </nav>
         {{-- FIN sidebar --}}

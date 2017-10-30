@@ -53,3 +53,4 @@ php artisan migrate:fresh --seed
 #######################################################################################################
 Controller para vistas
 php artisan make:controller 'Webmaster\HomeController'
+php artisan make:controller 'Charts\ChartController'
