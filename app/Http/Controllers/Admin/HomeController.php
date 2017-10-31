@@ -52,7 +52,7 @@ class HomeController extends Controller
         $alerts = Alert::where('destino_user_id',\Auth::user()->id)
                     ->with('user')
                     ->orderBy('created_at', 'desc')
-                    ->orderBy('id', 'desc')
+                    // ->orderBy('id', 'desc')
                     ->get();
 
         $loginouts = Alert::all();

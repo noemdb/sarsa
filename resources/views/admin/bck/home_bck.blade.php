@@ -7,7 +7,7 @@
     {{-- /.row INI card--}}
     <div class="col-sm-12">
         <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="col-lg-3 col-md-6">
                 {{-- INI card-collapse mensajes --}}
                 @component('elements.widgets.card_collapse')
                     @slot('class', 'primary')
@@ -34,7 +34,7 @@
                 @endcomponent
                 {{-- FIN card-collapse mensajes --}}
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="col-lg-3 col-md-6">
                 {{-- INI card-collapse tasks --}}
                 @component('elements.widgets.card_collapse')
                     @slot('class', 'green')
@@ -61,7 +61,7 @@
                 @endcomponent
                 {{-- INI card-collapse tasks --}}
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="col-lg-3 col-md-6">
                 {{-- INI card-collapse alert --}}
                 @component('elements.widgets.card_collapse')
                     @slot('class', 'yellow')
@@ -88,7 +88,7 @@
                 @endcomponent
                 {{-- INI card-collapse alert --}}
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="col-lg-3 col-md-6">
                 {{-- INI card-collapse disponibles --}}
                 @component('elements.widgets.card')
                     @slot('class', 'red')
@@ -102,28 +102,29 @@
          {{-- /.row FIN card --}}
 
         <div class="row">
-            <div class="col-lg-8 col-md-6 col-sm-8">
+            <div class="col-lg-8">
+                {{-- INI timeline --}}
+                {{-- 
+                @component('elements.widgets.panel')
+                    @slot('panelTitle', 'Responsive Timeline')
+                    @slot('panelControls', 'true')
+                    @slot('id', 'timeline')
+                    @slot('panelBody')
+                         @include('elements.timeline')
+                    @endslot
+                @endcomponent
+                --}}
+                {{-- FIN timeline --}}
 
                 {{-- INI chart con ajax-sql --}}
-                @php ($id_chart='clinesqldashboard') {{--id de los elementos para generar el widget --}}
-                @php ($urlapi='uservrstask') {{--Metodo api dentro de ChartController --}}
                 @component('elements.widgets.panel')
                     @slot('class', 'info')
                     @slot('panelControls', 'true')
-                    @slot('id', $id_chart )
+                    @slot('id', 'clinesqldashboard')
                     @slot('panelTitle', 'Tareas por Usuario')
                     @slot('panelBody')
                         @component('elements.charts.widgets.canvas')
-                            @slot('ulpanel')
-                                <ul class="nav nav-tabs ranges" data-canvas="{{ $id_chart }}" data-urlapi="{{ $urlapi }}">
-                                    <li class="active"><a href="#">7 Días</a></li>
-                                    <li><a href="#" data-range='30'>30 Días</a></li>
-                                    <li><a href="#" data-range='60'>60 Días</a></li>
-                                    <li><a href="#" data-range='120'>120 Días</a></li>
-                                    <li><a href="#" data-range='360'>360 Días</a></li>
-                                </ul>
-                            @endslot
-                            @slot('id', $id_chart)
+                            @slot('id', 'clinesqldashboard')
                         @endcomponent
                     @endslot
                 @endcomponent
@@ -131,7 +132,40 @@
             </div>
             <!-- /.col-lg-8 -->
 
-            <div class="col-lg-4 col-md-6 col-sm-4">
+            <div class="col-lg-4">
+                {{-- INI Line Chart panel --}}
+                {{-- 
+                @component('elements.widgets.panel')
+                    @slot('panelTitle', 'Line Chart')
+                    @slot('panelControls', 'true')
+                    @slot('id', 'clinechart')
+                    @slot('panelBody')
+                        @component('elements.charts.widgets.canvas')
+                            @slot('id', 'cline')
+                        @endcomponent
+                    @endslot
+                @endcomponent
+                --}}
+                {{-- INI Line Chart panel --}}
+
+                
+
+                {{-- INI chart con ajax --}}
+                {{-- 
+                @component('elements.widgets.panel')
+                    @slot('class', 'success')
+                    @slot('panelControls', 'true')
+                    @slot('id', 'clinedashboard')
+                    @slot('panelTitle', 'Tareas por Mes')
+                    @slot('panelBody')
+                        @component('elements.charts.widgets.canvas')
+                            @slot('id', 'clinedashboard')
+                        @endcomponent
+                    @endslot
+                @endcomponent
+                --}}
+                {{-- FIN chart con ajax --}}
+
                 {{-- INI alert-list --}}
                 @component('elements.widgets.panel')
                     @slot('badge',$alerts->count())
@@ -145,41 +179,7 @@
                     @endslot
                 @endcomponent
                 {{-- FIN alert-list --}}
-            </div>
-            <!-- /.col-lg-4 -->
-        </div>
-        <!-- /.row -->
-        
-        <div class="row">
-            <div class="col-lg-8 col-md-6 col-sm-8">
 
-                {{-- INI chart2 con ajax-sql --}}
-                @php ($id_chart2='clinesqldashboard_02') {{--id de los elementos para generar el widget --}}
-                @php ($urlapi2='uservrstaskdone') {{--Metodo api dentro de ChartController --}}
-                @component('elements.widgets.panel')
-                    @slot('class', 'info')
-                    @slot('panelControls', 'true')
-                    @slot('id', $id_chart2 )
-                    @slot('panelTitle', 'Tareas Finalizadas por Usuario')
-                    @slot('panelBody')
-                        @component('elements.charts.widgets.canvas')
-                            @slot('ulpanel')
-                                <ul class="nav nav-tabs ranges" data-canvas="{{ $id_chart2 }}" data-urlapi="{{ $urlapi2 }}">
-                                    <li class="active"><a href="#">7 Días</a></li>
-                                    <li><a href="#" data-range='30'>30 Días</a></li>
-                                    <li><a href="#" data-range='60'>60 Días</a></li>
-                                    <li><a href="#" data-range='120'>120 Días</a></li>
-                                    <li><a href="#" data-range='360'>360 Días</a></li>
-                                </ul>
-                            @endslot
-                            @slot('id', $id_chart2)
-                        @endcomponent
-                    @endslot
-                @endcomponent
-                {{-- FIN chart2 con ajax-sql --}}
-
-            </div>
-            <div class="col-lg-4 col-md-6 col-sm-8">
                 {{-- INI chat panel --}}
                 @component('elements.widgets.panel')
                     @slot('class','success')
@@ -198,9 +198,9 @@
                 @endcomponent
                 {{-- FIN chat panel --}}
             </div>
+            <!-- /.col-lg-4 -->
         </div>
         <!-- /.row -->
-
     </div>
     <!-- /.col-sm-12 -->
 
@@ -215,59 +215,104 @@
 @section('scripts')
     @parent
     <script src="{{ asset("js/Chart.js") }}"></script>
+    {{-- <script src="{{ asset("vendor/raphael/raphael.min.js") }}"></script> --}}
+    {{-- <script src="{{ asset("vendor/morrisjs/morris.min.js") }}"></script> --}}
+    {{-- <script src="{{ asset("data/morris-data.js") }}"></script> --}}
 
-    {{-- INI data for linechart --}}
+{{-- INI data for linechart --}}
     <script>
  
+        $(function() {
+          // Create a function that will handle AJAX requests
+          function requestData(days){
+            $.ajax({
+              type: "GET",
+              url: "{{url('admin/api/charts/uservrstask')}}", // This is the URL to the API
+              data: { days: days }
+            })
+            .done(function( data ) {
+                
+                var apidata = JSON.parse(data);
+                // console.log(apidata);
+                // console.log(lineChartDataSQL);
+        
+                if (document.getElementById("clinesqldashboard")){
+                    var cline = document.getElementById("clinesqldashboard").getContext("2d");
+                    new Chart(cline).Line(apidata, {
+                        responsive: true
+                    });
+                }
+            })
+            .fail(function() {
+              // If there is no communication between the server, show an error
+              console.log( "error occured" );
+            });
+          }
+          
+          var lineChartDataSQL = {
+                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                datasets: [{
+                    label: "Tareas Asignadas",
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(244, 204, 11, 1)",
+                    data: [65, 59, 80, 209, 56, 55, 305]
+                }]
+
+            };
+          // Request initial data for the past 7 days:
+          requestData(7, lineChartDataSQL);
+        });
+
         $(document).ready(function() {
-            // Create a function that will handle AJAX requests
-            function requestData(days,canvas,urlapi){
-                // alert(urlapi);
-                $.ajax({
-                  type: "GET",
-                  url: "{{url('admin/api/charts')}}/"+urlapi, // This is the URL to the API
-                  data: { days: days }
-                })
-                .done(function( data ) {
-                    var apidata = JSON.parse(data);
-                    console.log(apidata);
-                    if (document.getElementById(canvas)){
-                        var cline = document.getElementById(canvas).getContext("2d");
-                        new Chart(cline).Line(apidata, {
-                            responsive: true
-                        });
-                    }
-                })
-                .fail(function() {
-                  console.log( "error occured" );
+            
+            // requestData(7, 'chart');
+
+            var lineChartData = {
+                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                datasets: [{
+                    label: "My First dataset",
+                    fillColor: "rgba(220,220,220,0.2)",
+                    strokeColor: "rgba(220,220,220,1)",
+                    pointColor: "rgba(220,220,220,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(6, 197, 172, 1)",
+                    data: [65, 59, 80, 209, 56, 55, 305]
+                }, {
+                    label: "My Second dataset",
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(244, 204, 11, 1)",
+                    data: [28, 48, 40, 19, 86, 27, 90]
+                }
+                , {
+                    label: "My third dataset",
+                    fillColor: "rgba(103, 65, 114,0.2)",
+                    strokeColor: "rgba(102, 51, 153,1)",
+                    pointColor: "rgba(154, 18, 179)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(244, 204, 11, 1)",
+                    data: [2, 6, 80, 228, 143, 53, 22]
+                }]
+
+            };
+
+            if (document.getElementById("clinedashboard")){
+                var cline = document.getElementById("clinedashboard").getContext("2d");
+                new Chart(cline).Line(lineChartData, {
+                    responsive: true
                 });
             }
 
-            //inicialización de la funcion ajax para obtener la data de la BD (n.dias por defecto, id del elemento canvas para el chart, metodo del controlador)
-            requestData(7,'{{ $id_chart }}','{{ $urlapi }}');
-            requestData(7,'{{ $id_chart2 }}','{{ $urlapi2 }}');
-
-            
-        
-            $('ul.ranges a').click(function(e){
-                e.preventDefault();
-                // Get the number of days from the data attribute
-                var el = $(this);
-                var days = $(this).data('range'); //alert(days);
-                var ul = $(this).parents('ul');
-                var canvas = ul.data('canvas'); //alert(canvas);
-                var urlapi = ul.data('urlapi'); //alert(api);
-
-                // days = el.attr('data-range'); //alert(days);
-                // Request the data and render the chart using our handy function
-                requestData(days,canvas,urlapi);
-                // Make things pretty to show which button/tab the user clicked
-                el.parent().addClass('active');
-                el.parent().siblings().removeClass('active');
-            })
-
         });
-
     </script>
     {{-- FIN data for linechart --}}
 
