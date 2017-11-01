@@ -4,6 +4,7 @@ namespace App\Models\sys;
 
 use Illuminate\Database\Eloquent\Model;
 // use App\User;
+use Illuminate\Support\Facades\DB;
 
 class Task extends Model
 {
@@ -25,4 +26,28 @@ class Task extends Model
    //    return User::orderBy('username','desc')->has('tasks')->pluck('username', 'id');
    //    // return $this->firstname .' ' . $this->lastname;
    //  }
+   
+   public static function geCountTotal($arr_user_id,$range, $estado)
+    {
+      //INI array con los totales de las tasks iniciadas
+      foreach ($arr_user_id as $key => $value) {
+        $tasks = 
+          Task::where('created_at', '>=', $range)
+            ->where('estado', 'like', '%'.$estado.'%')
+            ->where('user_id',$value)
+            ->groupBy('user_id')
+              ->get([
+                DB::raw('COUNT(*) as value')
+            ]);
+          if( $tasks->count()>0){
+              $arr_total[] = $tasks->first()->value;
+          } else {
+              $arr_total[] = 0;
+          }
+              
+      }
+      //FIN array con los totales de las tasks iniciadas
+
+      return $arr_total;
+    }
 }

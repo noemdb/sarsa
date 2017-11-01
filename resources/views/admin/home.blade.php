@@ -267,12 +267,12 @@
                     if (document.getElementById(canvas)){
                         // delete apidata,cline;
                         // Chart.instances = {};
-                        var apidata = JSON.parse(data);  //console.log(apidata);
+                        var apidata = JSON.parse(data);  console.log(apidata);
                         var cline = document.getElementById(canvas).getContext("2d");
 
                         switch(tipo) {
                             case 'cline':
-                                new Chart(cline).Line( apidata, { responsive: true, });
+                                new Chart(cline).Line( apidata, { responsive: true, tooltips: 'disable'});
                                 break;
                             case 'cbar':
                                 new Chart(cline).Bar( apidata, { responsive: true, tooltips: 'disable'});
