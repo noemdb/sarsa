@@ -180,6 +180,8 @@
                 @endcomponent
                 {{-- FIN chart2 con ajax-sql --}}
 
+                <canvas id="myChart" width="400" height="400"></canvas>
+
             </div>
             <div class="col-lg-4 col-md-6 col-sm-8">
                 {{-- INI chat panel --}}
@@ -227,6 +229,46 @@
     @parent
     <script src="{{ asset("js/Chart.js") }}"></script>
 
+<script>
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>
+
     {{-- INI data for linechart --}}
     <script>
  
@@ -252,8 +294,7 @@
                 requestData(days,canvas,urlapi,tipo);
                 // Make things pretty to show which button/tab the user clicked
                 el.parent().addClass('active');
-                el.parent().siblings().removeClass('active');
-                var cline = document.getElementById(canvas).getContext("2d");
+                el.parent().siblings().removeClass('active');                
             });
 
             // Create a function that will handle AJAX requests
@@ -265,19 +306,48 @@
                 })
                 .done(function( data ) {
                     if (document.getElementById(canvas)){
-                        // delete apidata,cline;
-                        // Chart.instances = {};
                         var apidata = JSON.parse(data);  console.log(apidata);
                         var cline = document.getElementById(canvas).getContext("2d");
 
-                        switch(tipo) {
-                            case 'cline':
-                                new Chart(cline).Line( apidata, { responsive: true, tooltips: 'disable'});
-                                break;
-                            case 'cbar':
-                                new Chart(cline).Bar( apidata, { responsive: true, tooltips: 'disable'});
-                                break;
+
+                        var myChart = new Chart(cline, {
+                        type: 'bar',
+                        data: {
+                            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                            datasets: [{
+                                label: '# of Votes',
+                                data: [apidata.data],
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255,99,132,1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero:true
+                                    }
+                                }]
+                            }
                         }
+                    });
+
+
 
                     }
                 })
