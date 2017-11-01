@@ -52,23 +52,17 @@ public function getApiUserTaskDone(Request $request)
 			'datasets'=>[
 				[
 	                "label"=>"Iniciadas",
-	                "fillColor"=>"rgba(103, 65, 114,0.2)",
-	                "strokeColor"=>"rgba(102, 51, 153,1)",
-	                "pointColor"=>"rgba(151,187,205,1)",
-	                "pointStrokeColor"=>"#fff",
-	                "pointHighlightFill"=>"#fff",
-	                "pointHighlightStroke"=>"rgba(244, 204, 11, 1)",
+	                "backgroundColor"=>"rgba(103, 65, 114,0.2)",
+	                "borderColor"=>"rgba(103, 65, 114,1)",
+                    "borderWidth"=>1,
 	                "data"=>$tot_iniciadas
                 ],
 
                 [
 	                "label"=>"Finalizadas",
-	                "fillColor"=>"rgba(151,187,205,0.2)",
-	                "strokeColor"=>"rgba(151,187,205,1)",
-	                "pointColor"=>"rgba(151,187,205,1)",
-	                "pointStrokeColor"=>"#fff",
-	                "pointHighlightFill"=>"#fff",
-	                "pointHighlightStroke"=>"rgba(244, 204, 11, 1)",
+	                "backgroundColor"=>"rgba(151,187,205,0.2)",
+	                "borderColor"=>"rgba(151,187,205,1)",
+                    "borderWidth"=>1,
 	                "data"=>$tot_finalizadas
                 ]
 
@@ -104,12 +98,9 @@ public function getApiUserTaskDone(Request $request)
 			'datasets'=>[
 				[
 	                "label"=>"Tareas Asignadas",
-	                "fillColor"=>"rgba(151,187,205,0.2)",
-	                "strokeColor"=>"rgba(151,187,205,1)",
-	                "pointColor"=>"rgba(151,187,205,1)",
-	                "pointStrokeColor"=>"#fff",
-	                "pointHighlightFill"=>"#fff",
-	                "pointHighlightStroke"=>"rgba(244, 204, 11, 1)",
+	                "backgroundColor"=>"rgba(151,187,205,0.2)",
+	                "borderColor"=>"rgba(151,187,205,1)",
+                    "borderWidth"=>1,
 	                "data"=>$values
                 ]
             ]

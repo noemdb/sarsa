@@ -180,8 +180,6 @@
                 @endcomponent
                 {{-- FIN chart2 con ajax-sql --}}
 
-                <canvas id="myChart" width="400" height="400"></canvas>
-
             </div>
             <div class="col-lg-4 col-md-6 col-sm-8">
                 {{-- INI chat panel --}}
@@ -220,7 +218,6 @@
             -webkit-user-select: none;
             -ms-user-select: none;
         }
-
     </style>
 
 @endsection
@@ -228,46 +225,7 @@
 @section('scripts')
     @parent
     <script src="{{ asset("js/Chart.js") }}"></script>
-
-<script>
-var ctx = document.getElementById("myChart").getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-    }
-});
-</script>
+    <script src="{{ asset("js/utils.js") }}"></script>
 
     {{-- INI data for linechart --}}
     <script>
@@ -294,7 +252,16 @@ var myChart = new Chart(ctx, {
                 requestData(days,canvas,urlapi,tipo);
                 // Make things pretty to show which button/tab the user clicked
                 el.parent().addClass('active');
-                el.parent().siblings().removeClass('active');                
+                el.parent().siblings().removeClass('active');
+
+                // var canvas = document.getElementById(canvas);
+
+                // console.log('canvas',canvas)
+
+                // var ctx = canvas.getContext('2d');
+
+                // console.log('ctx',ctx)
+
             });
 
             // Create a function that will handle AJAX requests
@@ -305,40 +272,27 @@ var myChart = new Chart(ctx, {
                   data: { days: days }
                 })
                 .done(function( data ) {
-                    if (document.getElementById(canvas)){
-                        var apidata = JSON.parse(data);  console.log('apidata',apidata);
-                        var cline = document.getElementById(canvas).getContext("2d");
 
-                        console.log('labels',apidata.labels)
-                        console.log('data',apidata.datasets[0].data)
+                    //INI asegurar dibujar en un canvas nuevo para evitar solapamiento de chart
+                    $('#'+canvas).remove(); // elimina el canvas antiguo                   
+                    var newcanvas = document.createElement('canvas'); //console.log(newcanvas); //crea
+                    newcanvas.id  = canvas; //console.log(newcanvas); // 
+                    div = document.getElementById('div'+canvas); console.log(div);
+                    div.appendChild(newcanvas);
+                    //FIN asegurar dibujar en un canvas nuevo para evitar solapamiento de chart
 
 
-                        var myChart = new Chart(cline, {
+                    var apidata = JSON.parse(data);  //console.log('apidata',apidata);
+                    var cline = document.getElementById(canvas).getContext("2d");
+
+                    var c = document.getElementById(canvas);
+                    var ctx = c.getContext("2d");
+                    ctx.clearRect(0, 0, c.width, c.height);
+                    ctx.beginPath();
+                    
+                    var myChart = new Chart(cline, {
                         type: 'bar',
-                        data: {
-                            labels: apidata.labels,
-                            datasets: [{
-                                label: '# of Votes',
-                                data: apidata.datasets[0].data,
-                                // backgroundColor: [
-                                //     'rgba(255, 99, 132, 0.2)',
-                                //     'rgba(54, 162, 235, 0.2)',
-                                //     'rgba(255, 206, 86, 0.2)',
-                                //     'rgba(75, 192, 192, 0.2)',
-                                //     'rgba(153, 102, 255, 0.2)',
-                                //     'rgba(255, 159, 64, 0.2)'
-                                // ],
-                                // borderColor: [
-                                //     'rgba(255,99,132,1)',
-                                //     'rgba(54, 162, 235, 1)',
-                                //     'rgba(255, 206, 86, 1)',
-                                //     'rgba(75, 192, 192, 1)',
-                                //     'rgba(153, 102, 255, 1)',
-                                //     'rgba(255, 159, 64, 1)'
-                                // ],
-                                borderWidth: 1
-                            }]
-                        },
+                        data: apidata,
                         options: {
                             scales: {
                                 yAxes: [{
@@ -346,13 +300,11 @@ var myChart = new Chart(ctx, {
                                         beginAtZero:true
                                     }
                                 }]
-                            }
+                            },
+                            // tooltips: false,
                         }
                     });
 
-
-
-                    }
                 })
                 .fail(function() {
                     console.log( "error occured" );
