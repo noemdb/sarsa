@@ -35,9 +35,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        $profiles = Profile::paginate(15);
-        $rols = Rol::all();
+        // $users = User::all();
+        // $profiles = Profile::paginate(15);
+        // $rols = Rol::all();
         $tasks = Task::where('user_id',\Auth::user()->id)
                     ->with('user')
                     ->orderBy('created_at', 'desc')
@@ -55,8 +55,8 @@ class HomeController extends Controller
                     // ->orderBy('id', 'desc')
                     ->get();
 
-        $loginouts = Alert::all();
-        $logdbs = Loginout::all();
+        // $loginouts = Alert::all();
+        // $logdbs = Loginout::all();
 
         return view('admin.home',compact('users','profiles','rols','tasks','messeges','alerts','loginouts','logdbs'));
     }

@@ -29,11 +29,9 @@ class ChartController extends Controller
 public function getApiUserTaskDone(Request $request)
 	{
 
-		$days = $request->input('days');
+		$days = ($request->input('days')!=null) ? $request->input('days') : 7;
 
 		$range = \Carbon\Carbon::now()->subDays($days);
-
-		//dd($range);
 		
 		$tasksdone = Task::where('tasks.created_at', '>=', $range)
 			->where('tasks.estado','finalizada')
@@ -41,20 +39,36 @@ public function getApiUserTaskDone(Request $request)
 			->groupBy('tasks.user_id')
 			->orderBy('tasks.user_id', 'ASC')
 		    ->get([
-
 		    	'users.username',
+		    	'tasks.user_id',
 			    DB::raw('COUNT(*) as value')
 			]);
 
 		$labels = $tasksdone->pluck('username');
 		$values = $tasksdone->pluck('value');
+		$user_id = $tasksdone->pluck('user_id');
+
+		foreach ($user_id as $key => $value) {
+			$tasksnodone = 
+				Task::where('created_at', '>=', $range)
+					->where('estado','iniciada')
+					->where('user_id',$value)
+					->groupBy('user_id')
+				    ->get([
+					    DB::raw('COUNT(*) as valor')
+					]);
+
+				
+				$values2[] = $tasksnodone->first()->valor;
+		}
+		// dd($values2);
 
 		unset($lineChartDataSQL);
 		$lineChartDataSQL = [
 			'labels'=>$labels,
 			'datasets'=>[
 				[
-	                "label"=>"Tareas Asignadas: Últimos ".$days.' días',
+	                "label"=>"Finalizadas",
 	                "fillColor"=>"rgba(103, 65, 114,0.2)",
 	                "strokeColor"=>"rgba(102, 51, 153,1)",
 	                "pointColor"=>"rgba(151,187,205,1)",
@@ -62,7 +76,19 @@ public function getApiUserTaskDone(Request $request)
 	                "pointHighlightFill"=>"#fff",
 	                "pointHighlightStroke"=>"rgba(244, 204, 11, 1)",
 	                "data"=>$values
+                ],
+
+                [
+	                "label"=>"Iniciadas",
+	                "fillColor"=>"rgba(151,187,205,0.2)",
+	                "strokeColor"=>"rgba(151,187,205,1)",
+	                "pointColor"=>"rgba(151,187,205,1)",
+	                "pointStrokeColor"=>"#fff",
+	                "pointHighlightFill"=>"#fff",
+	                "pointHighlightStroke"=>"rgba(244, 204, 11, 1)",
+	                "data"=>$values2
                 ]
+
             ]
         ];
 

@@ -107,7 +107,6 @@
                 {{-- INI chart con ajax-sql --}}
                 @php ($id_chart='clinesqldashboard') {{--id de los elementos para generar el widget --}}
                 @php ($urlapi='uservrstask') {{--Metodo api dentro de ChartController --}}
-                @php ($tipo='cline') {{--Tipo de Chart --}}
                 @component('elements.widgets.panel')
                     @slot('class', 'info')
                     @slot('panelControls', 'true')
@@ -116,10 +115,10 @@
                     @slot('panelBody')
                         @component('elements.charts.widgets.canvas')
                             @slot('ulpanel')
-                                <ul class="nav nav-tabs ranges" data-canvas="{{ $id_chart }}" data-urlapi="{{ $urlapi }}" data-tipo="{{ $tipo }}">
+                                <ul class="nav nav-tabs ranges" data-canvas="{{ $id_chart }}" data-urlapi="{{ $urlapi }}">
                                     <li class="active"><a href="#">7 Días</a></li>
                                     <li><a href="#" data-range='30'>30 Días</a></li>
-                                    <li><a href="#" data-range='90'>90 Días</a></li>
+                                    <li><a href="#" data-range='60'>60 Días</a></li>
                                     <li><a href="#" data-range='180'>180 Días</a></li>
                                     {{-- <li><a href="#" data-range='360'>360 Días</a></li> --}}
                                 </ul>
@@ -157,7 +156,6 @@
                 {{-- INI chart2 con ajax-sql --}}
                 @php ($id_chart2='clinesqldashboard_02') {{--id de los elementos para generar el widget --}}
                 @php ($urlapi2='uservrstaskdone') {{--Metodo api dentro de ChartController --}}
-                @php ($tipo2='cbar') {{--Tipo de Chart --}}
                 @component('elements.widgets.panel')
                     @slot('class', 'info')
                     @slot('panelControls', 'true')
@@ -166,10 +164,10 @@
                     @slot('panelBody')
                         @component('elements.charts.widgets.canvas')
                             @slot('ulpanel')
-                                <ul class="nav nav-tabs ranges" data-canvas="{{ $id_chart2 }}" data-urlapi="{{ $urlapi2 }}" data-tipo="{{ $tipo2 }}">
+                                <ul class="nav nav-tabs ranges" data-canvas="{{ $id_chart2 }}" data-urlapi="{{ $urlapi2 }}">
                                     <li class="active"><a href="#">7 Días</a></li>
                                     <li><a href="#" data-range='30'>30 Días</a></li>
-                                    <li><a href="#" data-range='90'>90 Días</a></li>
+                                    <li><a href="#" data-range='60'>60 Días</a></li>
                                     <li><a href="#" data-range='180'>180 Días</a></li>
                                     {{-- <li><a href="#" data-range='360'>360 Días</a></li> --}}
                                 </ul>
@@ -217,6 +215,10 @@
             -moz-user-select: none;
             -webkit-user-select: none;
             -ms-user-select: none;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
     </style>
@@ -230,12 +232,35 @@
     {{-- INI data for linechart --}}
     <script>
  
-        $(function() {
+        $(document).ready(function() {
 
             //inicialización de la funcion ajax para obtener la data de la BD
             //(n.dias por defecto, id del elemento canvas para el chart, metodo del controlador)
-            requestData(7,'{{ $id_chart }}','{{ $urlapi }}','{{ $tipo }}');
-            requestData(7,'{{ $id_chart2 }}','{{ $urlapi2 }}','{{ $tipo2 }}');
+            requestData(7,'{{ $id_chart }}','{{ $urlapi }}');
+            requestData(7,'{{ $id_chart2 }}','{{ $urlapi2 }}');
+
+            // Create a function that will handle AJAX requests
+            function requestData(days,canvas,urlapi){
+                // alert(urlapi);
+                $.ajax({
+                  type: "GET",
+                  url: "{{url('admin/api/charts')}}/"+urlapi, // This is the URL to the API
+                  data: { days: days }
+                })
+                .done(function( data ) {
+                    var apidata = JSON.parse(data);
+                    console.log(apidata);
+                    if (document.getElementById(canvas)){
+                        var cline = document.getElementById(canvas).getContext("2d");
+                        new Chart(cline).Line(apidata, {
+                            responsive: true
+                        });
+                    }
+                })
+                .fail(function() {
+                  console.log( "error occured" );
+                });
+            }
 
             //Evento clic para el panel de tab nav-tabs (menu con las opciones)
             $('ul.ranges a').click(function(e){
@@ -246,45 +271,13 @@
                 var ul = $(this).parents('ul');
                 var canvas = ul.data('canvas'); //alert(canvas);
                 var urlapi = ul.data('urlapi'); //alert(api);
-                var tipo = ul.data('tipo'); //alert(api);
 
                 // Request the data and render the chart using our handy function
-                requestData(days,canvas,urlapi,tipo);
+                requestData(days,canvas,urlapi);
                 // Make things pretty to show which button/tab the user clicked
                 el.parent().addClass('active');
                 el.parent().siblings().removeClass('active');
-                var cline = document.getElementById(canvas).getContext("2d");
-            });
-
-            // Create a function that will handle AJAX requests
-            function requestData(days,canvas,urlapi,tipo){
-                $.ajax({
-                  type: "GET",
-                  url: "{{url('admin/api/charts')}}/"+urlapi, // This is the URL to the API
-                  data: { days: days }
-                })
-                .done(function( data ) {
-                    if (document.getElementById(canvas)){
-                        // delete apidata,cline;
-                        // Chart.instances = {};
-                        var apidata = JSON.parse(data);  //console.log(apidata);
-                        var cline = document.getElementById(canvas).getContext("2d");
-
-                        switch(tipo) {
-                            case 'cline':
-                                new Chart(cline).Line( apidata, { responsive: true, });
-                                break;
-                            case 'cbar':
-                                new Chart(cline).Bar( apidata, { responsive: true, tooltips: 'disable'});
-                                break;
-                        }
-
-                    }
-                })
-                .fail(function() {
-                    console.log( "error occured" );
-                });
-            }
+            })
 
         });
 

@@ -28,6 +28,10 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
     Route::get('/api/charts/uservrstaskdone', 'Api\Charts\ChartController@getApiUserTaskDone')->name('uservrstaskdone');
     // Route::get('/api/charts/uservrstaskdone', 'Api\Charts\ChartController@getApiUserTaskNoDone')->name('uservrstasknodone');
 
+	Route::get('/charts/sbadmin', function () {
+	    return View::make('elements.charts.sbadmin');
+	});
+
 });
 
 // rutas para los Charts

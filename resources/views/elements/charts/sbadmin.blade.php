@@ -8,26 +8,26 @@
 
         <div class="row">
             <div class="col-sm-6">
-                @component('admin.elements.widgets.panel')
+                @component('elements.widgets.panel')
                     @slot('class', 'info')
                     @slot('panelControls', 'true')
                     @slot('id', 'clinedashboard')
                     @slot('panelTitle', 'Line Chart')
                     @slot('panelBody')
-                        @component('admin.elements.charts.widgets.canvas')
+                        @component('elements.charts.widgets.canvas')
                             @slot('id', 'clinedashboard')
                         @endcomponent
                     @endslot
                 @endcomponent
             </div>
             <div class="col-sm-6">
-                @component('admin.elements.widgets.panel')
+                @component('elements.widgets.panel')
                     @slot('class', 'warning')
                     @slot('panelControls', 'true')
                     @slot('id', 'cdonutdashboard')
                     @slot('panelTitle', 'Donut Chart')
                     @slot('panelBody')
-                        @component('admin.elements.charts.widgets.canvas')
+                        @component('elements.charts.widgets.canvas')
                             @slot('id', 'cdonutdashboard')
                         @endcomponent
                     @endslot
@@ -39,26 +39,26 @@
     
         <div class="row">
             <div class="col-sm-6">
-                @component('admin.elements.widgets.panel')
+                @component('elements.widgets.panel')
                     @slot('class', 'danger')
                     @slot('panelControls', 'true')
                     @slot('id', 'cpiedashboard')
                     @slot('panelTitle', 'Pie Chart')
                     @slot('panelBody')
-                        @component('admin.elements.charts.widgets.canvas')
+                        @component('elements.charts.widgets.canvas')
                             @slot('id', 'cpiedashboard')
                         @endcomponent
                     @endslot
                 @endcomponent
             </div>
             <div class="col-sm-6">
-                @component('admin.elements.widgets.panel')
+                @component('elements.widgets.panel')
                     @slot('class', 'success')
                     @slot('panelControls', 'true')
                     @slot('id', 'cbardashboard')
                     @slot('panelTitle', 'Bar Chart')
                     @slot('panelBody')
-                        @component('admin.elements.charts.widgets.canvas')
+                        @component('elements.charts.widgets.canvas')
                             @slot('id', 'cbardashboard')
                         @endcomponent
                     @endslot
@@ -69,27 +69,27 @@
 
         <div class="row">
             <div class="col-sm-6">
-                @component('admin.elements.widgets.panel')
+                @component('elements.widgets.panel')
                     @slot('class', 'info')
                     @slot('panelControls', 'true')
                     @slot('id', 'cpolardashboard')
                     @slot('panelTitle', 'Bar Chart')
                     @slot('panelTitle', 'Polar Chart')
                     @slot('panelBody')
-                        @component('admin.elements.charts.widgets.canvas')
+                        @component('elements.charts.widgets.canvas')
                             @slot('id', 'cpolardashboard')
                         @endcomponent
                     @endslot
                 @endcomponent
             </div>
             <div class="col-sm-6">
-                @component('admin.elements.widgets.panel')
+                @component('elements.widgets.panel')
                     @slot('class', 'warning')
                     @slot('panelControls', 'true')
                     @slot('id', 'cdonut1dashboard')
                     @slot('panelTitle', 'Donut1 Chart')
                     @slot('panelBody')
-                        @component('admin.elements.charts.widgets.canvas')
+                        @component('elements.charts.widgets.canvas')
                             @slot('id', 'cdonut1dashboard')
                         @endcomponent
                     @endslot
