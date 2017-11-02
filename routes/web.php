@@ -23,9 +23,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], function(){
 
     Route::get('/', 'HomeController@index')->name('home');
-    //rutas para los chart-ajax
+    //INI rutas para los chart-ajax
     Route::get('/api/charts/uservrstask', 'Api\Charts\ChartController@getApiUserTaskLoad')->name('uservrstask');
+    Route::get('/api/charts/uservrstaskasig', 'Api\Charts\ChartController@getApiUserTaskAsig')->name('uservrstaskasig');
     Route::get('/api/charts/uservrstaskdone', 'Api\Charts\ChartController@getApiUserTaskDone')->name('uservrstaskdone');
+    //FIN rutas para los chart-ajax
+
     // Route::get('/api/charts/uservrstaskdone', 'Api\Charts\ChartController@getApiUserTaskNoDone')->name('uservrstasknodone');
 
 	Route::get('/charts/sbadmin', function () {

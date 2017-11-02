@@ -26,7 +26,7 @@ class ChartController extends Controller
     }
 
 
-public function getApiUserTaskDone(Request $request)
+public function getApiUserTaskLoad(Request $request)
 	{
 
 		$days = ($request->input('days')!=null) ? $request->input('days') : 360;
@@ -41,8 +41,9 @@ public function getApiUserTaskDone(Request $request)
 
         // dd($labels , $users_id);
 
-        $tot_iniciadas = Task::geCountTotal($users_id,$range,'iniciada');
-        $tot_finalizadas = Task::geCountTotal($users_id,$range,'finalizada');
+        $tasks_iniciadas = Task::geCountTotal($users_id,$range,'iniciada');
+        $tasks_finalizadas = Task::geCountTotal($users_id,$range,'finalizada');
+        $tasks_asignadas = Task::geCountTotal($users_id,$range,'');
 
 		// dd($tot_iniciadas,$tot_finalizadas);
 
@@ -52,18 +53,24 @@ public function getApiUserTaskDone(Request $request)
 			'datasets'=>[
 				[
 	                "label"=>"Iniciadas",
-	                "backgroundColor"=>"rgba(103, 65, 114,0.2)",
-	                "borderColor"=>"rgba(103, 65, 114,1)",
+	                "backgroundColor"=>"rgba(245,105,84,1)",
+	                "borderColor"=>"rgba(245,105,84,1)",
                     "borderWidth"=>1,
-	                "data"=>$tot_iniciadas
+	                "data"=>$tasks_iniciadas
                 ],
-
                 [
 	                "label"=>"Finalizadas",
-	                "backgroundColor"=>"rgba(151,187,205,0.2)",
-	                "borderColor"=>"rgba(151,187,205,1)",
+	                "backgroundColor"=>"rgba(0,166,90,1)",
+	                "borderColor"=>"rgba(0,166,90,1)",
                     "borderWidth"=>1,
-	                "data"=>$tot_finalizadas
+	                "data"=>$tasks_finalizadas
+                ],
+                [
+	                "label"=>"Asignadas",
+	                "backgroundColor"=>"rgba(0,192,239,1)",
+	                "borderColor"=>"rgba(0,192,239,1)",
+                    "borderWidth"=>1,
+	                "data"=>$tasks_asignadas
                 ]
 
             ]
@@ -75,7 +82,51 @@ public function getApiUserTaskDone(Request $request)
 	}
 
 
-	public function getApiUserTaskLoad(Request $request)
+	public function getApiUserTaskDone(Request $request)
+	{
+
+		$days = $request->input('days');
+
+		$range = \Carbon\Carbon::now()->subDays($days);
+
+        $userstasks = User::has('tasks')->get(['id','username']);
+
+		$labels = $userstasks->pluck('username');
+
+        $users_id = $userstasks->pluck('id');
+
+        $values_todas = Task::geCountTotal($users_id,$range,'');
+        $values_done = Task::geCountTotal($users_id,$range,'finalizada');
+
+        // dd($labels , $values);
+
+		unset($lineChartDataSQL);
+		$lineChartDataSQL = [
+			'labels'=>$labels,
+			'datasets'=>[
+				[
+	                "label"=>"Asignadas",
+	                "backgroundColor"=>"rgba(151,187,205,0.2)",
+	                "borderColor"=>"rgba(151,187,205,1)",
+                    "borderWidth"=>2,
+	                "data"=>$values_todas
+                ],
+                [
+	                "label"=>"Finalizadas",
+	                "backgroundColor"=>"rgba(192, 57, 43,0.2)",
+	                "borderColor"=>"rgba(192, 57, 43,1)",
+                    "borderWidth"=>2,
+	                "data"=>$values_done
+                ]
+            ]
+        ];
+
+		// dd($tasks);
+
+		return json_encode($lineChartDataSQL);
+	}
+
+	public function getApiUserTaskAsig(Request $request)
 	{
 
 		$days = $request->input('days');
@@ -100,7 +151,7 @@ public function getApiUserTaskDone(Request $request)
 	                "label"=>"Tareas Asignadas",
 	                "backgroundColor"=>"rgba(151,187,205,0.2)",
 	                "borderColor"=>"rgba(151,187,205,1)",
-                    "borderWidth"=>1,
+                    "borderWidth"=>2,
 	                "data"=>$values
                 ]
             ]

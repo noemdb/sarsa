@@ -102,21 +102,23 @@
          {{-- /.row FIN card --}}
 
         <div class="row">
-            <div class="col-lg-8 col-md-6 col-sm-8">
+            <div class="col-lg-12 col-md-12 col-sm-12">
 
-                {{-- INI chart con ajax-sql --}}
-                @php ($id_chart='clinesqldashboard') {{--id de los elementos para generar el widget --}}
-                @php ($urlapi='uservrstask') {{--Metodo api dentro de ChartController --}}
-                @php ($tipo='cline') {{--Tipo de Chart --}}
+                {{-- INI chart Tareas por Usuario --}}
+                @php ($chart = ['id_chart'=>'clinesqldashboard','urlapi'=>'uservrstask','tipo'=>'bar' ])
+                @section('scripts')
+                    @parent
+                    <script> requestData(7,'{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}'); </script>
+                @endsection
                 @component('elements.widgets.panel')
                     @slot('class', 'info')
                     @slot('panelControls', 'true')
-                    @slot('id', $id_chart )
+                    @slot('id', $chart['id_chart'] )
                     @slot('panelTitle', 'Tareas por Usuario')
                     @slot('panelBody')
                         @component('elements.charts.widgets.canvas')
                             @slot('ulpanel')
-                                <ul class="nav nav-tabs ranges" data-canvas="{{ $id_chart }}" data-urlapi="{{ $urlapi }}" data-tipo="{{ $tipo }}">
+                                <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-urlapi="{{ $chart['urlapi'] }}" data-tipo="{{ $chart['tipo'] }}">
                                     <li class="active"><a href="#">7 Días</a></li>
                                     <li><a href="#" data-range='30'>30 Días</a></li>
                                     <li><a href="#" data-range='90'>90 Días</a></li>
@@ -124,15 +126,87 @@
                                     {{-- <li><a href="#" data-range='360'>360 Días</a></li> --}}
                                 </ul>
                             @endslot
-                            @slot('id', $id_chart)
+                            @slot('id', $chart['id_chart'])
                         @endcomponent
                     @endslot
                 @endcomponent
-                {{-- FIN chart con ajax-sql --}}
+                {{-- FIN chart Tareas por Usuario --}}
+
             </div>
             <!-- /.col-lg-8 -->
 
-            <div class="col-lg-4 col-md-6 col-sm-4">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                
+            </div>
+            <!-- /.col-lg-4 -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                {{-- INI chart Tareas Finalizadas por Usuario --}}
+                @php ($chart = ['id_chart'=>'clinesqldashboard_03','urlapi'=>'uservrstaskasig','tipo'=>'line' ])
+                @section('scripts')
+                    @parent
+                    <script> requestData(7,'{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}'); </script>
+                @endsection
+                @component('elements.widgets.panel')
+                    @slot('class', 'info')
+                    @slot('panelControls', 'true')
+                    @slot('id', $chart['id_chart'] )
+                    @slot('panelTitle', 'Tareas Finalizadas por Usuario')
+                    @slot('panelBody')
+                        @component('elements.charts.widgets.canvas')
+                            @slot('ulpanel')
+                                <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-urlapi="{{ $chart['urlapi'] }}" data-tipo="{{ $chart['tipo'] }}">
+                                    <li class="active"><a href="#">7 Días</a></li>
+                                    <li><a href="#" data-range='30'>30 Días</a></li>
+                                    <li><a href="#" data-range='90'>90 Días</a></li>
+                                    <li><a href="#" data-range='180'>180 Días</a></li>
+                                    {{-- <li><a href="#" data-range='360'>360 Días</a></li> --}}
+                                </ul>
+                            @endslot
+                            @slot('id', $chart['id_chart'])
+                        @endcomponent
+                    @endslot
+                @endcomponent
+                {{-- FIN chart Tareas Finalizadas por Usuario --}}
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                {{-- INI chart Tareas Asignadas/Finalizadas --}}
+                @php ($chart = ['id_chart'=>'clinesqldashboard_02','urlapi'=>'uservrstaskdone','tipo'=>'line' ])
+                @section('scripts')
+                    @parent
+                    <script> requestData(7,'{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}'); </script>
+                @endsection
+                @component('elements.widgets.panel')
+                    @slot('class', 'success')
+                    @slot('panelControls', 'true')
+                    @slot('id', $chart['id_chart'] )
+                    @slot('panelTitle', 'Tareas Asignadas/Finalizadas')
+                    @slot('panelBody')
+                        @component('elements.charts.widgets.canvas')
+                            @slot('ulpanel')
+                                <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-urlapi="{{ $chart['urlapi'] }}" data-tipo="{{ $chart['tipo'] }}">
+                                    <li class="active"><a href="#">7 Días</a></li>
+                                    <li><a href="#" data-range='30'>30 Días</a></li>
+                                    <li><a href="#" data-range='90'>90 Días</a></li>
+                                    <li><a href="#" data-range='180'>180 Días</a></li>
+                                    {{-- <li><a href="#" data-range='360'>360 Días</a></li> --}}
+                                </ul>
+                            @endslot
+                            @slot('id', $chart['id_chart'])
+                        @endcomponent
+                    @endslot
+                @endcomponent
+                {{-- FIN chart con Tareas Asignadas/Finalizadas --}}
+            </div>
+        </div>
+        <!-- /.row -->
+                
+        <div class="row">
+            <div class="col-lg-8 col-md-6 col-sm-8">
+
                 {{-- INI alert-list --}}
                 @component('elements.widgets.panel')
                     @slot('badge',$alerts->count())
@@ -146,39 +220,8 @@
                     @endslot
                 @endcomponent
                 {{-- FIN alert-list --}}
-            </div>
-            <!-- /.col-lg-4 -->
-        </div>
-        <!-- /.row -->
-        
-        <div class="row">
-            <div class="col-lg-8 col-md-6 col-sm-8">
 
-                {{-- INI chart2 con ajax-sql --}}
-                @php ($id_chart2='clinesqldashboard_02') {{--id de los elementos para generar el widget --}}
-                @php ($urlapi2='uservrstaskdone') {{--Metodo api dentro de ChartController --}}
-                @php ($tipo2='cbar') {{--Tipo de Chart --}}
-                @component('elements.widgets.panel')
-                    @slot('class', 'info')
-                    @slot('panelControls', 'true')
-                    @slot('id', $id_chart2 )
-                    @slot('panelTitle', 'Tareas Finalizadas por Usuario')
-                    @slot('panelBody')
-                        @component('elements.charts.widgets.canvas')
-                            @slot('ulpanel')
-                                <ul class="nav nav-tabs ranges" data-canvas="{{ $id_chart2 }}" data-urlapi="{{ $urlapi2 }}" data-tipo="{{ $tipo2 }}">
-                                    <li class="active"><a href="#">7 Días</a></li>
-                                    <li><a href="#" data-range='30'>30 Días</a></li>
-                                    <li><a href="#" data-range='90'>90 Días</a></li>
-                                    <li><a href="#" data-range='180'>180 Días</a></li>
-                                    {{-- <li><a href="#" data-range='360'>360 Días</a></li> --}}
-                                </ul>
-                            @endslot
-                            @slot('id', $id_chart2)
-                        @endcomponent
-                    @endslot
-                @endcomponent
-                {{-- FIN chart2 con ajax-sql --}}
+                
 
             </div>
             <div class="col-lg-4 col-md-6 col-sm-8">
@@ -210,7 +253,7 @@
 
 @section('stylesheet')
 
-    <link rel="stylesheet" href="{{ asset('css/timeline.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/timeline.css') }}"> --}}
 
     <style>
         canvas {
@@ -227,93 +270,68 @@
     <script src="{{ asset("js/Chart.js") }}"></script>
     <script src="{{ asset("js/utils.js") }}"></script>
 
-    {{-- INI data for linechart --}}
+    {{-- INI funciones para generar los Chart --}}
     <script>
  
-        $(function() {
+        //Evento clic para el panel de tab nav-tabs (menu con las opciones)
+        $('ul.ranges a').click(function(e){
+            e.preventDefault();
+            // Get the number of days from the data attribute
+            var el = $(this);
+            var days = $(this).data('range'); //alert(days);
+            var ul = $(this).parents('ul');
+            var canvas = ul.data('canvas'); //alert(canvas);
+            var urlapi = ul.data('urlapi'); //alert(api);
+            var tipo = ul.data('tipo'); //alert(api);
 
-            //inicialización de la funcion ajax para obtener la data de la BD
-            //(n.dias por defecto, id del elemento canvas para el chart, metodo del controlador)
-            requestData(7,'{{ $id_chart }}','{{ $urlapi }}','{{ $tipo }}');
-            requestData(7,'{{ $id_chart2 }}','{{ $urlapi2 }}','{{ $tipo2 }}');
-
-            //Evento clic para el panel de tab nav-tabs (menu con las opciones)
-            $('ul.ranges a').click(function(e){
-                e.preventDefault();
-                // Get the number of days from the data attribute
-                var el = $(this);
-                var days = $(this).data('range'); //alert(days);
-                var ul = $(this).parents('ul');
-                var canvas = ul.data('canvas'); //alert(canvas);
-                var urlapi = ul.data('urlapi'); //alert(api);
-                var tipo = ul.data('tipo'); //alert(api);
-
-                // Request the data and render the chart using our handy function
-                requestData(days,canvas,urlapi,tipo);
-                // Make things pretty to show which button/tab the user clicked
-                el.parent().addClass('active');
-                el.parent().siblings().removeClass('active');
-
-                // var canvas = document.getElementById(canvas);
-
-                // console.log('canvas',canvas)
-
-                // var ctx = canvas.getContext('2d');
-
-                // console.log('ctx',ctx)
-
-            });
-
-            // Create a function that will handle AJAX requests
-            function requestData(days,canvas,urlapi,tipo){
-                $.ajax({
-                  type: "GET",
-                  url: "{{url('admin/api/charts')}}/"+urlapi, // This is the URL to the API
-                  data: { days: days }
-                })
-                .done(function( data ) {
-
-                    //INI asegurar dibujar en un canvas nuevo para evitar solapamiento de chart
-                    $('#'+canvas).remove(); // elimina el canvas antiguo                   
-                    var newcanvas = document.createElement('canvas'); //console.log(newcanvas); //crea
-                    newcanvas.id  = canvas; //console.log(newcanvas); // 
-                    div = document.getElementById('div'+canvas); console.log(div);
-                    div.appendChild(newcanvas);
-                    //FIN asegurar dibujar en un canvas nuevo para evitar solapamiento de chart
-
-
-                    var apidata = JSON.parse(data);  //console.log('apidata',apidata);
-                    var cline = document.getElementById(canvas).getContext("2d");
-
-                    var c = document.getElementById(canvas);
-                    var ctx = c.getContext("2d");
-                    ctx.clearRect(0, 0, c.width, c.height);
-                    ctx.beginPath();
-                    
-                    var myChart = new Chart(cline, {
-                        type: 'bar',
-                        data: apidata,
-                        options: {
-                            scales: {
-                                yAxes: [{
-                                    ticks: {
-                                        beginAtZero:true
-                                    }
-                                }]
-                            },
-                            // tooltips: false,
-                        }
-                    });
-
-                })
-                .fail(function() {
-                    console.log( "error occured" );
-                });
-            }
+            // Request the data and render the chart using our handy function
+            requestData(days,canvas,urlapi,tipo);
+            // Make things pretty to show which button/tab the user clicked
+            el.parent().addClass('active');
+            el.parent().siblings().removeClass('active');
 
         });
 
+        // Create a function that will handle AJAX requests
+        function requestData(days,canvas,urlapi,tipo){
+            $.ajax({
+              type: "GET",
+              url: "{{url('admin/api/charts')}}/"+urlapi, // This is the URL to the API
+              data: { days: days }
+            })
+            .done(function( data ) {
+
+                //INI asegurar dibujar en un canvas nuevo para evitar solapamiento de chart
+                $('#'+canvas).remove(); // elimina el canvas antiguo                   
+                var newcanvas = document.createElement('canvas'); //console.log(newcanvas); //crea
+                newcanvas.id  = canvas; //console.log(newcanvas); // 
+                div = document.getElementById('div'+canvas); //console.log(div);
+                div.appendChild(newcanvas);
+                //FIN asegurar dibujar en un canvas nuevo para evitar solapamiento de chart
+
+                var apidata = JSON.parse(data);  //console.log('apidata',apidata);
+                var context = document.getElementById(canvas).getContext("2d");
+                
+                var myChart = new Chart(context, {
+                    type: tipo,
+                    data: apidata,
+                    options: {
+                        responsive: true,
+                        scaleShowValues: true,
+                        scales: {
+                            yAxes: [{ ticks: { beginAtZero: true } }],
+                            xAxes: [{ ticks: { autoSkip: false } }]
+                        }
+                    }
+                });
+
+            })
+            .fail(function() {
+                console.log( "error occured" );
+            });
+        }
+
     </script>
-    {{-- FIN data for linechart --}}
+    {{-- FIN funciones para generar los Chart --}}
 
 @endsection

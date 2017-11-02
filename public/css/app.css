@@ -7133,8 +7133,8 @@ button.list-group-item-danger.active:focus {
 }
 
 .panel-primary > .panel-heading {
-  color: #fff;
-  background-color: #3097D1;
+  /*color: #fff;*/
+  /*background-color: #3097D1;*/
   border-color: #3097D1;
 }
 
@@ -7157,8 +7157,8 @@ button.list-group-item-danger.active:focus {
 }
 
 .panel-success > .panel-heading {
-  color: #3c763d !important;
-  background-color: #dff0d8 !important;
+  /*color: #3c763d !important;*/
+  /*background-color: #dff0d8 !important;*/
   border-color: #d6e9c6 !important;
 }
 
@@ -7181,8 +7181,8 @@ button.list-group-item-danger.active:focus {
 }
 
 .panel-info > .panel-heading {
-  color: #31708f !important;
-  background-color: #d9edf7 !important;
+  /*color: #31708f !important;*/
+  /*background-color: #d9edf7 !important;*/
   border-color: #bce8f1 !important;
 }
 
@@ -7205,8 +7205,8 @@ button.list-group-item-danger.active:focus {
 }
 
 .panel-warning > .panel-heading {
-  color: #8a6d3b !important;
-  background-color: #fcf8e3 !important;
+  /*color: #8a6d3b !important;*/
+  /*background-color: #fcf8e3 !important;*/
   border-color: #faebcc !important;
 }
 
@@ -7229,8 +7229,8 @@ button.list-group-item-danger.active:focus {
 }
 
 .panel-danger > .panel-heading {
-  color: #a94442 !important;
-  background-color: #f2dede !important;
+  /*color: #a94442 !important;*/
+  /*background-color: #f2dede !important;*/
   border-color: #ebccd1 !important;
 }
 
