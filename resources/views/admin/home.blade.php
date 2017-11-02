@@ -103,7 +103,37 @@
 
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12">
+                {{-- INI chart Tareas por Mes --}}
+                @php ($chart = ['id_chart'=>'chartasksmonth','api'=>'taskmonth','tipo'=>'line','limit'=>8 ])
+                @section('scripts')
+                    @parent
+                    <script> requestData(3,'{{ $chart['id_chart'] }}','{{ $chart['api'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
+                @endsection
+                @component('elements.widgets.panel')
+                    @slot('class', 'info')
+                    @slot('panelControls', 'true')
+                    @slot('id', $chart['id_chart'] )
+                    @slot('panelTitle', 'Tareas por Mes')
+                    @slot('panelBody')
+                        @component('elements.charts.widgets.canvas')
+                            @slot('ulpanel')
+                                <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-api="{{ $chart['api'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
+                                    <li class="active"><a href="#">3 Meses</a></li>
+                                    <li><a href="#" data-range='3'>6 Meses</a></li>
+                                    <li><a href="#" data-range='90'>9 Meses</a></li>
+                                    <li><a href="#" data-range='180'>12 Meses</a></li>
+                                    {{-- <li><a href="#" data-range='360'>360 Días</a></li> --}}
+                                </ul>
+                            @endslot
+                            @slot('id', $chart['id_chart'])
+                        @endcomponent
+                    @endslot
+                @endcomponent
+                {{-- FIN chart Tareas por Mes --}}
+            </div>
+            <!-- /.col-lg-8 -->
 
+            <div class="col-lg-6 col-md-6 col-sm-12">
                 {{-- INI chart Tareas por Usuario --}}
                 @php ($chart = ['id_chart'=>'clinesqldashboard','api'=>'uservrstask','tipo'=>'bar','limit'=>8 ])
                 @section('scripts')
@@ -131,31 +161,6 @@
                     @endslot
                 @endcomponent
                 {{-- FIN chart Tareas por Usuario --}}
-
-            </div>
-            <!-- /.col-lg-8 -->
-
-            <div class="col-lg-6 col-md-6 col-sm-12">
-
-                {{-- INI chart Tareas por Mes --}}
-                @php ($chart = ['id_chart'=>'chartasksmonth','api'=>'taskmonth','tipo'=>'line','limit'=>8 ])
-                @section('scripts')
-                    @parent
-                    <script> requestData(7,'{{ $chart['id_chart'] }}','{{ $chart['api'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
-                @endsection
-                @component('elements.widgets.panel')
-                    @slot('class', 'info')
-                    @slot('panelControls', 'true')
-                    @slot('id', $chart['id_chart'] )
-                    @slot('panelTitle', 'Tareas por Mes')
-                    @slot('panelBody')
-                        @component('elements.charts.widgets.canvas')
-                            @slot('id', $chart['id_chart'])
-                        @endcomponent
-                    @endslot
-                @endcomponent
-                {{-- FIN chart Tareas por Mes --}}
-
             </div>
             <!-- /.col-lg-4 -->
         </div>
@@ -291,9 +296,9 @@
         //Evento clic para el panel de tab nav-tabs (menu con las opciones)
         $('ul.ranges a').click(function(e){
             e.preventDefault();
-            // Get the number of days from the data attribute
+            // Get the number of range from the data attribute
             var el = $(this);
-            var days = $(this).data('range'); //alert(days);
+            var range = $(this).data('range'); //alert(range);
             var ul = $(this).parents('ul');
             var canvas = ul.data('canvas'); //alert(canvas);
             var api = ul.data('api'); //alert(api);
@@ -301,7 +306,7 @@
             var limit = ul.data('limit'); //alert(limit);
 
             // Request the data and render the chart using our handy function
-            requestData(days,canvas,api,tipo,limit);
+            requestData(range,canvas,api,tipo,limit);
             // Make things pretty to show which button/tab the user clicked
             el.parent().addClass('active');
             el.parent().siblings().removeClass('active');
@@ -309,12 +314,12 @@
         });
 
         // Create a function that will handle AJAX requests
-        function requestData(days,canvas,api,tipo,limit){
+        function requestData(range,canvas,api,tipo,limit){
             var url = "{{url('admin/api/charts')}}/"+api+"?limit="+limit; //alert(url);
             $.ajax({
               type: "GET",
               url: url, // This is the URL to the API
-              data: { days: days }
+              data: { range: range }
             })
             .done(function( data ) {
 

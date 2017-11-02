@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Api\Charts;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Carbon;
 
 // Clases adicionadas
 use Illuminate\Support\Facades\DB;
@@ -29,10 +30,10 @@ class ChartController extends Controller
 public function getApiUserTaskLoad(Request $request)
 	{
 
-		$days = ($request->input('days')!=null) ? $request->input('days') : 360;
+		$range = ($request->input('range')!=null) ? $request->input('range') : 360;
         $limit = ($request->input('limit')!=null) ? $request->input('limit') : 8;
 
-		$range = \Carbon\Carbon::now()->subDays($days);
+		$range = Carbon::now()->subDays($range);
 
 		$userstasks = 
             User::withCount(['tasks' => function ($query) use ($range)  {
@@ -91,10 +92,10 @@ public function getApiUserTaskLoad(Request $request)
 	public function getApiUserTaskDone(Request $request)
 	{
 
-		$days  = ($request->input('days')!=null) ? $request->input('days') : 360;
+		$range  = ($request->input('range')!=null) ? $request->input('range') : 360;
         $limit = ($request->input('limit')!=null) ? $request->input('limit') : 8;
 
-		$range = \Carbon\Carbon::now()->subDays($days);
+		$range = Carbon::now()->subDays($range);
 
         $userstasks = 
             User::withCount(['tasks' => function ($query) use ($range)  {
@@ -142,10 +143,10 @@ public function getApiUserTaskLoad(Request $request)
 	public function getApiUserTaskAsig(Request $request)
 	{
 
-		$days = ($request->input('days')!=null) ? $request->input('days') : 360;
+		$range = ($request->input('range')!=null) ? $request->input('range') : 360;
         $limit = ($request->input('limit')!=null) ? $request->input('limit') : 8;
 
-		$range = \Carbon\Carbon::now()->subDays($days);
+		$range = Carbon::now()->subDays($range);
 
         $userstasks = 
             User::withCount(['tasks' => function ($query) use ($range)  {
@@ -184,18 +185,23 @@ public function getApiUserTaskLoad(Request $request)
     public function getApiTaskMonth(Request $request)
     {
 
-        // $days = ($request->input('days')!=null) ? $request->input('days') : 360;
+        $months = ($request->input('range')!=null) ? $request->input('range') : 3;
         // $limit = ($request->input('limit')!=null) ? $request->input('limit') : 8;
 
-        // $range = \Carbon\Carbon::now()->subDays($days);
+        $range = Carbon::now()->subMonth($months);
+
+        // dd($range);
 
         $tasksmonth = 
-          Task::groupBy(DB::raw('MONTH(created_at)'))
-              ->get([DB::raw('MONTH(created_at) as month'),
-                DB::raw('COUNT(*) as value')
-            ]);
+          Task::Where('created_at', '>=', $range)
+            ->Where('created_at', '<=', Carbon::now())
+            ->groupBy(DB::raw('MONTH(created_at)'))
+            ->orderBy(DB::raw('MONTH(created_at)'), 'asc')
+            ->get([DB::raw('MONTH(created_at) as month'),
+                    DB::raw('COUNT(*) as value')
+                ]);
 
-        // dd($tasks);
+        // dd($tasksmonth);
 
         $labels = $tasksmonth->pluck('month');
         foreach ($labels as $key => $value) {
@@ -214,8 +220,8 @@ public function getApiUserTaskLoad(Request $request)
             'datasets'=>[
                 [
                     "label"=>"Tareas Asignadas",
-                    "backgroundColor"=>"rgba(151,187,205,0.2)",
-                    "borderColor"=>"rgba(151,187,205,1)",
+                    "backgroundColor"=>"rgba(192, 57, 43,0.2)",
+                    "borderColor"=>"rgba(192, 57, 43,1)",
                     "borderWidth"=>2,
                     "data"=>$values
                 ]
