@@ -27,6 +27,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
     Route::get('/api/charts/uservrstask', 'Api\Charts\ChartController@getApiUserTaskLoad')->name('uservrstask');
     Route::get('/api/charts/uservrstaskasig', 'Api\Charts\ChartController@getApiUserTaskAsig')->name('uservrstaskasig');
     Route::get('/api/charts/uservrstaskdone', 'Api\Charts\ChartController@getApiUserTaskDone')->name('uservrstaskdone');
+    Route::get('/api/charts/taskmonth', 'Api\Charts\ChartController@getApiTaskMonth')->name('taskmonth');
     //FIN rutas para los chart-ajax
 
     // Route::get('/api/charts/uservrstaskdone', 'Api\Charts\ChartController@getApiUserTaskNoDone')->name('uservrstasknodone');

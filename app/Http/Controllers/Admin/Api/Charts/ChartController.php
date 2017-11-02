@@ -30,11 +30,17 @@ public function getApiUserTaskLoad(Request $request)
 	{
 
 		$days = ($request->input('days')!=null) ? $request->input('days') : 360;
+        $limit = ($request->input('limit')!=null) ? $request->input('limit') : 8;
 
 		$range = \Carbon\Carbon::now()->subDays($days);
 
-		$userstasks = User::has('tasks')->get(['id','username']);
-        // dd($userstasks->pluck('username'));
+		$userstasks = 
+            User::withCount(['tasks' => function ($query) use ($range)  {
+                $query->where('created_at', '>=', $range);
+            }])
+            ->orderBy('tasks_count', 'desc')
+            ->get()
+            ->take($limit);
 
         $labels = $userstasks->pluck('username');
 		$users_id = $userstasks->pluck('id');
@@ -45,7 +51,7 @@ public function getApiUserTaskLoad(Request $request)
         $tasks_finalizadas = Task::geCountTotal($users_id,$range,'finalizada');
         $tasks_asignadas = Task::geCountTotal($users_id,$range,'');
 
-		// dd($tot_iniciadas,$tot_finalizadas);
+		// dd($tasks_iniciadas,$tasks_finalizadas,$tasks_asignadas);
 
 		unset($lineChartDataSQL);
 		$lineChartDataSQL = [
@@ -85,11 +91,18 @@ public function getApiUserTaskLoad(Request $request)
 	public function getApiUserTaskDone(Request $request)
 	{
 
-		$days = $request->input('days');
+		$days  = ($request->input('days')!=null) ? $request->input('days') : 360;
+        $limit = ($request->input('limit')!=null) ? $request->input('limit') : 8;
 
 		$range = \Carbon\Carbon::now()->subDays($days);
 
-        $userstasks = User::has('tasks')->get(['id','username']);
+        $userstasks = 
+            User::withCount(['tasks' => function ($query) use ($range)  {
+                $query->where('created_at', '>=', $range);
+            }])
+            ->orderBy('tasks_count', 'desc')
+            ->get()
+            ->take($limit);
 
 		$labels = $userstasks->pluck('username');
 
@@ -98,7 +111,7 @@ public function getApiUserTaskLoad(Request $request)
         $values_todas = Task::geCountTotal($users_id,$range,'');
         $values_done = Task::geCountTotal($users_id,$range,'finalizada');
 
-        // dd($labels , $values);
+        // dd($labels , $values_todas, $values_done);
 
 		unset($lineChartDataSQL);
 		$lineChartDataSQL = [
@@ -129,17 +142,23 @@ public function getApiUserTaskLoad(Request $request)
 	public function getApiUserTaskAsig(Request $request)
 	{
 
-		$days = $request->input('days');
+		$days = ($request->input('days')!=null) ? $request->input('days') : 360;
+        $limit = ($request->input('limit')!=null) ? $request->input('limit') : 8;
 
 		$range = \Carbon\Carbon::now()->subDays($days);
 
-        $userstasks = User::has('tasks')->get(['id','username']);
+        $userstasks = 
+            User::withCount(['tasks' => function ($query) use ($range)  {
+                $query->where('created_at', '>=', $range);
+            }])
+            ->orderBy('tasks_count', 'desc')
+            ->get()
+            ->take($limit);
 
-		$labels = $userstasks->pluck('username');
+        // dd($userstasks);
 
-        $users_id = $userstasks->pluck('id');
-
-        $values = Task::geCountTotal($users_id,$range,'');
+        $labels = $userstasks->pluck('username');
+        $values = $userstasks->pluck('tasks_count');
 
         // dd($labels , $values);
 
@@ -162,5 +181,50 @@ public function getApiUserTaskLoad(Request $request)
 		return json_encode($lineChartDataSQL);
 	}
 
+    public function getApiTaskMonth(Request $request)
+    {
+
+        // $days = ($request->input('days')!=null) ? $request->input('days') : 360;
+        // $limit = ($request->input('limit')!=null) ? $request->input('limit') : 8;
+
+        // $range = \Carbon\Carbon::now()->subDays($days);
+
+        $tasksmonth = 
+          Task::groupBy(DB::raw('MONTH(created_at)'))
+              ->get([DB::raw('MONTH(created_at) as month'),
+                DB::raw('COUNT(*) as value')
+            ]);
+
+        // dd($tasks);
+
+        $labels = $tasksmonth->pluck('month');
+        foreach ($labels as $key => $value) {
+            $dateObj   = \DateTime::createFromFormat('!m', $value);
+            $label_month[] = $dateObj->format('F');
+            // $label_month[] = date("F", mktime(0, 0, 0, $value, 1));
+            
+        }
+        $values = $tasksmonth->pluck('value');
+
+        // dd($labels, $label_month, $values);
+
+        unset($lineChartDataSQL);
+        $lineChartDataSQL = [
+            'labels'=>$label_month,
+            'datasets'=>[
+                [
+                    "label"=>"Tareas Asignadas",
+                    "backgroundColor"=>"rgba(151,187,205,0.2)",
+                    "borderColor"=>"rgba(151,187,205,1)",
+                    "borderWidth"=>2,
+                    "data"=>$values
+                ]
+            ]
+        ];
+
+        // dd($tasks);
+
+        return json_encode($lineChartDataSQL);
+    }
 	
 }

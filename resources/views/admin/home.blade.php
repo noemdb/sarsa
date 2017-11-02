@@ -102,23 +102,23 @@
          {{-- /.row FIN card --}}
 
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="col-lg-6 col-md-6 col-sm-12">
 
                 {{-- INI chart Tareas por Usuario --}}
-                @php ($chart = ['id_chart'=>'clinesqldashboard','urlapi'=>'uservrstask','tipo'=>'bar' ])
+                @php ($chart = ['id_chart'=>'clinesqldashboard','api'=>'uservrstask','tipo'=>'bar','limit'=>8 ])
                 @section('scripts')
                     @parent
-                    <script> requestData(7,'{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}'); </script>
+                    <script> requestData(7,'{{ $chart['id_chart'] }}','{{ $chart['api'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
                 @endsection
                 @component('elements.widgets.panel')
                     @slot('class', 'info')
                     @slot('panelControls', 'true')
                     @slot('id', $chart['id_chart'] )
-                    @slot('panelTitle', 'Tareas por Usuario')
+                    @slot('panelTitle', 'Tareas por Usuario. Ult.('.$chart['limit'].')')
                     @slot('panelBody')
                         @component('elements.charts.widgets.canvas')
                             @slot('ulpanel')
-                                <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-urlapi="{{ $chart['urlapi'] }}" data-tipo="{{ $chart['tipo'] }}">
+                                <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-api="{{ $chart['api'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
                                     <li class="active"><a href="#">7 Días</a></li>
                                     <li><a href="#" data-range='30'>30 Días</a></li>
                                     <li><a href="#" data-range='90'>90 Días</a></li>
@@ -135,8 +135,27 @@
             </div>
             <!-- /.col-lg-8 -->
 
-            <div class="col-lg-12 col-md-12 col-sm-12">
-                
+            <div class="col-lg-6 col-md-6 col-sm-12">
+
+                {{-- INI chart Tareas por Mes --}}
+                @php ($chart = ['id_chart'=>'chartasksmonth','api'=>'taskmonth','tipo'=>'line','limit'=>8 ])
+                @section('scripts')
+                    @parent
+                    <script> requestData(7,'{{ $chart['id_chart'] }}','{{ $chart['api'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
+                @endsection
+                @component('elements.widgets.panel')
+                    @slot('class', 'info')
+                    @slot('panelControls', 'true')
+                    @slot('id', $chart['id_chart'] )
+                    @slot('panelTitle', 'Tareas por Mes')
+                    @slot('panelBody')
+                        @component('elements.charts.widgets.canvas')
+                            @slot('id', $chart['id_chart'])
+                        @endcomponent
+                    @endslot
+                @endcomponent
+                {{-- FIN chart Tareas por Mes --}}
+
             </div>
             <!-- /.col-lg-4 -->
         </div>
@@ -144,21 +163,21 @@
 
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12">
-                {{-- INI chart Tareas Finalizadas por Usuario --}}
-                @php ($chart = ['id_chart'=>'clinesqldashboard_03','urlapi'=>'uservrstaskasig','tipo'=>'line' ])
+                {{-- INI chart Tareas Asignadas --}}
+                @php ($chart = ['id_chart'=>'clinesqldashboard_02','api'=>'uservrstaskasig','tipo'=>'line','limit'=>8 ])
                 @section('scripts')
                     @parent
-                    <script> requestData(7,'{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}'); </script>
+                    <script> requestData(7,'{{ $chart['id_chart'] }}','{{ $chart['api'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
                 @endsection
                 @component('elements.widgets.panel')
                     @slot('class', 'info')
                     @slot('panelControls', 'true')
                     @slot('id', $chart['id_chart'] )
-                    @slot('panelTitle', 'Tareas Finalizadas por Usuario')
+                    @slot('panelTitle', 'Tareas Asignadas .Ult.('.$chart['limit'].')')
                     @slot('panelBody')
                         @component('elements.charts.widgets.canvas')
                             @slot('ulpanel')
-                                <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-urlapi="{{ $chart['urlapi'] }}" data-tipo="{{ $chart['tipo'] }}">
+                                <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-api="{{ $chart['api'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
                                     <li class="active"><a href="#">7 Días</a></li>
                                     <li><a href="#" data-range='30'>30 Días</a></li>
                                     <li><a href="#" data-range='90'>90 Días</a></li>
@@ -170,24 +189,24 @@
                         @endcomponent
                     @endslot
                 @endcomponent
-                {{-- FIN chart Tareas Finalizadas por Usuario --}}
+                {{-- FIN chart Tareas Asignadas --}}
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
                 {{-- INI chart Tareas Asignadas/Finalizadas --}}
-                @php ($chart = ['id_chart'=>'clinesqldashboard_02','urlapi'=>'uservrstaskdone','tipo'=>'line' ])
+                @php ($chart = ['id_chart'=>'clinesqldashboard_03','api'=>'uservrstaskdone','tipo'=>'line','limit'=>8 ])
                 @section('scripts')
                     @parent
-                    <script> requestData(7,'{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}'); </script>
+                    <script> requestData(7,'{{ $chart['id_chart'] }}','{{ $chart['api'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
                 @endsection
                 @component('elements.widgets.panel')
                     @slot('class', 'success')
                     @slot('panelControls', 'true')
                     @slot('id', $chart['id_chart'] )
-                    @slot('panelTitle', 'Tareas Asignadas/Finalizadas')
+                    @slot('panelTitle', 'Tareas Asignadas/Finalizadas. Ult.('.$chart['limit'].')')
                     @slot('panelBody')
                         @component('elements.charts.widgets.canvas')
                             @slot('ulpanel')
-                                <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-urlapi="{{ $chart['urlapi'] }}" data-tipo="{{ $chart['tipo'] }}">
+                                <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-api="{{ $chart['api'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
                                     <li class="active"><a href="#">7 Días</a></li>
                                     <li><a href="#" data-range='30'>30 Días</a></li>
                                     <li><a href="#" data-range='90'>90 Días</a></li>
@@ -206,7 +225,6 @@
                 
         <div class="row">
             <div class="col-lg-8 col-md-6 col-sm-8">
-
                 {{-- INI alert-list --}}
                 @component('elements.widgets.panel')
                     @slot('badge',$alerts->count())
@@ -220,9 +238,6 @@
                     @endslot
                 @endcomponent
                 {{-- FIN alert-list --}}
-
-                
-
             </div>
             <div class="col-lg-4 col-md-6 col-sm-8">
                 {{-- INI chat panel --}}
@@ -281,11 +296,12 @@
             var days = $(this).data('range'); //alert(days);
             var ul = $(this).parents('ul');
             var canvas = ul.data('canvas'); //alert(canvas);
-            var urlapi = ul.data('urlapi'); //alert(api);
+            var api = ul.data('api'); //alert(api);
             var tipo = ul.data('tipo'); //alert(api);
+            var limit = ul.data('limit'); //alert(limit);
 
             // Request the data and render the chart using our handy function
-            requestData(days,canvas,urlapi,tipo);
+            requestData(days,canvas,api,tipo,limit);
             // Make things pretty to show which button/tab the user clicked
             el.parent().addClass('active');
             el.parent().siblings().removeClass('active');
@@ -293,10 +309,11 @@
         });
 
         // Create a function that will handle AJAX requests
-        function requestData(days,canvas,urlapi,tipo){
+        function requestData(days,canvas,api,tipo,limit){
+            var url = "{{url('admin/api/charts')}}/"+api+"?limit="+limit; //alert(url);
             $.ajax({
               type: "GET",
-              url: "{{url('admin/api/charts')}}/"+urlapi, // This is the URL to the API
+              url: url, // This is the URL to the API
               data: { days: days }
             })
             .done(function( data ) {
