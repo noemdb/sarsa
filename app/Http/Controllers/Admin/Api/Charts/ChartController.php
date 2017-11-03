@@ -4,31 +4,32 @@ namespace App\Http\Controllers\Admin\Api\Charts;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
+// Helpers
 use Illuminate\Support\Carbon;
 use Jenssegers\Date\Date;
-
-// Clases adicionadas
 use Illuminate\Support\Facades\DB;
+
+// Modelos adicionadas
 use App\User;
-use App\Models\sys\Profile;
-use App\Models\sys\Rol;
 use App\Models\sys\Task;
-use App\Models\sys\Messege;
-use App\Models\sys\Alert;
-use App\Models\sys\Loginout;
-use App\Models\sys\Logdb;
+// use App\Models\sys\Profile;
+// use App\Models\sys\Rol;
+// use App\Models\sys\Messege;
+// use App\Models\sys\Alert;
+// use App\Models\sys\Loginout;
+// use App\Models\sys\Logdb;
 
 class ChartController extends Controller
 {
 
-    // verificando qsesion activa
+    // verificando sesion activa
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-
-public function getApiUserTaskLoad(Request $request)
+    public function getApiUserTaskLoad(Request $request)
 	{
 
 		$range = ($request->input('range')!=null) ? $request->input('range') : 360;
@@ -38,11 +39,16 @@ public function getApiUserTaskLoad(Request $request)
 
 		$userstasks = 
             User::withCount(['tasks' => function ($query) use ($range)  {
-                $query->where('created_at', '>=', $range);
+                $query->where('created_at', '>=', $range)
+                ->where('created_at', '<=', Carbon::now());
             }])
+            // ->Where('tasks_count','<>', '0')
+            // ->whereNotNull('tasks_count')
             ->orderBy('tasks_count', 'desc')
             ->get()
             ->take($limit);
+
+        // dd($userstasks);
 
         $labels = $userstasks->pluck('username');
 		$users_id = $userstasks->pluck('id');
@@ -89,7 +95,6 @@ public function getApiUserTaskLoad(Request $request)
 		return json_encode($ChartDataSQL);
 	}
 
-
 	public function getApiUserTaskDone(Request $request)
 	{
 
@@ -100,7 +105,8 @@ public function getApiUserTaskLoad(Request $request)
 
         $userstasks = 
             User::withCount(['tasks' => function ($query) use ($range)  {
-                $query->where('created_at', '>=', $range);
+                $query->where('created_at', '>=', $range)
+                ->where('created_at', '<=', Carbon::now());
             }])
             ->orderBy('tasks_count', 'desc')
             ->get()
@@ -151,7 +157,8 @@ public function getApiUserTaskLoad(Request $request)
 
         $userstasks = 
             User::withCount(['tasks' => function ($query) use ($range)  {
-                $query->where('created_at', '>=', $range);
+                $query->where('created_at', '>=', $range)
+                    ->where('created_at', '<=', Carbon::now());
             }])
             ->orderBy('tasks_count', 'desc')
             ->get()
@@ -161,8 +168,12 @@ public function getApiUserTaskLoad(Request $request)
 
         $labels = $userstasks->pluck('username');
         $values = $userstasks->pluck('tasks_count');
+        for ($i=0; $i < count($labels) ; $i++) { 
+            // $colors[] = dechex(rand(0x000000, 0xFFFFFF));
+            $colors[] = 'rgba('.rand(0,255).', '.rand(0,255).', '.rand(0,255).', 1)';
+        }
 
-        // dd($labels , $values);
+        // dd($labels , $values, $colors);
 
 		unset($ChartDataSQL);
 		$ChartDataSQL = [
@@ -170,13 +181,24 @@ public function getApiUserTaskLoad(Request $request)
 			'datasets'=>[
 				[
 	                "label"=>"Tareas Asignadas",
-	                "backgroundColor"=>"rgba(151,187,205,0.2)",
-	                "borderColor"=>"rgba(151,187,205,1)",
-                    "borderWidth"=>2,
+                    "backgroundColor"=>$colors,
 	                "data"=>$values
                 ]
             ]
         ];
+
+        // $ChartDataSQL = [
+        //     'labels'=>$labels,
+        //     'datasets'=>[
+        //         [
+        //             "label"=>"Tareas Asignadas",
+        //             "backgroundColor"=>"rgba(151,187,205,0.2)",
+        //             "borderColor"=>"rgba(151,187,205,1)",
+        //             "borderWidth"=>2,
+        //             "data"=>$values
+        //         ]
+        //     ]
+        // ];
 
 		// dd($tasks);
 
@@ -190,24 +212,12 @@ public function getApiUserTaskLoad(Request $request)
 
         $range = Carbon::now()->subMonth($months);
 
-        // $tasksmonth = 
-        //   Task::Where('created_at', '>=', $range)
-        //     ->Where('created_at', '<=', Carbon::now())
-        //     ->groupBy(DB::raw('MONTH(created_at)'))
-        //     ->orderBy('value', 'desc')
-        //     ->get([DB::raw('MONTH(created_at) as month'),
-        //             DB::raw('COUNT(*) as value')
-        //         ]);
-
-
 		$tasksmonth = Task::select(DB::raw('count(id) as value'),DB::raw('MONTH(created_at) as month'))
 			->Where('created_at', '>=', $range)
 			->Where('created_at', '<=', Carbon::now())
 			->groupby('month')
 			->orderBy('value', 'desc')
 			->get();
-        // dd($tasksmonth);
-
 
         // dd($tasksmonth);
 
@@ -228,7 +238,7 @@ public function getApiUserTaskLoad(Request $request)
                     "label"=>"Tareas Asignadas",
                     "backgroundColor"=>"rgba(192, 57, 43,0.2)",
                     "borderColor"=>"rgba(192, 57, 43,1)",
-                    "borderWidth"=>3,
+                    "borderWidth"=>2,
                     "data"=>$values
                 ]
             ]

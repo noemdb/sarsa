@@ -108,7 +108,7 @@
                 @section('scripts')
                     @parent
                     {{-- Llamado a la funcion responsable de inicilizar el Chart --}}
-                    <script> requestData(3,'{{ $chart['id_chart'] }}','{{ $chart['api'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
+                    <script> requestData(50,'{{ $chart['id_chart'] }}','{{ $chart['api'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
                 @endsection
                 @component('elements.widgets.panel')
                     @slot('class', 'info')
@@ -119,11 +119,11 @@
                         @component('elements.charts.widgets.canvas')
                             @slot('ulpanel')
                                 <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-api="{{ $chart['api'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
-                                    <li class="active"><a href="#" data-range='3'>3 Meses</a></li>
-                                    <li><a href="#" data-range='6'>6 Meses</a></li>
-                                    <li><a href="#" data-range='9'>9 Meses</a></li>
-                                    <li><a href="#" data-range='50'>Todo</a></li>
-                                    {{-- <li><a href="#" data-range='360'>360 Días</a></li> --}}
+                                    <li class="active" title="Todo los datos"><a href="#" data-range='1000'>Todos</a></li>
+                                    <li title="12 Meses"><a href="#" data-range='12'>12 M.</a></li>
+                                    <li title="9 Meses"><a href="#" data-range='9'>9 M.</a></li>
+                                    <li title="6 Meses"><a href="#" data-range='6'>6 M.</a></li>
+                                    <li title="3 Meses"><a href="#" data-range='3'>3 M.</a></li>
                                 </ul>
                             @endslot
                             @slot('id', $chart['id_chart'])
@@ -140,7 +140,7 @@
                 @section('scripts')
                     @parent
                     {{-- Llamado a la funcion responsable de inicilizar el Chart --}}
-                    <script> requestData(7,'{{ $chart['id_chart'] }}','{{ $chart['api'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
+                    <script> requestData(365,'{{ $chart['id_chart'] }}','{{ $chart['api'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
                 @endsection
                 @component('elements.widgets.panel')
                     @slot('class', 'success')
@@ -151,11 +151,12 @@
                         @component('elements.charts.widgets.canvas')
                             @slot('ulpanel')
                                 <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-api="{{ $chart['api'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
-                                    <li class="active"><a href="#" data-range="7">7 Días</a></li>
-                                    <li><a href="#" data-range='30'>30 Días</a></li>
-                                    <li><a href="#" data-range='90'>90 Días</a></li>
-                                    <li><a href="#" data-range='180'>180 Días</a></li>
-                                    {{-- <li><a href="#" data-range='360'>360 Días</a></li> --}}
+                                    <li class="active"><a href="#" data-range='1000'>Todo</a></li>
+                                    <li><a href="#" data-range='365'>365 D.</a></li>
+                                    <li><a href="#" data-range='180'>180 D.</a></li>
+                                    <li><a href="#" data-range='90'>90 D.</a></li>
+                                    <li><a href="#" data-range='30'>30 D.</a></li>
+                                    <li><a href="#" data-range="7">7 D.</a></li>
                                 </ul>
                             @endslot
                             @slot('id', $chart['id_chart'])
@@ -171,7 +172,7 @@
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12">
                 {{-- INI chart Tareas Asignadas --}}
-                @php ($chart = ['id_chart'=>'clinesqldashboard_02','api'=>'uservrstaskasig','tipo'=>'line','limit'=>8 ])
+                @php ($chart = ['id_chart'=>'clinesqldashboard_02','api'=>'uservrstaskasig','tipo'=>'pie','limit'=>8 ])
                 @section('scripts')
                     @parent
                     {{-- Llamado a la funcion responsable de inicilizar el Chart --}}
@@ -233,7 +234,7 @@
         <!-- /.row -->
                 
         <div class="row">
-            <div class="col-lg-8 col-md-6 col-sm-8">
+            <div class="col-lg-6 col-md-6 col-sm-6">
                 {{-- INI alert-list --}}
                 @component('elements.widgets.panel')
                     @slot('badge',$alerts->count())
@@ -248,7 +249,7 @@
                 @endcomponent
                 {{-- FIN alert-list --}}
             </div>
-            <div class="col-lg-4 col-md-6 col-sm-8">
+            <div class="col-lg-6 col-md-6 col-sm-6">
                 {{-- INI chat panel --}}
                 @component('elements.widgets.panel')
                     @slot('class','success')

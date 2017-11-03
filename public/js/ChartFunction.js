@@ -29,18 +29,28 @@ function requestData(range,canvas,api,tipo,limit){
 
         var apidata = JSON.parse(data);  //console.log('apidata',apidata); /creando el objeto
         var context = document.getElementById(canvas).getContext("2d"); // creando el contexto canvas
+
+        var options = {
+            responsive: true,
+            scaleShowValues: true,
+        }
+        
+        var scale;
+        if (tipo == 'line' || tipo == 'bar') {
+            options = {
+                options,
+                scales:{
+                        yAxes: [{ ticks: { beginAtZero: true } }],
+                        xAxes: [{ ticks: { autoSkip: false } }]
+                    }
+                    
+                }
+        }
         
         var myChart = new Chart(context, {
             type: tipo,
             data: apidata,
-            options: {
-                responsive: true,
-                scaleShowValues: true,
-                scales: {
-                    yAxes: [{ ticks: { beginAtZero: true } }],
-                    xAxes: [{ ticks: { autoSkip: false } }]
-                }
-            }
+            options: options
         });
 
     })

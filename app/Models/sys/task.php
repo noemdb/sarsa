@@ -3,6 +3,7 @@
 namespace App\Models\sys;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 // use App\User;
 use Illuminate\Support\Facades\DB;
 
@@ -11,7 +12,7 @@ class Task extends Model
 	//usada para el softdelete
  	protected $dates = ['deleted_at'];
     
-    //para obtener los getAttribute
+  // Para obtener los getAttribute
 	// protected $appends = ['userlist'];
 
 	/*INI relaciones entre modelos*/
@@ -33,6 +34,7 @@ class Task extends Model
       foreach ($arr_user_id as $key => $value) {
         $tasks = 
           Task::where('created_at', '>=', $range)
+            ->where('created_at', '<=', Carbon::now())
             ->where('estado', 'like', '%'.$estado.'%')
             ->where('user_id',$value)
             ->groupBy('user_id')
