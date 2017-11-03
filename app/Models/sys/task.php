@@ -44,7 +44,7 @@ class Task extends Model
           if( $tasks->count()>0){
               $arr_total[] = $tasks->first()->value;
           } else {
-              $arr_total[] = 0;
+              //$arr_total[] = 0;
           }
               
       }

@@ -32,7 +32,7 @@ class ChartController extends Controller
     public function getApiUserTaskLoad(Request $request)
 	{
 
-		$range = ($request->input('range')!=null) ? $request->input('range') : 360;
+		$range = ($request->input('range')!=null) ? $request->input('range') : 1000;
         $limit = ($request->input('limit')!=null) ? $request->input('limit') : 8;
 
 		$range = Carbon::now()->subDays($range);
@@ -42,9 +42,7 @@ class ChartController extends Controller
                 $query->where('created_at', '>=', $range)
                 ->where('created_at', '<=', Carbon::now());
             }])
-            // ->Where('tasks_count','<>', '0')
-            // ->whereNotNull('tasks_count')
-            ->orderBy('tasks_count', 'desc')
+            ->OrderBy('tasks_count', 'desc')
             ->get()
             ->take($limit);
 
@@ -160,7 +158,8 @@ class ChartController extends Controller
                 $query->where('created_at', '>=', $range)
                     ->where('created_at', '<=', Carbon::now());
             }])
-            ->orderBy('tasks_count', 'desc')
+            ->OrderBy('tasks_count', 'desc')
+            // ->WhereNotNull('tasks_count')
             ->get()
             ->take($limit);
 
@@ -169,7 +168,6 @@ class ChartController extends Controller
         $labels = $userstasks->pluck('username');
         $values = $userstasks->pluck('tasks_count');
         for ($i=0; $i < count($labels) ; $i++) { 
-            // $colors[] = dechex(rand(0x000000, 0xFFFFFF));
             $colors[] = 'rgba('.rand(0,255).', '.rand(0,255).', '.rand(0,255).', 1)';
         }
 
