@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Api\Charts;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Carbon;
+use Jenssegers\Date\Date;
 
 // Clases adicionadas
 use Illuminate\Support\Facades\DB;
@@ -54,8 +55,8 @@ public function getApiUserTaskLoad(Request $request)
 
 		// dd($tasks_iniciadas,$tasks_finalizadas,$tasks_asignadas);
 
-		unset($lineChartDataSQL);
-		$lineChartDataSQL = [
+		unset($ChartDataSQL);
+		$ChartDataSQL = [
 			'labels'=>$labels,
 			'datasets'=>[
 				[
@@ -85,7 +86,7 @@ public function getApiUserTaskLoad(Request $request)
 
 		// dd($tasks);
 
-		return json_encode($lineChartDataSQL);
+		return json_encode($ChartDataSQL);
 	}
 
 
@@ -114,8 +115,8 @@ public function getApiUserTaskLoad(Request $request)
 
         // dd($labels , $values_todas, $values_done);
 
-		unset($lineChartDataSQL);
-		$lineChartDataSQL = [
+		unset($ChartDataSQL);
+		$ChartDataSQL = [
 			'labels'=>$labels,
 			'datasets'=>[
 				[
@@ -137,7 +138,7 @@ public function getApiUserTaskLoad(Request $request)
 
 		// dd($tasks);
 
-		return json_encode($lineChartDataSQL);
+		return json_encode($ChartDataSQL);
 	}
 
 	public function getApiUserTaskAsig(Request $request)
@@ -163,8 +164,8 @@ public function getApiUserTaskLoad(Request $request)
 
         // dd($labels , $values);
 
-		unset($lineChartDataSQL);
-		$lineChartDataSQL = [
+		unset($ChartDataSQL);
+		$ChartDataSQL = [
 			'labels'=>$labels,
 			'datasets'=>[
 				[
@@ -179,58 +180,61 @@ public function getApiUserTaskLoad(Request $request)
 
 		// dd($tasks);
 
-		return json_encode($lineChartDataSQL);
+		return json_encode($ChartDataSQL);
 	}
 
     public function getApiTaskMonth(Request $request)
     {
 
-        $months = ($request->input('range')!=null) ? $request->input('range') : 3;
-        // $limit = ($request->input('limit')!=null) ? $request->input('limit') : 8;
+        $months = ($request->input('range')!=null) ? $request->input('range') : 20;
 
         $range = Carbon::now()->subMonth($months);
 
-        // dd($range);
+        // $tasksmonth = 
+        //   Task::Where('created_at', '>=', $range)
+        //     ->Where('created_at', '<=', Carbon::now())
+        //     ->groupBy(DB::raw('MONTH(created_at)'))
+        //     ->orderBy('value', 'desc')
+        //     ->get([DB::raw('MONTH(created_at) as month'),
+        //             DB::raw('COUNT(*) as value')
+        //         ]);
 
-        $tasksmonth = 
-          Task::Where('created_at', '>=', $range)
-            ->Where('created_at', '<=', Carbon::now())
-            ->groupBy(DB::raw('MONTH(created_at)'))
-            ->orderBy(DB::raw('MONTH(created_at)'), 'asc')
-            ->get([DB::raw('MONTH(created_at) as month'),
-                    DB::raw('COUNT(*) as value')
-                ]);
+
+		$tasksmonth = Task::select(DB::raw('count(id) as value'),DB::raw('MONTH(created_at) as month'))
+			->Where('created_at', '>=', $range)
+			->Where('created_at', '<=', Carbon::now())
+			->groupby('month')
+			->orderBy('value', 'desc')
+			->get();
+        // dd($tasksmonth);
+
 
         // dd($tasksmonth);
 
         $labels = $tasksmonth->pluck('month');
         foreach ($labels as $key => $value) {
-            $dateObj   = \DateTime::createFromFormat('!m', $value);
-            $label_month[] = $dateObj->format('F');
-            // $label_month[] = date("F", mktime(0, 0, 0, $value, 1));
-            
+            $dateObj   = Date::createFromFormat('!m', $value);
+            $label_month[] = ucfirst($dateObj->format('F'));
         }
         $values = $tasksmonth->pluck('value');
 
         // dd($labels, $label_month, $values);
 
-        unset($lineChartDataSQL);
-        $lineChartDataSQL = [
+        unset($ChartDataSQL);
+        $ChartDataSQL = [
             'labels'=>$label_month,
             'datasets'=>[
                 [
                     "label"=>"Tareas Asignadas",
                     "backgroundColor"=>"rgba(192, 57, 43,0.2)",
                     "borderColor"=>"rgba(192, 57, 43,1)",
-                    "borderWidth"=>2,
+                    "borderWidth"=>3,
                     "data"=>$values
                 ]
             ]
         ];
 
-        // dd($tasks);
-
-        return json_encode($lineChartDataSQL);
+        return json_encode($ChartDataSQL);
     }
 	
 }

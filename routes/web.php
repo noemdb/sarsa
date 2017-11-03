@@ -19,16 +19,16 @@ Auth::routes();
 //rutas iniciales
 Route::get('/home', 'HomeController@index')->name('home');
 
-//rutas para WebMaster
+//rutas para admin
 Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], function(){
 
     Route::get('/', 'HomeController@index')->name('home');
-    //INI rutas para los chart-ajax
+    //INI rutas para los api chart
     Route::get('/api/charts/uservrstask', 'Api\Charts\ChartController@getApiUserTaskLoad')->name('uservrstask');
     Route::get('/api/charts/uservrstaskasig', 'Api\Charts\ChartController@getApiUserTaskAsig')->name('uservrstaskasig');
     Route::get('/api/charts/uservrstaskdone', 'Api\Charts\ChartController@getApiUserTaskDone')->name('uservrstaskdone');
     Route::get('/api/charts/taskmonth', 'Api\Charts\ChartController@getApiTaskMonth')->name('taskmonth');
-    //FIN rutas para los chart-ajax
+    //FIN rutas para los api chart
 
     // Route::get('/api/charts/uservrstaskdone', 'Api\Charts\ChartController@getApiUserTaskNoDone')->name('uservrstasknodone');
 

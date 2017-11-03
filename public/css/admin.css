@@ -356,6 +356,44 @@ table.dataTable thead .sorting:after {
   font-size: 40px;
 }
 
+.panel-blue {
+  border-color: #22A7F0;
+  border-top: 3px solid #2574A9;
+}
+
+.panel-blue .panel-heading {
+  border-color: #22A7F0;
+  color: #fff;
+  background-color: #22A7F0;
+}
+
+.panel-blue a {
+  color: #22A7F0;
+}
+
+.panel-blue a:hover {
+  color: #2574A9;
+}
+
+.panel-navy {
+  border-color: #80B5D3;
+  border-top: 3px solid #22313F;
+}
+
+.panel-navy .panel-heading {
+  border-color: #357CA5;
+  color: #fff;
+  background-color: #2574A9;
+}
+
+.panel-navy a {
+  color: #80B5D3;
+}
+
+.panel-navy a:hover {
+  color: #357CA5;
+}
+
 .panel-green {
   border-color: #5cb85c;
   border-top: 3px solid #1E824C;
