@@ -37,25 +37,18 @@ class ChartController extends Controller
 
 		$range = Carbon::now()->subDays($range);
 
-		$userstasks = 
-            User::withCount(['tasks' => function ($query) use ($range)  {
-                $query->where('created_at', '>=', $range)
-                ->where('created_at', '<=', Carbon::now());
-            }])
-            ->OrderBy('tasks_count', 'desc')
-            ->get()
-            ->take($limit);
+		$userstasks = Task::getUserTasks($range,$limit); // return username,user_id,value
 
-        // dd($userstasks);
+		// dd($userstasks);
 
         $labels = $userstasks->pluck('username');
-		$users_id = $userstasks->pluck('id');
+		$users_id = $userstasks->pluck('user_id');
 
-        // dd($labels , $users_id);
+        // dd($userstasks->toarray(),$labels , $users_id);
 
-        $tasks_iniciadas = Task::geCountTotal($users_id,$range,'iniciada');
-        $tasks_finalizadas = Task::geCountTotal($users_id,$range,'finalizada');
-        $tasks_asignadas = Task::geCountTotal($users_id,$range,'');
+        $tasks_iniciadas = Task::getCountTotal($users_id,$range,'iniciada');
+        $tasks_finalizadas = Task::getCountTotal($users_id,$range,'finalizada');
+        $tasks_asignadas = Task::getCountTotal($users_id,$range,'');
 
 		// dd($tasks_iniciadas,$tasks_finalizadas,$tasks_asignadas);
 
@@ -101,23 +94,26 @@ class ChartController extends Controller
 
 		$range = Carbon::now()->subDays($range);
 
-        $userstasks = 
-            User::withCount(['tasks' => function ($query) use ($range)  {
-                $query->where('created_at', '>=', $range)
-                ->where('created_at', '<=', Carbon::now());
-            }])
-            ->orderBy('tasks_count', 'desc')
-            ->get()
-            ->take($limit);
+		$userstasks = Task::getUserTasks($range,$limit); // return username,user_id,value
+
+		// $userstasks = Task::select('users.username','tasks.user_id',DB::raw('count(tasks.id) as tasks_count'))
+		// 	->join('users', 'users.id', '=', 'tasks.user_id')
+		// 	->Where('tasks.created_at', '>=', $range)
+		// 	->Where('tasks.created_at', '<=', Carbon::now())
+		// 	->groupby('users.username')
+		// 	->orderBy('tasks_count', 'desc')
+		// 	->get()
+		// 	->take($limit);
 
 		$labels = $userstasks->pluck('username');
+        $users_id = $userstasks->pluck('user_id');
 
-        $users_id = $userstasks->pluck('id');
+        // dd($labels , $users_id);
 
-        $values_todas = Task::geCountTotal($users_id,$range,'');
-        $values_done = Task::geCountTotal($users_id,$range,'finalizada');
+        $values_todas = Task::getCountTotal($users_id,$range,'');
+        $values_done = Task::getCountTotal($users_id,$range,'finalizada');
 
-        // dd($labels , $values_todas, $values_done);
+        // dd($labels , $users_id, $values_todas, $values_done);
 
 		unset($ChartDataSQL);
 		$ChartDataSQL = [
@@ -153,17 +149,17 @@ class ChartController extends Controller
 
 		$range = Carbon::now()->subDays($range);
 
-        $userstasks = 
-            User::withCount(['tasks' => function ($query) use ($range)  {
-                $query->where('created_at', '>=', $range)
-                    ->where('created_at', '<=', Carbon::now());
-            }])
-            ->OrderBy('tasks_count', 'desc')
-            // ->WhereNotNull('tasks_count')
-            ->get()
-            ->take($limit);
 
-        // dd($userstasks);
+		$userstasks = Task::select('users.username',DB::raw('count(tasks.id) as tasks_count'))
+			->join('users', 'users.id', '=', 'tasks.user_id')
+			->Where('tasks.created_at', '>=', $range)
+			->Where('tasks.created_at', '<=', Carbon::now())
+			->groupby('users.username')
+			->orderBy('tasks_count', 'desc')
+			->get()
+			->take($limit);
+
+		// dd($userstasks->toarray());
 
         $labels = $userstasks->pluck('username');
         $values = $userstasks->pluck('tasks_count');
@@ -184,19 +180,6 @@ class ChartController extends Controller
                 ]
             ]
         ];
-
-        // $ChartDataSQL = [
-        //     'labels'=>$labels,
-        //     'datasets'=>[
-        //         [
-        //             "label"=>"Tareas Asignadas",
-        //             "backgroundColor"=>"rgba(151,187,205,0.2)",
-        //             "borderColor"=>"rgba(151,187,205,1)",
-        //             "borderWidth"=>2,
-        //             "data"=>$values
-        //         ]
-        //     ]
-        // ];
 
 		// dd($tasks);
 

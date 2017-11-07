@@ -108,7 +108,7 @@
                 @section('scripts')
                     @parent
                     {{-- Llamado a la funcion responsable de inicilizar el Chart --}}
-                    <script> requestData(50,'{{ $chart['id_chart'] }}','{{ $chart['api'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
+                    <script> requestData(10000,'{{ $chart['id_chart'] }}','{{ $chart['api'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
                 @endsection
                 @component('elements.widgets.panel')
                     @slot('class', 'info')
@@ -119,7 +119,7 @@
                         @component('elements.charts.widgets.canvas')
                             @slot('ulpanel')
                                 <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-api="{{ $chart['api'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
-                                    <li class="active" title="Todo los datos"><a href="#" data-range='1000'>Todos</a></li>
+                                    <li class="active" title="Todo los datos"><a href="#" data-range='10000'>Todos</a></li>
                                     <li title="12 Meses"><a href="#" data-range='12'>12 M.</a></li>
                                     <li title="9 Meses"><a href="#" data-range='9'>9 M.</a></li>
                                     <li title="6 Meses"><a href="#" data-range='6'>6 M.</a></li>
@@ -140,7 +140,7 @@
                 @section('scripts')
                     @parent
                     {{-- Llamado a la funcion responsable de inicilizar el Chart --}}
-                    <script> requestData(365,'{{ $chart['id_chart'] }}','{{ $chart['api'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
+                    <script> requestData(10000,'{{ $chart['id_chart'] }}','{{ $chart['api'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
                 @endsection
                 @component('elements.widgets.panel')
                     @slot('class', 'success')
@@ -151,7 +151,7 @@
                         @component('elements.charts.widgets.canvas')
                             @slot('ulpanel')
                                 <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-api="{{ $chart['api'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
-                                    <li class="active"><a href="#" data-range='1000'>Todo</a></li>
+                                    <li class="active"><a href="#" data-range='10000'>Todo</a></li>
                                     <li><a href="#" data-range='365'>365 D.</a></li>
                                     <li><a href="#" data-range='180'>180 D.</a></li>
                                     <li><a href="#" data-range='90'>90 D.</a></li>
@@ -176,7 +176,7 @@
                 @section('scripts')
                     @parent
                     {{-- Llamado a la funcion responsable de inicilizar el Chart --}}
-                    <script> requestData(7,'{{ $chart['id_chart'] }}','{{ $chart['api'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
+                    <script> requestData(10000,'{{ $chart['id_chart'] }}','{{ $chart['api'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
                 @endsection
                 @component('elements.widgets.panel')
                     @slot('class', 'warning')
@@ -187,11 +187,11 @@
                         @component('elements.charts.widgets.canvas')
                             @slot('ulpanel')
                                 <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-api="{{ $chart['api'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
-                                    <li class="active"><a href="#" data-range="7">7 Días</a></li>
-                                    <li><a href="#" data-range='30'>30 Días</a></li>
-                                    <li><a href="#" data-range='90'>90 Días</a></li>
-                                    <li><a href="#" data-range='180'>180 Días</a></li>
-                                    {{-- <li><a href="#" data-range='360'>360 Días</a></li> --}}
+                                    <li class="active"><a href="#" data-range="10000">Todo</a></li>
+                                    <li title="365 Días"><a href="#" data-range='365'>365 D.</a></li>
+                                    <li title="90 Días"><a href="#" data-range='90'>90 D.</a></li>
+                                    <li title="30 Días"><a href="#" data-range='30'>30 D.</a></li>
+                                    <li title="7 Días"><a href="#" data-range='7'>7 D.</a></li>
                                 </ul>
                             @endslot
                             @slot('id', $chart['id_chart'])
@@ -206,7 +206,7 @@
                 @section('scripts')
                     @parent
                     {{-- Llamado a la funcion responsable de inicilizar el Chart --}}
-                    <script> requestData(7,'{{ $chart['id_chart'] }}','{{ $chart['api'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
+                    <script> requestData(10000,'{{ $chart['id_chart'] }}','{{ $chart['api'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
                 @endsection
                 @component('elements.widgets.panel')
                     @slot('class', 'danger')
@@ -217,11 +217,11 @@
                         @component('elements.charts.widgets.canvas')
                             @slot('ulpanel')
                                 <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-api="{{ $chart['api'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
-                                    <li class="active"><a href="#" data-range="7">7 Días</a></li>
-                                    <li><a href="#" data-range='30'>30 Días</a></li>
-                                    <li><a href="#" data-range='90'>90 Días</a></li>
-                                    <li><a href="#" data-range='180'>180 Días</a></li>
-                                    {{-- <li><a href="#" data-range='360'>360 Días</a></li> --}}
+                                    <li class="active"><a href="#" data-range="10000">Todo</a></li>
+                                    <li title="365 Días"><a href="#" data-range='365'>365 D.</a></li>
+                                    <li title="90 Días"><a href="#" data-range='90'>90 D.</a></li>
+                                    <li title="90 Días"><a href="#" data-range='30'>30 D.</a></li>
+                                    <li title="7 Días"><a href="#" data-range='7'>7 Días</a></li>
                                 </ul>
                             @endslot
                             @slot('id', $chart['id_chart'])
