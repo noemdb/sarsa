@@ -28,6 +28,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
     Route::get('/api/charts/uservrstaskasig', 'Api\Charts\ChartController@getApiUserTaskAsig')->name('uservrstaskasig');
     Route::get('/api/charts/uservrstaskdone', 'Api\Charts\ChartController@getApiUserTaskDone')->name('uservrstaskdone');
     Route::get('/api/charts/taskmonth', 'Api\Charts\ChartController@getApiTaskMonth')->name('taskmonth');
+    Route::get('/api/navbar/messenges', 'Api\Navbar\NavbarController@getApiMesseges')->name('getmessenges');
     //FIN rutas para los api chart
 
     // Route::get('/api/charts/uservrstaskdone', 'Api\Charts\ChartController@getApiUserTaskNoDone')->name('uservrstasknodone');
