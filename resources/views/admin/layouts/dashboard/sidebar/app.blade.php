@@ -9,7 +9,7 @@
             @include('admin.layouts.dashboard.sidebar.elements.sidebar-search')
         </li>
 
-        <li>
+        <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
             <a href="{{ url ('admin/dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
         </li>
 

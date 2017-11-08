@@ -23,12 +23,17 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], function(){
 
     Route::get('/', 'HomeController@index')->name('home');
+
+    Route::get('/dashboard', 'HomeController@index')->name('home');
+
     //INI rutas para los api chart
     Route::get('/api/charts/uservrstask', 'Api\Charts\ChartController@getApiUserTaskLoad')->name('uservrstask');
     Route::get('/api/charts/uservrstaskasig', 'Api\Charts\ChartController@getApiUserTaskAsig')->name('uservrstaskasig');
     Route::get('/api/charts/uservrstaskdone', 'Api\Charts\ChartController@getApiUserTaskDone')->name('uservrstaskdone');
     Route::get('/api/charts/taskmonth', 'Api\Charts\ChartController@getApiTaskMonth')->name('taskmonth');
     Route::get('/api/navbar/messenges', 'Api\Navbar\NavbarController@getApiMesseges')->name('getmessenges');
+    Route::get('/api/navbar/tasks', 'Api\Navbar\NavbarController@getApiTasks')->name('gettasks');
+    Route::get('/api/navbar/alerts', 'Api\Navbar\NavbarController@getApiAlerts')->name('getalerts');
     //FIN rutas para los api chart
 
     // Route::get('/api/charts/uservrstaskdone', 'Api\Charts\ChartController@getApiUserTaskNoDone')->name('uservrstasknodone');

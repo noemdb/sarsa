@@ -1,12 +1,12 @@
-{{-- INI dropdown-messages --}}
-<a class="dropdown-toggle alert-primary btn" data-toggle="dropdown" href="#">
-    <i class="fa fa-comments fa-fw fa-2x"></i> <i class="fa fa-caret-down"></i>
-    <span class="label label-primary" id="span_count_msn"></span>        
+{{-- INI dropdown-alerts --}}
+<a class="dropdown-toggle alert-warning btn" data-toggle="dropdown" href="#">
+    <i class="fa fa-bell fa-fw fa-2x"></i> <i class="fa fa-caret-down"></i>
+    <span class="label label-warning" id="span_count_alerts"></span>        
 </a>
 
-<ul class="dropdown-menu dropdown-messages">
+<ul class="dropdown-menu dropdown-alerts">
     <li>
-        <ul class="list-group" id="ulresults-messages" ></ul>
+        <ul class="list-group" id="ulresults-alerts"></ul>
     </li>
 </ul>
 
@@ -18,31 +18,31 @@
  
         $( document ).ready(function() {
             // console.log( "ready!" );
-            var count_msn = $('#span_count_msn'); console.log( count_msn.text() );
+            var count_alerts = $('#span_count_alerts'); //console.log( count_alerts.text() );
 
-            var url = "{{route('getmessenges')}}"; //alert(url);
+            var url = "{{route('getalerts')}}"; //alert(url);
             $.ajax({
               type: "GET",
               url: url, // This is the URL to the API
-              data: { model: 'messeges' } // rango dias meses o años para la data a mostrar
+              data: { model: 'alerts' } // rango dias meses o años para la data a mostrar
             })
             .done(function( data ) { //console.log(data);
                 apidata = JSON.parse(data); //console.log(apidata);
-                var num_msn = apidata.length; //console.log(num_msn);
-                // console.log(count_msn.text()+'123');
-                count_msn.text(num_msn);
+                var num_task = apidata.length; //console.log(num_task);
+                count_alerts.text(num_task);
 
-                ul = $("#ulresults-messages");
+                ul = $("#ulresults-alerts");
                 var limit = apidata.length;
                 if(limit>4)
                     limit = 4;
+                console.log(limit);
                 for (var i = 0, l = limit; i < l; ++i) {
-                   ul.append(
+                    ul.append(
                         $('<li class="list-group-item text-overflow">').
                             append(
                                 $('<span>').attr('class', 'text-'+apidata[i].tipo).
                                     append(
-                                        $('<i>').attr('class', 'fa fa-comment fa-fw')
+                                        $('<i>').attr('class', 'fa fa-bell fa-fw')
                                 )
                             ).append(
                                 $('<span>').attr('class', 'text-'+apidata[i].tipo).
@@ -55,7 +55,7 @@
                                             )
                                     )
                             )
-                        );
+                        ); 
                 }
                 ul.append("<a href='#'>Mas...</a>")
                

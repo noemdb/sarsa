@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 
 //models
 use App\Models\sys\Messege;
+use App\Models\sys\Task;
+use App\Models\sys\Alert;
 
 class NavbarController extends Controller
 {
@@ -20,55 +22,52 @@ class NavbarController extends Controller
     public function getApiMesseges(Request $request)
     {
 
-        $model = ($request->input('model')!=null) ? $request->input('model') : 20;
+        $model = ($request->input('model')!=null) ? $request->input('model') : 'messenges';
 
         $messeges = Messege::where('destino_user_id',\Auth::user()->id)
                     ->with('user')
+                    ->where('estado','No Visto')
                     ->orderBy('created_at', 'desc')
                     // ->orderBy('id', 'desc')
-                    ->get()
-                    ->take(4);
+                    ->get();
 
         // dd($model);
 
         return json_encode($messeges);
-
-        // $range = Carbon::now()->subMonth($months);
-
-		// $tasksmonth = Task::select(DB::raw('count(id) as value'),DB::raw('MONTH(created_at) as month'))
-		// 	->Where('created_at', '>=', $range)
-		// 	->Where('created_at', '<=', Carbon::now())
-		// 	->groupby('month')
-		// 	->orderBy('value', 'desc')
-		// 	->get();
-
-  //       // dd($tasksmonth);
-
-  //       $labels = $tasksmonth->pluck('month');
-  //       foreach ($labels as $key => $value) {
-  //           $dateObj   = Date::createFromFormat('!m', $value);
-  //           $label_month[] = ucfirst($dateObj->format('F'));
-  //       }
-  //       $values = $tasksmonth->pluck('value');
-
-  //       // dd($labels, $label_month, $values);
-
-  //       unset($ChartDataSQL);
-  //       $ChartDataSQL = [
-  //           'labels'=>$label_month,
-  //           'datasets'=>[
-  //               [
-  //                   "label"=>"Tareas Asignadas",
-  //                   "backgroundColor"=>"rgba(192, 57, 43,0.2)",
-  //                   "borderColor"=>"rgba(192, 57, 43,1)",
-  //                   "borderWidth"=>2,
-  //                   "data"=>$values
-  //               ]
-  //           ]
-  //       ];
-
-  //       return json_encode($ChartDataSQL);
     }
 
+    public function getApiTasks(Request $request)
+    {
+
+        $model = ($request->input('model')!=null) ? $request->input('model') : 'tasks';
+
+        $tasks = Task::where('user_id',\Auth::user()->id)
+                    // ->with('user')
+                    ->where('estado','iniciada')
+                    ->orderBy('created_at', 'desc')
+                    // ->orderBy('id', 'desc')
+                    ->get();
+
+        // dd($model);
+
+        return json_encode($tasks);
+    }
+
+    public function getApiAlerts(Request $request)
+    {
+
+        $model = ($request->input('model')!=null) ? $request->input('model') : 'alerts';
+
+        $alerts = Alert::where('destino_user_id',\Auth::user()->id)
+                    ->with('user')
+                    ->where('estado','No Visto')
+                    ->orderBy('created_at', 'desc')
+                    // ->orderBy('id', 'desc')
+                    ->get();
+
+        // dd($model);
+
+        return json_encode($alerts);
+    }
 
 }

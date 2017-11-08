@@ -18,26 +18,20 @@
 
     <li class="dropdown">
 
-        {{-- @include('admin.layouts.dashboard.navbar.elements.messages') --}}
+        @include('admin.layouts.dashboard.navbar.elements.ajaxtasks')
         
     </li>
-    
-    <li class="dropdown">
-
-        {{-- @include('admin.layouts.dashboard.navbar.elements.tasks') --}}
-
-    </li>
-    
-    <li class="dropdown">
-
-        {{-- @include('admin.layouts.dashboard.navbar.elements.alerts') --}}
-
-    </li>
 
     <li class="dropdown">
+
+        @include('admin.layouts.dashboard.navbar.elements.ajaxalerts')
         
-        {{-- @include('admin.layouts.dashboard.navbar.elements.user') --}}
+    </li>
 
+    <li class="dropdown">
+
+        @include('admin.layouts.dashboard.navbar.elements.user')
+        
     </li>
 
 </ul>

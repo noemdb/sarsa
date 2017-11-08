@@ -10,12 +10,12 @@
  */
 
 // Create a function that will handle AJAX requests
-function requestData(range,canvas,api,tipo,limit){
-    var url = "admin/api/charts/"+api+"?limit="+limit; //alert(url);
+function requestData(range,canvas,urlapi,tipo,limit){
+    // var url = urlapi; alert(url);
     $.ajax({
       type: "GET",
-      url: url, // This is the URL to the API
-      data: { range: range } // rango dias meses o años para la data a mostrar
+      url: urlapi, // This is the URL to the API
+      data: { range: range, limit: limit } // rango (rango de fechas), api(nombre de la api), limit(limite de registros)
     })
     .done(function( data ) {
 
@@ -35,7 +35,6 @@ function requestData(range,canvas,api,tipo,limit){
             scaleShowValues: true,
         }
         
-        var scale;
         if (tipo == 'line' || tipo == 'bar') {
             options = {
                 options,
