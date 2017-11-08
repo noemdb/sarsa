@@ -9,6 +9,12 @@
         {{-- @include('admin.layouts.dashboard.navbar.top-links.hide-sidebar') --}}
 
     {{-- </li> --}}
+    <li class="dropdown">
+
+        @include('admin.layouts.dashboard.navbar.elements.ajaxlogdbs')
+        
+    </li>
+
 
     <li class="dropdown">
 
@@ -33,6 +39,8 @@
         @include('admin.layouts.dashboard.navbar.elements.user')
         
     </li>
+
+
 
 </ul>
 <!-- /.navbar-top-links -->

@@ -35,9 +35,11 @@ class ChartController extends Controller
 		$range = ($request->input('range')!=null) ? $request->input('range') : 1000;
         $limit = ($request->input('limit')!=null) ? $request->input('limit') : 8;
 
-		$range = Carbon::now()->subDays($range);
+		$finicial = Carbon::now()->subDays($range);
+		// $ffinal = Carbon::now();
+		$ffinal = Carbon::now()->addYear(2);
 
-		$userstasks = Task::getUserTasks($range,$limit); // return username,user_id,value
+		$userstasks = Task::getUserTasks($finicial,$ffinal,$limit); // return username,user_id,value
 
 		// dd($userstasks);
 
@@ -92,18 +94,11 @@ class ChartController extends Controller
 		$range  = ($request->input('range')!=null) ? $request->input('range') : 360;
         $limit = ($request->input('limit')!=null) ? $request->input('limit') : 8;
 
-		$range = Carbon::now()->subDays($range);
+		$finicial = Carbon::now()->subDays($range);
+		// $ffinal = Carbon::now();
+		$ffinal = Carbon::now();
 
-		$userstasks = Task::getUserTasks($range,$limit); // return username,user_id,value
-
-		// $userstasks = Task::select('users.username','tasks.user_id',DB::raw('count(tasks.id) as tasks_count'))
-		// 	->join('users', 'users.id', '=', 'tasks.user_id')
-		// 	->Where('tasks.created_at', '>=', $range)
-		// 	->Where('tasks.created_at', '<=', Carbon::now())
-		// 	->groupby('users.username')
-		// 	->orderBy('tasks_count', 'desc')
-		// 	->get()
-		// 	->take($limit);
+		$userstasks = Task::getUserTasks($finicial,$ffinal,$limit); // return username,user_id,value
 
 		$labels = $userstasks->pluck('username');
         $users_id = $userstasks->pluck('user_id');

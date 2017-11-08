@@ -33,12 +33,12 @@ class Task extends Model
    //    // return $this->firstname .' ' . $this->lastname;
    //  }
 
-  public static function getUserTasks($range=1000,$limit=10)
+  public static function getUserTasks($finicial,$ffinal,$limit=10)
   {
     $userstasks = Task::select('users.username','tasks.user_id',DB::raw('count(tasks.id) as tasks_count'))
       ->join('users', 'users.id', '=', 'tasks.user_id')
-      ->Where('tasks.created_at', '>=', $range)
-      ->Where('tasks.created_at', '<=', Carbon::now())
+      ->Where('tasks.created_at', '>=', $finicial)
+      ->Where('tasks.created_at', '<=', $ffinal)
       ->groupby('users.username')
       ->orderBy('tasks_count', 'desc')
       ->get()
@@ -49,7 +49,7 @@ class Task extends Model
   
   public static function getCountTotal($arr_user_id,$range, $estado)
   {
-    //INI array con los totales de las tasks iniciadas
+    //INI array con los totales de las tasks
     foreach ($arr_user_id as $key => $value) {
       $tasks = 
         Task::where('created_at', '>=', $range)
@@ -60,15 +60,12 @@ class Task extends Model
             ->get([
               DB::raw('COUNT(*) as value')
           ]);
-        if( $tasks->count()>0){
-            $arr_total[] = $tasks->first()->value;
-        } else {
-            //$arr_total[] = 0;
-        }
-            
+      if( $tasks->count()>0){
+          $arr_total[] = $tasks->first()->value;
+      }
     }
-    //FIN array con los totales de las tasks iniciadas
+    //FIN array con los totales de las tasks
 
-    return ($arr_total) ? $arr_total : 0;
+    return (isset($arr_total)) ? $arr_total : 0;
   }
 }

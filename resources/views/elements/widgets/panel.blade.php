@@ -3,7 +3,9 @@
     @if (isset($panelTitle))
         <div class="panel-heading">
             <h3 class="panel-title">
-                {{ $panelTitle }}
+
+                <i class="{{ $iconTitle or '' }} text-{{ $class or 'default' }}"></i>
+                <strong>{{ $panelTitle }}</strong>
                 <div class="panel-control pull-right">
                     <span class="label label-info">{{ $badge or '' }}</span>&nbsp;
                     @if (isset($panelControls))

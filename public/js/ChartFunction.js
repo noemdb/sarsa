@@ -22,7 +22,7 @@ function requestData(range,canvas,urlapi,tipo,limit){
         //INI asegurar dibujar en un canvas nuevo para evitar solapamiento de chart
         $('#'+canvas).remove(); // elimina el canvas antiguo                   
         var newcanvas = document.createElement('canvas'); //console.log(newcanvas); //crea
-        newcanvas.id  = canvas; //console.log(newcanvas); // 
+        newcanvas.id  = canvas; // console.log(newcanvas); // 
         div = document.getElementById('div'+canvas); //console.log(div); //este div contiene el canvas para el chart
         div.appendChild(newcanvas); // asignando el canvas al div
         //FIN asegurar dibujar en un canvas nuevo para evitar solapamiento de chart
@@ -39,7 +39,7 @@ function requestData(range,canvas,urlapi,tipo,limit){
             options = {
                 options,
                 scales:{
-                        yAxes: [{ ticks: { beginAtZero: true } }],
+                        yAxes: [{ ticks: { beginAtZero: true, callback: function (value) { if (Number.isInteger(value)) { return value; } } } }],
                         xAxes: [{ ticks: { autoSkip: false } }]
                     }
                     

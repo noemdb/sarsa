@@ -36,7 +36,7 @@
                 var limit = apidata.length;
                 if(limit>4)
                     limit = 4;
-                console.log(limit);
+                //console.log(limit);
                 for (var i = 0, l = limit; i < l; ++i) {
 
                     ul.append(

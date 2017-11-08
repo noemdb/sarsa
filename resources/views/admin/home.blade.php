@@ -115,6 +115,7 @@
                     @slot('panelControls', 'true')
                     @slot('id', $chart['id_chart'] )
                     @slot('panelTitle', 'Tareas por Mes')
+                    @slot('iconTitle', 'fa fa-line-chart fa-lg')
                     @slot('panelBody')
                         @component('elements.charts.widgets.canvas')
                             @slot('ulpanel')
@@ -147,16 +148,17 @@
                     @slot('panelControls', 'true')
                     @slot('id', $chart['id_chart'] )
                     @slot('panelTitle', 'Tareas por Usuario. Ult.('.$chart['limit'].')')
+                    @slot('iconTitle', 'fa fa-bar-chart fa-lg')
                     @slot('panelBody')
                         @component('elements.charts.widgets.canvas')
                             @slot('ulpanel')
                                 <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-urlapi="{{ $chart['urlapi'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
-                                    <li class="active"><a href="#" data-range='10000'>Todo</a></li>
-                                    <li><a href="#" data-range='365'>365D</a></li>
-                                    <li><a href="#" data-range='180'>180D</a></li>
-                                    <li><a href="#" data-range='90'>90D</a></li>
-                                    <li><a href="#" data-range='30'>30D</a></li>
-                                    <li><a href="#" data-range="7">7D</a></li>
+                                    <li title="Todos los Días" class="active"><a href="#" data-range='10000'>Todo</a></li>
+                                    <li title="365 Días"><a href="#" data-range='365'>365D</a></li>
+                                    <li title="180 Días"><a href="#" data-range='180'>180D</a></li>
+                                    <li title="90 Días"><a href="#" data-range='90'>90D</a></li>
+                                    <li title="30 Días"><a href="#" data-range='30'>30D</a></li>
+                                    <li title="7 Días"><a href="#" data-range='7'>7D</a></li>
                                 </ul>
                             @endslot
                             @slot('id', $chart['id_chart'])
@@ -183,6 +185,7 @@
                     @slot('panelControls', 'true')
                     @slot('id', $chart['id_chart'] )
                     @slot('panelTitle', 'Tareas Asignadas .Ult.('.$chart['limit'].')')
+                    @slot('iconTitle', 'fa fa-pie-chart fa-lg')
                     @slot('panelBody')
                         @component('elements.charts.widgets.canvas')
                             @slot('ulpanel')
@@ -213,6 +216,7 @@
                     @slot('panelControls', 'true')
                     @slot('id', $chart['id_chart'] )
                     @slot('panelTitle', 'Tareas Asignadas/Finalizadas. Ult.('.$chart['limit'].')')
+                    @slot('iconTitle', 'fa fa-area-chart fa-lg')
                     @slot('panelBody')
                         @component('elements.charts.widgets.canvas')
                             @slot('ulpanel')

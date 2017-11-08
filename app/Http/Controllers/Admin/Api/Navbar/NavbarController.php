@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\sys\Messege;
 use App\Models\sys\Task;
 use App\Models\sys\Alert;
+use App\Models\sys\Logdb;
 
 class NavbarController extends Controller
 {
@@ -56,7 +57,7 @@ class NavbarController extends Controller
     public function getApiAlerts(Request $request)
     {
 
-        $model = ($request->input('model')!=null) ? $request->input('model') : 'alerts';
+        // $model = ($request->input('model')!=null) ? $request->input('model') : 'alerts';
 
         $alerts = Alert::where('destino_user_id',\Auth::user()->id)
                     ->with('user')
@@ -68,6 +69,22 @@ class NavbarController extends Controller
         // dd($model);
 
         return json_encode($alerts);
+    }
+
+    public function getApiLogdbs(Request $request)
+    {
+
+        // $model = ($request->input('model')!=null) ? $request->input('model') : 'alerts';
+
+        $logdbs = Logdb::Where('')
+                    ->with('user')
+                    ->orderBy('created_at', 'desc')
+                    // ->orderBy('id', 'desc')
+                    ->get();
+
+        // dd($model);
+
+        return json_encode($logdbs);
     }
 
 }
