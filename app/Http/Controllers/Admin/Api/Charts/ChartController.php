@@ -83,7 +83,6 @@ class ChartController extends Controller
                     "borderWidth"=>1,
 	                "data"=>$tasks_asignadas
                 ]
-
             ]
         ];
 
@@ -153,7 +152,7 @@ class ChartController extends Controller
 		if($range=='Todos'){
 			$finicial = Carbon::now()->SubYear(10);
 			$ffinal = Carbon::now()->AddYear(10);
-		} else{
+		}else{
 			$finicial = Carbon::now()->subDays($range);
 			$ffinal = Carbon::now();
 		}
@@ -203,7 +202,7 @@ class ChartController extends Controller
 		if ($range=='Todos') {
 			$finicial = Carbon::now()->SubYear(10);
 			$ffinal = Carbon::now()->AddYear(10);
-		} else {
+		}else{
 			$finicial = Carbon::now()->subMonth($range);
 			$ffinal = Carbon::now();
 		}

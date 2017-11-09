@@ -89,14 +89,31 @@
                 {{-- INI card-collapse alert --}}
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
-                {{-- INI card-collapse disponibles --}}
-                @component('elements.widgets.card')
+                {{-- INI card-collapse alert --}}
+                @component('elements.widgets.card_collapse')
                     @slot('class', 'red')
-                    @slot('class_icon', 'fa fa-support fa-5x')
-                    @slot('total', '158')
-                    @slot('text', 'Nuevas Tickets!')
+                    @slot('class_icon', 'fa fa-database fa-5x')
+                    @slot('total', $logdbs->count())
+                    @slot('text', 'LogBD Ult. 96H')
+                    @slot('headercollapse', 'Mas detalles')
+                    @slot('idcollapse', 'idlogdbs1')
+                    @slot('bodycollapse')
+                        {{-- INI alert-list --}}
+                        @component('elements.widgets.panel')
+                            @slot('badge',$logdbs->where('estado','No Visto')->count())
+                            @slot('class','danger')
+                            @slot('panelTitle', 'Pendientes')
+                            @slot('panelBody')
+                                @include('elements.widgets.logdbs.list',[
+                                    'logdbs'=>$logdbs->take(5),
+                                    'show_alert'=>'true'
+                                    ])
+                            @endslot
+                        @endcomponent
+                        {{-- FIN alert-list --}}
+                    @endslot
                 @endcomponent
-                {{-- INI card-collapse disponibles --}}
+                {{-- INI card-collapse alert --}}
             </div>
         </div>
          {{-- /.row FIN card --}}

@@ -80,9 +80,9 @@ class NavbarController extends Controller
 
         // $model = ($request->input('model')!=null) ? $request->input('model') : 'alerts';
 
-        $logdbs = Logdb::with('user')
-                    ->Where('created_at','>=',Carbon::now()->subHours(96))
+        $logdbs = Logdb::Where('created_at','>=',Carbon::now()->subHours(96))
                     ->Where('created_at','<=',Carbon::now())
+                    ->with('user')
                     ->orderBy('created_at', 'desc')
                     // ->orderBy('id', 'desc')
                     ->get();

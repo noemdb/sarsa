@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+// Helpers
+use Illuminate\Support\Carbon;
+
 // Clases adicionadas
 use Illuminate\Support\Facades\DB;
 use App\User;
@@ -50,6 +53,14 @@ class HomeController extends Controller
                     ->get();
 
         $alerts = Alert::where('destino_user_id',\Auth::user()->id)
+                    ->with('user')
+                    ->orderBy('created_at', 'desc')
+                    // ->orderBy('id', 'desc')
+                    ->get();
+
+        $logdbs = Logdb::where('user_id',\Auth::user()->id)
+                    ->Where('created_at','>=',Carbon::now()->subHours(96))
+                    ->Where('created_at','<=',Carbon::now())
                     ->with('user')
                     ->orderBy('created_at', 'desc')
                     // ->orderBy('id', 'desc')

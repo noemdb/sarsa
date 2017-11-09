@@ -12,4 +12,49 @@ class Logdb extends Model
         return $this->belongsTo('App\User');
     }
     /*FIN relaciones entre modelos*/
+
+
+    public static function array_request($array_request = null){
+    	$str = '';
+    	foreach ($array_request as $key => $value) {
+    		if ($key <> 'password' && $key <> '_token') {
+    			$str .= $key.'=>'.$value.', ';
+    		}
+    	}
+    	return substr($str,0,-2);
+    }
+
+    public static function record($action, $class = null){
+    	$logdb = new Logdb();
+        $request = request();
+        $pathInfo = $request->getPathInfo();
+        $pos_login = strpos($pathInfo, '/login');
+        $pos_logout = strpos($pathInfo, '/logout');
+        if($pos_login === false && $pos_logout === false){ //excluyendo los registros de login o logout
+            $arr_request = $request->ToArray();
+            $logdb->data = $logdb->array_request($arr_request);
+        	$logdb->action = $action;
+            $logdb->tipo = $logdb->gettype();
+            $logdb->user_id = auth()->user()->id;
+            $logdb->ip = $request->ip();
+            $logdb->pathInfo = $pathInfo;
+            $logdb->url =$request->server('HTTP_REFERER');
+            $logdb->model_class = $class;
+
+            dd($logdb);
+            
+            $logdb->save();
+        }
+    }
+    public static function gettype(){
+        switch ($this->action) {
+            case 'created': $tipo = 'primary'; break;
+            case 'updated': $tipo = 'info'; break;
+            case 'deleted': $tipo = 'danger'; break;
+            case 'restored': $tipo = 'warning'; break;            
+            default: $tipo = 'default'; break;
+        }
+        return $tipo;
+    }
+
 }

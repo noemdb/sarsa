@@ -10,20 +10,7 @@
 
     {{-- </li> --}}
 
-    <li class="dropdown">
-
-        @include('admin.layouts.dashboard.navbar.elements.ajaxloginouts')
-        
-    </li>
-
-
-    <li class="dropdown">
-
-        @include('admin.layouts.dashboard.navbar.elements.ajaxlogdbs')
-        
-    </li>
-
-
+    
     <li class="dropdown">
 
         @include('admin.layouts.dashboard.navbar.elements.ajaxmessages')
@@ -39,6 +26,19 @@
     <li class="dropdown">
 
         @include('admin.layouts.dashboard.navbar.elements.ajaxalerts')
+        
+    </li>
+
+    <li class="dropdown">
+
+        @include('admin.layouts.dashboard.navbar.elements.ajaxloginouts')
+        
+    </li>
+
+
+    <li class="dropdown">
+
+        @include('admin.layouts.dashboard.navbar.elements.ajaxlogdbs')
         
     </li>
 

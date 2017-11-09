@@ -10,7 +10,7 @@ $factory->define(App\Models\sys\Loginout::class, function (Faker $faker) {
     return [
         'action' => array_rand($arr_action,1),
         'tipo'=>array_rand($arr_tipo,1),
-        'message' => $faker->sentence(10),
+        'message' => $faker->sentence(3),
         'ip' => $faker->ipv4(),
         'created_at'=>$created_at,
         'updated_at'=>$created_at,

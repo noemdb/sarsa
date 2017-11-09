@@ -48,7 +48,7 @@
                             ).append(
                                 $('<span>').attr('class', 'text-'+apidata[i].tipo).
                                     append(
-                                        '<b>'+apidata[i].user.username + '</b><br><b>Action:</b> ' +apidata[i].action+'<br><b>message:</b> '+apidata[i].message+'<br>'
+                                        '<b>'+apidata[i].user.username + '</b><br><b>Action:</b> ' +apidata[i].action+'<br><b>Message:</b> '+apidata[i].message+'<br>'
                                     ).
                                     append(
                                         $('<span>').attr('class', 'small').append(
