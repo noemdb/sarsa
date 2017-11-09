@@ -18,7 +18,7 @@ class CreateTasksTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('codigo',32);
             $table->string('descripcion');
-            $table->enum('tipo', ['primary', 'suscess', 'info', 'warning', 'danger', 'default'])->default('default');
+            $table->enum('tipo', ['primary', 'success', 'info', 'warning', 'danger', 'default'])->default('default');
             $table->string('evento',32);
             $table->enum('estado',['iniciada','finalizada'])->default('iniciada');
             

@@ -104,11 +104,11 @@
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12">
                 {{-- INI chart Tareas por Mes --}}
-                @php ($chart = ['id_chart'=>'chartasksmonth','urlapi'=>route('taskmonth'),'tipo'=>'line','limit'=>8 ])
+                @php ($chart = ['range'=>'Todos','id_chart'=>'chartasksmonth','urlapi'=>route('taskmonth'),'tipo'=>'line','limit'=>8 ])
                 @section('scripts')
                     @parent
                     {{-- Llamado a la funcion responsable de inicilizar el Chart --}}
-                    <script> requestData(10000,'{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
+                    <script> requestData('{{ $chart['range'] }}','{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
                 @endsection
                 @component('elements.widgets.panel')
                     @slot('class', 'info')
@@ -120,7 +120,7 @@
                         @component('elements.charts.widgets.canvas')
                             @slot('ulpanel')
                                 <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-urlapi="{{ $chart['urlapi'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
-                                    <li class="active" title="Todo los datos"><a href="#" data-range='10000'>Todos</a></li>
+                                    <li class="active" title="Todo los datos"><a href="#" data-range='Todos'>Todos</a></li>
                                     <li title="12 Meses"><a href="#" data-range='12'>12M</a></li>
                                     <li title="9 Meses"><a href="#" data-range='9'>9M</a></li>
                                     <li title="6 Meses"><a href="#" data-range='6'>6M</a></li>
@@ -137,11 +137,11 @@
 
             <div class="col-lg-6 col-md-6 col-sm-12">
                 {{-- INI chart Tareas por Usuario --}}
-                @php ($chart = ['id_chart'=>'clinesqldashboard','urlapi'=>route('uservrstask'),'tipo'=>'bar','limit'=>8 ])
+                @php ($chart = ['range'=>'Todos','id_chart'=>'clinesqldashboard','urlapi'=>route('uservrstask'),'tipo'=>'bar','limit'=>8 ])
                 @section('scripts')
                     @parent
                     {{-- Llamado a la funcion responsable de inicilizar el Chart --}}
-                    <script> requestData(10000,'{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
+                    <script> requestData('{{ $chart['range'] }}','{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
                 @endsection
                 @component('elements.widgets.panel')
                     @slot('class', 'success')
@@ -153,7 +153,7 @@
                         @component('elements.charts.widgets.canvas')
                             @slot('ulpanel')
                                 <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-urlapi="{{ $chart['urlapi'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
-                                    <li title="Todos los Días" class="active"><a href="#" data-range='10000'>Todo</a></li>
+                                    <li title="Todos los Días" class="active"><a href="#" data-range='Todos'>Todo</a></li>
                                     <li title="365 Días"><a href="#" data-range='365'>365D</a></li>
                                     <li title="180 Días"><a href="#" data-range='180'>180D</a></li>
                                     <li title="90 Días"><a href="#" data-range='90'>90D</a></li>
@@ -174,11 +174,11 @@
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12">
                 {{-- INI chart Tareas Asignadas --}}
-                @php ($chart = ['id_chart'=>'clinesqldashboard_02','urlapi'=>route('uservrstaskasig'),'tipo'=>'pie','limit'=>4 ])
+                @php ($chart = ['range'=>'Todos','id_chart'=>'clinesqldashboard_02','urlapi'=>route('uservrstaskasig'),'tipo'=>'pie','limit'=>4 ])
                 @section('scripts')
                     @parent
                     {{-- Llamado a la funcion responsable de inicilizar el Chart --}}
-                    <script> requestData(10000,'{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
+                    <script> requestData('{{ $chart['range'] }}','{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
                 @endsection
                 @component('elements.widgets.panel')
                     @slot('class', 'warning')
@@ -205,11 +205,11 @@
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12">
                 {{-- INI chart Tareas Asignadas/Finalizadas --}}
-                @php ($chart = ['id_chart'=>'clinesqldashboard_03','urlapi'=>route('uservrstaskdone'),'tipo'=>'line','limit'=>8 ])
+                @php ($chart = ['range'=>'Todos','id_chart'=>'clinesqldashboard_03','urlapi'=>route('uservrstaskdone'),'tipo'=>'line','limit'=>8 ])
                 @section('scripts')
                     @parent
                     {{-- Llamado a la funcion responsable de inicilizar el Chart --}}
-                    <script> requestData(10000,'{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
+                    <script> requestData('{{ $chart['range'] }}','{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
                 @endsection
                 @component('elements.widgets.panel')
                     @slot('class', 'danger')
@@ -240,36 +240,36 @@
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6">
                 {{-- INI alert-list --}}
-                @component('elements.widgets.panel')
-                    @slot('badge',$alerts->count())
-                    @slot('class','warning')
-                    @slot('panelTitle', 'Alertas')
-                    @slot('panelBody')
-                        @include('elements.widgets.alerts.list',[
-                            'alerts'=>$alerts->sortBy('id')->take(5),
-                            'show_alert'=>'true'
-                            ])
-                    @endslot
-                @endcomponent
+                {{-- @component('elements.widgets.panel') --}}
+                    {{-- @slot('badge',$alerts->count()) --}}
+                    {{-- @slot('class','warning') --}}
+                    {{-- @slot('panelTitle', 'Alertas') --}}
+                    {{-- @slot('panelBody') --}}
+                        {{-- @include('elements.widgets.alerts.list',[ --}}
+                            {{-- 'alerts'=>$alerts->sortBy('id')->take(5), --}}
+                            {{-- 'show_alert'=>'true' --}}
+                            {{-- ]) --}}
+                    {{-- @endslot --}}
+                {{-- @endcomponent --}}
                 {{-- FIN alert-list --}}
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
                 {{-- INI chat panel --}}
-                @component('elements.widgets.panel')
-                    @slot('class','success')
+                {{-- @component('elements.widgets.panel') --}}
+                    {{-- @slot('class','success') --}}
                     {{-- @slot('panelControls', 'true') --}}
-                    @slot('id', 'chats')
-                    @slot('badge', '24')
-                    @slot('panelTitle')
-                        @include('elements.chats.header')
-                    @endslot
-                    @slot('panelBody')
-                        @include('elements.chats.panel')
-                    @endslot
-                    @slot('panelFooter')
-                        @include('elements.chats.footer')
-                    @endslot
-                @endcomponent
+                    {{-- @slot('id', 'chats') --}}
+                    {{-- @slot('badge', '24') --}}
+                    {{-- @slot('panelTitle') --}}
+                        {{-- @include('elements.chats.header') --}}
+                    {{-- @endslot --}}
+                    {{-- @slot('panelBody') --}}
+                        {{-- @include('elements.chats.panel') --}}
+                    {{-- @endslot --}}
+                    {{-- @slot('panelFooter') --}}
+                        {{-- @include('elements.chats.footer') --}}
+                    {{-- @endslot --}}
+                {{-- @endcomponent --}}
                 {{-- FIN chat panel --}}
             </div>
         </div>

@@ -9,6 +9,14 @@
         {{-- @include('admin.layouts.dashboard.navbar.top-links.hide-sidebar') --}}
 
     {{-- </li> --}}
+
+    <li class="dropdown">
+
+        @include('admin.layouts.dashboard.navbar.elements.ajaxloginouts')
+        
+    </li>
+
+
     <li class="dropdown">
 
         @include('admin.layouts.dashboard.navbar.elements.ajaxlogdbs')

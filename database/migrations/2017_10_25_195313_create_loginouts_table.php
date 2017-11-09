@@ -26,6 +26,7 @@ class CreateLoginoutsTable extends Migration
                 'LogLockout',
                 'LogPasswordReset'
             ]);
+            $table->enum('tipo', ['primary','success', 'info', 'warning', 'danger','default'])->default('default');
             $table->string('message', 500)->nullable();
             $table->text('context')->nullable();
             $table->text('extra')->nullable();

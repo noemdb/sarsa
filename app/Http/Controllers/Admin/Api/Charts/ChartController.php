@@ -32,12 +32,16 @@ class ChartController extends Controller
     public function getApiUserTaskLoad(Request $request)
 	{
 
-		$range = ($request->input('range')!=null) ? $request->input('range') : 1000;
+		$range = ($request->input('range')!=null) ? $request->input('range') : 'Todos';
         $limit = ($request->input('limit')!=null) ? $request->input('limit') : 8;
 
-		$finicial = Carbon::now()->subDays($range);
-		// $ffinal = Carbon::now();
-		$ffinal = Carbon::now()->addYear(2);
+		if($range=='Todos'){
+			$finicial = Carbon::now()->SubYear(10);
+			$ffinal = Carbon::now()->AddYear(10);
+		}else{
+			$finicial = Carbon::now()->subDays($range);
+			$ffinal = Carbon::now();
+		}		
 
 		$userstasks = Task::getUserTasks($finicial,$ffinal,$limit); // return username,user_id,value
 
@@ -48,9 +52,9 @@ class ChartController extends Controller
 
         // dd($userstasks->toarray(),$labels , $users_id);
 
-        $tasks_iniciadas = Task::getCountTotal($users_id,$range,'iniciada');
-        $tasks_finalizadas = Task::getCountTotal($users_id,$range,'finalizada');
-        $tasks_asignadas = Task::getCountTotal($users_id,$range,'');
+        $tasks_iniciadas = Task::getCountTotal($users_id,$finicial,$ffinal,'iniciada');
+        $tasks_finalizadas = Task::getCountTotal($users_id,$finicial,$ffinal,'finalizada');
+        $tasks_asignadas = Task::getCountTotal($users_id,$finicial,$ffinal,'');
 
 		// dd($tasks_iniciadas,$tasks_finalizadas,$tasks_asignadas);
 
@@ -94,9 +98,13 @@ class ChartController extends Controller
 		$range  = ($request->input('range')!=null) ? $request->input('range') : 360;
         $limit = ($request->input('limit')!=null) ? $request->input('limit') : 8;
 
-		$finicial = Carbon::now()->subDays($range);
-		// $ffinal = Carbon::now();
-		$ffinal = Carbon::now();
+		if($range=='Todos'){
+			$finicial = Carbon::now()->SubYear(10);
+			$ffinal = Carbon::now()->AddYear(10);
+		}else{
+			$finicial = Carbon::now()->subDays($range);
+			$ffinal = Carbon::now();
+		}	
 
 		$userstasks = Task::getUserTasks($finicial,$ffinal,$limit); // return username,user_id,value
 
@@ -105,8 +113,8 @@ class ChartController extends Controller
 
         // dd($labels , $users_id);
 
-        $values_todas = Task::getCountTotal($users_id,$range,'');
-        $values_done = Task::getCountTotal($users_id,$range,'finalizada');
+        $values_todas = Task::getCountTotal($users_id,$finicial,$ffinal,'');
+        $values_done = Task::getCountTotal($users_id,$finicial,$ffinal,'finalizada');
 
         // dd($labels , $users_id, $values_todas, $values_done);
 
@@ -139,16 +147,21 @@ class ChartController extends Controller
 	public function getApiUserTaskAsig(Request $request)
 	{
 
-		$range = ($request->input('range')!=null) ? $request->input('range') : 360;
+		$range = ($request->input('range')!=null) ? $request->input('range') : 'Todos';
         $limit = ($request->input('limit')!=null) ? $request->input('limit') : 8;
 
-		$range = Carbon::now()->subDays($range);
-
+		if($range=='Todos'){
+			$finicial = Carbon::now()->SubYear(10);
+			$ffinal = Carbon::now()->AddYear(10);
+		} else{
+			$finicial = Carbon::now()->subDays($range);
+			$ffinal = Carbon::now();
+		}
 
 		$userstasks = Task::select('users.username',DB::raw('count(tasks.id) as tasks_count'))
 			->join('users', 'users.id', '=', 'tasks.user_id')
-			->Where('tasks.created_at', '>=', $range)
-			->Where('tasks.created_at', '<=', Carbon::now())
+			->Where('tasks.created_at', '>=', $finicial)
+			->Where('tasks.created_at', '<=', $ffinal)
 			->groupby('users.username')
 			->orderBy('tasks_count', 'desc')
 			->get()
@@ -184,29 +197,39 @@ class ChartController extends Controller
     public function getApiTaskMonth(Request $request)
     {
 
-        $months = ($request->input('range')!=null) ? $request->input('range') : 20;
+        $range = ($request->input('range')!=null) ? $request->input('range') : 'Todos';
 
-        $range = Carbon::now()->subMonth($months);
+
+		if ($range=='Todos') {
+			$finicial = Carbon::now()->SubYear(10);
+			$ffinal = Carbon::now()->AddYear(10);
+		} else {
+			$finicial = Carbon::now()->subMonth($range);
+			$ffinal = Carbon::now();
+		}
+
+        // $range = Carbon::now()->subMonth($months);
 
 		$tasksmonth = Task::select(DB::raw('count(id) as value'),DB::raw('MONTH(created_at) as month'))
-			->Where('created_at', '>=', $range)
-			->Where('created_at', '<=', Carbon::now())
+			->Where('created_at', '>=', $finicial)
+			->Where('created_at', '<=', $ffinal)
 			->groupby('month')
 			->orderBy('value', 'desc')
 			->get();
 
         // dd($tasksmonth);
 
+        //INI nombre de los meses en español
         $labels = $tasksmonth->pluck('month');
         foreach ($labels as $key => $value) {
             $dateObj   = Date::createFromFormat('!m', $value);
             $label_month[] = ucfirst($dateObj->format('F'));
         }
         $values = $tasksmonth->pluck('value');
+        //FIN nombre de los meses en español
 
         // dd($labels, $label_month, $values);
 
-        unset($ChartDataSQL);
         $ChartDataSQL = [
             'labels'=>$label_month,
             'datasets'=>[

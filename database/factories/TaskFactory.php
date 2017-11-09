@@ -4,7 +4,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Models\sys\Task::class, function (Faker $faker) {
 	
-	$arr_tipo = ['primary'=>'primary','suscess'=>'suscess','info'=>'info','warning'=>'warning','danger'=>'danger','default'=>'default'];
+	$arr_tipo = ['primary'=>'primary','success'=>'success','info'=>'info','warning'=>'warning','danger'=>'danger','default'=>'default'];
 	$arr_estado = ['iniciada'=>'iniciada','finalizada'=>'finalizada'];
     $created_at = $faker->dateTimeBetween('2017-01-01','2017-12-31');
 

@@ -18,7 +18,7 @@ class CreateMessegesTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('destino_user_id')->unsigned();
             $table->string('mensaje');
-            $table->enum('tipo', ['success', 'info', 'warning', 'danger','default'])->default('default');
+            $table->enum('tipo', ['primary','success', 'info', 'warning', 'danger','default'])->default('default');
             $table->enum('estado',['Visto','No Visto'])->default('No Visto');
 
             $table->softDeletes();

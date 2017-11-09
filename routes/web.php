@@ -35,6 +35,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
     Route::get('/api/navbar/tasks', 'Api\Navbar\NavbarController@getApiTasks')->name('gettasks');
     Route::get('/api/navbar/alerts', 'Api\Navbar\NavbarController@getApiAlerts')->name('getalerts');
     Route::get('/api/navbar/logdbs', 'Api\Navbar\NavbarController@getApiLogdbs')->name('getlogdbs');
+    Route::get('/api/navbar/loginouts', 'Api\Navbar\NavbarController@getApiLoginouts')->name('getloginouts');
     //FIN rutas para los api chart
 
 	Route::get('/charts/sbadmin', function () {

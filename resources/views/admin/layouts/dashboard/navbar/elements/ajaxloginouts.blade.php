@@ -1,12 +1,12 @@
-{{-- INI dropdown-logdbs --}}
-<a class="dropdown-toggle alert-warning btn" data-toggle="dropdown" href="#" title="Últimas 24 Horas">
-    <i class="fa fa-database fa-fw fa-2x"></i> <i class="fa fa-caret-down"></i>
-    <span class="label label-warning" id="span_count_logdbs"></span>        
+{{-- INI dropdown-loginouts --}}
+<a class="dropdown-toggle alert-success btn" data-toggle="dropdown" href="#" title="Últimas 24 Horas">
+    <i class="fa fa-key fa-fw fa-2x"></i> <i class="fa fa-caret-down"></i>
+    <span class="label label-success" id="span_count_loginouts"></span>        
 </a>
 
-<ul class="dropdown-menu dropdown-logdbs">
+<ul class="dropdown-menu dropdown-loginouts">
     <li>
-        <ul class="list-group" id="ulresults-logdbs"></ul>
+        <ul class="list-group" id="ulresults-loginouts"></ul>
     </li>
 </ul>
 
@@ -18,36 +18,37 @@
  
         $( document ).ready(function() {
             // console.log( "ready!" );
-            var count_logdbs = $('#span_count_logdbs'); //console.log( count_logdbs.text() );
+            var count_loginouts = $('#span_count_loginouts'); //console.log( count_loginouts.text() );
 
-            var url = "{{route('getlogdbs')}}"; //alert(url);
+            var url = "{{route('getloginouts')}}"; //alert(url);
             $.ajax({
               type: "GET",
               url: url, // This is the URL to the API
-              data: { model: 'logdbs' } // rango dias meses o años para la data a mostrar
+              data: { model: 'loginouts' } // rango dias meses o años para la data a mostrar
             })
             .done(function( data ) { //console.log(data);
                 apidata = JSON.parse(data); //console.log(apidata);
                 var num_task = apidata.length; //console.log(num_task);
-                count_logdbs.text(num_task);
+                count_loginouts.text(num_task);
 
-                ul = $("#ulresults-logdbs");
+                ul = $("#ulresults-loginouts");
                 var limit = apidata.length;
                 if(limit>4)
                     limit = 4;
                 //console.log(limit);
                 for (var i = 0, l = limit; i < l; ++i) {
+
                     ul.append(
                         $('<li class="list-group-item text-overflow">').
                             append(
                                 $('<span>').attr('class', 'text-'+apidata[i].tipo).
                                     append(
-                                        $('<i>').attr('class', 'fa fa-database fa-fw')
+                                        $('<i>').attr('class', 'fa fa-key fa-fw')
                                 )
                             ).append(
                                 $('<span>').attr('class', 'text-'+apidata[i].tipo).
                                     append(
-                                        '<b>'+apidata[i].user.username + '</b><br><b>Modelo:</b> ' +apidata[i].model_class+'<br><b>pathInfo:</b> '+apidata[i].pathInfo+'<br>'
+                                        '<b>'+apidata[i].user.username + '</b><br><b>Action:</b> ' +apidata[i].action+'<br><b>message:</b> '+apidata[i].message+'<br>'
                                     ).
                                     append(
                                         $('<span>').attr('class', 'small').append(

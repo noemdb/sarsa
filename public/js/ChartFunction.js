@@ -38,12 +38,20 @@ function requestData(range,canvas,urlapi,tipo,limit){
         if (tipo == 'line' || tipo == 'bar') {
             options = {
                 options,
+                elements: { line: { tension: 0.2 } },
                 scales:{
                         yAxes: [{ ticks: { beginAtZero: true, callback: function (value) { if (Number.isInteger(value)) { return value; } } } }],
                         xAxes: [{ ticks: { autoSkip: false } }]
                     }
                     
                 }
+        }
+
+        if (tipo=='pie') {
+            options = {
+                options,
+                legend: { position: 'left' },
+            }
         }
         
         var myChart = new Chart(context, {

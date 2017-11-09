@@ -22,10 +22,10 @@ class Task extends Model
 
 	/*INI relaciones entre modelos*/
 	public function user()
-    {
-        return $this->belongsTo('App\User');
-    }
-    /*FIN relaciones entre modelos*/
+  {
+    return $this->belongsTo('App\User');
+  }
+  /*FIN relaciones entre modelos*/
 
    // public function getUserListAttribute()
    //  {
@@ -47,13 +47,13 @@ class Task extends Model
     return ($userstasks) ? $userstasks : 0;
   }
   
-  public static function getCountTotal($arr_user_id,$range, $estado)
+  public static function getCountTotal($arr_user_id,$finicial,$ffinal, $estado)
   {
     //INI array con los totales de las tasks
     foreach ($arr_user_id as $key => $value) {
       $tasks = 
-        Task::where('created_at', '>=', $range)
-          ->where('created_at', '<=', Carbon::now())
+        Task::where('created_at', '>=', $finicial)
+          ->where('created_at', '<=', $ffinal)
           ->where('estado', 'like', '%'.$estado.'%')
           ->where('user_id',$value)
           ->groupBy('user_id')

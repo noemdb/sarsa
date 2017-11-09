@@ -3,7 +3,7 @@
 use Faker\Generator as Faker;
 
 $factory->define(App\Models\sys\Alert::class, function (Faker $faker) {
-	$arr_tipo = ['primary'=>'primary','suscess'=>'suscess','info'=>'info','warning'=>'warning','danger'=>'danger','default'=>'default'];
+	$arr_tipo = ['primary'=>'primary','success'=>'success','info'=>'info','warning'=>'warning','danger'=>'danger','default'=>'default'];
 	$arr_estado = ['Visto'=>'Visto','No Visto'=>'No Visto'];
 	$ffinal = $faker->dateTimeBetween('2017-01-01','2017-12-31');
 	$finicial = $faker->dateTimeBetween('2017-01-01',$ffinal);

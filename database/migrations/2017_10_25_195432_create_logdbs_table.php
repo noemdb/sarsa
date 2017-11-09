@@ -16,7 +16,14 @@ class CreateLogdbsTable extends Migration
         Schema::create('logdbs', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->string('action')->nullable();
+            // $table->string('action')->nullable();
+            $table->enum('action', [
+                'created',
+                'deleted',
+                'restored',
+                'updated'
+            ]);
+            $table->enum('tipo', ['primary','success', 'info', 'warning', 'danger','default'])->default('default');
             $table->string('model_class')->nullable();
             $table->string('model_id')->nullable();
             $table->string('data')->nullable();
