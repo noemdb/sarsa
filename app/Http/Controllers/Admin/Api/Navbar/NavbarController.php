@@ -53,8 +53,6 @@ class NavbarController extends Controller
                     // ->orderBy('id', 'desc')
                     ->get();
 
-        // dd($model);
-
         return json_encode($tasks);
     }
 
@@ -69,8 +67,6 @@ class NavbarController extends Controller
                     ->orderBy('created_at', 'desc')
                     // ->orderBy('id', 'desc')
                     ->get();
-
-        // dd($model);
 
         return json_encode($alerts);
     }
@@ -87,8 +83,6 @@ class NavbarController extends Controller
                     // ->orderBy('id', 'desc')
                     ->get();
 
-        // dd($logdbs);
-
         return json_encode($logdbs);
     }
 
@@ -103,8 +97,6 @@ class NavbarController extends Controller
                     ->orderBy('created_at', 'desc')
                     // ->orderBy('id', 'desc')
                     ->get();
-
-        // dd($logdbs);
 
         return json_encode($logdbs);
     }

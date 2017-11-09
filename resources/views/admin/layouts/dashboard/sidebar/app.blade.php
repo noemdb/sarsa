@@ -9,8 +9,12 @@
             @include('admin.layouts.dashboard.sidebar.elements.sidebar-search')
         </li>
 
-        <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
+        <li {{ (Request::is('*dashboard') ? 'class="active"' : '') }}>
             <a href="{{ url ('admin/dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+        </li>
+
+        <li {{ (Request::is('*models') ? 'class="active"' : '') }}>
+            @include('admin.layouts.dashboard.sidebar.elements.models')
         </li>
 
         <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
