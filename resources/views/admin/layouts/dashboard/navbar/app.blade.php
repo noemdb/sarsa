@@ -29,16 +29,16 @@
         
     </li>
 
-    <li class="dropdown">
-
-        @include('admin.layouts.dashboard.navbar.elements.ajaxloginouts')
-        
-    </li>
-
 
     <li class="dropdown">
 
         @include('admin.layouts.dashboard.navbar.elements.ajaxlogdbs')
+        
+    </li>
+
+    <li class="dropdown">
+
+        @include('admin.layouts.dashboard.navbar.elements.ajaxloginouts')
         
     </li>
 

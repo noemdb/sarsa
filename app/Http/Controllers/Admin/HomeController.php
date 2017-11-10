@@ -41,27 +41,27 @@ class HomeController extends Controller
         // $users = User::all();
         // $profiles = Profile::paginate(15);
         // $rols = Rol::all();
-        $tasks = Task::where('user_id',\Auth::user()->id)
-                    ->with('user')
+        $tasks = Task::with('user')
+                    //->where('user_id',\Auth::user()->id)
                     ->orderBy('created_at', 'desc')
                     // ->orderBy('id', 'desc')
                     ->get();        
-        $messeges = Messege::where('destino_user_id',\Auth::user()->id)
-                    ->with('user')
+        $messeges = Messege::with('user')
+                    //->where('destino_user_id',\Auth::user()->id)
                     ->orderBy('created_at', 'desc')
                     // ->orderBy('id', 'desc')
                     ->get();
 
-        $alerts = Alert::where('destino_user_id',\Auth::user()->id)
-                    ->with('user')
+        $alerts = Alert::with('user')
+                    //->where('destino_user_id',\Auth::user()->id)
                     ->orderBy('created_at', 'desc')
                     // ->orderBy('id', 'desc')
                     ->get();
 
-        $logdbs = Logdb::where('user_id',\Auth::user()->id)
-                    ->Where('created_at','>=',Carbon::now()->subHours(96))
+        $logdbs = Logdb::with('user')
+                    //->where('user_id',\Auth::user()->id)
                     ->Where('created_at','<=',Carbon::now())
-                    ->with('user')
+                    ->Where('created_at','>=',Carbon::now()->subHours(96))
                     ->orderBy('created_at', 'desc')
                     // ->orderBy('id', 'desc')
                     ->get();

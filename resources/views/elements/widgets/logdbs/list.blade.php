@@ -1,12 +1,13 @@
 <ul class="list-group">
 	@foreach($logdbs as $logdb)
-	    <li class="list-group-item text-overflow" title="{{ $logdb->pathInfo or 'default' }}">
+	    <li class="list-group-item text-overflow" title="pathInfo: {{ $logdb->pathInfo or 'default' }}">
 	        <span class="text-{{ $logdb->tipo or 'default' }}">
-	            <b><i class="fa fa-database fa-fw"></i> {{ $logdb->action or 'default' }}</b>
+	        	<b><i class="fa fa-database fa-fw"></i> {{ $logdb->user->username or 'default' }}</b><br>
+	            {{ $logdb->action or 'default' }}
 	            <span class="pull-right text-muted small"> <em>{{ $logdb->created_at->diffForHumans() }}</em></span>
 	        </span>
 	        <div class="text-{{ $logdb->tipo or 'default' }} text-overflow">
-	        	{{ (isset($show_task)) ? $logdb->pathInfo : '' }}
+	        	pathInfo: {{ (isset($show_logdb)) ? $logdb->pathInfo : '' }}
 	        </div>
 	    </li>
 	@endforeach

@@ -6,6 +6,7 @@
 
     {{-- /.row INI card--}}
     <div class="col-sm-12">
+        {{-- INI row card --}}
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6">
                 {{-- INI card-collapse mensajes --}}
@@ -89,7 +90,7 @@
                 {{-- INI card-collapse alert --}}
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
-                {{-- INI card-collapse alert --}}
+                {{-- INI card-collapse logdb --}}
                 @component('elements.widgets.card_collapse')
                     @slot('class', 'red')
                     @slot('class_icon', 'fa fa-database fa-5x')
@@ -100,160 +101,191 @@
                     @slot('bodycollapse')
                         {{-- INI alert-list --}}
                         @component('elements.widgets.panel')
-                            @slot('badge',$logdbs->where('estado','No Visto')->count())
+                            @slot('badge',$logdbs->count())
                             @slot('class','danger')
-                            @slot('panelTitle', 'Pendientes')
+                            @slot('panelTitle', 'Últimas 96H')
                             @slot('panelBody')
                                 @include('elements.widgets.logdbs.list',[
                                     'logdbs'=>$logdbs->take(5),
-                                    'show_alert'=>'true'
+                                    'show_logdb'=>'true'
                                     ])
                             @endslot
                         @endcomponent
                         {{-- FIN alert-list --}}
                     @endslot
                 @endcomponent
-                {{-- INI card-collapse alert --}}
+                {{-- INI card-collapse logdb --}}
             </div>
         </div>
-         {{-- /.row FIN card --}}
+        {{-- FIN row card --}}
 
+        {{-- INI pill Chart --}}
         <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                {{-- INI chart Tareas por Mes --}}
-                @php ($chart = ['range'=>'Todos','id_chart'=>'chartasksmonth','urlapi'=>route('taskmonth'),'tipo'=>'line','limit'=>8 ])
-                @section('scripts')
-                    @parent
-                    {{-- Llamado a la funcion responsable de inicilizar el Chart --}}
-                    <script> requestData('{{ $chart['range'] }}','{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
-                @endsection
-                @component('elements.widgets.panel')
-                    @slot('class', 'info')
-                    @slot('panelControls', 'true')
-                    @slot('id', $chart['id_chart'] )
-                    @slot('panelTitle', 'Tareas por Mes')
-                    @slot('iconTitle', 'fa fa-line-chart fa-lg')
-                    @slot('panelBody')
-                        @component('elements.charts.widgets.canvas')
-                            @slot('ulpanel')
-                                <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-urlapi="{{ $chart['urlapi'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
-                                    <li class="active" title="Todo los datos"><a href="#" data-range='Todos'>Todos</a></li>
-                                    <li title="12 Meses"><a href="#" data-range='12'>12M</a></li>
-                                    <li title="9 Meses"><a href="#" data-range='9'>9M</a></li>
-                                    <li title="6 Meses"><a href="#" data-range='6'>6M</a></li>
-                                    <li title="3 Meses"><a href="#" data-range='3'>3M</a></li>
-                                </ul>
-                            @endslot
-                            @slot('id', $chart['id_chart'])
-                        @endcomponent
-                    @endslot
-                @endcomponent
-                {{-- FIN chart Tareas por Mes --}}
-            </div>
-            <!-- /.col-lg-8 -->
+            <div class="col-sm-12">
 
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                {{-- INI chart Tareas por Usuario --}}
-                @php ($chart = ['range'=>'Todos','id_chart'=>'clinesqldashboard','urlapi'=>route('uservrstask'),'tipo'=>'bar','limit'=>8 ])
-                @section('scripts')
-                    @parent
-                    {{-- Llamado a la funcion responsable de inicilizar el Chart --}}
-                    <script> requestData('{{ $chart['range'] }}','{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
-                @endsection
-                @component('elements.widgets.panel')
-                    @slot('class', 'success')
-                    @slot('panelControls', 'true')
-                    @slot('id', $chart['id_chart'] )
-                    @slot('panelTitle', 'Tareas por Usuario. Ult.('.$chart['limit'].')')
-                    @slot('iconTitle', 'fa fa-bar-chart fa-lg')
-                    @slot('panelBody')
-                        @component('elements.charts.widgets.canvas')
-                            @slot('ulpanel')
-                                <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-urlapi="{{ $chart['urlapi'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
-                                    <li title="Todos los Días" class="active"><a href="#" data-range='Todos'>Todo</a></li>
-                                    <li title="365 Días"><a href="#" data-range='365'>365D</a></li>
-                                    <li title="180 Días"><a href="#" data-range='180'>180D</a></li>
-                                    <li title="90 Días"><a href="#" data-range='90'>90D</a></li>
-                                    <li title="30 Días"><a href="#" data-range='30'>30D</a></li>
-                                    <li title="7 Días"><a href="#" data-range='7'>7D</a></li>
-                                </ul>
-                            @endslot
-                            @slot('id', $chart['id_chart'])
-                        @endcomponent
-                    @endslot
-                @endcomponent
-                {{-- FIN chart Tareas por Usuario --}}
-            </div>
-            <!-- /.col-lg-4 -->
-        </div>
-        <!-- /.row -->
+                {{-- INI Menu pill --}}
+                <ul class="nav nav-tabs">
+                  <li class="active"><a data-toggle="tab" href="#grchart1">Gráficas 1</a></li>
+                  <li><a data-toggle="tab" href="#grchart2">Gráficas 2</a></li>
+                </ul>
+                {{-- FIN Menu pill --}}
 
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                {{-- INI chart Tareas Asignadas --}}
-                @php ($chart = ['range'=>'Todos','id_chart'=>'clinesqldashboard_02','urlapi'=>route('uservrstaskasig'),'tipo'=>'pie','limit'=>4 ])
-                @section('scripts')
-                    @parent
-                    {{-- Llamado a la funcion responsable de inicilizar el Chart --}}
-                    <script> requestData('{{ $chart['range'] }}','{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
-                @endsection
-                @component('elements.widgets.panel')
-                    @slot('class', 'warning')
-                    @slot('panelControls', 'true')
-                    @slot('id', $chart['id_chart'] )
-                    @slot('panelTitle', 'Tareas Asignadas .Ult.('.$chart['limit'].')')
-                    @slot('iconTitle', 'fa fa-pie-chart fa-lg')
-                    @slot('panelBody')
-                        @component('elements.charts.widgets.canvas')
-                            @slot('ulpanel')
-                                <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-urlapi="{{ $chart['urlapi'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
-                                    <li class="active"><a href="#" data-range="10000">Todo</a></li>
-                                    <li title="365 Días"><a href="#" data-range='365'>365D</a></li>
-                                    <li title="90 Días"><a href="#" data-range='90'>90D</a></li>
-                                    <li title="30 Días"><a href="#" data-range='30'>30D</a></li>
-                                    <li title="7 Días"><a href="#" data-range='7'>7D</a></li>
-                                </ul>
-                            @endslot
-                            @slot('id', $chart['id_chart'])
-                        @endcomponent
-                    @endslot
-                @endcomponent
-                {{-- FIN chart Tareas Asignadas --}}
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                {{-- INI chart Tareas Asignadas/Finalizadas --}}
-                @php ($chart = ['range'=>'Todos','id_chart'=>'clinesqldashboard_03','urlapi'=>route('uservrstaskdone'),'tipo'=>'line','limit'=>8 ])
-                @section('scripts')
-                    @parent
-                    {{-- Llamado a la funcion responsable de inicilizar el Chart --}}
-                    <script> requestData('{{ $chart['range'] }}','{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
-                @endsection
-                @component('elements.widgets.panel')
-                    @slot('class', 'danger')
-                    @slot('panelControls', 'true')
-                    @slot('id', $chart['id_chart'] )
-                    @slot('panelTitle', 'Tareas Asignadas/Finalizadas. Ult.('.$chart['limit'].')')
-                    @slot('iconTitle', 'fa fa-area-chart fa-lg')
-                    @slot('panelBody')
-                        @component('elements.charts.widgets.canvas')
-                            @slot('ulpanel')
-                                <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-urlapi="{{ $chart['urlapi'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
-                                    <li class="active"><a href="#" data-range="10000">Todo</a></li>
-                                    <li title="365 Días"><a href="#" data-range='365'>365D</a></li>
-                                    <li title="90 Días"><a href="#" data-range='90'>90D</a></li>
-                                    <li title="90 Días"><a href="#" data-range='30'>30D</a></li>
-                                    <li title="7 Días"><a href="#" data-range='7'>7D</a></li>
-                                </ul>
-                            @endslot
-                            @slot('id', $chart['id_chart'])
-                        @endcomponent
-                    @endslot
-                @endcomponent
-                {{-- FIN chart con Tareas Asignadas/Finalizadas --}}
+                {{-- INI Content pill --}}
+                <div class="tab-content">
+                  <div id="grchart1" class="tab-pane fade in active">
+                    {{-- <h3>Grupo 1</h3> --}}
+                    
+                    {{-- INI row chart1 --}}
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            {{-- INI chart Tareas por Mes --}}
+                            @php ($chart = ['range'=>'Todos','id_chart'=>'chartasksmonth','urlapi'=>route('taskmonth'),'tipo'=>'line','limit'=>8 ])
+                            @section('scripts')
+                                @parent
+                                {{-- Llamado a la funcion responsable de inicilizar el Chart --}}
+                                <script> requestData('{{ $chart['range'] }}','{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
+                            @endsection
+                            @component('elements.widgets.panel')
+                                @slot('class', 'info')
+                                @slot('panelControls', 'true')
+                                @slot('id', $chart['id_chart'] )
+                                @slot('panelTitle', 'Tareas por Mes')
+                                @slot('iconTitle', 'fa fa-line-chart fa-lg')
+                                @slot('panelBody')
+                                    @component('elements.charts.widgets.canvas')
+                                        @slot('ulpanel')
+                                            <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-urlapi="{{ $chart['urlapi'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
+                                                <li class="active" title="Todo los datos"><a href="#" data-range='Todos'>Todos</a></li>
+                                                <li title="12 Meses"><a href="#" data-range='12'>12M</a></li>
+                                                <li title="9 Meses"><a href="#" data-range='9'>9M</a></li>
+                                                <li title="6 Meses"><a href="#" data-range='6'>6M</a></li>
+                                                <li title="3 Meses"><a href="#" data-range='3'>3M</a></li>
+                                            </ul>
+                                        @endslot
+                                        @slot('id', $chart['id_chart'])
+                                    @endcomponent
+                                @endslot
+                            @endcomponent
+                            {{-- FIN chart Tareas por Mes --}}
+                        </div>
+                        <!-- /.col-lg-8 -->
+
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            {{-- INI chart Tareas por Usuario --}}
+                            @php ($chart = ['range'=>'Todos','id_chart'=>'clinesqldashboard','urlapi'=>route('uservrstask'),'tipo'=>'bar','limit'=>8 ])
+                            @section('scripts')
+                                @parent
+                                {{-- Llamado a la funcion responsable de inicilizar el Chart --}}
+                                <script> requestData('{{ $chart['range'] }}','{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
+                            @endsection
+                            @component('elements.widgets.panel')
+                                @slot('class', 'success')
+                                @slot('panelControls', 'true')
+                                @slot('id', $chart['id_chart'] )
+                                @slot('panelTitle', 'Tareas por Usuario. Ult.('.$chart['limit'].')')
+                                @slot('iconTitle', 'fa fa-bar-chart fa-lg')
+                                @slot('panelBody')
+                                    @component('elements.charts.widgets.canvas')
+                                        @slot('ulpanel')
+                                            <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-urlapi="{{ $chart['urlapi'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
+                                                <li title="Todos los Días" class="active"><a href="#" data-range='Todos'>Todo</a></li>
+                                                <li title="365 Días"><a href="#" data-range='365'>365D</a></li>
+                                                <li title="180 Días"><a href="#" data-range='180'>180D</a></li>
+                                                <li title="90 Días"><a href="#" data-range='90'>90D</a></li>
+                                                <li title="30 Días"><a href="#" data-range='30'>30D</a></li>
+                                                <li title="7 Días"><a href="#" data-range='7'>7D</a></li>
+                                            </ul>
+                                        @endslot
+                                        @slot('id', $chart['id_chart'])
+                                    @endcomponent
+                                @endslot
+                            @endcomponent
+                            {{-- FIN chart Tareas por Usuario --}}
+                        </div>
+                        <!-- /.col-lg-4 -->
+                    </div>
+                    {{-- FIN row chart1 --}}
+
+                  </div>
+                  <div id="grchart2" class="tab-pane fade">
+                    {{-- <h3>Grupo 2</h3> --}}
+
+                    {{-- INI row chart2 --}}
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            {{-- INI chart Tareas Asignadas --}}
+                            @php ($chart = ['range'=>'Todos','id_chart'=>'clinesqldashboard_02','urlapi'=>route('uservrstaskasig'),'tipo'=>'pie','limit'=>6 ])
+                            @section('scripts')
+                                @parent
+                                {{-- Llamado a la funcion responsable de inicilizar el Chart --}}
+                                <script> requestData('{{ $chart['range'] }}','{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
+                            @endsection
+                            @component('elements.widgets.panel')
+                                @slot('class', 'warning')
+                                @slot('panelControls', 'true')
+                                @slot('id', $chart['id_chart'] )
+                                @slot('panelTitle', 'Tareas Asignadas .Ult.('.$chart['limit'].')')
+                                @slot('iconTitle', 'fa fa-pie-chart fa-lg')
+                                @slot('panelBody')
+                                    @component('elements.charts.widgets.canvas')
+                                        @slot('ulpanel')
+                                            <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-urlapi="{{ $chart['urlapi'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
+                                                <li class="active"><a href="#" data-range="10000">Todo</a></li>
+                                                <li title="365 Días"><a href="#" data-range='365'>365D</a></li>
+                                                <li title="90 Días"><a href="#" data-range='90'>90D</a></li>
+                                                <li title="30 Días"><a href="#" data-range='30'>30D</a></li>
+                                                <li title="7 Días"><a href="#" data-range='7'>7D</a></li>
+                                            </ul>
+                                        @endslot
+                                        @slot('id', $chart['id_chart'])
+                                    @endcomponent
+                                @endslot
+                            @endcomponent
+                            {{-- FIN chart Tareas Asignadas --}}
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            {{-- INI chart Tareas Asignadas/Finalizadas --}}
+                            @php ($chart = ['range'=>'Todos','id_chart'=>'clinesqldashboard_03','urlapi'=>route('uservrstaskdone'),'tipo'=>'line','limit'=>8 ])
+                            @section('scripts')
+                                @parent
+                                {{-- Llamado a la funcion responsable de inicilizar el Chart --}}
+                                <script> requestData('{{ $chart['range'] }}','{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
+                            @endsection
+                            @component('elements.widgets.panel')
+                                @slot('class', 'danger')
+                                @slot('panelControls', 'true')
+                                @slot('id', $chart['id_chart'] )
+                                @slot('panelTitle', 'Tareas Asig./Final. Ult.('.$chart['limit'].')')
+                                @slot('iconTitle', 'fa fa-area-chart fa-lg')
+                                @slot('panelBody')
+                                    @component('elements.charts.widgets.canvas')
+                                        @slot('ulpanel')
+                                            <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-urlapi="{{ $chart['urlapi'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
+                                                <li class="active"><a href="#" data-range="10000">Todo</a></li>
+                                                <li title="365 Días"><a href="#" data-range='365'>365D</a></li>
+                                                <li title="90 Días"><a href="#" data-range='90'>90D</a></li>
+                                                <li title="90 Días"><a href="#" data-range='30'>30D</a></li>
+                                                <li title="7 Días"><a href="#" data-range='7'>7D</a></li>
+                                            </ul>
+                                        @endslot
+                                        @slot('id', $chart['id_chart'])
+                                    @endcomponent
+                                @endslot
+                            @endcomponent
+                            {{-- FIN chart con Tareas Asignadas/Finalizadas --}}
+                        </div>
+                    </div>
+                    {{-- FIN row chart2 --}}
+
+                  </div>
+                </div>
+                {{-- FIN Content pill --}}
+
             </div>
         </div>
-        <!-- /.row -->
-                
+        {{-- FIN pill Chart --}}
+
+        {{-- INI row table --}}
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6">
                 {{-- INI alert-list --}}
@@ -290,7 +322,7 @@
                 {{-- FIN chat panel --}}
             </div>
         </div>
-        <!-- /.row -->
+        {{-- FIN row table --}}
 
     </div>
     <!-- /.col-sm-12 -->

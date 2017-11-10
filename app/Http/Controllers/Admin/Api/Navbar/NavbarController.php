@@ -29,10 +29,10 @@ class NavbarController extends Controller
 
         $model = ($request->input('model')!=null) ? $request->input('model') : 'messenges';
 
-        $messeges = Messege::where('destino_user_id',\Auth::user()->id)
+        $messeges = Messege::orderBy('created_at', 'desc')
                     ->with('user')
                     ->where('estado','No Visto')
-                    ->orderBy('created_at', 'desc')
+                    ->where('destino_user_id',\Auth::user()->id)
                     // ->orderBy('id', 'desc')
                     ->get();
 
@@ -46,10 +46,10 @@ class NavbarController extends Controller
 
         $model = ($request->input('model')!=null) ? $request->input('model') : 'tasks';
 
-        $tasks = Task::where('user_id',\Auth::user()->id)
+        $tasks = Task::orderBy('created_at', 'desc')
                     // ->with('user')
                     ->where('estado','iniciada')
-                    ->orderBy('created_at', 'desc')
+                    ->where('user_id',\Auth::user()->id)
                     // ->orderBy('id', 'desc')
                     ->get();
 
@@ -61,10 +61,10 @@ class NavbarController extends Controller
 
         // $model = ($request->input('model')!=null) ? $request->input('model') : 'alerts';
 
-        $alerts = Alert::where('destino_user_id',\Auth::user()->id)
-                    ->with('user')
+        $alerts = Alert::orderBy('created_at', 'desc')
+                    ->where('destino_user_id',\Auth::user()->id)
                     ->where('estado','No Visto')
-                    ->orderBy('created_at', 'desc')
+                    ->with('user')
                     // ->orderBy('id', 'desc')
                     ->get();
 
@@ -76,10 +76,11 @@ class NavbarController extends Controller
 
         // $model = ($request->input('model')!=null) ? $request->input('model') : 'alerts';
 
-        $logdbs = Logdb::Where('created_at','>=',Carbon::now()->subHours(96))
+        $logdbs = Logdb::orderBy('created_at', 'desc')
+                    ->where('user_id',\Auth::user()->id)
+                    ->Where('created_at','>=',Carbon::now()->subHours(96))
                     ->Where('created_at','<=',Carbon::now())
                     ->with('user')
-                    ->orderBy('created_at', 'desc')
                     // ->orderBy('id', 'desc')
                     ->get();
 
@@ -91,10 +92,11 @@ class NavbarController extends Controller
 
         // $model = ($request->input('model')!=null) ? $request->input('model') : 'alerts';
 
-        $logdbs = Loginout::with('user')
+        $logdbs = Loginout::orderBy('created_at', 'desc')
+                    ->where('user_id',\Auth::user()->id)
                     ->Where('created_at','>=',Carbon::now()->subHours(96))
                     ->Where('created_at','<=',Carbon::now())
-                    ->orderBy('created_at', 'desc')
+                    ->with('user')
                     // ->orderBy('id', 'desc')
                     ->get();
 
