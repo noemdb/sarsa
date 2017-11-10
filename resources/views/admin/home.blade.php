@@ -125,15 +125,15 @@
 
                 {{-- INI Menu pill --}}
                 <ul class="nav nav-tabs">
-                  <li class="active"><a data-toggle="tab" href="#grchart1">Gráficas 1</a></li>
-                  <li><a data-toggle="tab" href="#grchart2">Gráficas 2</a></li>
+                  <li class="active"><a data-toggle="tab" href="#tabchart1">Gráficas 1</a></li>
+                  <li><a data-toggle="tab" href="#tabchart2">Gráficas 2</a></li>
                 </ul>
                 {{-- FIN Menu pill --}}
 
                 {{-- INI Content pill --}}
                 <div class="tab-content">
-                  <div id="grchart1" class="tab-pane fade in active">
-                    {{-- <h3>Grupo 1</h3> --}}
+                  <div id="tabchart1" class="tab-pane fade in active">
+                    {{-- <h3>Tab 1</h3> --}}
                     
                     {{-- INI row chart1 --}}
                     <div class="row">
@@ -207,8 +207,8 @@
                     {{-- FIN row chart1 --}}
 
                   </div>
-                  <div id="grchart2" class="tab-pane fade">
-                    {{-- <h3>Grupo 2</h3> --}}
+                  <div id="tabchart2" class="tab-pane fade">
+                    {{-- <h3>Tab 2</h3> --}}
 
                     {{-- INI row chart2 --}}
                     <div class="row">
