@@ -1,7 +1,7 @@
 {{-- INI dropdown-loginouts --}}
-<a class="dropdown-toggle alert-success btn" data-toggle="dropdown" href="#" title="Últimas 24 Horas">
+<a class="dropdown-toggle alert-info btn" data-toggle="dropdown" href="#" title="Últimas 24 Horas">
     <i class="fa fa-key fa-fw fa-2x"></i> <i class="fa fa-caret-down"></i>
-    <span class="label label-success" id="span_count_loginouts"></span>        
+    <span class="label label-info" id="span_count_loginouts"></span>        
 </a>
 
 <ul class="dropdown-menu dropdown-loginouts">

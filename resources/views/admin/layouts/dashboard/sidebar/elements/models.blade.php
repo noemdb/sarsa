@@ -14,7 +14,7 @@
                 <li>
                     <a href="{{ url ('admin/models/'.$model['name'].'/crub') }}">
                         <i class="fa fa-list" aria-hidden="true"></i>
-                        CRUB
+                        CRUD
                     </a>
                 </li>
                 <li>

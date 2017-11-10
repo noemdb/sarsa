@@ -1,7 +1,7 @@
 {{-- INI dropdown-logdbs --}}
-<a class="dropdown-toggle alert-warning btn" data-toggle="dropdown" href="#" title="Últimas 24 Horas">
+<a class="dropdown-toggle alert-danger btn" data-toggle="dropdown" href="#" title="Últimas 24 Horas">
     <i class="fa fa-database fa-fw fa-2x"></i> <i class="fa fa-caret-down"></i>
-    <span class="label label-warning" id="span_count_logdbs"></span>        
+    <span class="label label-danger" id="span_count_logdbs"></span>        
 </a>
 
 <ul class="dropdown-menu dropdown-logdbs">

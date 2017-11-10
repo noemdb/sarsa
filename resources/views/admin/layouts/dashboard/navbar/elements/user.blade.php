@@ -1,5 +1,5 @@
 {{-- INI dropdown-messages --}}
-<a class="dropdown-toggle alert-danger btn" data-toggle="dropdown" href="#">
+<a class="dropdown-toggle alert-primary btn" data-toggle="dropdown" href="#">
     {{-- <span class="label label-danger"> --}}
         <i class="fa fa-gears fa-fw fa-2x"></i> <i class="fa fa-caret-down"></i>
         {{-- <span class="label label-danger">42</span> --}}
