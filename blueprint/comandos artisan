@@ -55,6 +55,10 @@ Controller para vistas
 php artisan make:controller 'Webmaster\HomeController'
 php artisan make:controller 'Admin\Api\Charts\ChartController'
 php artisan make:controller 'Admin\Api\Navbar\NavbarController'
+php artisan make:controller 'Admin\Api\Charts\DashboardController'
+php artisan make:controller 'Admin\Api\Barprogress\DashboardController'
+
+php artisan make:controller 'Admin\Crud\UserController' --resource
 
 
 

@@ -7,6 +7,11 @@
 </a>
 
 <ul class="dropdown-menu dropdown-user">
+
+    <li class="sidebar-profile">
+        @include('admin.layouts.dashboard.sidebar.elements.profile')
+    </li>
+    <li class="divider"></li>
     <li>
         <a href="#"><i class="glyphicon glyphicon-user"></i> Perfil de Usuario</a>
     </li>

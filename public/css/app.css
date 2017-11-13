@@ -1741,6 +1741,51 @@ a.text-danger:focus {
   color: #843534;
 }
 
+/*INI nmdb*/
+.text-navy {
+  color: #001F3F;
+}
+
+a.text-navy:hover,
+a.text-navy:focus {
+  color: #001A35;
+}
+
+.text-teal {
+  color: #39CCCC;
+}
+a.text-teal:hover,
+a.text-teal:focus {
+  color: #30BBBB;
+}
+
+.text-purple {
+  color: #605CA8;
+}
+a.text-purple:hover,
+a.text-purple:focus {
+  color: #555299;
+}
+
+.text-maroon {
+  color: #D81B60;
+}
+a.text-maroon:hover,
+a.text-maroon:focus {
+  color: #CA195A;
+}
+
+.text-grey {
+  color: #646464;
+}
+a.text-grey:hover,
+a.text-grey:focus {
+  color: #111111;
+}
+/*FIN nmdb*/maroon
+
+
+
 .bg-primary {
   color: #fff;
 }
@@ -5103,6 +5148,7 @@ tbody.collapse.in {
 .nav-tabs {
   border-bottom: 1px solid #ddd;
   box-shadow: inset 0 -6px 8px -6px grey;
+  /*border-radius: inset 5px;*/
 }
 
 .nav-tabs > li {
@@ -5131,6 +5177,9 @@ tbody.collapse.in {
   /*border-bottom-color: transparent;*/
   border-bottom-color: #fff;
   cursor: default;
+  /*box-shadow: 0 -5px 5px -5px #333;*/
+  /*box-shadow: -5px 0 5px -5px #333;*/
+  box-shadow: 5px 0 5px -5px grey; 
 }
 
 .nav-pills > li {
@@ -5666,7 +5715,7 @@ tbody.collapse.in {
 }
 
 .navbar-default {
-  background-color: #E0E0E0;
+  background-color: #F5F8FA;
   border-color: #d3e0e9;
 }
 
@@ -6821,8 +6870,7 @@ button.list-group-item-danger.active:focus {
   /*nmdb
   margin-bottom: 22px;
   */
-  margin-top: 4px;
-  margin-bottom: 4px;
+  margin: 4px 2px 4px 2px;
   background-color: #fff;
   border: 1px solid transparent;
   border-radius: 4px;

@@ -5,6 +5,6 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="{{ url ('/admin') }}">{{ config('app.name', 'SIACM') }}</a>
+    <a class="navbar-brand" href="{{ url ('/admin') }}">{{ config('app.name', 'SARSA') }}</a>
 </div>
 <!-- /.navbar-header -->

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin\Api\Charts;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
 // Helpers
 use Illuminate\Support\Carbon;
 use Jenssegers\Date\Date;
@@ -19,8 +18,7 @@ use App\Models\sys\Task;
 // use App\Models\sys\Alert;
 // use App\Models\sys\Loginout;
 // use App\Models\sys\Logdb;
-
-class ChartController extends Controller
+class DashboardController extends Controller
 {
 
     // verificando sesion activa

@@ -1,16 +1,16 @@
 <div class="sidebar-nav navbar-collapse" style="">
     <ul class="nav" id="side-menu">
         
-        <li>
+        {{-- <li>
             @include('admin.layouts.dashboard.sidebar.elements.profile')
-        </li>
+        </li> --}}
 
         <li class="sidebar-search">
             @include('admin.layouts.dashboard.sidebar.elements.sidebar-search')
         </li>
 
         <li {{ (Request::is('*dashboard') ? 'class="active"' : '') }}>
-            <a href="{{ url ('admin/dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+            <a href="{{ url ('admin/dashboard') }}"><i class="fa fa-dashboard fa-fw text-primary"></i> Dashboard</a>
         </li>
 
         <li {{ (Request::is('*models') ? 'class="active"' : '') }}>

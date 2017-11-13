@@ -4,16 +4,16 @@
         <div class="row" style="margin-top: 25px;">
             <div class="col-md-4 col-md-offset-4 centered">
                 @component('elements.widgets.panel')
-                    @slot ('panelTitle', 'Please Sign In')
+                    @slot ('panelTitle', 'Ingresar sus datos de acceso')
+                    @slot ('class','info')
                     @slot ('panelBody')
                         <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
                             {{ csrf_field() }}
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 
                             <div class="col-md-12">
-                                {{-- <label for="email" class="control-label">E-Mail Address</label> --}}
+
                                 <label for="username" class="control-label">Nombre de Usuario</label>
-                                {{-- <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus> --}}
 
                                 <div class="input-group">
                                   <span class="input-group-addon" id="basic-addon1">@</span>
@@ -32,7 +32,7 @@
                             
 
                             <div class="col-md-12">
-                                <label for="password" class="control-label">Password</label>
+                                <label for="password" class="control-label">Contraseña</label>
                                 {{-- <input id="password" type="password" class="form-control" name="password" required> --}}
 
                                 <div class="input-group">
@@ -50,24 +50,22 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
                             <div class="form-group">
                                 <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-primary btn-success btn-block">
-                                        Login
-                                    </button>
+                                    <div class="checkbox" align="right">
+                                        <label>
+                                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Recordarme
+                                        </label>
+                                    </div>
+                                    @component('elements.widgets.button')
+                                        @slot('type','submit')
+                                        @slot('value','Ingresar')
+                                        @slot('class','info btn-block')
+                                    @endcomponent
+                                    
                                     <br>
-                                    <a class="btn-link" href="#">
-                                        Forgot Your Password?
+                                    <a class="btn-link" href="{{ route('password.request') }}">
+                                        Olvidaste tu Contraseña?
                                     </a>
                                 </div>
                             </div>

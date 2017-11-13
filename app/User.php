@@ -45,7 +45,7 @@ class User extends Authenticatable
     }
 
     /*INI relaciones entre modelos*/
-    public function profiles()
+    public function profile()
     {
         return $this->hasOne('App\Models\sys\Profile');
     }

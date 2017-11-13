@@ -39,12 +39,12 @@
 @section('scripts')
 
      <script type="text/javascript">
-         $(document).ready(function () {
-             $('#sidebarCollapse').on('click', function () {
-                 $('#sidebar').toggleClass('active');
-                 $("#page-wrapper").toggleClass("active");
-             });
-         });
+         // $(document).ready(function () {
+         //     $('#sidebarCollapse').on('click', function () {
+         //         $('#sidebar').toggleClass('active');
+         //         $("#page-wrapper").toggleClass("active");
+         //     });
+         // });
      </script>
 
 @endsection

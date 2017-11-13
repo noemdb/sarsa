@@ -45,7 +45,7 @@ class HomeController extends Controller
                     //->where('user_id',\Auth::user()->id)
                     ->orderBy('created_at', 'desc')
                     // ->orderBy('id', 'desc')
-                    ->get();        
+                    ->get();
         $messeges = Messege::with('user')
                     //->where('destino_user_id',\Auth::user()->id)
                     ->orderBy('created_at', 'desc')
@@ -69,7 +69,7 @@ class HomeController extends Controller
         // $loginouts = Alert::all();
         // $logdbs = Loginout::all();
 
-        return view('admin.home',compact('users','profiles','rols','tasks','messeges','alerts','loginouts','logdbs'));
+        return view('admin.home',compact('tasks','messeges','alerts','logdbs'));
     }
 
 }

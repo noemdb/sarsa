@@ -26,17 +26,27 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
 
     Route::get('/dashboard', 'HomeController@index')->name('home');
 
-    //INI rutas para los api chart
-    Route::get('/api/charts/uservrstask', 'Api\Charts\ChartController@getApiUserTaskLoad')->name('uservrstask');
-    Route::get('/api/charts/uservrstaskasig', 'Api\Charts\ChartController@getApiUserTaskAsig')->name('uservrstaskasig');
-    Route::get('/api/charts/uservrstaskdone', 'Api\Charts\ChartController@getApiUserTaskDone')->name('uservrstaskdone');
-    Route::get('/api/charts/taskmonth', 'Api\Charts\ChartController@getApiTaskMonth')->name('taskmonth');
+    //INI rutas para los api
+    Route::get('/api/charts/taskmonth', 'Api\Charts\DashboardController@getApiTaskMonth')->name('taskmonth');
+    Route::get('/api/charts/uservrstask', 'Api\Charts\DashboardController@getApiUserTaskLoad')->name('uservrstask');
+    Route::get('/api/charts/uservrstaskasig', 'Api\Charts\DashboardController@getApiUserTaskAsig')->name('uservrstaskasig');
+    Route::get('/api/charts/uservrstaskdone', 'Api\Charts\DashboardController@getApiUserTaskDone')->name('uservrstaskdone');
+    
     Route::get('/api/navbar/messenges', 'Api\Navbar\NavbarController@getApiMesseges')->name('getmessenges');
     Route::get('/api/navbar/tasks', 'Api\Navbar\NavbarController@getApiTasks')->name('gettasks');
     Route::get('/api/navbar/alerts', 'Api\Navbar\NavbarController@getApiAlerts')->name('getalerts');
     Route::get('/api/navbar/logdbs', 'Api\Navbar\NavbarController@getApiLogdbs')->name('getlogdbs');
     Route::get('/api/navbar/loginouts', 'Api\Navbar\NavbarController@getApiLoginouts')->name('getloginouts');
-    //FIN rutas para los api chart
+
+    // Route::get('Api/barprogress/taskmonth', 'Api\Barprogress\DashboardController@getApiTaskMonth')->name('taskmonthprogress');
+    // Route::get('Api/barprogress/uservrstask', 'Api\Barprogress\DashboardController@getApiUserTaskLoad')->name('uservrstaskprogress');
+    // Route::get('Api/barprogress/uservrstaskasig', 'Api\Barprogress\DashboardController@getApiUserTaskAsig')->name('uservrstaskprogress');
+    // Route::get('Api/barprogress/uservrstaskdone', 'Api\Barprogress\DashboardController@getApiUserTaskDone')->name('uservrstaskprogress');
+
+    //FIN rutas para los api
+
+    //INI CRUB modelos
+    Route::resource('models/users/crub','Crud\UserController');
 
 	Route::get('/charts/sbadmin', function () {
 	    return View::make('elements.charts.sbadmin');
@@ -129,9 +139,9 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
 //     Route::get('/stats', function() {
 //        return View::make('admin.elements.stats');
 //     });
-//     Route::get('/progressbars', function() {
-//         return View::make('admin.elements.progressbars');
-//     });
+    Route::get('/progressbars', function() {
+        return View::make('elements.progressbars');
+    });
 //     Route::get('/collapse', function() {
 //         return View::make('admin.elements.collapse');
 //     });
