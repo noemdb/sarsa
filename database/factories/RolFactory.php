@@ -4,8 +4,8 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Models\sys\Rol::class, function (Faker $faker) {
     
-	$arr_rol = ['CONTRA'=>'CONTRA','DIRCP'=>'DIRCP','CORCP'=>'CORCP','COMCP'=>'COMCP','admin'=>'admin','user'=>'user'];
-	$arr_rango = ['root'=>'root','user'=>'user'];
+	$arr_rol = ['CONTRA'=>'CONTRA','DIRCP'=>'DIRCP','CORCP'=>'CORCP','COMCP'=>'COMCP','ADMIN'=>'ADMIN','USUARIO'=>'USUARIO'];
+	$arr_rango = ['admin'=>'admin','user'=>'user'];
 	$ffinal = $faker->dateTimeBetween('2017-01-01','2017-12-31');
 	$finicial = $faker->dateTimeBetween('2017-01-01',$ffinal);
     return [

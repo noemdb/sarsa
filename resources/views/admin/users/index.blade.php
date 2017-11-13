@@ -1,5 +1,5 @@
 @extends('admin.layouts.dashboard.app')
-@section('page_heading','Listado de Usuarios')
+{{-- @section('page_heading','Listado de Usuarios') --}}
 @section('section')
 {{-- @include('admin.modal.dialoge_confirm') --}}
 {{-- @include('admin.modal.operok') --}}
@@ -10,7 +10,7 @@
         <div class="panel-heading">
             <h3>
                 Listados de Usuarios Registrados<br>
-                <small class="text-default">{{$users->total()}} Usuarios</small>
+                <small class="text-default">{{$users->count()}} Usuarios</small>
                 
                 <div class="btn-group pull-right">
                     <a title="Crear nuevo Usuario" class="btn btn-primary" href="#" data-toggle="modal" data-target="#user-create" role="button">
@@ -50,12 +50,46 @@
             @include('admin.users.partials.table')
 
             {{-- botones de paginacon --}}
+            {{--
             <div align="right">                        
                 {{ $users->links() }}
             </div>
+            --}}
         </div>
     </div>
 </div>
 {!! Form::open(['route' => ['crub.destroy',':USER_ID'], 'method' => 'DELETE', 'id'=>'form-delete', 'role'=>'form']) !!}
 {!! Form::close() !!}
+@endsection
+
+@section('stylesheet')
+    @parent
+    <link rel="stylesheet" href="{{ asset('vendor/datatables-plugins/dataTables.bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/datatables-responsive/dataTables.responsive.css') }}">
+@endsection
+
+
+@section('scripts')
+    @parent
+    <script src="{{ asset("vendor/datatables/js/jquery.dataTables.min.js") }}"></script>
+    <script src="{{ asset("vendor/datatables-plugins/dataTables.bootstrap.min.js") }}"></script>
+    <script src="{{ asset("vendor/datatables-responsive/dataTables.responsive.js") }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#table-data-user').DataTable({
+                responsive: false,
+                // order: [[ 0, "asc" ]],
+                language: {
+                    url: "{{ asset("vendor/datatables/lang/Spanish.lang") }}"
+                },
+                 columnDefs: [ {
+                      targets: 'no-sort',
+                      orderable: false,
+                } ]
+
+            });
+        });
+    </script>
+
 @endsection

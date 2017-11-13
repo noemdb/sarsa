@@ -15,6 +15,7 @@ class UsersAdminTableSeeder extends Seeder
         $id = DB::table('users')->insertGetId([
             'username' => "admin",
             'password' => $password ?: $password = bcrypt('admin'),
+            'is_active' => 'Activo',
             'remember_token' => str_random(10),
         ]);
 
@@ -27,8 +28,8 @@ class UsersAdminTableSeeder extends Seeder
         ]);
 
         DB::table('rols')->insert([
-            'rol' => "admin",
-            'rango' => "root",
+            'rol' => "ADMIN",
+            'rango' => "admin",
             'descripcion' => "webmaster del sistema",
             'finicial' => "20000101",
             'ffinal' => "20200101",

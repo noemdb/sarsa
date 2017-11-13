@@ -44,9 +44,6 @@ php artisan make:factory 'LogdbFactory' --model='App\Models\sys\Logdb'
 php artisan db:seed --class=LogdbTableSeeder
 
 
-
-
-
 php artisan migrate:fresh --seed
 
 

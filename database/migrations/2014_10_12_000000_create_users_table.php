@@ -18,6 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('username')->unique();
             // $table->string('email')->unique();
             $table->string('password');
+            $table->enum('is_active', ['Activo', 'Desactivo'])->default('Activo');
+            // $table->enum('rango', ['root', 'user'])->default('user');
             $table->rememberToken();
             $table->timestamp('last_login_at')->nullable();
             $table->timestamp('last_loginout_at')->nullable();

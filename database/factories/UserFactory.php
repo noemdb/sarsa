@@ -16,9 +16,12 @@ use Faker\Generator as Faker;
 $factory->define(App\User::class, function (Faker $faker) {
     static $password;
 
+    $is_active = ['Activo'=>'Activo','Desactivo'=>'Desactivo'];
+
     return [
         'username' => $faker->unique()->userName,
         'password' => $password ?: $password = bcrypt('secret'),
+        'is_active' => array_rand($is_active,1),
         'remember_token' => str_random(10),
     ];
 });

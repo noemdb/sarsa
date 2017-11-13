@@ -1,4 +1,3 @@
-<table class="table {{ $class }}">
 <table width="100%" class="table {{ $class }}" id="datatables">
     <thead>
         <tr>

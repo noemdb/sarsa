@@ -1,10 +1,16 @@
 @extends('admin.layouts.dashboard.app')
 
-@section('page_heading','Dashboard')
+@section('page_heading')
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Dashboard
+        </h1>
+    </div>
+@endsection
 
 @section('section')
 
-    {{-- /.row INI card--}}
+    {{-- INI section--}}
     <div class="col-sm-12">
         {{-- INI row card --}}
         <div class="row">
@@ -325,7 +331,7 @@
         {{-- FIN row table --}}
 
     </div>
-    <!-- /.col-sm-12 -->
+    {{-- FIN section--}}
 
 @endsection
 

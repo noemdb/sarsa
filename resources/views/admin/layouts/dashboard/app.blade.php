@@ -22,11 +22,7 @@
         {{-- INI page-wrappe --}}
         <div id="page-wrapper" class="container-fluid">
             <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        @yield('page_heading')
-                    </h1>
-                </div>
+                @yield('page_heading')
             </div>
             <div class="row">
                 @yield('section')
