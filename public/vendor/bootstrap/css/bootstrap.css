@@ -3979,10 +3979,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
+  background-color: #ECECEC; /*nmdb*/
 }
 .nav > li {
   position: relative;
-  display: block;
+  display: block;  
 }
 .nav > li > a {
   position: relative;
@@ -5973,7 +5974,8 @@ button.close {
 }
 .modal-body {
   position: relative;
-  padding: 15px;
+  /*padding: 15px;nmdb*/
+  padding: 6px;
 }
 .modal-footer {
   padding: 15px;

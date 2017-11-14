@@ -19,7 +19,7 @@ $factory->define(App\Models\sys\Rol::class, function (Faker $faker) {
         	DB::table('users')
 				->select('users.*','rols.id as rols_id')
 				->leftJoin('rols', 'users.id', '=', 'rols.user_id')
-				->whereNull('rols.user_id')
+				// ->whereNull('rols.user_id')
                 ->inRandomOrder()
 				->first()->id;
         }

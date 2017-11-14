@@ -15,6 +15,8 @@
     <tbody id="tdatos">
     @php ($n=1)
     @foreach($users as $user)
+
+        @php ($rols = $user->rols->get()))
         
         <tr data-id="{{$user->id}}" data-profile="{{$user->profile->id or ''}}">
             <td class="hidden-xs">
@@ -37,8 +39,10 @@
                 {{$user->rols->rol or ''}}
             </td>
 
-            <td class="hidden-sm rango-{{ $user->rols->rango or '' }}" id="rango">
-                {{$user->rols->rango or ''}}
+            
+
+            <td class="hidden-sm rango-{{ $rols['rango'] or '' }}" id="rango">
+                {{$rols}}
             </td>
             <td align="right" style="padding: 2px; vertical-align: middle;" id="btn-action-{{ $user->id }}">
                 <div class="btn-group">
@@ -47,6 +51,7 @@
                     <a title="Mostrar detalles" class="btn btn-info btn-xs" href="#" data-toggle="modal" id="showuser_modal" data-target="#showuser_modal_{{$user->id}}">
                         <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
                     </a>
+
                     @include('admin.users.modals.showuser')
 
 

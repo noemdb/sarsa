@@ -51,7 +51,7 @@ class User extends Authenticatable
     }
     public function rols()
     {
-        return $this->hasOne('App\Models\sys\Rol');
+        return $this->hasMany('App\Models\sys\Rol');
     }
     public function tasks()
     {

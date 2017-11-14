@@ -39,17 +39,13 @@ class UserController extends Controller
             // 'is_admin'=>$request->get('is_admin')
         ];
 
-        $users = User::OrderBy('users.id','DESC')
+        $users = User::OrderBy('users.id','ASC')
             // ->username($arr_get)
             ->with('profile')
             ->with('rols')
             ->get();
             // ->paginate(15);
         // dd($users);
-        // 
-        $roles = User::find(1)->rols;
-        //dd($roles);
-
 
         return view('admin.users.index', compact('users'));
     }
