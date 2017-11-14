@@ -64,16 +64,14 @@
 
 @section('stylesheet')
     @parent
-    <link rel="stylesheet" href="{{ asset('vendor/datatables-plugins/dataTables.bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendor/datatables-responsive/dataTables.responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/datatables/DataTables-1.10.16/css/dataTables.bootstrap.css') }}">
 @endsection
 
 
 @section('scripts')
     @parent
-    <script src="{{ asset("vendor/datatables/js/jquery.dataTables.min.js") }}"></script>
-    <script src="{{ asset("vendor/datatables-plugins/dataTables.bootstrap.min.js") }}"></script>
-    <script src="{{ asset("vendor/datatables-responsive/dataTables.responsive.js") }}"></script>
+    <script src="{{ asset("vendor/datatables/DataTables-1.10.16/js/jquery.dataTables.js") }}"></script>
+    <script src="{{ asset("vendor/datatables/DataTables-1.10.16/js/dataTables.bootstrap.js") }}"></script>
 
     <script>
         $(document).ready(function() {
@@ -81,7 +79,7 @@
                 responsive: false,
                 // order: [[ 0, "asc" ]],
                 language: {
-                    url: "{{ asset("vendor/datatables/lang/Spanish.lang") }}"
+                    url: "{{ asset("vendor/datatables/lang/spanish.lang") }}"
                 },
                  columnDefs: [ {
                       targets: 'no-sort',

@@ -34,11 +34,11 @@
             </td>
 
             <td class="" id="rol">
-                {{$user->rol or ''}}
+                {{$user->rols->rol or ''}}
             </td>
 
-            <td class="hidden-sm rango-{{ $user->rango }}" id="rango">
-                {{$user->rango or ''}}
+            <td class="hidden-sm rango-{{ $user->rols->rango or '' }}" id="rango">
+                {{$user->rols->rango or ''}}
             </td>
             <td align="right" style="padding: 2px; vertical-align: middle;" id="btn-action-{{ $user->id }}">
                 <div class="btn-group">
@@ -47,7 +47,7 @@
                     <a title="Mostrar detalles" class="btn btn-info btn-xs" href="#" data-toggle="modal" id="showuser_modal" data-target="#showuser_modal_{{$user->id}}">
                         <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
                     </a>
-                    {{-- @include('admin.users.modal.showuser') --}}
+                    @include('admin.users.modals.showuser')
 
 
                     {{-- boton para mostrar en un modal de edicion de regsitro --}}

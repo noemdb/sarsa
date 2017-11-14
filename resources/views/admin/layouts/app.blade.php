@@ -8,13 +8,10 @@
 
     <title>{{ config('app.name', 'SB Admin 2 | cham11ng') }}</title>
 
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset('css/sb-admin-2.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('vendor/font-awesome/css/font-awesome.min.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset('ionicons/css/ionicons.min.css') }}"> --}}
-
-
 
     <!-- stylesheet for page -->
     @yield('stylesheet')
@@ -32,7 +29,6 @@
     @yield('body')
 
     <script src="{{ asset("js/app.js") }}"></script>
-    {{-- <script src="{{ asset("js/Chart.js") }}"></script> --}}
 
     <!-- scripts for page -->
     @yield('scripts')

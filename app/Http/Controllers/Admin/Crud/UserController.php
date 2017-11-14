@@ -39,18 +39,13 @@ class UserController extends Controller
             // 'is_admin'=>$request->get('is_admin')
         ];
 
-        $users = User::select('users.*','rols.rol','rols.rango')
-            ->orderBy('users.id','DESC')
-        // select('users.*','profiles.id as id_profile','profiles.url_img','profiles.created_at as pcreated_at','profiles.updated_at as pupdated_at','profiles.deleted_at as pdeleted_at', \DB::raw('CONCAT(firstname, " ", lastname) AS fullname'))
-            ->leftjoin('rols', 'rols.user_id', '=', 'users.id')
-            // ->where('rols.finicial','<=',Carbon::now())
-            // ->where('rols.ffinal','>=',Carbon::now())
+        $users = User::OrderBy('users.id','DESC')
             // ->username($arr_get)
             ->with('profile')
             ->with('rols')
             ->get();
             // ->paginate(15);
-        dd($users);
+        // dd($users);
         // 
         $roles = User::find(1)->rols;
         //dd($roles);
