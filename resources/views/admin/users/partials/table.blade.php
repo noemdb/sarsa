@@ -16,13 +16,7 @@
     @php ($n=1)
     @foreach($users as $user)
 
-        @php ($rol = $user->rols->where('finicial','<=',date('Ymd'))->where('ffinal','>=',date('Ymd'))->last())
-
-        {{--
-        @if(count($rol)<1)
-            @php ($rol = $user->rols->last())
-        @endif
-        --}}
+        @php ($rol = $user->rols->where('finicial','<=',date('Y-m-d'))->where('ffinal','>=',date('Y-m-d'))->last())
         
         <tr data-id="{{$user->id}}" data-profile="{{$user->profile->id or ''}}">
             <td class="hidden-xs">
@@ -41,16 +35,14 @@
                 {{$user->is_active}}
             </td>
 
-            <td class="" id="rol">
-                {{-- {{$user->rols->rol or ''}} --}}
+            <td class="rol-{{ $rol['rol'] or '' }}" id="rol">
                  {{$rol['rol']}}
             </td>
 
             <td class="hidden-sm rango-{{ $rol['rango'] or '' }}" id="rango">
-                {{-- {{ $rol }} --}}
-                {{$rol['rango']}}
-                
+                {{$rol['rango']}}                
             </td>
+
             <td align="right" style="padding: 2px; vertical-align: middle;" id="btn-action-{{ $user->id }}">
                 <div class="btn-group">
                     

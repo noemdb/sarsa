@@ -1,61 +1,38 @@
-<div class="thumbnail">
-    {{-- <p> --}}
-        {{-- <strong>Detalles del Usuario</strong> --}}
-    {{-- </p> --}}
+<div class="panel-group" id="accordion" align="left">
 
-    <div class="row">
+    @php($n=1)
+    @foreach($user->rols as $rol)
 
-        <div class="col-md-4">
-            <img src="{{$user->profile->url_img or ''}}" alt="{{$user->username}}" class="img-thumbnail img-rounded">
-        </div>
-
-        <div class="col-md-8">
-        
-            <div align="left">
-                {{-- <h4></h4> --}}
-
-                <ul class="list-group" style="margin: 0px;">
-                    <li class="list-group-item list-group-item-{{$user->is_active}}">
-                        <div class="row">
-                            <div class="col-md-4">Usuario:</div>
-                            <div class="col-md-8">
-                                <strong>{{$user->username}}</strong>
-                                <span class="label label-{{$user->is_active}} pull-right">{{$user->is_active}}</span>
-                            </div>
-                        </div>
-                    </li>
-
-                    <li class="list-group-item">
-                        Roles:
-                        
-                        {{-- <ul class="list-group" style="margin: 0px;"> --}}
-                            @php($n=1)
-                        @foreach($user->rols as $rol)
-                            {{-- <li class="list-group-item"> --}}
-                                <table width="100%" class="table table-striped table-hover">
-                                    <tr>
-                                        <td rowspan="5" valign="middle" style="vertical-align: middle;">{{ $n++ }}</td>
-                                        <td>Rol</td><td>{{ $rol->rol }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Rango</td>
-                                        <td class="rango-{{ $rol->rango or '' }}">
-                                            {{ $rol->rango }}
-                                        </td>
-                                    </tr>
-                                    <tr><td>F.Inicial</td> <td>{{ $rol->finicial }}</td></tr>
-                                    <tr><td>F.Final</td> <td>{{ $rol->ffinal }}</td></tr>
-                                </table>
-                            {{-- </li> --}}
-                        @endforeach
-                        {{-- </ul> --}}
-                    </li>
-                    
-                </ul>
+        <div class="panel panel-default rol-{{ $rol->rol or '' }}">
+            <div class="panel-heading">
+              
+                {{ $n++ }} 
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse-rols-{{$rol['id']}}">
+                    {{ $rol->rol }}
+                </a>
 
             </div>
 
-        </div>
+            <div id="collapse-rols-{{$rol['id']}}" class="panel-collapse collapse">
+              <div class="panel-body" style="background-color: #fff !important;">
+                <table width="100%" class="table" bgcolor="#fff">
+                    <tr class="rol-{{ $rol->rol or '' }}">
+                        <td rowspan="5" align="center" style="vertical-align: middle;"><strong>{{ $n }}</strong></td>
+                        <td>Rol</td><td><strong>{{ $rol->rol }}</strong></td>
+                    </tr>
+                    <tr class="rango-{{ $rol->rango or '' }}">
+                        <td>Rango</td>
+                        <td>
+                            <strong>{{ $rol->rango }}</strong>
+                        </td>
+                    </tr>
+                    <tr><td>Fecha Inicial</td> <td>{{ $rol->finicial }}</td></tr>
+                    <tr><td>Fecha Final</td> <td>{{ $rol->ffinal }}</td></tr>
+                </table>                                 
+              </div>
+            </div>
+        </div>                            
+        
+    @endforeach
 
-    </div>
 </div>

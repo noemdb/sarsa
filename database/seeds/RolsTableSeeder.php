@@ -12,7 +12,7 @@ class RolsTableSeeder extends Seeder
     public function run()
     {
         //
-        for ($i=0; $i < 10; $i++) { 
+        for ($i=0; $i < 50; $i++) { 
             factory(App\Models\sys\Rol::class)->times(1)->create();
         }
         

@@ -4024,6 +4024,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav-tabs {
   border-bottom: 1px solid #ddd;
   box-shadow: inset 0 -6px 8px -6px grey;/*nmdb*/
+  background-color: #fff; /*nmdb*/
 }
 .nav-tabs > li {
   float: left;
@@ -5010,7 +5011,8 @@ a.badge:focus {
 .thumbnail {
   display: block;
   padding: 4px;
-  margin-bottom: 20px;
+  /*margin-bottom: 20px;nmdb*/
+  margin: 6px 0px 6px 0px;
   line-height: 1.42857143;
   background-color: #fff;
   border: 1px solid #ddd;
@@ -5750,7 +5752,7 @@ button.list-group-item-danger.active:focus {
 }
 .panel-success > .panel-heading {
   color: #3c763d;
-  background-color: #EAFFEA;/*nmdb*/
+  background-color: #F0FFF0;/*nmdb*/
   /*border-color: #d6e9c6;nmdb*/
 }
 .panel-success > .panel-heading + .panel-collapse > .panel-body {
@@ -5769,7 +5771,7 @@ button.list-group-item-danger.active:focus {
 }
 .panel-info > .panel-heading {
   color: #31708f;
-  background-color: #E3FAFF;/*nmdb*/
+  background-color: #F0FCFF;/*nmdb*/
   /*border-color: #bce8f1;nmdb*/
 }
 .panel-info > .panel-heading + .panel-collapse > .panel-body {
@@ -5788,7 +5790,7 @@ button.list-group-item-danger.active:focus {
 }
 .panel-warning > .panel-heading {
   color: #8a6d3b;
-  background-color: #FFF5E0;/*nmdb*/
+  background-color: #FFFAF0;/*nmdb*/
   /*border-color: #faebcc;nmdb*/
 }
 .panel-warning > .panel-heading + .panel-collapse > .panel-body {
@@ -5807,7 +5809,7 @@ button.list-group-item-danger.active:focus {
 }
 .panel-danger > .panel-heading {
   color: #a94442;
-  background-color: #FFE5E0;/*nmdb*/
+  background-color: #FFF0EA;/*nmdb*/
   /*border-color: #ebccd1;nmdb*/
 }
 .panel-danger > .panel-heading + .panel-collapse > .panel-body {

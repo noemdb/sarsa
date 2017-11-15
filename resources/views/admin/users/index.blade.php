@@ -10,7 +10,7 @@
         <div class="panel-heading">
             <h3>
                 Listados de Usuarios Registrados<br>
-                <small class="text-default">{{$users->count()}} Usuarios</small>
+                <small class="text-default"><strong>{{$users->count()}} Usuarios</strong></small>
                 
                 <div class="btn-group pull-right">
                     <a title="Crear nuevo Usuario" class="btn btn-primary" href="#" data-toggle="modal" data-target="#user-create" role="button">
