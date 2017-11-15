@@ -44,8 +44,6 @@ class UserController extends Controller
             ->with('profile')
             ->with('rols')
             ->get();
-            // ->paginate(15);
-        // dd($users);
 
         return view('admin.users.index', compact('users'));
     }
