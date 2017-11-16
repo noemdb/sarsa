@@ -51,7 +51,7 @@
                         <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
                     </a>
 
-                    @include('admin.users.modals.showuser')
+                    @include('admin.users.modals.show')
 
 
                     {{-- boton para mostrar en un modal de edicion de regsitro --}}
@@ -63,6 +63,8 @@
 
                     {{-- modal para la edición del registro --}}
                     {{-- @include('admin.users.modal.edituser') --}}
+
+                    @include('admin.users.modals.edit')
 
                     <a title="Eliminar" class="btn-delete btn btn-danger btn-xs" href="" id="btn-delete-userid_{{$user->id}}" data-target="#modal-del-confirm_{{$user->id}}" data-toggle="modal" role="button">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>

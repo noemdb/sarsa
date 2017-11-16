@@ -8,7 +8,7 @@
           <i class="fa fa-close" aria-hidden="true"></i>
         </button>
 
-        <h5 class="modal-title" align="left" id="myModalLabel"><strong>Detalles de Usuario</strong></h5>
+        <h5 class="modal-title" align="left" id="myModalLabel"><strong>Datos de Usuario</strong></h5>
       </div>
 
       @if($user->is_active=='Activo')
@@ -17,12 +17,10 @@
           <div class="modal-body panel panel-danger">
       @endif
 
-      
       {{-- <div class="modal-body" align="left"> --}}
 
-
         <ul class="nav nav-tabs">
-          <li class="active"><a data-toggle="tab" href="#showuser_tab_{{$user->id}}_general">Detalles</a></li>
+          <li class="active"><a data-toggle="tab" href="#showuser_tab_{{$user->id}}_general">Generales</a></li>
           <li><a data-toggle="tab" href="#showuser_tab_{{$user->id}}_other1">Perfíl</a></li>
           <li><a data-toggle="tab" href="#showuser_tab_{{$user->id}}_other2">Roles</a></li>
         </ul>

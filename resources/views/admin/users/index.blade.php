@@ -30,6 +30,7 @@
         </div>
 
         <div class="panel-body">
+
             {{-- @include('admin.users.modal.createuser')                     --}}
             
             {{-- Mensaje flash sobreo operaciones con base de datos --}}
