@@ -27,45 +27,19 @@
 
         <div class="tab-content">
           <div id="edituser_tab_{{$user->id}}_general" class="tab-pane fade in active">
-            {{-- <h3>General</h3> --}}
-            {{-- <br> --}}
-            {{-- <div class="panel panel-info"> --}}
 
             <div id="edituser_tab_{{$user->id}}_form" class="tab-pane fade in active">
 
-              <div class="panel panel-warning">
-                <div class="panel-heading">Formulario para la edición del Usuario: <strong>{{$user->username}}</strong></div>
-                <div class="panel-body">
-                    {!! Form::model($user,['route' => ['crub.update', $user->id], 'method' => 'PUT', 'id'=>'form-update-user_'.$user->id, 'role'=>'form']) !!}
-                      {{ csrf_field() }}
-                      {{ Form::hidden('id', '', array('id' => 'id')) }}
+              @include('admin.users.forms.form',['class_form_update_user'=>'warning'])
 
-                      @include('admin.users.partials.field')
-
-                      <div align="center">
-                          <div class="form-group">
-                              <button type="submit" class="btn-update-user btn btn-warning" id="btn-update-user">
-                                  <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
-                                  Actualizar 
-                              </button>
-                          </div>
-                      </div>
-                    {{-- </form> --}}
-                    {!! Form::close() !!}
-                  </div>
-                </div>
-            </div>
-
-              {{-- @include('admin.users.partials.user') --}}
-            {{-- </div> --}}
           </div>
           <div id="edituser_tab_{{$user->id}}_other1" class="tab-pane fade">
             {{-- <h3>Menu 1</h3> --}}
-            @include('admin.users.partials.profile')
+            {{-- @include('admin.users.partials.profile') --}}
           </div>
           <div id="edituser_tab_{{$user->id}}_other2" class="tab-pane fade">
             {{-- <h3>Menu 2</h3> --}}
-            @include('admin.users.partials.rols')
+            {{-- @include('admin.users.partials.rols') --}}
           </div>
         </div>
 

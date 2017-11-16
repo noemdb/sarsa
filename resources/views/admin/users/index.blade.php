@@ -48,7 +48,7 @@
             {{-- FIN Barra de busqueda Filtros --}}
 
             {{-- partial con el listado de los usuarios --}}
-            @include('admin.users.partials.table')
+            @include('admin.users.table.list')
 
             {{-- botones de paginacon --}}
             {{--
@@ -59,7 +59,7 @@
         </div>
     </div>
 </div>
-{!! Form::open(['route' => ['crub.destroy',':USER_ID'], 'method' => 'DELETE', 'id'=>'form-delete', 'role'=>'form']) !!}
+{!! Form::open(['route' => ['users.destroy',':USER_ID'], 'method' => 'DELETE', 'id'=>'form-delete', 'role'=>'form']) !!}
 {!! Form::close() !!}
 @endsection
 
@@ -88,6 +88,38 @@
                 } ]
 
             });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+
+            // script para realizar para actualizar registros usando peticiones ajax
+            $('.btn-update-user').click(function (e) {
+                e.preventDefault();
+                var row = $(this).parents('tr'); //fila contentiva de la data
+                var id_user = row.data('id');  console.log('id_user: '+id_user);
+                var id_profile = row.data('profile');  console.log('id_profile: '+id_profile);
+                var form = $('#form-update-user_'+id_user); console.log(form.attr('action'));
+                var url = form.attr('action'); console.log(url);
+                var data = form.serialize(); console.log(data);
+                var modal_active = 'edituser_modal_'+id_user; console.log('modal_active: '+modal_active);
+
+                $.post(url, data, function (result){
+                    $("#msg_modal_admin_operok").text(result.messenge);
+                    $("#"+modal_active).modal('hide');
+                    $("#admin_operok").modal('show');
+                }).fail(function (result) {
+                    $.each(result.responseJSON.errors,function(index,valor){
+                        // alert('Index: '+index+' - Valor: '+valor);
+                        $("#msg_"+index+"_"+id_user).html(valor);
+                        $("#error_msg_"+index+"_"+id_user).fadeIn();
+                    });
+                });
+
+            });//fin del evento clic
+
+
         });
     </script>
 

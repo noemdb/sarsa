@@ -21,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'password',
+        'username', 'password','is_active'
     ];
 
     /**
@@ -74,5 +74,12 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\sys\Logdb');
     }
     /*FIN relaciones entre modelos*/
+
+
+    public function setPasswordAttribute($value){
+        if (! empty($value)) {
+            $this->attributes['password'] = bcrypt($value);
+        }
+    }
 
 }

@@ -30,16 +30,16 @@
             {{-- <h3>General</h3> --}}
             {{-- <br> --}}
             {{-- <div class="panel panel-info"> --}}
-              @include('admin.users.partials.user')
+              @include('admin.users.thumbnail.user')
             {{-- </div> --}}
           </div>
           <div id="showuser_tab_{{$user->id}}_other1" class="tab-pane fade">
             {{-- <h3>Menu 1</h3> --}}
-            @include('admin.users.partials.profile')
+            @include('admin.users.thumbnail.profile')
           </div>
           <div id="showuser_tab_{{$user->id}}_other2" class="tab-pane fade">
             {{-- <h3>Menu 2</h3> --}}
-            @include('admin.users.partials.rols')
+            @include('admin.users.thumbnail.rols')
           </div>
         </div>
 

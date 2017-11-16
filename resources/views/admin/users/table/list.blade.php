@@ -43,7 +43,7 @@
                 {{$rol['rango']}}                
             </td>
 
-            <td align="right" style="padding: 2px; vertical-align: middle;" id="btn-action-{{ $user->id }}">
+            <td style="padding: 2px; vertical-align: middle;" id="btn-action-{{ $user->id }}">
                 <div class="btn-group">
                     
                     {{-- boton para mostrar en un modal de info de regsitro --}}
