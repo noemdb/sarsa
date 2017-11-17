@@ -109,6 +109,7 @@
                     $("#msg_modal_admin_operok").text(result.messenge);
                     $("#"+modal_active).modal('hide');
                     $("#admin_operok").modal('show');
+                    location.reload();
                 }).fail(function (result) {
                     $.each(result.responseJSON.errors,function(index,valor){
                         // alert('Index: '+index+' - Valor: '+valor);

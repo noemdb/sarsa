@@ -3,13 +3,13 @@
     <div class="panel-body">
         {!! Form::model($user,['route' => ['users.update', $user->id], 'method' => 'PUT', 'id'=>'form-update-user_'.$user->id, 'role'=>'form']) !!}
           {{ csrf_field() }}
-          {{ Form::hidden('id', '', array('id' => 'id')) }}
+          {{ Form::hidden('id', '', array('id' => $user->id)) }}
 
           @include('admin.users.forms.fields')
 
           <div align="center">
               <div class="form-group">
-                  <button type="submit" class="btn-update-user btn btn-warning btn-block" id="btn-update-user">
+                  <button type="submit" class="btn-update-user btn btn-warning btn-block" id="btn-update-user-{{$user->id}}">
                       <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
                       Actualizar 
                   </button>

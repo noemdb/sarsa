@@ -34,20 +34,20 @@ class Logdb extends Model
             $arr_request = $request->ToArray();
             $logdb->data = $logdb->array_request($arr_request);
         	$logdb->action = $action;
-            $logdb->tipo = $logdb->gettype();
+            $logdb->tipo = $logdb->gettype($action);
             $logdb->user_id = auth()->user()->id;
             $logdb->ip = $request->ip();
             $logdb->pathInfo = $pathInfo;
             $logdb->url =$request->server('HTTP_REFERER');
             $logdb->model_class = $class;
 
-            dd($logdb);
+            // dd($logdb);
             
             $logdb->save();
         }
     }
-    public static function gettype(){
-        switch ($this->action) {
+    public static function gettype($action){
+        switch ($action) {
             case 'created': $tipo = 'primary'; break;
             case 'updated': $tipo = 'info'; break;
             case 'deleted': $tipo = 'danger'; break;

@@ -7,7 +7,7 @@ $factory->define(App\Models\sys\Profile::class, function (Faker $faker) {
     return [
         'firstname' => $faker->firstName,
         'lastname' => $faker->lastName,
-        'url_img' => 'img/profile_'.rand().'.png',
+        // 'url_img' => 'img/profile_'.rand().'.png',
         'email' => $faker->unique()->safeEmail,
         'user_id' => function () { 
         	return 
