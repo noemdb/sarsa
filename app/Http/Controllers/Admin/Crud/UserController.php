@@ -44,8 +44,6 @@ class UserController extends Controller
             ->with('profile')
             ->with('rols')
             ->get();
-            // ->paginate(15);
-        // dd($users);
 
         return view('admin.users.index', compact('users'));
     }
@@ -102,7 +100,25 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // dd($id,$request);
+        $user = User::findOrFail($id);
+        $old_user = clone $user;
+        $user->fill($request->all());
+        $user->save();
+        // Log::info('Update user.', ['data_old' => $old_user, 'data_new' => $user]);
+
+        $messenge = trans('db_oper_result.user_update_ok');
+
+        if($request->ajax()){
+            return response()->json([
+                "username"=>$request->username,
+                "email"=>$request->email,
+                "is_active"=>$request->is_active,
+                "messenge"=>$messenge
+            ]);
+        }
+        Session::flash('operp_ok',trans('db_oper_result.user_update_ok'));
+        return redirect()->route('users.index');
     }
 
     /**

@@ -45,8 +45,10 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
 
     //FIN rutas para los api
 
-    //INI CRUB modelos
-    Route::resource('models/users/crub','Crud\UserController');
+    //INI CRUD modelos
+    Route::resource('users','Crud\UserController');
+    Route::resource('profiles','Crud\ProfileController');
+    //FIN CRUD modelos
 
 	Route::get('/charts/sbadmin', function () {
 	    return View::make('elements.charts.sbadmin');

@@ -2918,13 +2918,13 @@ select[multiple].input-lg {
 }
 @media (min-width: 768px) {
   .form-inline .form-group {
-    display: inline-block;
-    margin-bottom: 0;
+    /*display: inline-block;*/ /*nmdb*/
+    /*margin-bottom: 0;*/ /*nmdb*/
     vertical-align: middle;
   }
   .form-inline .form-control {
     display: inline-block;
-    width: auto;
+    /*width: auto;*/ /*nmdb*/
     vertical-align: middle;
   }
   .form-inline .form-control-static {

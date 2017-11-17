@@ -8,7 +8,7 @@
           <i class="fa fa-close" aria-hidden="true"></i>
         </button>
 
-        <h5 class="modal-title" align="left" id="myModalLabel"><strong>Detalles de Usuario</strong></h5>
+        <h5 class="modal-title" align="left" id="myModalLabel"><strong>Datos de Usuario</strong></h5>
       </div>
 
       @if($user->is_active=='Activo')
@@ -17,12 +17,10 @@
           <div class="modal-body panel panel-danger">
       @endif
 
-      
       {{-- <div class="modal-body" align="left"> --}}
 
-
         <ul class="nav nav-tabs">
-          <li class="active"><a data-toggle="tab" href="#showuser_tab_{{$user->id}}_general">Detalles</a></li>
+          <li class="active"><a data-toggle="tab" href="#showuser_tab_{{$user->id}}_general">Generales</a></li>
           <li><a data-toggle="tab" href="#showuser_tab_{{$user->id}}_other1">Perfíl</a></li>
           <li><a data-toggle="tab" href="#showuser_tab_{{$user->id}}_other2">Roles</a></li>
         </ul>
@@ -32,16 +30,16 @@
             {{-- <h3>General</h3> --}}
             {{-- <br> --}}
             {{-- <div class="panel panel-info"> --}}
-              @include('admin.users.partials.user')
+              @include('admin.users.thumbnail.user')
             {{-- </div> --}}
           </div>
           <div id="showuser_tab_{{$user->id}}_other1" class="tab-pane fade">
             {{-- <h3>Menu 1</h3> --}}
-            @include('admin.users.partials.profile')
+            @include('admin.users.thumbnail.profile')
           </div>
           <div id="showuser_tab_{{$user->id}}_other2" class="tab-pane fade">
             {{-- <h3>Menu 2</h3> --}}
-            @include('admin.users.partials.rols')
+            @include('admin.users.thumbnail.rols')
           </div>
         </div>
 

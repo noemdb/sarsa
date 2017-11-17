@@ -2,11 +2,13 @@
 
     <div class="row">
 
-        <div class="col-xs-4 col-sm-4 col-md-4">
-            <img src="{{$user->profile->url_img or ''}}" alt="{{$user->username}}" class="img-thumbnail img-rounded">
+        <div class="col-sm-4" align="center">
+            
+            <img alt="{{$user->username}}" class="img-thumbnail img-rounded" src="{{ (isset($user->profile->url_img)) ? asset($user->profile->url_img) : asset('images/avatar/user_default.png') }}">
+        
         </div>
 
-        <div class="col-xs-8 col-sm-8 col-md-8">
+        <div class="col-sm-8">
         
             <div align="left">
 
@@ -84,7 +86,7 @@
                 <li class="list-group-item">
                     <div class="row">
                         <div class="col-xs-4 col-sm-4 col-md-4">Creado</div>
-                        <div class="col-md-8">
+                        <div class="col-xs-8 col-sm-8 col-md-8">
                             @if(isset($user->created_at))
                                 {{$user->created_at->format('d-m-Y h:m:s')}}
                             @endif

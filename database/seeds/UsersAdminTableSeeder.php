@@ -22,7 +22,7 @@ class UsersAdminTableSeeder extends Seeder
         DB::table('profiles')->insert([
             'firstname' => "Administrador",
             'lastname' => "del Sistema",
-            'url_img' => "img/admin.png",
+            'url_img' => "images/avatar/default_user_admin.png",
             'email' => "admin@admin.com",
             'user_id' => $id,
         ]);
