@@ -22,24 +22,22 @@
             <td class="hidden-xs">
                 {{$n++}}
             </td>
-            <td id="username">
-
-                <span class="text text-{{ $user->is_active }}">{{$user->username}}</span>
-
+            <td id="username" class="text text-{{ $user->is_active }}">
+                {{$user->username}}
             </td>
-            <td class="hidden-xs hidden-sm" id="email">
+            <td id="hidden-xs hidden-sm" id="email">
                 {{$user->profile->email or ''}}
             </td>
 
-            <td class="hidden-xs status-{{ $user->is_active }}" id="is_active">
+            <td id="is_active" class="hidden-xs status-{{ $user->is_active }}">
                 {{$user->is_active}}
             </td>
 
-            <td class="rol-{{ $rol['rol'] or '' }}" id="rol">
+            <td id="rol" class="rol-{{ $rol['rol'] or '' }}" id="rol">
                  {{$rol['rol']}}
             </td>
 
-            <td class="hidden-sm rango-{{ $rol['rango'] or '' }}" id="rango">
+            <td id="rango" class="hidden-sm rango-{{ $rol['rango'] or '' }}">
                 {{$rol['rango']}}                
             </td>
 
