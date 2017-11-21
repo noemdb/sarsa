@@ -98,12 +98,12 @@
             $('.btn-update-user').click(function (e) {
                 e.preventDefault();
                 var row = $(this).parents('tr'); //fila contentiva de la data
-                var id_user = row.data('id');  console.log('id_user: '+id_user);
-                var id_profile = row.data('profile');  console.log('id_profile: '+id_profile);
-                var form = $('#form-update-user_'+id_user); console.log(form.attr('action'));
-                var url = form.attr('action'); console.log(url);
-                var data = form.serialize(); console.log(data);
-                var modal_active = 'edituser_modal_'+id_user; console.log('modal_active: '+modal_active);
+                var id_user = row.data('id');  //console.log('id_user: '+id_user);
+                var id_profile = row.data('profile');  //console.log('id_profile: '+id_profile);
+                var form = $('#form-update-user_'+id_user); //console.log(form.attr('action'));
+                var url = form.attr('action'); //console.log(url);
+                var data = form.serialize(); //console.log(data);
+                var modal_active = 'edituser_modal_'+id_user; //console.log('modal_active: '+modal_active);
 
                 $.post(url, data, function (result){
                     $("#msg_modal_admin_operok").text(result.messenge);
