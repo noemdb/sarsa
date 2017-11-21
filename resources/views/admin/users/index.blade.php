@@ -97,19 +97,15 @@
             // script para realizar para actualizar registros usando peticiones ajax
             $('.btn-update-user').click(function (e) {
                 e.preventDefault();
-<<<<<<< HEAD
-                var row = $(this).parents('tr'); //fila contentiva de la data
-=======
                 var row = $(this).parents('tr'); //console.log(row);//fila contentiva de la data
-                var celda = row.children("td"); console.log(celda);
+                var celda = row.children("td"); //console.log(celda);
                 //var username = celda['id']; console.log(username);
                 celda.each(function() {
                     var $td = $(this);
-                    $firstNonEmptyCell = $td;
+                    // $firstNonEmptyCell = $td;
                     console.log($td.text());
                 });
 
->>>>>>> 89e03fd7245888edde98527cbb5b46d9ff26f7cd
                 var id_user = row.data('id');  //console.log('id_user: '+id_user);
                 var id_profile = row.data('profile');  //console.log('id_profile: '+id_profile);
                 var form = $('#form-update-user_'+id_user); //console.log(form.attr('action'));
