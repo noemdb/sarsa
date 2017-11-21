@@ -97,7 +97,19 @@
             // script para realizar para actualizar registros usando peticiones ajax
             $('.btn-update-user').click(function (e) {
                 e.preventDefault();
+<<<<<<< HEAD
                 var row = $(this).parents('tr'); //fila contentiva de la data
+=======
+                var row = $(this).parents('tr'); //console.log(row);//fila contentiva de la data
+                var celda = row.children("td"); console.log(celda);
+                //var username = celda['id']; console.log(username);
+                celda.each(function() {
+                    var $td = $(this);
+                    $firstNonEmptyCell = $td;
+                    console.log($td.text());
+                });
+
+>>>>>>> 89e03fd7245888edde98527cbb5b46d9ff26f7cd
                 var id_user = row.data('id');  //console.log('id_user: '+id_user);
                 var id_profile = row.data('profile');  //console.log('id_profile: '+id_profile);
                 var form = $('#form-update-user_'+id_user); //console.log(form.attr('action'));
@@ -106,10 +118,10 @@
                 var modal_active = 'edituser_modal_'+id_user; //console.log('modal_active: '+modal_active);
 
                 $.post(url, data, function (result){
-                    $("#msg_modal_admin_operok").text(result.messenge);
+                    // $("#msg_modal_admin_operok").text(result.messenge);
                     $("#"+modal_active).modal('hide');
-                    $("#admin_operok").modal('show');
-                    location.reload();
+                    // $("#admin_operok").modal('show');
+                    //location.reload();
                 }).fail(function (result) {
                     $.each(result.responseJSON.errors,function(index,valor){
                         // alert('Index: '+index+' - Valor: '+valor);
