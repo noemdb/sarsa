@@ -64,7 +64,7 @@
 
                     @include('admin.users.modals.edit')
 
-                    <a title="Eliminar" class="btn-delete btn btn-danger btn-xs" href="" id="btn-delete-userid_{{$user->id}}" data-target="#modal-del-confirm_{{$user->id}}" data-toggle="modal" role="button">
+                    <a title="Eliminar" class="btn-delete btn btn-danger btn-xs" href="" id="btn-delete-userid_{{$user->id}}" data-target="#modal-del-confirm_{{$user->id}}" data-toggle="modal" role="button" onclick="return confirm('Esta seguro de eliminar el registro?');">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                     </a>
 

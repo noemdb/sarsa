@@ -14,6 +14,8 @@ use Illuminate\Support\Carbon;
 
 //models
 use App\User;
+use App\Models\sys\Profile;
+use App\Models\sys\Rol;
 
 class UserController extends Controller
 {
@@ -140,8 +142,32 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $profile = $user->profile;
+
+        $rols = $user->rols; 
+
+        $user->delete();
+
+        if(isset($profile->id)){
+            $profile->delete();
+        }
+
+        if(isset($rols->id)){
+            $rols->delete();
+        }
+
+        $messenge = trans('db_oper_result.user_destroy_ok');
+
+        if($request->ajax()){
+            return $messenge;
+        }
+        
+        $messenge = trans('db_oper_result.user_destroy_ok');
+        Session::flash('operp_ok',$messenge.' -> ('.$user->username.')');
+        return redirect()->route('users.index');
     }
 }
