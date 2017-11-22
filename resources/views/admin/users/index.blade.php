@@ -16,6 +16,7 @@
                     <a title="Crear nuevo Usuario" class="btn btn-primary" href="#" data-toggle="modal" data-target="#user-create" role="button">
                         <i class="fa fa-user-plus" aria-hidden="true"></i>
                     </a>
+
                     {{--
                     <a title="Listado de Perfiles" class="btn btn-info" href="{{ route('profiles.index') }}" role="button">
                         <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
@@ -31,7 +32,8 @@
 
         <div class="panel-body">
 
-            {{-- @include('admin.users.modal.createuser')                     --}}
+            {{-- formulario para crear usuarios --}}
+            @include('admin.users.modals.createuser')                    
             
             {{-- Mensaje flash sobreo operaciones con base de datos --}}
             @if (Session::has('operp_ok'))
@@ -97,17 +99,10 @@
             // script para realizar para actualizar registros usando peticiones ajax
             $('.btn-update-user').click(function (e) {
                 e.preventDefault();
-                var row = $(this).parents('tr'); //console.log(row);//fila contentiva de la data
-                var celda = row.children("td"); //console.log(celda);
-                //var username = celda['id']; console.log(username);
-                celda.each(function() {
-                    var $td = $(this);
-                    // $firstNonEmptyCell = $td;
-                    console.log($td.text());
-                });
-
+                var row = $(this).parents('tr'); //console.log(row); //fila contentiva de la data
                 var id_user = row.data('id');  //console.log('id_user: '+id_user);
                 var id_profile = row.data('profile');  //console.log('id_profile: '+id_profile);
+                var username = $('#td-username-'+id_user).text(); //console.log(username);
                 var form = $('#form-update-user_'+id_user); //console.log(form.attr('action'));
                 var url = form.attr('action'); //console.log(url);
                 var data = form.serialize(); //console.log(data);
@@ -116,11 +111,16 @@
                 $.post(url, data, function (result){
                     // $("#msg_modal_admin_operok").text(result.messenge);
                     $("#"+modal_active).modal('hide');
+                    $('#td-username-'+id_user).text(result.username);
+                    $('#td-username-'+id_user).attr('class', 'text-'+result.is_active);
+                    $('#td-is_active-'+id_user).text(result.is_active);
+                    $('#td-is_active-'+id_user).attr('class', 'text-'+result.is_active);
+                    // $('#td-username-'+id_user).text(result.username);
                     // $("#admin_operok").modal('show');
                     //location.reload();
                 }).fail(function (result) {
                     $.each(result.responseJSON.errors,function(index,valor){
-                        // alert('Index: '+index+' - Valor: '+valor);
+                        // console.log('Index: '+index+' - Valor: '+valor);
                         $("#msg_"+index+"_"+id_user).html(valor);
                         $("#error_msg_"+index+"_"+id_user).fadeIn();
                     });
@@ -128,6 +128,32 @@
 
             });//fin del evento clic
 
+
+            // script para realizar para registrar nuevo usuario usando peticiones ajax
+            $('.btn-user-create').click(function (e) {
+                e.preventDefault();
+                var id_user = $(this).attr('id'); console.log(id_user);
+                var form = $('#form-user-create'); console.log(form.attr('action'));
+                var url = form.attr('action'); console.log(url);
+                var data = form.serialize(); console.log(data);
+                var modal_active = 'user-create'; console.log('modal_active: '+modal_active);
+
+                $.post(url, data, function (result){
+                    $("#msg_modal_admin_operok").text(result.messenge); console.log(result.messenge);
+
+                    location.reload();
+
+                    // $("#user-create").modal('hide');
+                    // $("#admin_operok").modal('show');
+                }).fail(function (result) {
+                    $.each(result.responseJSON.errors,function(index,valor){
+                        // console.log('Index: '+index+' - Valor: '+valor);
+                        $("#msg_"+index+"_"+id_user).html(valor);
+                        $("#error_msg_"+index+"_"+id_user).fadeIn();
+                    });
+                });
+
+            });//fin del evento clic
 
         });
     </script>

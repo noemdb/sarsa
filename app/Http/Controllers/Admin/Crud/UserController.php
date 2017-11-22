@@ -39,7 +39,7 @@ class UserController extends Controller
             // 'is_admin'=>$request->get('is_admin')
         ];
 
-        $users = User::OrderBy('users.id','ASC')
+        $users = User::OrderBy('users.id','DESC')
             // ->username($arr_get)
             ->with('profile')
             ->with('rols')
@@ -66,7 +66,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $user = User::create($request->all());
+        $messenge = trans('db_oper_result.user_create_ok');;
+
+        if($request->ajax()){
+            //return $messenge;
+            return response()->json([
+                "username"=>$request->username,
+                "is_active"=>$request->is_active,
+                "messenge"=>$messenge
+            ]);
+        }
+        
+        Session::flash('operp_ok',trans('db_oper_result.user_create_ok'));
+        return redirect()->route('users.index');
+
     }
 
     /**
