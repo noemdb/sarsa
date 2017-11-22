@@ -67,3 +67,9 @@ php artisan make:controller 'Admin\Crud\UserController' --resource
 #######################################################################################################
 Listener (añadir los listener en el array en EventServiceProvider)
 php artisan event:generate
+
+
+#######################################################################################################
+Form Request Validation
+php artisan make:request 'Admin\CreateUserRequest'
+php artisan make:request 'Admin\UpdateUserRequest'

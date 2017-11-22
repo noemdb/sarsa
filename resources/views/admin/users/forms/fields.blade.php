@@ -6,18 +6,19 @@
 
 <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
 
-        <label for="username">Username</label>
-        {!! Form::text('username', old('username'), ['class' => 'form-control','required','autofocus']); !!}
+    <label for="username">Username</label>
+    {{-- {!! Form::text('username', old('username'), ['class' => 'form-control','required','autofocus']); !!} --}}
+    {!! Form::text('username', '', ['class' => 'form-control','required','autofocus']); !!}
 
-        <div class="alert alert-danger" id="error_msg_username_{{$user_id}}" role="alert" align="center" style="display: none;">
-            <small><strong id="msg_username_{{$user_id}}"></strong></small>
+    <div class="alert alert-danger" id="error_msg_username_{{$user_id}}" role="alert" align="center" style="display: none;">
+        <small><strong id="msg_username_{{$user_id}}"></strong></small>
+    </div>
+
+    @if ($errors->has('username'))
+        <div class="alert alert-danger" role="alert" align="center">
+            <small><strong>{{ $errors->first('username') }}</strong></small>
         </div>
-
-        @if ($errors->has('username'))
-            <div class="alert alert-danger" role="alert" align="center">
-                <small><strong>{{ $errors->first('username') }}</strong></small>
-            </div>
-        @endif
+    @endif
 
 </div>
 

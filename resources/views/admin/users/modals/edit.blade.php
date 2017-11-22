@@ -30,7 +30,7 @@
 
             <div id="edituser_tab_{{$user->id}}_form" class="tab-pane fade in active">
 
-              @include('admin.users.forms.form',['class_form_update_user'=>'warning'])
+              @include('admin.users.forms.update',['class_form_update_user'=>'warning'])
 
           </div>
           <div id="edituser_tab_{{$user->id}}_other1" class="tab-pane fade">

@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Admin\Crud;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+//validation request
+use App\Http\Requests\Admin\CreateUserRequest;
+use App\Http\Requests\Admin\UpdateUserRequest;
+
 //Helpers
 use Illuminate\Support\Carbon;
 
@@ -32,12 +36,6 @@ class UserController extends Controller
     public function index(Request $request)
     {
         
-        //variables del formulario de busqueda
-        $arr_get = [
-            // 'username'=>$request->get('username'),
-            // 'is_active'=>$request->get('is_active'),
-            // 'is_admin'=>$request->get('is_admin')
-        ];
 
         $users = User::OrderBy('users.id','DESC')
             // ->username($arr_get)
@@ -64,7 +62,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
 
         $user = User::create($request->all());
@@ -113,9 +111,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
-        // dd($id,$request);
         $user = User::findOrFail($id);
         $old_user = clone $user;
         $user->fill($request->all());
@@ -134,6 +131,7 @@ class UserController extends Controller
         }
         Session::flash('operp_ok',trans('db_oper_result.user_update_ok'));
         return redirect()->route('users.index');
+        
     }
 
     /**
