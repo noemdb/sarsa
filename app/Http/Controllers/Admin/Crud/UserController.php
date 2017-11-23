@@ -38,7 +38,6 @@ class UserController extends Controller
     public function index(Request $request)
     {
         
-
         $users = User::OrderBy('users.id','DESC')
             // ->username($arr_get)
             ->with('profile')
@@ -68,10 +67,10 @@ class UserController extends Controller
     {
 
         $user = User::create($request->all());
+
         $messenge = trans('db_oper_result.user_create_ok');;
 
         if($request->ajax()){
-            //return $messenge;
             return response()->json([
                 "username"=>$request->username,
                 "is_active"=>$request->is_active,
@@ -79,7 +78,8 @@ class UserController extends Controller
             ]);
         }
         
-        Session::flash('operp_ok',trans('db_oper_result.user_create_ok'));
+        Session::flash('operp_ok',$messenge);
+
         return redirect()->route('users.index');
 
     }
@@ -119,7 +119,6 @@ class UserController extends Controller
         $old_user = clone $user;
         $user->fill($request->all());
         $user->save();
-        // Log::info('Update user.', ['data_old' => $old_user, 'data_new' => $user]);
 
         $messenge = trans('db_oper_result.user_update_ok');
 
@@ -131,7 +130,8 @@ class UserController extends Controller
                 "messenge"=>$messenge
             ]);
         }
-        Session::flash('operp_ok',trans('db_oper_result.user_update_ok'));
+
+        Session::flash('operp_ok',$messenge);
         return redirect()->route('users.index');
         
     }
@@ -146,28 +146,22 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        $profile = $user->profile;
-
-        $rols = $user->rols; 
+        $user->profile()->delete();
+        
+        $user->rols()->delete();
 
         $user->delete();
-
-        if(isset($profile->id)){
-            $profile->delete();
-        }
-
-        if(isset($rols->id)){
-            $rols->delete();
-        }
 
         $messenge = trans('db_oper_result.user_destroy_ok');
 
         if($request->ajax()){
+
             return $messenge;
+
         }
         
-        $messenge = trans('db_oper_result.user_destroy_ok');
         Session::flash('operp_ok',$messenge.' -> ('.$user->username.')');
+
         return redirect()->route('users.index');
     }
 }

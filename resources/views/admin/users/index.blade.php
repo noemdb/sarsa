@@ -98,7 +98,7 @@
 
             // script para realizar para actualizar registros usando peticiones ajax
             $('.btn-update-user').click(function (e) {
-                e.preventDefault();
+                // e.preventDefault();
                 var row = $(this).parents('tr'); //console.log(row); //fila contentiva de la data
                 var id_user = row.data('id');  //console.log('id_user: '+id_user);
                 var idform = '#form-update-user_'+id_user; //console.log(form.attr('action'));
@@ -114,10 +114,6 @@
                     $('#td-username-'+id_user).attr('class', 'text-'+result.is_active);
                     $('#td-is_active-'+id_user).text(result.is_active);
                     $('#td-is_active-'+id_user).attr('class', 'text-'+result.is_active);
-
-                    // $('#td-username-'+id_user).text(result.username);
-                    // $("#admin_operok").modal('show');
-                    //location.reload();
                 }).fail(function (result) {
                     $.each(result.responseJSON.errors,function(index,valor){
                         // console.log('Index: '+index+' - Valor: '+valor);
@@ -128,10 +124,9 @@
 
             });//fin del evento clic
 
-
             // script para realizar para registrar nuevo usuario usando peticiones ajax
             $('.btn-user-create').click(function (e) {
-                e.preventDefault();
+                // e.preventDefault();
                 var id_user = $(this).attr('id'); //console.log(id_user);
                 var idform = '#form-user-create'; //console.log(form.attr('action'));
                 var form = $(idform); //console.log(idform);
@@ -141,39 +136,42 @@
 
                 $.post(url, data, function (result){                  
                     location.reload();
-                    // $("#msg_modal_admin_operok").text(result.messenge); console.log(result.messenge);
-                    // $("#user-create").modal('hide');
-                    // $("#admin_operok").modal('show');
                 }).fail(function (result) {
                     $.each(result.responseJSON.errors,function(index,valor){
-                        console.log('Index: '+index+' - Valor: '+valor);
+                        //console.log('Index: '+index+' - Valor: '+valor);
                         $("#msg_"+index+"_"+id_user).html(valor);
                         $("#error_msg_"+index+"_"+id_user).fadeIn();
                     });
                 });
-
             });//fin del evento clic
-
 
             // script para realizar el borrado del registro
             $('.btn-delete').click(function (e) {
-                e.preventDefault();
-                var row = $(this).parents('tr');//fila contentiva de la data
-                var id = row.data('id');  console.log(id);
-                var row_info = $('#user_table_collapse'+id).parents('tr'); //console.log(row_info)//fila contentiva del collapsible
-                var form = $('#form-delete'); //console.log(form.attr('action'));
-                var url = form.attr('action').replace(':USER_ID',id); //console.log(url);
-                var data = form.serialize(); //console.log(data);
+                r = confirm("Estas seguro de realizar esta acción?");
+                if (r) {
+                    // e.preventDefault();
+                    var row = $(this).parents('tr');//fila contentiva de la data
+                    var id = row.data('id');  //console.log(id);
+                    var row_info = $('#user_table_collapse'+id).parents('tr'); //console.log(row_info)//fila contentiva del collapsible
+                    var form = $('#form-delete'); //console.log(form.attr('action'));
+                    var url = form.attr('action').replace(':USER_ID',id); //console.log(url);
+                    var data = form.serialize(); //console.log(data);
 
-                $.post(url, data, function (result){
-                    row.fadeOut();
-                    row_info.fadeOut();
-                    $("#msg_modal_admin_operok").text('Registro eliminado');
-                    $("#admin_operok").modal('show');
-                }).fail(function () {
-                    // alert('El usuario no fué eliminado');
-                    $("#admin_oper_nook").modal('toggle');                    
-                });
+                    $.post(url, data, function (result){
+                        row.fadeOut();
+                        row_info.fadeOut();
+                        $("#msg_modal_admin_operok").text('Registro eliminado');
+                        $("#admin_operok").modal('show');
+                    }).fail(function () {
+                        // alert('El usuario no fué eliminado');
+                        $("#admin_oper_nook").modal('toggle');
+                        $.each(result.responseJSON.errors,function(index,valor){
+                            //console.log('Index: '+index+' - Valor: '+valor);
+                            $("#msg_"+index+"_"+id_user).html(valor);
+                            $("#error_msg_"+index+"_"+id_user).fadeIn();
+                        });                    
+                    });
+                }
             });//fin del evento clic
 
         });
