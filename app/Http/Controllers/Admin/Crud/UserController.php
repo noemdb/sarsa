@@ -82,7 +82,7 @@ class UserController extends Controller
         
         Session::flash('operp_ok',$messenge);
 
-        return redirect()->route('users.index');
+        //return redirect()->route('users.index');
 
     }
 

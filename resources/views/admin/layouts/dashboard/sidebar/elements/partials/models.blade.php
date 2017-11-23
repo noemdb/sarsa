@@ -5,13 +5,13 @@
     </a>
     <ul class="nav nav-third-level">
         <li>
-            <a href="{{ url ('admin/'.$models) }}">
+            <a href="{{ url ('admin/models/'.$models) }}">
                 <i class="fa fa-list text-purple" aria-hidden="true"> </i>
                 CRUD
             </a>
         </li>
         <li>
-            <a href="{{ url ('admin/'.$models.'/chart') }}">
+            <a href="{{ url ('admin/models/'.$models.'/chart') }}">
                 <i class="fa fa-pie-chart text-teal" aria-hidden="true"> </i>
                 Gráficas
             </a>
