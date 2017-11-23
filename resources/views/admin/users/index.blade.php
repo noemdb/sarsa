@@ -150,12 +150,12 @@
                 r = confirm("Estas seguro de realizar esta acción?");
                 if (r) {
                     // e.preventDefault();
-                    var row = $(this).parents('tr');//fila contentiva de la data
-                    var id = row.data('id');  //console.log(id);
-                    var row_info = $('#user_table_collapse'+id).parents('tr'); //console.log(row_info)//fila contentiva del collapsible
-                    var form = $('#form-delete'); //console.log(form.attr('action'));
-                    var url = form.attr('action').replace(':USER_ID',id); //console.log(url);
-                    var data = form.serialize(); //console.log(data);
+                    var row = $(this).parents('tr');fila contentiva de la data
+                    var id = row.data('id');  console.log(id);
+                    var row_info = $('#user_table_collapse'+id).parents('tr'); console.log(row_info)//fila contentiva del collapsible
+                    var form = $('#form-delete'); console.log(form.attr('action'));
+                    var url = form.attr('action').replace(':USER_ID',id); console.log(url);
+                    var data = form.serialize(); console.log(data);
 
                     $.post(url, data, function (result){
                         row.fadeOut();

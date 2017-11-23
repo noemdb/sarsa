@@ -51,7 +51,6 @@
 
                     @include('admin.users.modals.show')
 
-
                     {{-- boton para mostrar en un modal de edicion de regsitro --}}
                     <a title="Editar resgistro" class="btn btn-warning btn-xs" href="#" data-toggle="modal" id="btn-edituser_{{$user->id}}" data-target="#edituser_modal_{{$user->id}}">
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
