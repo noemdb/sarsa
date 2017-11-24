@@ -13,7 +13,13 @@
                 <small class="text-default"><strong>{{$users->count()}} Usuarios</strong></small>
                 
                 <div class="btn-group pull-right">
+                    {{--
                     <a title="Crear nuevo Usuario" class="btn btn-primary" href="#" data-toggle="modal" data-target="#user-create" role="button">
+                        <i class="fa fa-user-plus" aria-hidden="true"></i>
+                    </a>
+                    --}}
+
+                    <a title="Crear nuevo Usuario" class="btn btn-primary" href="{{ route('users.create') }}" role="button">
                         <i class="fa fa-user-plus" aria-hidden="true"></i>
                     </a>
 
@@ -25,14 +31,17 @@
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                     </a>
                     --}}
+
                 </div>
+
+
 
             </h3>
         </div>
 
         <div class="panel-body">
 
-            {{-- formulario para crear usuarios --}}
+            {{-- modal con el formulario para crear usuarios --}}
             @include('admin.users.modals.create')                    
             
             {{-- Mensaje flash sobreo operaciones con base de datos --}}

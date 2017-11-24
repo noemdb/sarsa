@@ -11,6 +11,7 @@ use App\Http\Requests\Admin\UpdateUserRequest;
 
 //Helpers
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Session;
 
 //models
 use App\User;
@@ -54,7 +55,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        
+        // dd('Hola');
+
+        return view('admin.users.create');
+
     }
 
     /**
@@ -82,7 +87,9 @@ class UserController extends Controller
         
         Session::flash('operp_ok',$messenge);
 
-        //return redirect()->route('users.index');
+        // return redirect()->route('users.index');
+        return redirect()->route('users.create');
+        // return view('admin.users.create');
 
     }
 
