@@ -71,16 +71,18 @@ class UserController extends Controller
         $messenge = trans('db_oper_result.user_create_ok');;
 
         if($request->ajax()){
+
             return response()->json([
                 "username"=>$request->username,
                 "is_active"=>$request->is_active,
                 "messenge"=>$messenge
             ]);
+
         }
         
         Session::flash('operp_ok',$messenge);
 
-        return redirect()->route('users.index');
+        //return redirect()->route('users.index');
 
     }
 
@@ -116,19 +118,22 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, $id)
     {
         $user = User::findOrFail($id);
-        $old_user = clone $user;
+        
         $user->fill($request->all());
+
         $user->save();
 
         $messenge = trans('db_oper_result.user_update_ok');
 
         if($request->ajax()){
+
             return response()->json([
                 "username"=>$request->username,
                 "email"=>$request->email,
                 "is_active"=>$request->is_active,
                 "messenge"=>$messenge
             ]);
+            
         }
 
         Session::flash('operp_ok',$messenge);
