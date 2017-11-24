@@ -138,7 +138,7 @@
                     location.reload();
                 }).fail(function (result) {
                     $.each(result.responseJSON.errors,function(index,valor){
-                        //console.log('Index: '+index+' - Valor: '+valor);
+                        console.log('Index: '+index+' - Valor: '+valor);
                         $("#msg_"+index+"_"+id_user).html(valor);
                         $("#error_msg_"+index+"_"+id_user).fadeIn();
                     });
