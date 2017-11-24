@@ -53,3 +53,13 @@ git add .
 git commit -m
 //realiza el push
 git push origin master
+
+
+
+error: Entry 'filename.c' not uptodate. Cannot merge.
+
+git checkout --ours filename.c
+git checkout --theirs filename.c
+git add filename.c
+git commit -m "using theirs"
+git pull origin master

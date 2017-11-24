@@ -128,20 +128,24 @@
 
             // script para realizar para registrar nuevo usuario usando peticiones ajax
             $('.btn-user-create').click(function (e) {
-                e.preventDefault();
+                // e.preventDefault();
                 var id_user = $(this).attr('id'); //console.log(id_user);
-                var idform = '#form-user-create'; //console.log(idform);
-                var form = $(idform); //console.log(form);
+                var idform = '#form-user-create'; //console.log(form.attr('action'));
+                var form = $(idform); //console.log(idform);
                 var url = form.attr('action'); //console.log(url);
                 var data = form.serialize(); //console.log(data);
                 var modal_active = 'user-create'; //console.log('modal_active: '+modal_active);
 
                 $.post(url, data, function (result){
                     console.log(result.messenge);
-                    location.reload();
+                    //location.reload();
                 }).fail(function (result) {
                     $.each(result.responseJSON.errors,function(index,valor){
+<<<<<<< HEAD
+                        console.log('Index: '+index+' - Valor: '+valor);
+=======
                         console.log(result.messenge);
+>>>>>>> 324efc59050d16f170d3d80ed2d218efa8b9270f
                         $("#msg_"+index+"_"+id_user).html(valor);
                         $("#error_msg_"+index+"_"+id_user).fadeIn();
                     });
@@ -150,9 +154,9 @@
 
             // script para realizar el borrado del registro
             $('.btn-delete').click(function (e) {
-                e.preventDefault();
                 r = confirm("Estas seguro de realizar esta acción?");
                 if (r) {
+                    // e.preventDefault();
                     var row = $(this).parents('tr'); //fila contentiva de la data
                     var id = row.data('id');  console.log(id);
                     var row_info = $('#user_table_collapse'+id).parents('tr'); console.log(row_info)//fila contentiva del collapsible

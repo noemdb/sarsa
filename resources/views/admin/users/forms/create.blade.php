@@ -2,7 +2,7 @@
   <div class="panel-heading">Formulario para el Registro de Nuevo usuario.</div>
   <div class="panel-body">
     {!! Form::open(['route' => 'users.store', 'method' => 'POST', 'id'=>'form-user-create']) !!}
-    {{ csrf_field() }}
+    {{-- {{ csrf_field() }} --}}
 
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
