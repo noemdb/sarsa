@@ -73,7 +73,7 @@ class UserController extends Controller
 
         $user = User::create($request->all());
 
-        $messenge = trans('db_oper_result.user_create_ok');;
+        $messenge = trans('db_oper_result.user_create_ok');
 
         if($request->ajax()){
 

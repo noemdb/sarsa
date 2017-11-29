@@ -5058,6 +5058,8 @@ a.thumbnail.active {
 .alert-dismissable,
 .alert-dismissible {
   padding-right: 35px;
+  margin-top: 8px;/*nmdb*/
+  box-shadow: 1px 1px 5px 5px rgba(200, 200, 200, 0.90);/*nmdb*/
 }
 .alert-dismissable .close,
 .alert-dismissible .close {
