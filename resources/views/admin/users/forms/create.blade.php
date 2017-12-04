@@ -14,9 +14,13 @@
     <div align="center">
         <div class="btn-group">
 
-          <button type="submit" class="btn-user-create btn btn-primary btn-block" value="create" id="create">
+          <button type="submit" class="btn-user-create btn btn-primary" value="create" id="create">
               <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
               Registrar 
+          </button>
+          <button type="reset" class="btn-user-reset btn btn-warning" value="Reset" id="reset">
+              <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+              Reset 
           </button>
 
         </div>

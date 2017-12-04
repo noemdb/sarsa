@@ -73,6 +73,10 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\sys\Logdb');
     }
+    public function settings()
+    {
+        return $this->hasMany('App\Models\sys\Setting');
+    }
     /*FIN relaciones entre modelos*/
 
 

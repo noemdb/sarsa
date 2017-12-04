@@ -70,6 +70,7 @@ class HomeController extends Controller
         // $logdbs = Loginout::all();
 
         return view('admin.home',compact('tasks','messeges','alerts','logdbs'));
+        
     }
 
 }
