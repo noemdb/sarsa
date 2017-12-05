@@ -135,28 +135,6 @@
 
             });//fin del evento clic
 
-            // script para realizar para registrar nuevo usuario usando peticiones ajax
-            // $('.btn-user-create').click(function (e) {
-            //     e.preventDefault();
-            //     var id_user = $(this).attr('id'); //console.log(id_user);
-            //     var idform = '#form-user-create'; //console.log(idform);
-            //     var form = $(idform); //console.log(form);
-            //     var url = form.attr('action'); //console.log(url);
-            //     var data = form.serialize(); //console.log(data);
-            //     var modal_active = 'user-create'; //console.log('modal_active: '+modal_active);
-
-            //     $.post(url, data, function (result){
-            //         console.log(result.messenge);
-            //         location.reload();
-            //     }).fail(function (result) {
-            //         $.each(result.responseJSON.errors,function(index,valor){
-            //             console.log(result.messenge);
-            //             $("#msg_"+index+"_"+id_user).html(valor);
-            //             $("#error_msg_"+index+"_"+id_user).fadeIn();
-            //         });
-            //     });
-            // });//fin del evento clic
-
             // script para realizar el borrado del registro
             $('.btn-delete').click(function (e) {
                 e.preventDefault();
@@ -186,6 +164,28 @@
                     });
                 }
             });//fin del evento clic
+
+            // script para realizar para registrar nuevo usuario usando peticiones ajax
+            // $('.btn-user-create').click(function (e) {
+            //     e.preventDefault();
+            //     var id_user = $(this).attr('id'); //console.log(id_user);
+            //     var idform = '#form-user-create'; //console.log(idform);
+            //     var form = $(idform); //console.log(form);
+            //     var url = form.attr('action'); //console.log(url);
+            //     var data = form.serialize(); //console.log(data);
+            //     var modal_active = 'user-create'; //console.log('modal_active: '+modal_active);
+
+            //     $.post(url, data, function (result){
+            //         console.log(result.messenge);
+            //         location.reload();
+            //     }).fail(function (result) {
+            //         $.each(result.responseJSON.errors,function(index,valor){
+            //             console.log(result.messenge);
+            //             $("#msg_"+index+"_"+id_user).html(valor);
+            //             $("#error_msg_"+index+"_"+id_user).fadeIn();
+            //         });
+            //     });
+            // });//fin del evento clic
 
         });
     </script>
