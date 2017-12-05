@@ -10,6 +10,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,6 +19,24 @@ Auth::routes();
 
 //rutas iniciales
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/setting', function () {
+
+     // example controller usage
+    $user = \App\User::find(1);
+    // $user->setSetting('first_name','Admin');
+    $user->setSettings([
+        'topnavbar_messages' => 'true',
+        'topnavbar_tasks' => 'false',
+        'topnavbar_alerts' => 'false',
+        'topnavbar_logdbs' => 'false',
+        'topnavbar_loginouts' => 'false'
+    ]);
+
+    return "registrado";
+
+
+});
 
 //rutas para admin
 Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], function(){

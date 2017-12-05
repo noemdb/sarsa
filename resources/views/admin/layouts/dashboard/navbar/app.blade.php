@@ -11,36 +11,56 @@
     {{-- </li> --}}
 
     
-    <li class="dropdown">
+    @if(Auth::user()->getSetting('topnavbar_messages')=='true')
+    
+        <li class="dropdown">
 
-        @include('admin.layouts.dashboard.navbar.elements.ajaxmessages')
-        
-    </li>
+            @include('admin.layouts.dashboard.navbar.elements.ajaxmessages')
 
-    <li class="dropdown">
+        </li>
 
-        @include('admin.layouts.dashboard.navbar.elements.ajaxtasks')
-        
-    </li>
+    @endif
 
-    <li class="dropdown">
+    @if(Auth::user()->getSetting('topnavbar_tasks')=='true')
 
-        @include('admin.layouts.dashboard.navbar.elements.ajaxalerts')
-        
-    </li>
+        <li class="dropdown">
+
+            @include('admin.layouts.dashboard.navbar.elements.ajaxtasks')
+
+        </li>
+
+    @endif
+
+    @if(Auth::user()->getSetting('topnavbar_alerts')=='true')
+
+        <li class="dropdown">
+
+            @include('admin.layouts.dashboard.navbar.elements.ajaxalerts')
+
+        </li>
+
+    @endif
 
 
-    <li class="dropdown">
+    @if(Auth::user()->getSetting('topnavbar_logdbs')=='true')
 
-        @include('admin.layouts.dashboard.navbar.elements.ajaxlogdbs')
-        
-    </li>
+        <li class="dropdown">
 
-    <li class="dropdown">
+            @include('admin.layouts.dashboard.navbar.elements.ajaxlogdbs')
 
-        @include('admin.layouts.dashboard.navbar.elements.ajaxloginouts')
-        
-    </li>
+        </li>
+
+    @endif
+
+    @if(Auth::user()->getSetting('topnavbar_loginouts')=='true')
+
+        <li class="dropdown">
+
+             @include('admin.layouts.dashboard.navbar.elements.ajaxloginouts')
+
+        </li>
+
+    @endif
 
     <li class="dropdown">
 

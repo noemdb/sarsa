@@ -9,11 +9,13 @@ use Illuminate\Database\Eloquent\Model;
 /*Clases adicionadas*/
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Traits\UserSettingsTrait;
 
 class User extends Authenticatable
 {
     use Notifiable;
     use SoftDeletes;
+    use UserSettingsTrait;
 
     /**
      * The attributes that are mass assignable.
