@@ -20,23 +20,21 @@ Auth::routes();
 //rutas iniciales
 Route::get('/home', 'HomeController@index')->name('home');
 
+//INI establecer setting para los usuarios
 Route::get('/setting', function () {
-
-     // example controller usage
-    $user = \App\User::find(1);
+    $user = \App\User::find(\Auth::user()->id);
     // $user->setSetting('first_name','Admin');
     $user->setSettings([
         'topnavbar_messages' => 'true',
         'topnavbar_tasks' => 'false',
         'topnavbar_alerts' => 'false',
         'topnavbar_logdbs' => 'false',
-        'topnavbar_loginouts' => 'false'
+        'topnavbar_loginouts' => 'false',
+        'numregpag_userlist' => '10'
     ]);
-
     return "registrado";
-
-
 });
+//FIN establecer setting para los usuarios
 
 //rutas para admin
 Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], function(){

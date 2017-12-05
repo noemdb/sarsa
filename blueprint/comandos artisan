@@ -78,3 +78,10 @@ php artisan event:generate
 Form Request Validation
 php artisan make:request 'Admin\CreateUserRequest'
 php artisan make:request 'Admin\UpdateUserRequest'
+
+#######################################################################################################
+Implementacion de Trait
+php artisan make:command TraitMakeCommand
+mostrar lista de comandos (nuevo comando)
+php artisan
+php artisan make:trait UserSettingsTrait
