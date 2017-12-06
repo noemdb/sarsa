@@ -40,7 +40,6 @@ trait UserSettingsTrait {
             $record->value = $value;
             $record->save();
         } else {
-            //dd($name,$value);
             $data = new Setting(['name' => $name, 'value' => $value]);
             $this->settings()->save($data);
         }

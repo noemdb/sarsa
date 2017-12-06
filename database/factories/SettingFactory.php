@@ -10,8 +10,8 @@ $factory->define(App\Models\sys\Setting::class, function (Faker $faker) {
         	return 
         	DB::table('users')
 				->select('users.*')
-				// ->leftJoin('settings', 'users.id', '=', 'settings.user_id')
-				// ->whereNull('settings.user_id')
+				->leftJoin('settings', 'users.id', '=', 'settings.user_id')
+				->whereNull('settings.user_id')
                 ->inRandomOrder()
 				->first()->id;
         }
