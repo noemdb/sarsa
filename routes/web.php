@@ -30,7 +30,20 @@ Route::get('/setting', function () {
         'topnavbar_alerts' => 'false',
         'topnavbar_logdbs' => 'false',
         'topnavbar_loginouts' => 'false',
-        'numregpag_userlist' => '10'
+        'numregpag_userlist' => '10',
+
+        'sidebar_users_crud' => 'true',
+        'sidebar_users_chart' => 'true',
+        'sidebar_messenges_crud' => 'true',
+        'sidebar_messenges_chart' => 'true',
+        'sidebar_tasks_crud' => 'true',
+        'sidebar_tasks_chart' => 'true',
+        'sidebar_alerts_crud' => 'false',
+        'sidebar_alerts_chart' => 'true',
+        'sidebar_logdbs_crud' => 'true',
+        'sidebar_logdbs_chart' => 'false',
+        'sidebar_loginouts_crud' => 'false',
+        'sidebar_loginouts_chart' => 'false'
     ]);
     return "registrado";
 });
