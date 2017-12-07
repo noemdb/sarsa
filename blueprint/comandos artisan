@@ -65,6 +65,7 @@ php artisan make:controller 'Admin\Api\Charts\DashboardController'
 php artisan make:controller 'Admin\Api\Barprogress\DashboardController'
 
 php artisan make:controller 'Admin\Crud\UserController' --resource
+php artisan make:controller 'Admin\Chart\UserController'
 
 
 

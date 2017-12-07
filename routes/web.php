@@ -76,6 +76,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
 
     Route::get('/dashboard', 'HomeController@index')->name('home');
 
+
     //INI rutas para los api
     Route::get('/api/charts/taskmonth', 'Api\Charts\DashboardController@getApiTaskMonth')->name('taskmonth');
     Route::get('/api/charts/uservrstask', 'Api\Charts\DashboardController@getApiUserTaskLoad')->name('uservrstask');
@@ -95,10 +96,17 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
 
     //FIN rutas para los api
 
-    //INI CRUD modelos
-    Route::resource('models/users','Crud\UserController');
-    Route::resource('models/profiles','Crud\ProfileController');
-    //FIN CRUD modelos
+    //INI modelos
+    Route::resource('models/crud/users','Crud\UserController');
+    Route::get('models/charts/users', 'Chart\UserController@index')->name('viewchartusers');
+    Route::get('models/charts/users/usersmonth', 'Chart\UserController@UsersMonth')->name('usersmonth');
+    Route::get('models/charts/users/usersactive', 'Chart\UserController@UserActive')->name('usersactive');
+    Route::get('models/charts/users/usersconnect', 'Chart\UserController@UserConnect')->name('usersconnect');
+    // Route::resource('models/chart/users','Chart\UserController');
+
+    Route::resource('models/crud/profiles','Crud\ProfileController');
+    //FIN modelos
+    
 
 	Route::get('/charts/sbadmin', function () {
 	    return View::make('elements.charts.sbadmin');

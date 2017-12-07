@@ -9,10 +9,9 @@
         {{-- @include('admin.layouts.dashboard.navbar.top-links.hide-sidebar') --}}
 
     {{-- </li> --}}
-
     
     @if(Auth::user()->getSetting('topnavbar_messages')=='true')
-    
+
         <li class="dropdown">
 
             @include('admin.layouts.dashboard.navbar.elements.ajaxmessages')
@@ -41,7 +40,6 @@
 
     @endif
 
-
     @if(Auth::user()->getSetting('topnavbar_logdbs')=='true')
 
         <li class="dropdown">
@@ -67,8 +65,6 @@
         @include('admin.layouts.dashboard.navbar.elements.user')
         
     </li>
-
-
 
 </ul>
 <!-- /.navbar-top-links -->

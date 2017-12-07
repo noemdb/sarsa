@@ -17,11 +17,13 @@ $factory->define(App\User::class, function (Faker $faker) {
     static $password;
 
     $is_active = ['Activo'=>'Activo','Desactivo'=>'Desactivo'];
+    $ffinal = $faker->dateTimeBetween('2017-01-01','2017-12-31');
 
     return [
         'username' => $faker->unique()->userName,
         'password' => $password ?: $password = bcrypt('secret'),
         'is_active' => array_rand($is_active,1),
+        'created_at' => $ffinal,
         'remember_token' => str_random(10),
     ];
 });

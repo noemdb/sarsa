@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\UserSettingsTrait;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {

@@ -7,7 +7,7 @@
         <ul class="nav nav-third-level">
             @if(Auth::user()->getSetting('sidebar_models_'.$models.'_crud')=='true')
                 <li>
-                    <a href="{{ url ('admin/models/'.$models) }}">
+                    <a href="{{ url ('admin/models/crud/'.$models) }}">
                         <i class="fa fa-list text-purple" aria-hidden="true"> </i>
                         CRUD
                     </a>
@@ -15,7 +15,7 @@
             @endif
             @if(Auth::user()->getSetting('sidebar_models_'.$models.'_chart')=='true')
             <li>
-                <a href="{{ url ('admin/models/'.$models.'/chart') }}">
+                <a href="{{ url ('admin/models/charts/'.$models) }}">
                     <i class="fa fa-pie-chart text-teal" aria-hidden="true"> </i>
                     Gráficas
                 </a>
