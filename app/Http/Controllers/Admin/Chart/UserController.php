@@ -148,11 +148,16 @@ class UserController extends Controller
     public function UserConnect()
     {
 
-        $usersconnect = 
-            User::Where('last_login_at', '>=', Carbon::now())
-            ->Where('last_loginout_at', '<=', Carbon::now())
-            ->count();
+        $users = 
+            User::Where('last_loginout_at', '<=', Carbon::now())
+                ->Where('last_login_at', '<=', Carbon::now())
+                ->whereNotNull('last_loginout_at')
+                ->WhereColumn('last_loginout_at', '<', 'last_login_at')
+                ->get();
 
+        // dd($users);
+
+        $usersconnect = $users->count();
         $usersdesconnet = ( User::count() - $usersconnect );
 
         $labels = ['Conectados','No Conectados'];

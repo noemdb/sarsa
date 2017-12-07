@@ -119,7 +119,7 @@
                                     @slot('iconTitle', 'fa fa-pie-chart fa-lg')
                                     @slot('panelBody')
                                         @component('elements.charts.widgets.canvas')
-                                            @slot('ulpanel')
+                                            {{-- @slot('ulpanel')
                                                 <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-urlapi="{{ $chart['urlapi'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
                                                     <li class="active"><a href="#" data-range="10000">Todo</a></li>
                                                     <li title="365 Días"><a href="#" data-range='365'>365D</a></li>
@@ -127,7 +127,7 @@
                                                     <li title="30 Días"><a href="#" data-range='30'>30D</a></li>
                                                     <li title="7 Días"><a href="#" data-range='7'>7D</a></li>
                                                 </ul>
-                                            @endslot
+                                            @endslot --}}
                                             @slot('id', $chart['id_chart'])
                                         @endcomponent
                                     @endslot
