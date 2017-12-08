@@ -64,7 +64,7 @@
                                     <script> requestData('{{ $chart['range'] }}','{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
                                 @endsection
                                 @component('elements.widgets.panel')
-                                    @slot('class', 'warning')
+                                    @slot('class', 'info')
                                     @slot('panelControls', 'true')
                                     @slot('id', $chart['id_chart'] )
                                     @slot('panelTitle', 'Usuarios Act/Des')
@@ -96,8 +96,8 @@
                     
                         {{-- INI row chart2 --}}
                         <div class="row">
+                            {{-- INI chart Usuarios por Mes --}}
                             <div class="col-lg-6 col-md-6 col-sm-12">
-                                {{-- INI chart Usuarios por Mes --}}
                                 @php ($chart = ['range'=>'Todos','id_chart'=>'chartusersmonth','urlapi'=>route('usersmonth'),'tipo'=>'line','limit'=>8 ])
                                 @section('scripts')
                                     @parent
@@ -105,7 +105,7 @@
                                     <script> requestData('{{ $chart['range'] }}','{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
                                 @endsection
                                 @component('elements.widgets.panel')
-                                    @slot('class', 'info')
+                                    @slot('class', 'danger')
                                     @slot('panelControls', 'true')
                                     @slot('id', $chart['id_chart'] )
                                     @slot('panelTitle', 'N. Usuarios por Mes')
@@ -125,8 +125,40 @@
                                         @endcomponent
                                     @endslot
                                 @endcomponent
-                                {{-- FIN chart Usuarios por Mes --}}
                             </div>
+                            {{-- FIN chart Usuarios por Mes --}}
+
+                            {{-- INI chart Usuarios por IP --}}
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                                @php ($chart = ['range'=>'Todos','id_chart'=>'chartipsuses','urlapi'=>route('ipsuses'),'tipo'=>'line','limit'=>8 ])
+                                @section('scripts')
+                                    @parent
+                                    {{-- Llamado a la funcion responsable de inicilizar el Chart --}}
+                                    <script> requestData('{{ $chart['range'] }}','{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
+                                @endsection
+                                @component('elements.widgets.panel')
+                                    @slot('class', 'warning')
+                                    @slot('panelControls', 'true')
+                                    @slot('id', $chart['id_chart'] )
+                                    @slot('panelTitle', "IP's mas usadas")
+                                    @slot('iconTitle', 'fa fa-line-chart fa-lg')
+                                    @slot('panelBody')
+                                        @component('elements.charts.widgets.canvas')
+                                            @slot('ulpanel')
+                                                <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-urlapi="{{ $chart['urlapi'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
+                                                    <li class="active" title="Todo los datos"><a href="#" data-range='Todos'>Todos</a></li>
+                                                    <li title="12 Meses"><a href="#" data-range='12'>12M</a></li>
+                                                    <li title="9 Meses"><a href="#" data-range='9'>9M</a></li>
+                                                    <li title="6 Meses"><a href="#" data-range='6'>6M</a></li>
+                                                    <li title="3 Meses"><a href="#" data-range='3'>3M</a></li>
+                                                </ul>
+                                            @endslot
+                                            @slot('id', $chart['id_chart'])
+                                        @endcomponent
+                                    @endslot
+                                @endcomponent
+                            </div>
+                            {{-- FIN chart Usuarios por IP --}}
                         </div>
                         {{-- FIN row chart2 --}}
 

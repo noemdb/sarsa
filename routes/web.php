@@ -72,135 +72,56 @@ Route::get('/setting', function () {
 //rutas para admin
 Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], function(){
 
+    //INI Route iniciales
     Route::get('/', 'HomeController@index')->name('home');
-
     Route::get('/dashboard', 'HomeController@index')->name('home');
+    //FIN Route iniciales
 
+    //INI CRUD modelos
+    Route::resource('models/crud/users','Crud\UserController');
+    Route::resource('models/crud/profiles','Crud\ProfileController');
+    //FIN CRUD modelos
+    
+    //INI Charts modelos
+    Route::get('models/charts/users', 'Chart\UserController@index')->name('viewchartusers');
+    //FIN Charts modelos
 
-    //INI rutas para los api
+    //INI rutas para los json
     Route::group(['prefix'=>'json','namespace'=>'Json'], function(){
 
-        Route::get('/charts/taskmonth', 'Charts\TasksController@getApiTaskMonth')->name('taskmonth');
-        Route::get('/charts/uservrstask', 'Charts\TasksController@getApiUserTaskLoad')->name('uservrstask');
-        Route::get('/charts/uservrstaskasig', 'Charts\TasksController@getApiUserTaskAsig')->name('uservrstaskasig');
-        Route::get('/charts/uservrstaskdone', 'Charts\TasksController@getApiUserTaskDone')->name('uservrstaskdone');
+        //INI Charts
+        Route::group(['prefix'=>'charts','namespace'=>'Charts'], function(){
+            Route::get('/users/usersmonth', 'UserController@UsersMonth')->name('usersmonth');
+            Route::get('/users/usersactive', 'UserController@UserActive')->name('usersactive');
+            Route::get('/users/usersconnect', 'UserController@UserConnect')->name('usersconnect');
+            Route::get('/users/ipsuses', 'UserController@IpsUses')->name('ipsuses');
+
+            Route::get('/taskmonth', 'TasksController@getApiTaskMonth')->name('taskmonth');
+            Route::get('/uservrstask', 'TasksController@getApiUserTaskLoad')->name('uservrstask');
+            Route::get('/uservrstaskasig', 'TasksController@getApiUserTaskAsig')->name('uservrstaskasig');
+            Route::get('/uservrstaskdone', 'TasksController@getApiUserTaskDone')->name('uservrstaskdone');
+        });
+        //FIN Charts
         
-        Route::get('/navbar/messenges', 'Navbar\NavbarController@getApiMesseges')->name('getmessenges');
-        Route::get('/navbar/tasks', 'Navbar\NavbarController@getApiTasks')->name('gettasks');
-        Route::get('/navbar/alerts', 'Navbar\NavbarController@getApiAlerts')->name('getalerts');
-        Route::get('/navbar/logdbs', 'Navbar\NavbarController@getApiLogdbs')->name('getlogdbs');
-        Route::get('/navbar/loginouts', 'Navbar\NavbarController@getApiLoginouts')->name('getloginouts');
+        //INI Navbar
+        Route::group(['prefix'=>'navbar','namespace'=>'Navbar'], function(){
+            Route::get('/messenges', 'TopController@getApiMesseges')->name('getmessenges');
+            Route::get('/tasks', 'TopController@getApiTasks')->name('gettasks');
+            Route::get('/alerts', 'TopController@getApiAlerts')->name('getalerts');
+            Route::get('/logdbs', 'TopController@getApiLogdbs')->name('getlogdbs');
+            Route::get('/loginouts', 'TopController@getApiLoginouts')->name('getloginouts');
+        });
+        //FIN Navbar
+        
+
     });
-
-    //FIN rutas para los api
-
-    //INI modelos
-    Route::resource('models/crud/users','Crud\UserController');
-    Route::get('models/charts/users', 'Chart\UserController@index')->name('viewchartusers');
-    Route::get('models/charts/users/usersmonth', 'Chart\UserController@UsersMonth')->name('usersmonth');
-    Route::get('models/charts/users/usersactive', 'Chart\UserController@UserActive')->name('usersactive');
-    Route::get('models/charts/users/usersconnect', 'Chart\UserController@UserConnect')->name('usersconnect');
-    // Route::resource('models/chart/users','Chart\UserController');
-
-    Route::resource('models/crud/profiles','Crud\ProfileController');
-    //FIN modelos
+    //FIN rutas para los json
     
-
-	Route::get('/charts/sbadmin', function () {
-	    return View::make('elements.charts.sbadmin');
-	});
+	// Route::get('/charts/sbadmin', function () {
+	//     return View::make('elements.charts.sbadmin');
+	// });
 
 });
 
 // rutas para los Charts
 // Route::get('charts/api', 'Charts/ChartController@getApiUserTaskLoad');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Route::get('/admin', function () { return view('admin.home'); })->middleware('auth');
-
-// Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], function(){
-
-//     Route::get('/dashboard', function () {
-//         return view('admin.home');
-//     });
-//     Route::get('/login', function () {
-//         return view('admin.auth.login');
-//     });
-//     Route::get('/charts/sbadmin', function () {
-//         return View::make('admin.elements.charts.sbadmin');
-//     });
-//     Route::get('/charts/flot', function () {
-//         return View::make('admin.elements.charts.flot');
-//     });
-//     Route::get('/charts/morris', function () {
-//         return View::make('admin.elements.charts.morris');
-//     });
-//     Route::get('/tables/simple', function () {
-//         return View::make('admin.elements.tables.simple');
-//     });
-//     Route::get('/tables/datatables', function () {
-//         return View::make('admin.elements.tables.datatables');
-//     });
-//     Route::get('/forms', function () {
-//         return View::make('admin.elements.form');
-//     });
-//     Route::get('/grid', function () {
-//         return View::make('admin.elements.grid');
-//     });
-//     Route::get('/buttons', function () {
-//         return View::make('admin.elements.buttons');
-//     });
-//     Route::get('/icons', function () {
-//         return View::make('admin.elements.icons');
-//     });
-//     Route::get('/panels', function () {
-//         return View::make('admin.elements.panel');
-//     });
-//     Route::get('/typography', function () {
-//         return View::make('admin.elements.typography');
-//     });
-//     Route::get('/notifications', function () {
-//         return View::make('admin.elements.notifications');
-//     });
-//     Route::get('/blank', function () {
-//         return View::make('admin.elements.blank');
-//     });
-//     Route::get('/documentation', function () {
-//         return View::make('admin.elements.documentation');
-//     });
-//     Route::get('/stats', function() {
-//        return View::make('admin.elements.stats');
-//     });
-    Route::get('/progressbars', function() {
-        return View::make('elements.progressbars');
-    });
-//     Route::get('/collapse', function() {
-//         return View::make('admin.elements.collapse');
-//     });
-// });
