@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\Api\Charts;
+namespace App\Http\Controllers\Admin\Api\Charts\Tasks;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -18,7 +18,7 @@ use App\Models\sys\Task;
 // use App\Models\sys\Alert;
 // use App\Models\sys\Loginout;
 // use App\Models\sys\Logdb;
-class DashboardController extends Controller
+class ApiController extends Controller
 {
 
     // verificando sesion activa

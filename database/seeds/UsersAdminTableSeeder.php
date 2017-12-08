@@ -16,6 +16,8 @@ class UsersAdminTableSeeder extends Seeder
             'username' => "admin",
             'password' => $password ?: $password = bcrypt('admin'),
             'is_active' => 'Activo',
+            'created_at'=> "20000101",
+            'last_login_at' => "20000101",
             'remember_token' => str_random(10),
         ]);
 

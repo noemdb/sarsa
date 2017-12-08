@@ -102,21 +102,19 @@ class UserController extends Controller
         $limit = ($request->input('limit')!=null) ? $request->input('limit') : 8;
 
         if($range=='Todos'){
-            $finicial = Carbon::now()->SubYear(10);
-            $ffinal = Carbon::now()->AddYear(10);
+            $fecha = Carbon::now();
         }else{
-            $finicial = Carbon::now()->subDays($range);
-            $ffinal = Carbon::now();
+            $fecha = Carbon::now()->subDays($range);
         }
 
         $users = 
             User::select('is_active',DB::raw('count(is_active) as users_count'))
-            ->Where('created_at', '>=', $finicial)
-            ->Where('created_at', '<=', $ffinal)
+            ->Where('created_at', '<=', $fecha)
+            // ->Where('created_at', '<=', $ffinal)
             ->groupby('is_active')
             ->orderBy('users_count', 'desc')
-            ->get()
-            ->take($limit);
+            ->get();
+            // ->take($limit);
 
         //dd($users->toarray());
 
@@ -160,25 +158,29 @@ class UserController extends Controller
         $usersconnect = $users->count();
         $usersdesconnet = ( User::count() - $usersconnect );
 
-        $labels = ['Conectados','No Conectados'];
+        $labels = ['Usuarios'];
         $values = [$usersconnect, $usersdesconnet];
-        for ($i=0; $i < count($labels) ; $i++) { 
-            $colors[] = 'rgba('.rand(0,255).', '.rand(0,255).', '.rand(0,255).', 1)';
-        }
 
         unset($ChartDataSQL);
         $ChartDataSQL = [
             'labels'=>$labels,
             'datasets'=>[
                 [
-                    "label"=>"Usuarios Act/Des",
-                    "backgroundColor"=>$colors,
-                    "data"=>$values
+                    "label"=>"Conectados",
+                    "backgroundColor"=>"rgba(0,166,90,1)",//verde
+                    "borderColor"=>"rgba(0,166,90,1)",
+                    "borderWidth"=>1,
+                    "data"=>[$usersconnect]
+                ],
+                [
+                    "label"=>"Desconectados",
+                    "backgroundColor"=>"rgba(245,105,84,1)",//naranja
+                    "borderColor"=>"rgba(245,105,84,1)",
+                    "borderWidth"=>1,
+                    "data"=>[$usersdesconnet]
                 ]
             ]
         ];
-
-        // dd($tasks);
 
         return json_encode($ChartDataSQL);
     }

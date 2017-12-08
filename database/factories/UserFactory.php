@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use Illuminate\Support\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +23,9 @@ $factory->define(App\User::class, function (Faker $faker) {
         'username' => $faker->unique()->userName,
         'password' => $password ?: $password = bcrypt('secret'),
         'is_active' => array_rand($is_active,1),
-        'last_login_at' => $faker->dateTimeBetween('2017-01-01','2017-12-31'),
-        'last_loginout_at' => $faker->dateTimeBetween('2017-01-01','2017-12-31'),
-        'created_at' => $faker->dateTimeBetween('2017-01-01','2017-12-31'),
+        'last_login_at' => $faker->dateTimeBetween('2017-01-01',Carbon::now()),
+        'last_loginout_at' => $faker->dateTimeBetween('2017-01-01',Carbon::now()),
+        'created_at' => $faker->dateTimeBetween('2017-01-01',Carbon::now()),
         'remember_token' => str_random(10),
     ];
 });

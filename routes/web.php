@@ -78,21 +78,19 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
 
 
     //INI rutas para los api
-    Route::get('/api/charts/taskmonth', 'Api\Charts\DashboardController@getApiTaskMonth')->name('taskmonth');
-    Route::get('/api/charts/uservrstask', 'Api\Charts\DashboardController@getApiUserTaskLoad')->name('uservrstask');
-    Route::get('/api/charts/uservrstaskasig', 'Api\Charts\DashboardController@getApiUserTaskAsig')->name('uservrstaskasig');
-    Route::get('/api/charts/uservrstaskdone', 'Api\Charts\DashboardController@getApiUserTaskDone')->name('uservrstaskdone');
-    
-    Route::get('/api/navbar/messenges', 'Api\Navbar\NavbarController@getApiMesseges')->name('getmessenges');
-    Route::get('/api/navbar/tasks', 'Api\Navbar\NavbarController@getApiTasks')->name('gettasks');
-    Route::get('/api/navbar/alerts', 'Api\Navbar\NavbarController@getApiAlerts')->name('getalerts');
-    Route::get('/api/navbar/logdbs', 'Api\Navbar\NavbarController@getApiLogdbs')->name('getlogdbs');
-    Route::get('/api/navbar/loginouts', 'Api\Navbar\NavbarController@getApiLoginouts')->name('getloginouts');
+    Route::group(['prefix'=>'json','namespace'=>'Json'], function(){
 
-    // Route::get('Api/barprogress/taskmonth', 'Api\Barprogress\DashboardController@getApiTaskMonth')->name('taskmonthprogress');
-    // Route::get('Api/barprogress/uservrstask', 'Api\Barprogress\DashboardController@getApiUserTaskLoad')->name('uservrstaskprogress');
-    // Route::get('Api/barprogress/uservrstaskasig', 'Api\Barprogress\DashboardController@getApiUserTaskAsig')->name('uservrstaskprogress');
-    // Route::get('Api/barprogress/uservrstaskdone', 'Api\Barprogress\DashboardController@getApiUserTaskDone')->name('uservrstaskprogress');
+        Route::get('/charts/taskmonth', 'Charts\TasksController@getApiTaskMonth')->name('taskmonth');
+        Route::get('/charts/uservrstask', 'Charts\TasksController@getApiUserTaskLoad')->name('uservrstask');
+        Route::get('/charts/uservrstaskasig', 'Charts\TasksController@getApiUserTaskAsig')->name('uservrstaskasig');
+        Route::get('/charts/uservrstaskdone', 'Charts\TasksController@getApiUserTaskDone')->name('uservrstaskdone');
+        
+        Route::get('/navbar/messenges', 'Navbar\NavbarController@getApiMesseges')->name('getmessenges');
+        Route::get('/navbar/tasks', 'Navbar\NavbarController@getApiTasks')->name('gettasks');
+        Route::get('/navbar/alerts', 'Navbar\NavbarController@getApiAlerts')->name('getalerts');
+        Route::get('/navbar/logdbs', 'Navbar\NavbarController@getApiLogdbs')->name('getlogdbs');
+        Route::get('/navbar/loginouts', 'Navbar\NavbarController@getApiLoginouts')->name('getloginouts');
+    });
 
     //FIN rutas para los api
 
