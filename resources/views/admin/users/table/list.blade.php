@@ -33,7 +33,7 @@
                 {{$user->is_active}}
             </td>
 
-            <td  id="td-rol-{{$user->id}}" class="rol-{{ $rol['rol'] or '' }}" id="rol">
+            <td  id="td-rol-{{$user->id}}" class="rol-{{ $rol['rol'] or '' }}">
                  {{$rol['rol']}}
             </td>
 

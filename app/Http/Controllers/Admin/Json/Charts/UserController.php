@@ -63,7 +63,7 @@ class UserController extends Controller
             ->Where('created_at', '>=', $finicial)
             ->Where('created_at', '<=', $ffinal)
             ->groupby('month')
-            ->orderBy('value', 'desc')
+            ->orderBy('month', 'asc')
             ->get();
 
         //dd($usersmonth);
@@ -183,69 +183,6 @@ class UserController extends Controller
         ];
 
         return json_encode($ChartDataSQL);
-    }
-
-    public function IpsUses(Request $request){
-
-        $range = ($request->input('range')!=null) ? $request->input('range') : 'Todos';
-        $limit = ($request->input('limit')!=null) ? $request->input('limit') : 8;
-
-        if($range=='Todos'){
-            $finicial = Carbon::now()->SubYear(10);
-            $ffinal = Carbon::now()->AddYear(10);
-        }else{
-            $finicial = Carbon::now()->subDays($range);
-            $ffinal = Carbon::now();
-        }       
-
-        $userstasks = Task::getUserTasks($finicial,$ffinal,$limit); // return username,user_id,value
-
-        // dd($userstasks);
-
-        $labels = $userstasks->pluck('username');
-        $users_id = $userstasks->pluck('user_id');
-
-        // dd($userstasks->toarray(),$labels , $users_id);
-
-        $tasks_iniciadas = Task::getCountTotal($users_id,$finicial,$ffinal,'iniciada');
-        $tasks_finalizadas = Task::getCountTotal($users_id,$finicial,$ffinal,'finalizada');
-        $tasks_asignadas = Task::getCountTotal($users_id,$finicial,$ffinal,'');
-
-        // dd($tasks_iniciadas,$tasks_finalizadas,$tasks_asignadas);
-
-        unset($ChartDataSQL);
-        $ChartDataSQL = [
-            'labels'=>$labels,
-            'datasets'=>[
-                [
-                    "label"=>"Iniciadas",
-                    "backgroundColor"=>"rgba(245,105,84,1)",
-                    "borderColor"=>"rgba(245,105,84,1)",
-                    "borderWidth"=>1,
-                    "data"=>$tasks_iniciadas
-                ],
-                [
-                    "label"=>"Finalizadas",
-                    "backgroundColor"=>"rgba(0,166,90,1)",
-                    "borderColor"=>"rgba(0,166,90,1)",
-                    "borderWidth"=>1,
-                    "data"=>$tasks_finalizadas
-                ],
-                [
-                    "label"=>"Asignadas",
-                    "backgroundColor"=>"rgba(0,192,239,1)",
-                    "borderColor"=>"rgba(0,192,239,1)",
-                    "borderWidth"=>1,
-                    "data"=>$tasks_asignadas
-                ]
-            ]
-        ];
-
-        // dd($tasks);
-
-        return json_encode($ChartDataSQL);
-
-
     }
 
 }

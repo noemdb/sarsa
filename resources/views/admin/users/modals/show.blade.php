@@ -8,7 +8,7 @@
           <i class="fa fa-close" aria-hidden="true"></i>
         </button>
 
-        <h5 class="modal-title" align="left" id="myModalLabel"><strong>Datos de Usuario</strong></h5>
+        <h4 class="modal-title" align="left" id="myModalLabel"><strong>Datos de Usuario {{$user->username}}</strong></h4>
       </div>
 
       @if($user->is_active=='Activo')
@@ -28,13 +28,12 @@
         <div class="tab-content">
           <div id="showuser_tab_{{$user->id}}_general" class="tab-pane fade in active">
             {{-- <h3>General</h3> --}}
-            {{-- <br> --}}
-            {{-- <div class="panel panel-info"> --}}
               @include('admin.users.thumbnail.user')
-            {{-- </div> --}}
           </div>
           <div id="showuser_tab_{{$user->id}}_other1" class="tab-pane fade">
             {{-- <h3>Menu 1</h3> --}}
+            @php($profile = $user->profile)
+            {{-- @php($profile->user = $user) --}}
             @include('admin.users.thumbnail.profile')
           </div>
           <div id="showuser_tab_{{$user->id}}_other2" class="tab-pane fade">

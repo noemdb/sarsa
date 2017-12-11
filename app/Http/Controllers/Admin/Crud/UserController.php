@@ -38,7 +38,6 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        
         $users = User::OrderBy('users.id','DESC')
             // ->username($arr_get)
             ->with('profile')

@@ -5,16 +5,46 @@ namespace App\Http\Controllers\Admin\Crud;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+//validation request
+use App\Http\Requests\Admin\CreateUserRequest;
+use App\Http\Requests\Admin\UpdateUserRequest;
+
+//Helpers
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Session;
+
+//models
+use App\User;
+use App\Models\sys\Profile;
+use App\Models\sys\Rol;
+
 class ProfileController extends Controller
 {
+    /*
+        Constructor, verifica login del usuario - Profile
+    */
+    public function __construct(){
+
+        $this->middleware('auth');
+
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $profiles = Profile::OrderBy('id','DESC')
+            // ->username($arr_get)
+            ->with('User')
+            // ->with('rols')
+            ->get();
+
+        // dd($profiles);
+
+        return view('admin.profiles.index', compact('profiles'));
     }
 
     /**

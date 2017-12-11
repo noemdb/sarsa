@@ -45,6 +45,7 @@ Route::get('/setting', function () {
 
         //sidebar nivel 2
         'sidebar_models_users' => 'true',
+        'sidebar_models_profiles' => 'true',
         'sidebar_models_messenges' => 'true',
         'sidebar_models_tasks' => 'true',
         'sidebar_models_alerts' => 'true',
@@ -54,6 +55,8 @@ Route::get('/setting', function () {
         //sidebar nivel 3
         'sidebar_models_users_crud' => 'true',
         'sidebar_models_users_chart' => 'true',
+        'sidebar_models_profiles_crud' => 'true',
+        'sidebar_models_profiles_chart' => 'true',
         'sidebar_models_messenges_crud' => 'true',
         'sidebar_models_messenges_chart' => 'true',
         'sidebar_models_tasks_crud' => 'true',
@@ -94,7 +97,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
             Route::get('/users/usersmonth', 'UserController@UsersMonth')->name('usersmonth');
             Route::get('/users/usersactive', 'UserController@UserActive')->name('usersactive');
             Route::get('/users/usersconnect', 'UserController@UserConnect')->name('usersconnect');
-            Route::get('/users/ipsuses', 'UserController@IpsUses')->name('ipsuses');
+            // Route::get('/users/ipsuses', 'UserController@IpsUses')->name('ipsuses');
 
             Route::get('/taskmonth', 'TasksController@getApiTaskMonth')->name('taskmonth');
             Route::get('/uservrstask', 'TasksController@getApiUserTaskLoad')->name('uservrstask');

@@ -23,10 +23,28 @@
                     </div>
                 </li>
 
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-4 col-md-4">Email</div>
+                        <div class="col-xs-8 col-sm-8 col-md-8"><strong>{{$user->profile->email or ''}}</strong></div>
+                    </div>
+                </li>
+
                 <li class="list-group-item status-{{$user->is_active or ''}}">
                     <div class="row">
                         <div class="col-xs-4 col-sm-4 col-md-4">Estado</div>
                         <div class="col-xs-8 col-sm-8 col-md-8"><strong>{{$user->is_active or ''}}</strong></div>
+                    </div>
+                </li>
+
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-4 col-xs-4 col-sm-4 col-md-4">
+                            Nombre
+                        </div>
+                        <div class="col-xs-8 col-sm-8 col-md-8">
+                            {{$user->profile->firstname or ''}} {{$user->profile->lastname or ''}}
+                        </div>
                     </div>
                 </li>
 

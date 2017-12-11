@@ -9,7 +9,16 @@
         @slot('icon', 'user')
         @slot('class', 'navy')
     @endcomponent
-    {{-- FIN messenges --}}
+    {{-- FIN user --}}
+
+    {{-- INI profile --}}
+    @component('admin.layouts.dashboard.sidebar.elements.partials.models')
+        @slot('models', 'profiles')
+        @slot('titulo', 'Perfiles')
+        @slot('icon', 'id-card')
+        @slot('class', 'info')
+    @endcomponent
+    {{-- FIN profile --}}
 
     {{-- INI messenges --}}
     @component('admin.layouts.dashboard.sidebar.elements.partials.models')
