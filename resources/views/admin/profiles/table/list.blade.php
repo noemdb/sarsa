@@ -15,14 +15,14 @@
     @php ($n=1)
     @foreach($profiles as $profile)
 
-        {{-- @php ($rol = $profile->rols->where('finicial','<=',date('Y-m-d'))->where('ffinal','>=',date('Y-m-d'))->last()) --}}
+        @php ($user = $profile->user)
         
         <tr data-id="{{$profile->id}}" data-profile="{{$profile->profile->id or ''}}">
             <td class="hidden-xs">
                 {{$n++}}
             </td>
-            <td id="td-username-{{$profile->id}}" class="text text-{{ $profile->user->is_active }}">
-                {{$profile->user->username}}
+            <td id="td-username-{{$profile->id}}" class="text text-{{ $user->is_active }}">
+                {{$user->username}}
             </td>
             <td  id="td-fullname-{{$profile->id}}" class="hidden-xs hidden-sm">
                 {{$profile->full_name or ''}}
@@ -33,8 +33,8 @@
                 {{$profile->email or ''}}
             </td>
 
-            <td id="td-estado-{{$profile->id}}" class="text-{{ $profile->user->is_active }}">
-                 {{$profile->user->is_active}}
+            <td id="td-estado-{{$profile->id}}" class="text-{{ $user->is_active }}">
+                 {{$user->is_active}}
             </td>
 
 
@@ -49,16 +49,11 @@
                     @include('admin.profiles.modals.show')
 
                     {{-- boton para mostrar en un modal de edicion de regsitro --}}
-                    <a title="Editar resgistro" class="btn btn-warning btn-xs" href="#" data-toggle="modal" id="btn-edituser_{{$profile->id}}" data-target="#edituser_modal_{{$profile->id}}">
+                    <a title="Editar resgistro" class="btn btn-warning btn-xs" href="#" data-toggle="modal" id="btn-edituser_{{$profile->id}}" data-target="#editprofile_modal_{{$profile->id}}">
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                     </a>
-                    {{-- modal confirmacion de borrado del registro --}}
-                    {{-- @include('admin.users.modal.del_corfirm') --}}
 
-                    {{-- modal para la edición del registro --}}
-                    {{-- @include('admin.users.modal.edituser') --}}
-
-                    {{-- @include('admin.users.modals.edit') --}}
+                    @include('admin.profiles.modals.edit')
 
                     <a title="Eliminar" class="btn-delete btn btn-danger btn-xs" href="" id="btn-delete-userid_{{$profile->id}}" data-target="#modal-del-confirm_{{$profile->id}}" data-toggle="modal" role="button">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>

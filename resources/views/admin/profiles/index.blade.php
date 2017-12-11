@@ -11,18 +11,18 @@
             <h3>
                 Listados de Perfiles Registrados<br>
                 <small class="text-default">
-                    <strong><span id="user_counter">{{$profiles->count()}}</span> Perfiles</strong>
+                    <strong><span id="profile_counter">{{$profiles->count()}}</span> Perfiles</strong>
                 </small>
                 
                 <div class="btn-group pull-right">
                     {{--
-                    <a title="Crear nuevo Usuario" class="btn btn-primary" href="#" data-toggle="modal" data-target="#user-create" role="button">
-                        <i class="fa fa-user-plus" aria-hidden="true"></i>
+                    <a title="Crear nuevo Usuario" class="btn btn-primary" href="#" data-toggle="modal" data-target="#profile-create" role="button">
+                        <i class="fa fa-id-card-plus" aria-hidden="true"></i>
                     </a>
                     --}}
 
                     <a title="Crear nuevo Usuario" class="btn btn-primary" href="{{ route('profiles.create') }}" role="button">
-                        <i class="fa fa-user-plus" aria-hidden="true"></i>
+                        <i class="fa fa-id-card-plus" aria-hidden="true"></i>
                     </a>
 
                     {{--
@@ -92,7 +92,7 @@
         $(document).ready(function() {
             $('#table-data-profile').DataTable({
                 responsive: false,
-                pageLength: {{ Auth::user()->getSetting('numregpag_userlist') }},
+                pageLength: {{ Auth::user()->getSetting('numregpag_profilelist') }},
                 // order: [[ 0, "asc" ]],
                 language: {
                     url: "{{ asset("vendor/datatables/lang/spanish.lang") }}"
@@ -110,30 +110,30 @@
         $(document).ready(function () {
 
             // script para realizar para actualizar registros usando peticiones ajax
-            $('.btn-update-user').click(function (e) {
+            $('.btn-update-profile').click(function (e) {
                 e.preventDefault();
                 var row = $(this).parents('tr'); //console.log(row); //fila contentiva de la data
-                var id_user = row.data('id');  //console.log('id_user: '+id_user);
-                var idform = '#form-update-user_'+id_user; //console.log(idform);
+                var id_profile = row.data('id');  //console.log('id_profile: '+id_profile);
+                var idform = '#form-update-profile_'+id_profile; //console.log(idform);
                 var form = $(idform); //console.log(form.attr('action'));
                 var url = form.attr('action'); //console.log(url);
                 var data = form.serialize(); //console.log(data);
-                var modal_active = 'edituser_modal_'+id_user; //console.log('modal_active: '+modal_active);
+                var modal_active = 'editprofile_modal_'+id_profile; //console.log('modal_active: '+modal_active);
 
                 $.post(url, data, function (result){
                     // $("#msg_modal_admin_operok").text(result.messenge);
                     console.log(result.messenge);
                     $("#"+modal_active).modal('hide');
-                    $('#td-username-'+id_user).text(result.username);
-                    $('#td-username-'+id_user).attr('class', 'text-'+result.is_active);
-                    $('#td-is_active-'+id_user).text(result.is_active);
-                    $('#td-is_active-'+id_user).attr('class', 'text-'+result.is_active);
+                    $('#td-username-'+id_profile).text(result.username);
+                    $('#td-username-'+id_profile).attr('class', 'text-'+result.is_active);
+                    $('#td-is_active-'+id_profile).text(result.is_active);
+                    $('#td-is_active-'+id_profile).attr('class', 'text-'+result.is_active);
                 }).fail(function (result) {
                     console.log(result.messenge);
                     $.each(result.responseJSON.errors,function(index,valor){
                         // console.log('Index: '+index+' - Valor: '+valor);
-                        $("#msg_"+index+"_"+id_user).html(valor);
-                        $("#error_msg_"+index+"_"+id_user).fadeIn();
+                        $("#msg_"+index+"_"+id_profile).html(valor);
+                        $("#error_msg_"+index+"_"+id_profile).fadeIn();
                     });
                 });
 
@@ -146,17 +146,17 @@
                 if (r) {
                     var row = $(this).parents('tr'); //fila contentiva de la data
                     var id = row.data('id');  console.log(id);
-                    var row_info = $('#user_table_collapse'+id).parents('tr'); console.log(row_info)//fila contentiva del collapsible
+                    var row_info = $('#profile_table_collapse'+id).parents('tr'); console.log(row_info)//fila contentiva del collapsible
                     var form = $('#form-delete'); console.log(form.attr('action'));
-                    var url = form.attr('action').replace(':USER_ID',id); console.log(url);
+                    var url = form.attr('action').replace(':PROFILE_ID',id); console.log(url);
                     var data = form.serialize(); console.log(data);
 
                     $.post(url, data, function (result){
                         console.log(result.messenge);
                         row.fadeOut();
                         row_info.fadeOut();
-                        var user_counter = $("#user_counter").text() - 1;
-                        $("#user_counter").text(user_counter);
+                        var profile_counter = $("#profile_counter").text() - 1;
+                        $("#profile_counter").text(profile_counter);
                         $("#msg_modal_admin_operok").text('Registro eliminado');
                         $("#admin_operok").modal('show');
                     }).fail(function () {
@@ -164,22 +164,22 @@
                         $("#admin_oper_nook").modal('toggle');
                         $.each(result.responseJSON.errors,function(index,valor){
                             //console.log('Index: '+index+' - Valor: '+valor);
-                            $("#msg_"+index+"_"+id_user).html(valor);
-                            $("#error_msg_"+index+"_"+id_user).fadeIn();
+                            $("#msg_"+index+"_"+id_profile).html(valor);
+                            $("#error_msg_"+index+"_"+id_profile).fadeIn();
                         });                    
                     });
                 }
             });//fin del evento clic
 
             // script para realizar para registrar nuevo usuario usando peticiones ajax
-            // $('.btn-user-create').click(function (e) {
+            // $('.btn-profile-create').click(function (e) {
             //     e.preventDefault();
-            //     var id_user = $(this).attr('id'); //console.log(id_user);
-            //     var idform = '#form-user-create'; //console.log(idform);
+            //     var id_profile = $(this).attr('id'); //console.log(id_profile);
+            //     var idform = '#form-profile-create'; //console.log(idform);
             //     var form = $(idform); //console.log(form);
             //     var url = form.attr('action'); //console.log(url);
             //     var data = form.serialize(); //console.log(data);
-            //     var modal_active = 'user-create'; //console.log('modal_active: '+modal_active);
+            //     var modal_active = 'profile-create'; //console.log('modal_active: '+modal_active);
 
             //     $.post(url, data, function (result){
             //         console.log(result.messenge);
@@ -187,8 +187,8 @@
             //     }).fail(function (result) {
             //         $.each(result.responseJSON.errors,function(index,valor){
             //             console.log(result.messenge);
-            //             $("#msg_"+index+"_"+id_user).html(valor);
-            //             $("#error_msg_"+index+"_"+id_user).fadeIn();
+            //             $("#msg_"+index+"_"+id_profile).html(valor);
+            //             $("#error_msg_"+index+"_"+id_profile).fadeIn();
             //         });
             //     });
             // });//fin del evento clic

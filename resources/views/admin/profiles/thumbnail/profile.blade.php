@@ -7,7 +7,7 @@
 
         <div class="col-sm-4" align="center">
 
-            <img alt="{{$profile->user->username}}" class="img-thumbnail img-rounded" src="{{ (isset($profile->url_img)) ? asset($profile->url_img) : asset('images/avatar/user_default.png') }}">
+            <img alt="{{$user->username}}" class="img-thumbnail img-rounded" src="{{ (isset($profile->url_img)) ? asset($profile->url_img) : asset('images/avatar/user_default.png') }}">
         
         </div>
 
@@ -17,12 +17,12 @@
                 {{-- <h4></h4> --}}
 
                 <ul class="list-group" style="margin: 0px;">
-                    <li class="list-group-item list-group-item-{{$profile->user->is_active}}">
+                    <li class="list-group-item list-group-item-{{$user->is_active}}">
                         <div class="row">
                             <div class="col-xs-4 col-sm-4 col-md-4">Usuario:</div>
                             <div class="col-xs-8 col-sm-8 col-md-8">
-                                <strong>{{$profile->user->username}}</strong>
-                                <span class="label label-{{$profile->user->is_active}} pull-right">{{$profile->user->is_active}}</span>
+                                <strong>{{$user->username}}</strong>
+                                <span class="label label-{{$user->is_active}} pull-right">{{$user->is_active}}</span>
                             </div>
                         </div>
                     </li>
@@ -34,7 +34,7 @@
                         </div>
                     </li>
 
-                    <li class="list-group-item status-{{$profile->user->is_active or ''}}">
+                    <li class="list-group-item status-{{$user->is_active or ''}}">
                         <div class="row">
                             <div class="col-xs-4 col-sm-4 col-md-4">Nombre:</div>
                             <div class="col-sm-8"><strong>{{$profile->full_name or ''}}</strong></div>
@@ -65,7 +65,7 @@
                     
                 </ul>
             </div>
-            
+
         </div>
 
     </div>

@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade " id="edituser_modal_{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade " id="editprofile_modal_{{$profile->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header detail">
@@ -20,27 +20,25 @@
       {{-- <div class="modal-body" align="left"> --}}
 
         <ul class="nav nav-tabs">
-          <li class="active"><a data-toggle="tab" href="#edituser_tab_{{$user->id}}_general">Generales</a></li>
-          <li><a data-toggle="tab" href="#edituser_tab_{{$user->id}}_other1">Perfíl</a></li>
-          <li><a data-toggle="tab" href="#edituser_tab_{{$user->id}}_other2">Roles</a></li>
+          <li class="active"><a data-toggle="tab" href="#editprofile_tab_{{$profile->id}}_general">Perfil</a></li>
+          <li><a data-toggle="tab" href="#edituser_tab_{{$profile->id}}_other1">Usuario</a></li>
         </ul>
 
         <div class="tab-content">
-          <div id="edituser_tab_{{$user->id}}_general" class="tab-pane fade in active">
 
-            <div id="edituser_tab_{{$user->id}}_form" class="tab-pane fade in active">
+          <div id="editprofile_tab_{{$profile->id}}_general" class="tab-pane fade in active">
 
-              @include('admin.users.forms.update',['class_form_update_user'=>'warning'])
+              @include('admin.profiles.forms.update',['class_form_update_profile'=>'warning'])
 
           </div>
-          <div id="edituser_tab_{{$user->id}}_other1" class="tab-pane fade">
+
+          <div id="edituser_tab_{{$profile->id}}_other1" class="tab-pane fade">
+            
             {{-- <h3>Menu 1</h3> --}}
-            {{-- @include('admin.users.partials.profile') --}}
+            {{-- @include('admin.profiles.partials.profile') --}}
+
           </div>
-          <div id="edituser_tab_{{$user->id}}_other2" class="tab-pane fade">
-            {{-- <h3>Menu 2</h3> --}}
-            {{-- @include('admin.users.partials.rols') --}}
-          </div>
+
         </div>
 
       </div>

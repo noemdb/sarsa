@@ -1,32 +1,32 @@
-@if(empty($user->id))
-    @php ($user_id='create')
+@if(empty($profile->id))
+    @php ($profile_id='create')
 @else
-    @php ($user_id=$user->id)
+    @php ($profile_id=$profile->user_id)
 @endif
 
-<div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+<div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
 
-    <label for="username">Username</label>
+    <label for="firstname">Primer Nombre</label>
 
-    {!! Form::text('username', old('username'), ['class' => 'form-control','required','autofocus']); !!}
+    {!! Form::text('firstname', old('firstname'), ['class' => 'form-control','required','autofocus']); !!}
 
-    <div class="div-alert-error alert alert-danger {{ $errors->has('username') ? 'show' : 'hide' }}" id="error_msg_username_{{$user_id}}" role="alert" align="center">
+    <div class="div-alert-error alert alert-danger {{ $errors->has('firstname') ? 'show' : 'hide' }}" id="error_msg_firstname_{{$profile_id}}" role="alert" align="center">
         
-        {{ $errors->first('username') }}
+        {{ $errors->first('firstname') }}
 
     </div>
 
 </div>
 
-<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+<div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
 
-    <label for="password">{{ trans('validation.attributes.password') }}</label>
+    <label for="lastname">Segundo Nombre</label>
 
-    {!! Form::password('password', ['class' => 'form-control']); !!}
+    {!! Form::text('lastname', old('lastname'), ['class' => 'form-control','required','autofocus']); !!}
 
-    <div class="div-alert-error alert alert-danger {{ $errors->has('username') ? 'show' : 'hide' }}" id="error_msg_password_{{$user_id}}" role="alert" align="center">
+    <div class="div-alert-error alert alert-danger {{ $errors->has('lastname') ? 'show' : 'hide' }}" id="error_msg_lastname_{{$profile_id}}" role="alert" align="center">
        
-        {{ $errors->first('password') }}
+        {{ $errors->first('lastname') }}
 
     </div>
 

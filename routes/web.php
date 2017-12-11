@@ -27,6 +27,7 @@ Route::get('/setting', function () {
     $user->setSettings([
         //view report
         'numregpag_userlist' => '10',
+        'numregpag_profilelist' => '10',
 
         //view topnavbar
         'topnavbar_messages' => 'true',
