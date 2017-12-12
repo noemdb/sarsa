@@ -11,34 +11,27 @@
         <h5 class="modal-title" align="left" id="myModalLabel"><strong>Datos de Usuario</strong></h5>
       </div>
 
-      @if($user->is_active=='Activo')
-          <div class="modal-body panel panel-info">
-      @else
-          <div class="modal-body panel panel-danger">
-      @endif
-
-      {{-- <div class="modal-body" align="left"> --}}
+      <div class="modal-body panel panel-{{ ($user->is_active=='Activo') ? 'info': 'danger' }}">
 
         <ul class="nav nav-tabs">
-          <li class="active"><a data-toggle="tab" href="#editprofile_tab_{{$profile->id}}_general">Perfil</a></li>
-          <li><a data-toggle="tab" href="#edituser_tab_{{$profile->id}}_other1">Usuario</a></li>
+          <li class="active"><a data-toggle="tab" href="#editprofile_tab_{{$user->id}}_general">Perfil</a></li>
+          <li><a data-toggle="tab" href="#edituser_tab_{{$user->id}}_general">Usuario</a></li>
+          <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
         </ul>
 
         <div class="tab-content">
-
-          <div id="editprofile_tab_{{$profile->id}}_general" class="tab-pane fade in active">
-
-              @include('admin.profiles.forms.update',['class_form_update_profile'=>'warning'])
-
+          <div id="editprofile_tab_{{$user->id}}_general" class="tab-pane fade in active">
+            {{-- <h3>HOME</h3> --}}
+            @include('admin.profiles.forms.update',['class_form_update_profile'=>'warning'])
           </div>
-
-          <div id="edituser_tab_{{$profile->id}}_other1" class="tab-pane fade">
-            
-            {{-- <h3>Menu 1</h3> --}}
-            {{-- @include('admin.profiles.partials.profile') --}}
-
+          <div id="edituser_tab_{{$user->id}}_general" class="tab-pane fade">
+            {{-- <h3>Menu 1</h3><p>Some content in menu 1.</p> --}}
+            @include('admin.users.forms.update',['class_form_update_user'=>'warning'])
           </div>
-
+          <div id="menu2" class="tab-pane fade">
+            <h3>Menu 2</h3>
+            <p>Some content in menu 2.</p>
+          </div>
         </div>
 
       </div>

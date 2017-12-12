@@ -42,24 +42,22 @@
                 <div class="btn-group">
                     
                     {{-- boton para mostrar en un modal de info de regsitro --}}
-                    <a title="Mostrar detalles" class="btn btn-info btn-xs" href="#" data-toggle="modal" id="showuser_modal" data-target="#showuser_modal_{{$profile->id}}">
+                    <a title="Mostrar detalles" class="btn btn-info btn-xs" href="#" data-toggle="modal" id="showprofile_modal" data-target="#showprofile_modal_{{$profile->id}}">
                         <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
                     </a>
-
                     @include('admin.profiles.modals.show')
 
                     {{-- boton para mostrar en un modal de edicion de regsitro --}}
-                    <a title="Editar resgistro" class="btn btn-warning btn-xs" href="#" data-toggle="modal" id="btn-edituser_{{$profile->id}}" data-target="#editprofile_modal_{{$profile->id}}">
+                    <a title="Editar resgistro" class="btn btn-warning btn-xs" href="#" data-toggle="modal" id="btn-editprofile_{{$profile->id}}" data-target="#editprofile_modal_{{$profile->id}}">
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                     </a>
-
                     @include('admin.profiles.modals.edit')
 
                     <a title="Eliminar" class="btn-delete btn btn-danger btn-xs" href="" id="btn-delete-userid_{{$profile->id}}" data-target="#modal-del-confirm_{{$profile->id}}" data-toggle="modal" role="button">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                     </a>
-
                 </div>
+                
             </td>
 
             

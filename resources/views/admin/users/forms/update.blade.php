@@ -17,6 +17,5 @@
           </div>
         {{-- </form> --}}
         {!! Form::close() !!}
-      </div>
     </div>
 </div>

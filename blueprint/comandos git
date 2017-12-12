@@ -63,3 +63,8 @@ git checkout --theirs filename.c
 git add filename.c
 git commit -m "using theirs"
 git pull origin master
+
+Pull is not possible because you have unmerged files.
+git fetch origin
+git reset --hard origin/master
+git pull

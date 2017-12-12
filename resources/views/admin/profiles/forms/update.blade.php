@@ -1,5 +1,5 @@
 <div class="panel panel-{{ $class_form_update_profile or 'default' }}">
-    <div class="panel-heading">Formulario para la edición del Usuario: <strong>{{$profile->profilename}}</strong></div>
+    <div class="panel-heading">Formulario para la edición del Usuario: <strong>{{$user->username}}</strong></div>
     <div class="panel-body">
         {!! Form::model($profile,['route' => ['profiles.update', $profile->id], 'method' => 'PUT', 'id'=>'form-update-profile_'.$profile->id, 'role'=>'form']) !!}
           {{-- {{ csrf_field() }} --}}
@@ -17,6 +17,5 @@
           </div>
         {{-- </form> --}}
         {!! Form::close() !!}
-      </div>
     </div>
 </div>
