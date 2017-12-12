@@ -25,11 +25,13 @@
                 {{$user->username}}
             </td>
             <td  id="td-fullname-{{$profile->id}}" class="hidden-xs hidden-sm">
-                {{$profile->full_name or ''}}
+                <span id="span-firstname-{{$profile->id}}">{{$profile->firstname}}</span>
+                <span id="span-lastname-{{$profile->id}}">{{$profile->lastname}}</span>
+                {{-- {{$profile->full_name or ''}} --}}
                 
             </td>
 
-            <td id="td-is_email-{{$profile->id}}" class="hidden-xs ">
+            <td id="td-email-{{$profile->id}}" class="hidden-xs ">
                 {{$profile->email or ''}}
             </td>
 

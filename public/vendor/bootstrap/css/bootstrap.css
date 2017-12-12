@@ -1371,7 +1371,12 @@ a.text-danger:hover,
 a.text-danger:focus {
   color: #843534;
 }
-
+/*nmdb*/
+.text-black {
+  color: #000 !important;
+  background-color: #fff;
+}
+/*nmdb*/
 
 
 .bg-primary {

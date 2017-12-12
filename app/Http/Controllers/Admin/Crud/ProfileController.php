@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Session;
 //models
 use App\User;
 use App\Models\sys\Profile;
-use App\Models\sys\Rol;
+// use App\Models\sys\Rol;
 
 class ProfileController extends Controller
 {
@@ -99,7 +99,33 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $profile = Profile::findOrFail($id);
+
+        // echo $request;exit;
+        
+        $profile->fill($request->all());
+
+        //echo $profile;exit;
+
+        $profile->save();
+
+        $messenge = 'Operación exitosa';
+
+        if($request->ajax()){
+
+            return response()->json([
+                "firstname"=>$request->firstname,
+                "lastname"=>$request->lastname,
+                "email"=>$request->email,
+                "messenge"=>$messenge
+            ]);
+            
+        }
+
+        Session::flash('operp_ok',$messenge);
+        return redirect()->route('users.index');
+        
     }
 
     /**
@@ -108,8 +134,30 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        
+
+        $profile = Profile::findOrFail($id);
+
+        echo $profile;exit;
+
+        // $profile->Profile()->delete();
+        
+        // $profile->rols()->delete();
+
+        $profile->delete();
+
+        $messenge = 'Operación completada correctamente';
+
+        if($request->ajax()){
+
+            return $messenge;
+
+        }
+        
+        Session::flash('operp_ok',$messenge.' -> ('.$profile->firstname.')');
+
+        return redirect()->route('profile.index');
     }
 }

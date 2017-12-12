@@ -32,10 +32,27 @@
 
 </div>
 
+<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+
+    <label for="email">Email</label>
+
+    {!! Form::email('email', old('email'), ['class' => 'form-control','required','autofocus']); !!}
+
+    <div class="div-alert-error alert alert-danger {{ $errors->has('email') ? 'show' : 'hide' }}" id="error_msg_email_{{$profile_id}}" role="alert" align="center">
+       
+        {{ $errors->first('email') }}
+
+    </div>
+
+</div>
+
+
+{{-- 
 <div class="form-group">
 
     <label for="is_active">{{ trans('validation.attributes.is_active') }}</label>
 
     {!! Form::select('is_active',[ 'Desactivo' => 'Desactivo','Activo' => 'Activo'],null,['class' => 'form-control']); !!}
 
-</div>
+</div> 
+--}}
