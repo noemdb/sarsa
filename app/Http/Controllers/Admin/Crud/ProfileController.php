@@ -137,14 +137,9 @@ class ProfileController extends Controller
     public function destroy($id, Request $request)
     {
         
+        //echo $id;exit;
 
         $profile = Profile::findOrFail($id);
-
-        echo $profile;exit;
-
-        // $profile->Profile()->delete();
-        
-        // $profile->rols()->delete();
 
         $profile->delete();
 

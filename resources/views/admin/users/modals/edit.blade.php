@@ -15,8 +15,8 @@
 
 
         <ul class="nav nav-tabs">
-          <li class="active"><a data-toggle="tab" href="#edituser_tab_{{$user->id}}_general">Perfil</a></li>
-          <li><a data-toggle="tab" href="#edituser_tab_{{$user->id}}_other1">Menu 1</a></li>
+          <li class="active"><a data-toggle="tab" href="#edituser_tab_{{$user->id}}_general">Usuario</a></li>
+          <li><a data-toggle="tab" href="#edituser_tab_{{$user->id}}_other1">Perfil</a></li>
           <li><a data-toggle="tab" href="#edituser_tab_{{$user->id}}_other2">Menu 2</a></li>
         </ul>
 
@@ -26,8 +26,10 @@
             @include('admin.users.forms.update',['class_form_update_user'=>'warning'])
           </div>
           <div id="edituser_tab_{{$user->id}}_other1" class="tab-pane fade">
-            <h3>Menu 1</h3>
-            <p>Some content in menu 1.</p>
+            {{-- <h3>Menu 1</h3> --}}
+            {{-- @php($profile = $user->profile) --}}
+            {{-- {{ $profile->id }} --}}
+            {{-- @include('admin.profiles.forms.update',['class_form_update_profile'=>'warning']) --}}
           </div>
           <div id="edituser_tab_{{$user->id}}_other2" class="tab-pane fade">
             <h3>Menu 2</h3>

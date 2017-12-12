@@ -32,7 +32,7 @@
           </div>
           <div id="showuser_tab_{{$user->id}}_other1" class="tab-pane fade">
             {{-- <h3>Menu 1</h3> --}}
-            @php($profile = $user->profile)
+            @php($profile = $user->profile )
             @include('admin.profiles.thumbnail.profile')
           </div>
           <div id="showuser_tab_{{$user->id}}_other2" class="tab-pane fade">

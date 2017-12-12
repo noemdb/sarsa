@@ -15,10 +15,12 @@
     <tbody id="tdatos">
     @php ($n=1)
     @foreach($users as $user)
+        
+        @php ( $profile = $user->profile )
 
         @php ($rol = $user->rols->where('finicial','<=',date('Y-m-d'))->where('ffinal','>=',date('Y-m-d'))->last())
         
-        <tr data-id="{{$user->id}}" data-profile="{{$user->profile->id or ''}}">
+        <tr data-id="{{$user->id}}" data-profile="{{$profile->id or ''}}">
             <td class="hidden-xs">
                 {{$n++}}
             </td>
@@ -26,7 +28,8 @@
                 {{$user->username}}
             </td>
             <td  id="td-email-{{$user->id}}" class="hidden-xs hidden-sm">
-                {{$user->profile->email or ''}}
+                {{ $profile->email or ''}}
+                {{ $profile->id or ''}}
             </td>
 
             <td id="td-is_active-{{$user->id}}" class="hidden-xs text-{{ $user->is_active }}">
