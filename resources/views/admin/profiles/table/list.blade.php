@@ -17,7 +17,7 @@
 
         @php ($user = $profile->user)
         
-        <tr data-id="{{$profile->id}}" data-profile="{{$profile->profile->id or ''}}">
+        <tr data-profile="{{$profile->id}}" data-user="{{$user->id or ''}}">
             <td class="hidden-xs">
                 {{$n++}}
             </td>
@@ -50,7 +50,7 @@
                     @include('admin.profiles.modals.show')
 
                     {{-- boton para mostrar en un modal de edicion de regsitro --}}
-                    <a title="Editar resgistro" class="btn btn-warning btn-xs" href="#" data-toggle="modal" id="btn-editprofile_{{$profile->id}}" data-target="#editprofile_modal_{{$profile->id}}">
+                    <a title="Editar resgistro" class="btn btn-warning btn-xs" href="#" data-toggle="modal" id="btn-editprofile_{{$profile->id}}" data-target="#edit_modal_{{$profile->id}}">
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                     </a>
                     @include('admin.profiles.modals.edit')

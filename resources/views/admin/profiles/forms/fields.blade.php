@@ -1,7 +1,7 @@
 @if(empty($profile->id))
     @php ($profile_id='create')
 @else
-    @php ($profile_id=$profile->user_id)
+    @php ($profile_id=$profile->id)
 @endif
 
 <div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">

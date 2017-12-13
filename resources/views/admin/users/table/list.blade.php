@@ -16,11 +16,11 @@
     @php ($n=1)
     @foreach($users as $user)
         
-        @php ( $profile = $user->profile )
+        @php ($profile = $user->profile)
 
         @php ($rol = $user->rols->where('finicial','<=',date('Y-m-d'))->where('ffinal','>=',date('Y-m-d'))->last())
         
-        <tr data-id="{{$user->id}}" data-profile="{{$profile->id or ''}}">
+        <tr data-user="{{$user->id}}" data-profile="{{$profile->id or ''}}">
             <td class="hidden-xs">
                 {{$n++}}
             </td>
@@ -29,7 +29,6 @@
             </td>
             <td  id="td-email-{{$user->id}}" class="hidden-xs hidden-sm">
                 {{ $profile->email or ''}}
-                {{ $profile->id or ''}}
             </td>
 
             <td id="td-is_active-{{$user->id}}" class="hidden-xs text-{{ $user->is_active }}">
@@ -55,7 +54,7 @@
                     @include('admin.users.modals.show')
 
                     {{-- boton para mostrar en un modal de edicion de regsitro --}}
-                    <a title="Editar resgistro" class="btn btn-warning btn-xs" href="#" data-toggle="modal" id="btn-edituser_{{$user->id}}" data-target="#edituser_modal_{{$user->id}}">
+                    <a title="Editar resgistro" class="btn btn-warning btn-xs" href="#" data-toggle="modal" id="btn-edituser_{{$user->id}}" data-target="#edit_modal_{{$user->id}}">
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                     </a>
                     {{-- modal confirmacion de borrado del registro --}}

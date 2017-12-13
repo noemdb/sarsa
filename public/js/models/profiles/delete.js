@@ -4,7 +4,7 @@ $('.btn-delete').click(function (e) {
     // r = confirm("Estas seguro de realizar esta acción?");
     if (confirm("Estas seguro de realizar esta acción?")) {
         var row = $(this).parents('tr'); //fila contentiva de la data
-        var id = row.data('id');  console.log(id);
+        var id = row.data('profile');  console.log(id);
         // var row_info = $('#profile_table_collapse'+id).parents('tr'); console.log(row_info)//fila contentiva del collapsible
         var form = $('#form-delete'); //console.log(form.attr('action'));
         var url = form.attr('action').replace(':PROFILE_ID',id); //console.log(url);

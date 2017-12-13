@@ -3,12 +3,12 @@ $(document).ready(function () {
     $('.btn-update-user').click(function (e) {
         e.preventDefault();
         var row = $(this).parents('tr'); //console.log(row); //fila contentiva de la data
-        var id_user = row.data('id');  //console.log('id_user: '+id_user);
+        var id_user = row.data('user');  //console.log('id_user: '+id_user);
         var idform = '#form-update-user_'+id_user; //console.log(idform);
         var form = $(idform); //console.log(form.attr('action'));
         var url = form.attr('action'); //console.log(url);
         var data = form.serialize(); //console.log(data);
-        var modal_active = 'edituser_modal_'+id_user; //console.log('modal_active: '+modal_active);
+        var modal_active = 'edit_modal_'+id_user; console.log('modal_active: '+modal_active);
 
         $.post(url, data, function (result){
             // $("#msg_modal_admin_operok").text(result.messenge);
