@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 //validation request
-use App\Http\Requests\Admin\CreateUserRequest;
-use App\Http\Requests\Admin\UpdateUserRequest;
+use App\Http\Requests\Admin\CreateProfileRequest;
+use App\Http\Requests\Admin\UpdateProfileRequest;
 
 //Helpers
 use Illuminate\Support\Carbon;
@@ -63,9 +63,34 @@ class ProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateProfileRequest $request)
     {
-        //
+        
+        // if(Profile::findOrFail($request->user_id)){
+        //     $messenge = 'Error, hay un registro en la papelra que causa duplicidad';
+        //     Session::flash('operp_ok',$messenge);
+        //     return redirect()->route('profiles.index');         
+        // } 
+
+        $profile = Profile::create($request->all());
+
+        $messenge = trans('db_oper_result.profile_create_ok');
+
+        if($request->ajax()){
+
+            return response()->json([
+                "firstname"=>$request->firstname,
+                "lastname"=>$request->lastname,
+                "email"=>$request->email,
+                "messenge"=>$messenge
+            ]);
+
+        }
+        
+        // Session::flash('operp_ok',$messenge);
+
+        return redirect()->route('profiles.index');
+
     }
 
     /**

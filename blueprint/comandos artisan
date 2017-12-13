@@ -78,6 +78,9 @@ Form Request Validation
 php artisan make:request 'Admin\CreateUserRequest'
 php artisan make:request 'Admin\UpdateUserRequest'
 
+php artisan make:request 'Admin\CreateProfileRequest'
+php artisan make:request 'Admin\UpdateProfileRequest'
+
 #######################################################################################################
 Implementacion de Trait
 php artisan make:command TraitMakeCommand
