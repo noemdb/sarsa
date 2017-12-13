@@ -14,10 +14,10 @@ $(document).ready(function () {
             // $("#msg_modal_admin_operok").text(result.messenge);
             console.log(result.messenge);
             $("#"+modal_active).modal('hide');
-            $('#td-username-'+id_user).text(result.username);
-            $('#td-username-'+id_user).attr('class', 'text-'+result.is_active);
-            $('#td-is_active-'+id_user).text(result.is_active);
-            $('#td-is_active-'+id_user).attr('class', 'text-'+result.is_active);
+            $('.text-users-username-'+id_user).text(result.username);
+            $('.text-users-username-'+id_user).attr('class', 'text-'+result.is_active+' text-users-username-'+id_user);
+            $('.text-users-is_active-'+id_user).text(result.is_active);
+            $('.text-users-is_active-'+id_user).attr('class', 'text-'+result.is_active+' text-users-is_active-'+id_user);
         }).fail(function (result) {
             console.log(result.messenge);
             $.each(result.responseJSON.errors,function(index,valor){

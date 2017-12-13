@@ -17,12 +17,15 @@
                 {{-- <h4></h4> --}}
 
                 <ul class="list-group" style="margin: 0px;">
-                    <li class="list-group-item status-{{$user->is_active or ''}}">
+                    <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-4 col-sm-4 col-md-4">Usuario:</div>
                             <div class="col-xs-8 col-sm-8 col-md-8">
-                                <strong>{{$user->username}}</strong>
-                                <span class="label label-{{$user->is_active}} pull-right text-black">{{$user->is_active}}</span>
+                                <strong>
+                                    <span class="text-users-username-{{ $user->id }}">
+                                        {{$user->username}}
+                                    </span>
+                                </strong>
                             </div>
                         </div>
                     </li>
@@ -30,14 +33,29 @@
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-4 col-sm-4 col-md-4">Email:</div>
-                            <div class="col-xs-8 col-sm-8 col-md-8"><strong>{{$profile->email or ''}}</strong></div>
+                            <div class="col-xs-8 col-sm-8 col-md-8">
+                                <strong>
+                                    <span class="text-profiles-email-{{ $profile->id or '' }}">
+                                        {{$profile->email or ''}}
+                                    </span>
+                                </strong>
+                            </div>
                         </div>
                     </li>
 
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-4 col-sm-4 col-md-4">Nombre:</div>
-                            <div class="col-sm-8"><strong>{{$profile->full_name or ''}}</strong></div>
+                            <div class="col-sm-8">
+                                <strong>
+                                    <span class="text-profiles-firstname-{{ $profile->id or ''}}">
+                                        {{$profile->firstname or ''}}
+                                    </span>
+                                    <span class="text-profiles-lastname-{{ $profile->id or ''}}">
+                                        {{$profile->lastname or ''}}
+                                    </span>
+                                </strong>
+                            </div>
                         </div>
                     </li>
                     

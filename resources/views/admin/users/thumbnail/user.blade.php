@@ -13,12 +13,15 @@
             <div align="left">
 
             <ul class="list-group" style="margin: 0px;">
-                <li class="list-group-item list-group-item-{{$user->is_active}}">
+                <li class="list-group-item">
                     <div class="row">
                         <div class="col-xs-4 col-sm-4 col-md-4">Usuario</div>
                         <div class="col-xs-8 col-sm-8 col-md-8">
-                            <strong>{{$user->username}}</strong>
-                            <span class="label label-{{$user->is_active}} pull-right">{{$user->is_active}}</span>
+                            <strong>
+                                <span class="text-users-username-{{ $user->id }}">
+                                    {{$user->username}}
+                                </span>
+                            </strong>
                         </div>
                     </div>
                 </li>
@@ -26,7 +29,13 @@
                 <li class="list-group-item status-{{$user->is_active or ''}}">
                     <div class="row">
                         <div class="col-xs-4 col-sm-4 col-md-4">Estado</div>
-                        <div class="col-xs-8 col-sm-8 col-md-8"><strong>{{$user->is_active or ''}}</strong></div>
+                        <div class="col-xs-8 col-sm-8 col-md-8">
+                            <strong>
+                                <span class="text-users-is_active-{{ $user->id }}">
+                                    {{$user->is_active}}
+                                </span>
+                            </strong>
+                        </div>
                     </div>
                 </li>
 

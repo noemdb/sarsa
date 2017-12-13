@@ -27,9 +27,11 @@
           </div>
           <div id="edituser_tab_{{$user->id}}_other1" class="tab-pane fade">
             {{-- <h3>Menu 1</h3> --}}
-            @isset($profile)
-              {{-- @include('admin.profiles.forms.update',['class_form_update_profile'=>'warning']) --}}
-            @endisset            
+            @if(isset($profile->id))
+              @include('admin.profiles.forms.update',['class_form_update_profile'=>'warning'])
+            @else
+              @include('admin.profiles.forms.create',['class_form_create_profile'=>'primary'])
+            @endif            
           </div>
           <div id="edituser_tab_{{$user->id}}_other2" class="tab-pane fade">
             <h3>Menu 2</h3>

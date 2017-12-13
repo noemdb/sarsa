@@ -15,9 +15,9 @@ $(document).ready(function () {
             // $("#msg_modal_admin_operok").text(result.messenge);
             console.log(result.messenge);
             $("#"+modal_active).modal('hide');
-            $('#span-firstname-'+id_profile).text(result.firstname);
-            $('#span-lastname-'+id_profile).text(result.lastname);
-            $('#td-email-'+id_profile).text(result.email);
+            $('.text-profiles-firstname-'+id_profile).text(result.firstname);
+            $('.text-profiles-lastname-'+id_profile).text(result.lastname);
+            $('.text-profiles-email-'+id_profile).text(result.email);
             // $('#td-profilename-'+id_profile).attr('class', 'text-'+result.is_active);
             // $('#td-is_active-'+id_profile).text(result.is_active);
             // $('#td-is_active-'+id_profile).attr('class', 'text-'+result.is_active);
