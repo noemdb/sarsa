@@ -3,7 +3,6 @@
     <div class="panel-body">
         {!! Form::model($user,['route' => ['users.update', $user->id], 'method' => 'PUT', 'id'=>'form-update-user_'.$user->id, 'role'=>'form']) !!}
           {{-- {{ csrf_field() }} --}}
-          {{ Form::hidden('id', '', array('id' => $user->id)) }}
 
           @include('admin.users.forms.fields')
 

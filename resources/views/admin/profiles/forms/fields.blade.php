@@ -1,6 +1,12 @@
 @if(empty($profile->id))
     @php ($profile_id='create')
     {!! Form::hidden('user_id', $user->id) !!}
+    <div class="div-alert-error alert alert-danger {{ $errors->has('user_id') ? 'show' : 'hide' }}" id="error_msg_user_id_{{$user->id}}" role="alert" align="center">
+        
+        {{ $errors->first('firstname') }}
+
+    </div>
+
 @else
     @php ($profile_id=$profile->id)
 

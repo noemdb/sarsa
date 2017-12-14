@@ -66,11 +66,14 @@ class ProfileController extends Controller
     public function store(CreateProfileRequest $request)
     {
         
-        // if(Profile::findOrFail($request->user_id)){
-        //     $messenge = 'Error, hay un registro en la papelra que causa duplicidad';
-        //     Session::flash('operp_ok',$messenge);
-        //     return redirect()->route('profiles.index');         
-        // } 
+        $profile = Profile::Where('user_id','=',$request->user_id);
+
+        //echo $request->user_id;exit;
+
+        if ($profile) {
+
+            $profile->forceDelete(); 
+        }
 
         $profile = Profile::create($request->all());
 

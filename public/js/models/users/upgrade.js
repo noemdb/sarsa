@@ -8,7 +8,7 @@ $(document).ready(function () {
         var form = $(idform); //console.log(form.attr('action'));
         var url = form.attr('action'); //console.log(url);
         var data = form.serialize(); //console.log(data);
-        var modal_active = 'edit_modal_'+id_user; console.log('modal_active: '+modal_active);
+        var modal_active = 'edit_modal_'+id_user; //console.log('modal_active: '+modal_active);
 
         $.post(url, data, function (result){
             // $("#msg_modal_admin_operok").text(result.messenge);
