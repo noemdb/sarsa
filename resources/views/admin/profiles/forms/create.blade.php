@@ -7,7 +7,34 @@
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
         {{-- partial con el formulario y campos --}}
+
+        @empty($profile->id)
+
+            @isset($user->id)
+              @php
+                // $onmouseover = 'this.disabled=true;';
+                // $onmouseout = 'this.disabled=true;';
+              @endphp
+            @endisset
+
+            <div class="form-group{{ $errors->has('user_id') ? ' has-error' : '' }}">
+
+                <label for="user_id">Usuario</label>
+                
+                {!! Form::select('user_id',$user->pluck('username', 'id'),$user->id,['class' => 'form-control']); !!}
+
+                <div class="div-alert-error alert alert-danger {{ $errors->has('user_id') ? 'show' : 'hide' }}" id="error_msg_user_id_{{$user->id}}" role="alert" align="center">
+                    
+                    {{ $errors->first('user_id') }}
+
+                </div>
+
+            </div>
+
+        @endempty
+
         @include('admin.profiles.forms.fields')
+
       </div>
     </div>
     

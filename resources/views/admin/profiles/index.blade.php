@@ -21,8 +21,8 @@
                     </a>
                     --}}
 
-                    <a title="Crear nuevo Usuario" class="btn btn-primary" href="{{ route('profiles.create') }}" role="button">
-                        <i class="fa fa-id-card-plus" aria-hidden="true"></i>
+                    <a title="Crear nuevo Perfil" class="btn btn-primary" href="{{ route('profiles.create') }}" role="button">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
                     </a>
 
                     {{--

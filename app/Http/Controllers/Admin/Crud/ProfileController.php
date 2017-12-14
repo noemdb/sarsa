@@ -66,13 +66,12 @@ class ProfileController extends Controller
     public function store(CreateProfileRequest $request)
     {
         
-        $profile = Profile::Where('user_id','=',$request->user_id);
-
-        //echo $request->user_id;exit;
+        $profile = Profile::onlyTrashed()->Where('user_id','=',$request->user_id);
 
         if ($profile) {
 
-            $profile->forceDelete(); 
+            $profile->forceDelete();
+
         }
 
         $profile = Profile::create($request->all());
