@@ -73,7 +73,6 @@
                       targets: 'no-sort',
                       orderable: false,
                 } ]
-
             });
         });
     </script>

@@ -1,10 +1,10 @@
 {{-- Mensaje flash sobreo operaciones con base de datos --}}
-<div class="div-alert-error alert alert-danger hide" id="alert_result_ok_{{$user->id}}" role="alert" align="center"></div>
+<div class="div-alert-result-oper alert alert-danger hide" id="alert_result_ok_{{$profile->id or 'create'}}" role="alert" align="center"></div>
 
 {{-- INI campo user_id --}}
 @empty($profile->id)
 
-  <div class="form-group{{ $errors->has('user_id') ? ' has-error' : '' }}">
+  <div class="form-group{{ $errors->has('user_id') ? ' has-error' : '' }}"  id="div_input_username_{{ $user_id or 'create' }}">
 
       @if (isset($user->id))
 
@@ -30,7 +30,7 @@
 {{-- FIN campo user_id --}}
 
 {{-- INI campo firstname --}}
-<div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
+<div class="form-group{{ $errors->has('firstname') ? ' has-error' : '' }}" id="div_input_firstname_{{ $user_id or 'create' }}">
 
     <label for="firstname">Primer Nombre</label>
 
@@ -46,7 +46,7 @@
 {{-- FIN campo firstname --}}
 
 {{-- INI campo lastname --}}
-<div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
+<div class="form-group{{ $errors->has('lastname') ? ' has-error' : '' }}" id="div_input_lastname_{{ $user_id or 'create' }}">
 
     <label for="lastname">Segundo Nombre</label>
 
@@ -62,7 +62,7 @@
 {{-- FIN campo lastname --}}
 
 {{-- INI campo email --}}
-<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}" id="div_input_email_{{ $user_id or 'create' }}">
 
     <label for="email">Email</label>
 
