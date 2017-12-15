@@ -54,7 +54,14 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        //
+        $user = new User;
+        $user_list = User::select('users.*')
+                ->leftJoin('profiles', 'users.id', '=', 'profiles.user_id')
+                ->whereNull('profiles.user_id')
+                ->orderby('users.username','asc')
+                ->pluck('username', 'id');
+
+        return view('admin.profiles.create',compact('user','user_list'));
     }
 
     /**
@@ -89,7 +96,7 @@ class ProfileController extends Controller
 
         }
         
-        // Session::flash('operp_ok',$messenge);
+        Session::flash('operp_ok',$messenge);
 
         return redirect()->route('profiles.index');
 
@@ -124,7 +131,7 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProfileRequest $request, $id)
     {
 
         $profile = Profile::findOrFail($id);

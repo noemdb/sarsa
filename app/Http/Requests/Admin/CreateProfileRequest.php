@@ -28,9 +28,7 @@ class CreateProfileRequest extends FormRequest
             'firstname' => 'required|max:255',
             'lastname' => 'required|max:255',
             'email' => 'required|unique:profiles,email',
-            // 'user_id' => 'required|unique:profiles,user_id',
-            //'is_active' => '',
-            //
+            'user_id' => 'required|unique:profiles,user_id',
         ];
     }
 }

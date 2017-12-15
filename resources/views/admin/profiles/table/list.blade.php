@@ -48,7 +48,7 @@
                     @include('admin.profiles.modals.show')
 
                     {{-- boton para mostrar en un modal de edicion de regsitro --}}
-                    <a title="Editar resgistro" class="btn btn-warning btn-xs" href="#" data-toggle="modal" id="btn-editprofile_{{$profile->id}}" data-target="#edit_modal_{{$profile->id}}">
+                    <a title="Editar resgistro" class="btn btn-warning btn-xs" href="#" data-toggle="modal" id="btn-editprofile_{{$profile->id}}" data-target="#edit_modal_{{$user->id}}">
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                     </a>
                     @include('admin.profiles.modals.edit')

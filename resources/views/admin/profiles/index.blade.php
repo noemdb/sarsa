@@ -1,9 +1,9 @@
 @extends('admin.layouts.dashboard.app')
+
 {{-- @section('page_heading','Listado de Perfiles') --}}
+
 @section('section')
-{{-- @include('admin.modal.dialoge_confirm') --}}
-{{-- @include('admin.modal.operok') --}}
-{{-- @include('admin.modal.opernook') --}}
+
 <div class="container-fluid">
 
     <div class="panel panel-info">
@@ -15,36 +15,17 @@
                 </small>
                 
                 <div class="btn-group pull-right">
-                    {{--
-                    <a title="Crear nuevo Usuario" class="btn btn-primary" href="#" data-toggle="modal" data-target="#profile-create" role="button">
-                        <i class="fa fa-id-card-plus" aria-hidden="true"></i>
-                    </a>
-                    --}}
 
                     <a title="Crear nuevo Perfil" class="btn btn-primary" href="{{ route('profiles.create') }}" role="button">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        <i class="fa fa-id-card" aria-hidden="true"></i>
                     </a>
-
-                    {{--
-                    <a title="Listado de Perfiles" class="btn btn-info" href="{{ route('profiles.index') }}" role="button">
-                        <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-                    </a>
-                    <a title="Eliminados" class="btn btn-danger" href="{{ route('profiles.trash') }}" role="button">
-                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                    </a>
-                    --}}
 
                 </div>
-
-
 
             </h3>
         </div>
 
         <div class="panel-body">
-
-            {{-- modal con el formulario para crear usuarios --}}
-            {{-- @include('admin.profiles.modals.create') --}}
             
             {{-- Mensaje flash sobreo operaciones con base de datos --}}
             @if (Session::has('operp_ok'))
@@ -56,19 +37,9 @@
                 </div>
             @endif
 
-            {{-- INI Barra de busqueda Filtros --}}
-            {{-- @include('admin.profiles.partials.field_search',['route'=>'profiles.index']) --}}
-            {{-- FIN Barra de busqueda Filtros --}}
-
             {{-- partial con el listado de los usuarios --}}
             @include('admin.profiles.table.list')
 
-            {{-- botones de paginacon --}}
-            {{--
-            <div align="right">                        
-                {{ $profiles->links() }}
-            </div>
-            --}}
         </div>
     </div>
 </div>

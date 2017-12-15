@@ -19,7 +19,7 @@ class CreateProfilesTable extends Migration
             $table->string('firstname',50);
             $table->string('lastname',50);
             $table->string('url_img',255)->nullable();
-            $table->string('email',255)->nullable();
+            $table->string('email',255)->unique();
             $table->softDeletes();
             $table->timestamps();
             $table->foreign('user_id')

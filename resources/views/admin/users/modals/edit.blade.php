@@ -30,7 +30,7 @@
             @if(isset($profile->id))
               @include('admin.profiles.forms.update',['class_form_update_profile'=>'warning'])
             @else
-              @include('admin.profiles.forms.create',['class_form_create_profile'=>'primary'])
+              @include('admin.profiles.forms.create',['class_form_create_profile'=>'info'])
             @endif            
           </div>
           <div id="edituser_tab_{{$user->id}}_other2" class="tab-pane fade">

@@ -34,12 +34,10 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules()
     {
-        //dd(Request::All());
-        $request = Request::All();
-        //dd($request->password);
-        $rule_pass = (! empty($request['password'])) ? 'required|min:6' : '' ;
 
-        // dd($this->route);
+        $request = Request::All();
+        
+        $rule_pass = (! empty($request['password'])) ? 'required|min:6' : '' ;
 
         return [
             'username' => 'required|max:255|unique:users,username,'.$this->route->parameter('user'),
