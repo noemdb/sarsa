@@ -7,14 +7,14 @@
     <div class="container-fluid">
         
         {{-- INI Mensaje flash sobreo operaciones con base de datos --}}
-        <div id="alert-result-oper" class="alert alert-success alert-dismissible {{ Session::get('operp_ok') ? 'show' : 'hide' }}" role="alert" align="center">
+        {{-- <div id="alert-result-oper" class="alert alert-success alert-dismissible {{ Session::get('operp_ok') ? 'show' : 'hide' }}" role="alert" align="center"> --}}
             {{-- 
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
             </button> 
             --}}
-            {{ Session::get('operp_ok') ? Session::get('operp_ok'): '' }}
-        </div>
+            {{-- {{ Session::get('operp_ok') ? Session::get('operp_ok'): '' }} --}}
+        {{-- </div> --}}
         {{-- FIN Mensaje flash sobreo operaciones con base de datos --}}
         
         <div class="row">
@@ -29,7 +29,7 @@
                     </div>
 
                 </h1>
-                @include('admin.users.forms.create',['class_form_create_user'=>'info'])
+                @include('admin.users.forms.create',['class_form_create_user'=>Session::get('panel_class')])
             </div>
         </div>
 

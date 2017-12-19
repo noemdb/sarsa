@@ -1,4 +1,4 @@
-<div class="panel panel-{{ $class_form_create_profile or 'default' }}">
+<div class="panel panel-{{ $class_form_create_profile or 'default' }}" >
   <div class="panel-heading">
     Formulario para el Registro de Nuevo Perfil. <strong>{{ $user->username or '' }}</strong>
   </div>
@@ -9,7 +9,20 @@
     <div class="row">
       <div class="col-md-12">
 
-        {{-- partial con el formulario y campos --}}        
+        @if(isset($user->id))
+
+          {{ Form::hidden('user_id', $user->id) }}
+
+        @else
+
+          <div class="form-group">
+            <label for="user_id">Usuario</label>
+            {!! Form::select('user_id',$user_list,old('user_id'),['class' => 'form-control']); !!}
+          </div>
+
+        @endif
+
+        {{-- partial con el formulario y campos --}}       
         @include('admin.profiles.forms.fields')
 
         <button type="submit" class="btn-profile-create btn btn-primary btn-block" value="create" data-user="{{$user->id}}">

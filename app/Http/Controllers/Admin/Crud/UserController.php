@@ -82,9 +82,9 @@ class UserController extends Controller
         
         Session::flash('operp_ok',$messenge);
 
-        // return redirect()->route('users.index');
+        Session::flash('panel_class','success');
+
         return redirect()->route('users.create');
-        // return view('admin.users.create');
 
     }
 

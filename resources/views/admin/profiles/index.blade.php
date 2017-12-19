@@ -81,6 +81,7 @@
     {{-- INI script ajax json models --}}
     <script src="{{ asset("js/models/profiles/upgrade.js") }}"></script>
     <script src="{{ asset("js/models/profiles/delete.js") }}"></script>
+    <script src="{{ asset("js/models/users/upgrade.js") }}"></script>
     {{-- FIN script ajax json models --}}
 
 @endsection

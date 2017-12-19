@@ -3,15 +3,16 @@ $(document).ready(function () {
     $('.btn-update-user').click(function (e) {
         e.preventDefault();
         var row = $(this).parents('tr'); //console.log(row); //fila contentiva de la data
-        var id_user = row.data('user');  console.log('id_user: '+id_user);
+        var id_user = row.data('user');  //console.log('id_user: '+id_user);
         var idform = '#form-update-user_'+id_user; //console.log(idform);
         var form = $(idform); //console.log(form.attr('action'));
         var url = form.attr('action'); //console.log(url);
-        var data = form.serialize(); console.log(data);
+        var data = form.serialize(); //console.log(data);
         var modal_active = 'edit_modal_'+id_user; //console.log('modal_active: '+modal_active);
+        var id_panel = "#panel_user_"+id_user; //console.log('id_panel: '+id_panel);
 
         //limpia los div de errores anteriores
-        $(".div-alert").each(function(){
+        $(".div-alert-error").each(function(){
           $(this).removeClass("show");
           $(this).addClass("hide");
         });
@@ -22,18 +23,15 @@ $(document).ready(function () {
         });
 
         $.post(url, data, function (result){
-            // $("#msg_modal_admin_operok").text(result.messenge);
-            console.log(result.messenge);
+            // console.log(result.messenge);
             // $("#"+modal_active).modal('hide');
             $('.text-users-username-'+id_user).text(result.username);
             $('.text-users-username-'+id_user).attr('class', 'text-'+result.is_active+' text-users-username-'+id_user);
             $('.text-users-is_active-'+id_user).text(result.is_active);
             $('.text-users-is_active-'+id_user).attr('class', 'text-'+result.is_active+' text-users-is_active-'+id_user);
 
-            var id_div_oper = "#alert_result_ok_"+id_user;
-            $(id_div_oper).removeClass("hide");
-            $(id_div_oper).addClass( "show" );
-            $(id_div_oper).text(result.messenge);
+            $(id_panel).removeClass("panel-warning");
+            $(id_panel).addClass("panel-success");
         }).fail(function (result) {
             //console.log(result.messenge);
             $.each(result.responseJSON.errors,function(index,valor){
@@ -44,6 +42,8 @@ $(document).ready(function () {
                 $(id_error_msg).addClass( "show" );
                 $(id_div_input).addClass( "has-error" );
             });
+            $(id_panel).removeClass("panel-success");
+            $(id_panel).addClass("panel-warning");
         });
 
     });
