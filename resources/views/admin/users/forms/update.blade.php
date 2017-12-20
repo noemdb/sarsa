@@ -1,4 +1,4 @@
-<div class="panel panel-{{ $class_form_update_user or 'default' }} panel-user-{{$user->id}}" id="panel_user_{{$user->id}}">
+<div class="panel panel-{{ $class_form_update_user or 'default' }}" id="panel_user_{{$user->id}}">
     
     <div class="panel-heading">
       Formulario para la edición del Usuario: <strong>{{$user->username}}</strong>

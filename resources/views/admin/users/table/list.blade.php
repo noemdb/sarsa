@@ -21,34 +21,34 @@
         @php ($rol = $user->rols->where('finicial','<=',date('Y-m-d'))->where('ffinal','>=',date('Y-m-d'))->last())
         
         <tr data-user="{{$user->id}}" data-profile="{{$profile->id or ''}}">
-            <td class="hidden-xs">
+            <td id="td-count" class="hidden-xs">
                 {{$n++}}
             </td>
-            <td>
+            <td id="td-users-username-{{ $user->id }}">
                 <span class="text-users-username-{{ $user->id }} text-{{ $user->is_active }}">
                     {{$user->username}}
                 </span>
             </td>
-            <td  class="hidden-xs hidden-sm">
+            <td id="td-profiles-email-{{ $user->id }}" class="hidden-xs hidden-sm">
                 <span class="text-profiles-email-{{ $profile->id or ''}}">
                     {{ $profile->email or ''}}
                 </span>
             </td>
 
-            <td class="hidden-xs">
+            <td id="td-users-is_active-{{ $user->id }}"  class="hidden-xs">
                 <span class="text-users-is_active-{{ $user->id }} text-{{ $user->is_active }}">
                     {{$user->is_active}}
                 </span>
             </td>
 
-            <td class="rol-{{ $rol['rol'] or '' }}">
-                <span class="text-rols-rol-{{ $rol['id'] }}">
+            <td id="td-rols-rango-{{$user->id}}">
+                <span class="text-rols-rol-{{ $rol['id'] }} rol-{{ $rol['rol'] or '' }}">
                     {{$rol['rol']}}
                  </span>
             </td>
 
-            <td id="td-rango-{{$user->id}}" class="hidden-sm rango-{{ $rol['rango'] or '' }}">
-                <span class="text-rols-rango-{{ $rol['id'] }}">
+            <td id="td-rango-{{$user->id}}" class="hidden-sm">
+                <span class="text-rols-rango-{{ $rol['id'] }} rango-{{ $rol['rango'] or '' }}">
                     {{$rol['rango']}}                
                 </span>
             </td>

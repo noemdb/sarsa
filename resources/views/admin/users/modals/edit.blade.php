@@ -11,7 +11,7 @@
         <h5 class="modal-title" align="left" id="myModalLabel"><strong>Datos de Usuario</strong></h5>
       </div>
 
-      <div class="modal-body panel panel-{{ ($user->is_active=='Activo') ? 'info': 'danger' }}">
+      <div class="modal-body panel panel-{{ ($user->is_active=='Activo') ? 'info': 'danger' }} panel-user-{{$user->id}}">
 
 
         <ul class="nav nav-tabs">

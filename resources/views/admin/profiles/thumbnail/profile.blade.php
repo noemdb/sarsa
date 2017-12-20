@@ -22,8 +22,21 @@
                             <div class="col-xs-4 col-sm-4 col-md-4">Usuario:</div>
                             <div class="col-xs-8 col-sm-8 col-md-8">
                                 <strong>
-                                    <span class="text-users-username-{{ $user->id }}">
-                                        {{$user->username}}
+                                    <span class="text-users-username-{{ $user->id  or ''}}">
+                                        {{$user->username or ''}}
+                                    </span>
+                                </strong>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-4 col-sm-4 col-md-4">Estado:</div>
+                            <div class="col-xs-8 col-sm-8 col-md-8">
+                                <strong>
+                                    <span class="text-users-is_active-{{ $user->id  or ''}} text-{{ $user->is_active }}">
+                                        {{$user->is_active or ''}}
                                     </span>
                                 </strong>
                             </div>

@@ -11,11 +11,13 @@
         <h4 class="modal-title" align="left" id="myModalLabel"><strong>Datos de Usuario {{$user->username}}</strong></h4>
       </div>
 
-      @if($user->is_active=='Activo')
+      {{-- @if($user->is_active=='Activo')
           <div class="modal-body panel panel-info">
       @else
           <div class="modal-body panel panel-danger">
-      @endif
+      @endif --}}
+
+      <div class="modal-body panel panel-{{ ($user->is_active=='Activo') ? 'info': 'danger' }} panel-user-{{$user->id or ''}}">
 
       {{-- <div class="modal-body" align="left"> --}}
 

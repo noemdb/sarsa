@@ -11,7 +11,7 @@
         <h4 class="modal-title" align="left" id="myModalLabel_profile_{{ $profile->id }}"><strong>Datos del Perfil</strong></h4>
       </div>
 
-      <div class="modal-body panel panel-{{ ($user->is_active=='Activo') ? 'info': 'danger' }}">
+      <div class="modal-body panel panel-{{ ($user->is_active=='Activo') ? 'info': 'danger' }} panel-profile-{{$user->id or ''}}">
 
       {{-- <div class="modal-body" align="left"> --}}
 

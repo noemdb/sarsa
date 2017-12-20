@@ -1,5 +1,5 @@
 $(document).ready(function () {
-	// script para realizar para actualizar registros usando peticiones ajax
+	// script para realizar para actualizar registros usando peticiones ajax 
     $('.btn-update-user').click(function (e) {
         e.preventDefault();
         var row = $(this).parents('tr'); //console.log(row); //fila contentiva de la data
@@ -11,13 +11,13 @@ $(document).ready(function () {
         var modal_active = 'edit_modal_'+id_user; //console.log('modal_active: '+modal_active);
         var id_panel = "#panel_user_"+id_user; //console.log('id_panel: '+id_panel);
 
-        //limpia los div de errores anteriores
+        //limpia (alert-error) los div de errores
         $(".div-alert-error").each(function(){
           $(this).removeClass("show");
           $(this).addClass("hide");
         });
 
-        //limpia los div de los input del form
+        //limpia (los has-error) los input del form
         $(".div-form-input").each(function(){
           $(this).removeClass("has-error");
         });
@@ -29,6 +29,12 @@ $(document).ready(function () {
             $('.text-users-username-'+id_user).attr('class', 'text-'+result.is_active+' text-users-username-'+id_user);
             $('.text-users-is_active-'+id_user).text(result.is_active);
             $('.text-users-is_active-'+id_user).attr('class', 'text-'+result.is_active+' text-users-is_active-'+id_user);
+
+            if (result.is_active=='Activo') {
+                $('.panel-user-'+id_user).attr('class', 'modal-body panel panel-info panel-user-'+id_user);
+            } else {
+                $('.panel-user-'+id_user).attr('class', 'modal-body panel panel-danger panel-user-'+id_user);
+            }
 
             $(id_panel).removeClass("panel-warning");
             $(id_panel).addClass("panel-success");

@@ -21,8 +21,15 @@
             <td class="hidden-xs">
                 {{$n++}}
             </td>
+            {{-- 
             <td id="td-username-{{$profile->id}}" class="text text-{{ $user->is_active }}">
                 {{$user->username}}
+            </td> 
+            --}}
+            <td id="td-users-username-{{ $user->id or '' }}">
+                <span class="text-users-username-{{ $user->id or '' }} text-{{ $user->is_active or '' }}">
+                    {{$user->username or ''}}
+                </span>
             </td>
             <td  id="td-fullname-{{$profile->id}}" class="hidden-xs hidden-sm">
                 <span class="text-profiles-firstname-{{ $profile->id }}">{{$profile->firstname}}</span>
@@ -33,8 +40,15 @@
                 {{$profile->email}}
             </td>
 
+            {{-- 
             <td id="td-estado-{{$profile->id}}" class="text-{{ $user->is_active }}">
                  {{$user->is_active}}
+            </td> 
+            --}}
+            <td id="td-users-is_active-{{ $user->id or ''}}"  class="hidden-xs">
+                <span class="text-users-is_active-{{ $user->id or '' }} text-{{ $user->is_active or '' }}">
+                    {{$user->is_active or ''}}
+                </span>
             </td>
 
 
