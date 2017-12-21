@@ -2,9 +2,11 @@ $(document).ready(function() {
     $('.btn-profile-create').click(function (e) {
         e.preventDefault();
         var row = $(this).parents('tr'); //console.log(row);
-        var id_user = row.data('user');  console.log('id_user: '+id_user);
+        var id_user = row.data('user'); //console.log('id_user: '+id_user);
+
         var idform = '#form-profile-create-'+id_user; //console.log(idform);
-        var form = $(idform); //console.log(form);
+        var form = $(idform); // console.log(form);
+        var user_id = form.data('user_id'); console.log('user_id: '+user_id);
         var url = form.attr('action'); //console.log(url);
         var data = form.serialize(); //console.log(data);
         var modal_active = '#edit_modal_'+id_user; //console.log('modal_active: '+modal_active);

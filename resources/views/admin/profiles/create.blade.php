@@ -1,9 +1,7 @@
 @extends('admin.layouts.dashboard.app')
 {{-- @section('page_heading','Listado de Usuarios') --}}
 @section('section')
-    {{-- @include('admin.modal.dialoge_confirm') --}}
-    {{-- @include('admin.modal.operok') --}}
-    {{-- @include('admin.modal.opernook') --}}
+
     <div class="container-fluid">
         
         {{-- INI Mensaje flash sobreo operaciones con base de datos --}}
@@ -26,11 +24,19 @@
                     </div>
 
                 </h1>
+                
                 @include('admin.profiles.forms.create',['class_form_create_profile'=>'info']) 
                
             </div>
         </div>
 
     </div>
+
+@endsection
+
+@section('scripts')
+    @parent
+
+    <script src="{{ asset("js/models/profiles/create.js") }}"></script>
 
 @endsection

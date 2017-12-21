@@ -1,6 +1,6 @@
 <div class="form-group div-form-input {{ $errors->has('username') ? 'has-error' : '' }}" id="div_input_username_{{ $user_id or 'create' }}">
 
-    <label for="username">Username</label>
+    <label for="username">Nombre de Usuario</label>
 
     {!! Form::text('username', old('username'), ['class' => 'form-control','required','autofocus']); !!}
 

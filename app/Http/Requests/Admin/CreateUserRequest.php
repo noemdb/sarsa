@@ -26,7 +26,7 @@ class CreateUserRequest extends FormRequest
         //$request = Request::All();
         //dd($request);
         return [
-            'username' => 'required|max:255|unique:users',
+            'username' => 'required|min:6|max:255|unique:users',
             'password' => 'required|min:6',
             //'is_active' => '',
             //
