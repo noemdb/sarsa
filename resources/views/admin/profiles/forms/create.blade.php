@@ -15,9 +15,15 @@
 
         @else
 
-          <div class="form-group">
+          <div class="form-group {{ $errors->has('user_id') ? ' has-error' : '' }}">
             <label for="user_id">Usuario</label>
             {!! Form::select('user_id',$user_list,old('user_id'),['class' => 'form-control']); !!}
+          
+            <div class="div-alert-error alert alert-danger {{ $errors->has('user_id') ? 'show' : 'hide' }}" id="error_msg_user_id_{{$profile->id or 'create'}}" role="alert" align="center">
+         
+                {{ $errors->first('user_id') }}
+
+            </div>
           </div>
 
         @endif

@@ -12,7 +12,7 @@
       </div>
 
       {{-- <div class="modal-body panel panel-{{ ($user->is_active=='Activo') ? 'info': 'danger' }}"> --}}
-      <div class="modal-body panel panel-{{ ($user->is_active=='Activo') ? 'info': 'danger' }} panel-profile-{{$user->id or ''}}">
+      <div class="modal-body panel panel-{{ ($user->is_active=='Activo') ? 'info': 'danger' }} panel-user-{{$user->id or ''}}">
 
         <ul class="nav nav-tabs">
           <li class="active"><a data-toggle="tab" href="#editprofile_tab_{{$user->id}}_general">Perfil</a></li>

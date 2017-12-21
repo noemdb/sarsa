@@ -58,6 +58,8 @@ class ProfileController extends Controller
         $user_list = User::select('users.*')
                 ->leftJoin('profiles', 'users.id', '=', 'profiles.user_id')
                 ->whereNull('profiles.user_id')
+                // ->OrWhere('profiles.deleted_at','<>',NULL)
+                // ->whereNotNull('profiles.deleted_at')
                 ->orderby('users.username','asc')
                 ->pluck('username', 'id');
 

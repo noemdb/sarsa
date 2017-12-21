@@ -26,8 +26,7 @@ $(document).ready(function() {
             $(id_div).removeClass("hide");
             $(id_div).addClass("show");
             $(id_div).text(result.messenge+': '+result.username);
-            // form.trigger('reset');
-            // $(modal_active).modal('hide');
+            
             location.reload(true);
         }).fail(function (result) {
             $.each(result.responseJSON.errors,function(index,valor){
