@@ -26,7 +26,7 @@
                     {{-- INI Menu pill --}}
                     <ul class="nav nav-tabs">
                       <li class="active"><a data-toggle="tab" href="#tabchart1">Gráficas 1</a></li>
-                      <li><a data-toggle="tab" href="#tabchart2">Gráficas 2</a></li>
+                      {{-- <li><a data-toggle="tab" href="#tabchart2">Gráficas 2</a></li> --}}
                     </ul>
                     {{-- FIN Menu pill --}}
 
@@ -38,73 +38,10 @@
                         
                             {{-- INI row chart1 --}}
                             <div class="row">
-                                {{-- INI chart Usuarios Conect./Desconet. --}}
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    @php ($chart = ['range'=>'Todos','id_chart'=>'chartusersconnect','urlapi'=>route('usersconnect'),'tipo'=>'bar','limit'=>6 ])
-                                    @section('scripts')
-                                        @parent
-                                        {{-- Llamado a la funcion responsable de inicilizar el Chart --}}
-                                        <script> requestData('{{ $chart['range'] }}','{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
-                                    @endsection
-                                    @component('elements.widgets.panel')
-                                        @slot('class', 'success')
-                                        @slot('panelControls', 'true')
-                                        @slot('id', $chart['id_chart'] )
-                                        @slot('panelTitle', 'Usuarios Conect./Desconet.')
-                                        @slot('iconTitle', 'fa fa-pie-chart fa-lg')
-                                        @slot('panelBody')
-                                            @component('elements.charts.widgets.canvas')
-                                                @slot('id', $chart['id_chart'])
-                                            @endcomponent
-                                        @endslot
-                                    @endcomponent
-                                </div>
-                                {{-- FIN chart Usuarios Conect./Desconet. --}}
 
-                                {{-- INI chart Usuarios Act/Des --}}
+                                {{-- INI chart perfiles registrados por Mes --}}
                                 <div class="col-lg-6 col-md-6 col-sm-12">
-                                    @php ($chart = ['range'=>'Todos','id_chart'=>'chartusersactive','urlapi'=>route('usersactive'),'tipo'=>'pie','limit'=>6 ])
-                                    @section('scripts')
-                                        @parent
-                                        {{-- Llamado a la funcion responsable de inicilizar el Chart --}}
-                                        <script> requestData('{{ $chart['range'] }}','{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
-                                    @endsection
-                                    @component('elements.widgets.panel')
-                                        @slot('class', 'info')
-                                        @slot('panelControls', 'true')
-                                        @slot('id', $chart['id_chart'] )
-                                        @slot('panelTitle', 'Usuarios Act/Des')
-                                        @slot('iconTitle', 'fa fa-pie-chart fa-lg')
-                                        @slot('panelBody')
-                                            @component('elements.charts.widgets.canvas')
-                                                @slot('ulpanel')
-                                                    <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-urlapi="{{ $chart['urlapi'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
-                                                        <li class="active"><a href="#" data-range="Todos">Todos</a></li>
-                                                        <li title="365 Días"><a href="#" data-range='365'>365D</a></li>
-                                                        <li title="90 Días"><a href="#" data-range='90'>90D</a></li>
-                                                        <li title="30 Días"><a href="#" data-range='30'>30D</a></li>
-                                                        <li title="7 Días"><a href="#" data-range='7'>7D</a></li>
-                                                    </ul>
-                                                @endslot
-                                                @slot('id', $chart['id_chart'])
-                                            @endcomponent
-                                        @endslot
-                                    @endcomponent
-                                </div>
-                                {{-- FIN chart Usuarios Act/Des --}}
-                            </div>
-                            {{-- FIN row chart1 --}}
-
-                        </div>
-
-                        <div id="tabchart2" class="tab-pane fade">
-                            {{-- <h3>Tab 1</h3> --}}
-                        
-                            {{-- INI row chart2 --}}
-                            <div class="row">
-                                {{-- INI chart Usuarios por Mes --}}
-                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                    @php ($chart = ['range'=>'Todos','id_chart'=>'chartusersmonth','urlapi'=>route('usersmonth'),'tipo'=>'line','limit'=>8 ])
+                                    @php ($chart = ['range'=>'Todos','id_chart'=>'chartprofilesmonth','urlapi'=>route('profilesmonth'),'tipo'=>'line','limit'=>8 ])
                                     @section('scripts')
                                         @parent
                                         {{-- Llamado a la funcion responsable de inicilizar el Chart --}}
@@ -114,7 +51,7 @@
                                         @slot('class', 'danger')
                                         @slot('panelControls', 'true')
                                         @slot('id', $chart['id_chart'] )
-                                        @slot('panelTitle', 'N. Usuarios por Mes')
+                                        @slot('panelTitle', 'N. Perfiles registrados por Mes')
                                         @slot('iconTitle', 'fa fa-line-chart fa-lg')
                                         @slot('panelBody')
                                             @component('elements.charts.widgets.canvas')
@@ -132,11 +69,54 @@
                                         @endslot
                                     @endcomponent
                                 </div>
-                                {{-- FIN chart Usuarios por Mes --}}
+                                {{-- FIN chart perfiles registrados por Mes --}}
+
+                                {{-- INI chart perfiles por dominio de email --}}
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    @php ($chart = ['range'=>'Todos','id_chart'=>'chartprofilesdominio','urlapi'=>route('profilesdominio'),'tipo'=>'bar','limit'=>8 ])
+                                    @section('scripts')
+                                        @parent
+                                        {{-- Llamado a la funcion responsable de inicilizar el Chart --}}
+                                        <script> requestData('{{ $chart['range'] }}','{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
+                                    @endsection
+                                    @component('elements.widgets.panel')
+                                        @slot('class', 'info')
+                                        @slot('panelControls', 'true')
+                                        @slot('id', $chart['id_chart'] )
+                                        @slot('panelTitle', 'Dominios de Email')
+                                        @slot('iconTitle', 'fa fa-pie-chart fa-lg')
+                                        @slot('panelBody')
+                                            @component('elements.charts.widgets.canvas')
+                                                @slot('ulpanel')
+                                                    <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-urlapi="{{ $chart['urlapi'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
+                                                        <li class="active"><a href="#" data-range="Todos">Todos</a></li>
+                                                        <li title="365 Días"><a href="#" data-range='365'>365D</a></li>
+                                                        <li title="90 Días"><a href="#" data-range='90'>90D</a></li>
+                                                        <li title="30 Días"><a href="#" data-range='30'>30D</a></li>
+                                                        <li title="7 Días"><a href="#" data-range='7'>7D</a></li>
+                                                    </ul>
+                                                @endslot
+                                                @slot('id', $chart['id_chart'])
+                                            @endcomponent
+                                        @endslot
+                                    @endcomponent
+                                </div>
+                                {{-- FIN chart perfiles por dominio de email --}}
                             </div>
-                            {{-- FIN row chart2 --}}
+                            {{-- FIN row chart1 --}}
 
                         </div>
+
+                        {{-- <div id="tabchart2" class="tab-pane fade"> --}}
+                            {{-- <h3>Tab 1</h3> --}}
+                        
+                            {{-- INI row chart2 --}}
+                            {{-- <div class="row"> --}}
+                                
+                            {{-- </div> --}}
+                            {{-- FIN row chart2 --}}
+
+                        {{-- </div> --}}
 
                     </div>
                 </div>

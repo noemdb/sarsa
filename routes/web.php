@@ -47,8 +47,9 @@ Route::get('/setting', function () {
         //sidebar nivel 2
         'sidebar_models_users' => 'true',
         'sidebar_models_profiles' => 'true',
+        'sidebar_models_rols' => 'true',
         'sidebar_models_messenges' => 'true',
-        'sidebar_models_tasks' => 'true',
+        'sidebar_models_tasks' => 'false',
         'sidebar_models_alerts' => 'true',
         'sidebar_models_logdbs' => 'false',
         'sidebar_models_loginouts' => 'false',    
@@ -58,6 +59,8 @@ Route::get('/setting', function () {
         'sidebar_models_users_chart' => 'true',
         'sidebar_models_profiles_crud' => 'true',
         'sidebar_models_profiles_chart' => 'true',
+        'sidebar_models_rols_chart' => 'true',
+        'sidebar_models_rols_crud' => 'true',
         'sidebar_models_messenges_crud' => 'true',
         'sidebar_models_messenges_chart' => 'true',
         'sidebar_models_tasks_crud' => 'true',
@@ -88,6 +91,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
     
     //INI Charts modelos
     Route::get('models/charts/users', 'Chart\UserController@index')->name('viewchartusers');
+    Route::get('models/charts/profiles', 'Chart\ProfileController@index')->name('viewchartprofiles');
     //FIN Charts modelos
 
     //INI rutas para los json
@@ -95,15 +99,31 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
 
         //INI Charts
         Route::group(['prefix'=>'charts','namespace'=>'Charts'], function(){
-            Route::get('/users/usersmonth', 'UserController@UsersMonth')->name('usersmonth');
-            Route::get('/users/usersactive', 'UserController@UserActive')->name('usersactive');
-            Route::get('/users/usersconnect', 'UserController@UserConnect')->name('usersconnect');
-            // Route::get('/users/ipsuses', 'UserController@IpsUses')->name('ipsuses');
 
-            Route::get('/taskmonth', 'TasksController@getApiTaskMonth')->name('taskmonth');
-            Route::get('/uservrstask', 'TasksController@getApiUserTaskLoad')->name('uservrstask');
-            Route::get('/uservrstaskasig', 'TasksController@getApiUserTaskAsig')->name('uservrstaskasig');
-            Route::get('/uservrstaskdone', 'TasksController@getApiUserTaskDone')->name('uservrstaskdone');
+            //INI graficas para users
+            Route::group(['prefix'=>'users'], function(){
+                Route::get('/usersmonth', 'UserController@UsersMonth')->name('usersmonth');
+                Route::get('/usersactive', 'UserController@UserActive')->name('usersactive');
+                Route::get('/usersconnect', 'UserController@UserConnect')->name('usersconnect');
+            });
+            //INI graficas para users
+
+            //INI graficas para profiles
+            Route::group(['prefix'=>'profiles'], function(){
+                Route::get('/profilesmonth', 'ProfileController@ProfilesMonth')->name('profilesmonth');
+                Route::get('/profilesdominio', 'ProfileController@ProfilesDominio')->name('profilesdominio');
+            });
+            //FIN graficas para profiles
+            
+            //INI graficas para tasks
+            Route::group(['prefix'=>'tasks'], function(){
+                Route::get('/taskmonth', 'TasksController@getApiTaskMonth')->name('taskmonth');
+                Route::get('/uservrstask', 'TasksController@getApiUserTaskLoad')->name('uservrstask');
+                Route::get('/uservrstaskasig', 'TasksController@getApiUserTaskAsig')->name('uservrstaskasig');
+                Route::get('/uservrstaskdone', 'TasksController@getApiUserTaskDone')->name('uservrstaskdone');
+            });
+            //FIN graficas para tasks
+            
         });
         //FIN Charts
         

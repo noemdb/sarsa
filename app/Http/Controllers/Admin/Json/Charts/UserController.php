@@ -41,6 +41,7 @@ class UserController extends Controller
     {
         
         return view('admin.users.chart');
+        
     }
 
     public function UsersMonth(Request $request)

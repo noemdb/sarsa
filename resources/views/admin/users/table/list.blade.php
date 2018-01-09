@@ -18,7 +18,7 @@
         
         @php ($profile = $user->profile)
 
-        @php ($rol = $user->rols->where('finicial','<=',date('Y-m-d'))->where('ffinal','>=',date('Y-m-d'))->last())
+        @php ($rol = $user->rols->last())
         
         <tr data-user="{{$user->id}}" data-profile="{{$profile->id or ''}}">
             <td id="td-count" class="hidden-xs">

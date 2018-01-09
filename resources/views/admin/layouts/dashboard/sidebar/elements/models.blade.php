@@ -20,6 +20,15 @@
     @endcomponent
     {{-- FIN profile --}}
 
+    {{-- INI rol --}}
+    @component('admin.layouts.dashboard.sidebar.elements.partials.models')
+        @slot('models', 'rols')
+        @slot('titulo', 'Roles')
+        @slot('icon', 'id-badge')
+        @slot('class', 'info')
+    @endcomponent
+    {{-- FIN rol --}}
+
     {{-- INI messenges --}}
     @component('admin.layouts.dashboard.sidebar.elements.partials.models')
         @slot('models', 'messenges')

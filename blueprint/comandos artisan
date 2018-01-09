@@ -62,6 +62,7 @@ php artisan make:controller 'Webmaster\HomeController'
 
 php artisan make:controller 'Admin\Json\Charts\TasksController'
 php artisan make:controller 'Admin\Json\Charts\UserController'
+php artisan make:controller 'Admin\Json\Charts\ProfileController'
 php artisan make:controller 'Admin\Json\Navbar\TopController'
 
 php artisan make:controller 'Admin\Crud\UserController' --resource
