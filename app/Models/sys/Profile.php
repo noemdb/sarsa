@@ -28,6 +28,10 @@ class Profile extends Model
     {
         return $this->belongsTo('App\User');
     }
+    public function rols()
+    {
+        return $this->hasMany('App\Models\sys\Rol','user_id','user_id');
+    }
     /*FIN relaciones entre modelos*/
 
     public function getFullNameAttribute()

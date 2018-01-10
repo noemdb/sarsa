@@ -26,8 +26,21 @@
                             <strong>{{ $rol->rango }}</strong>
                         </td>
                     </tr>
-                    <tr><td>Fecha Inicial</td> <td>{{ $rol->finicial }}</td></tr>
-                    <tr><td>Fecha Final</td> <td>{{ $rol->ffinal }}</td></tr>
+                    <tr>
+                        <td>Fecha Inicial</td>
+                        <td>
+                            <span class="text-rols-finicial-{{$rol->id}}">
+                                {{ (isset($rol->finicial)) ? Carbon\Carbon::parse($rol->finicial)->format('d-m-Y') : '' }}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr><td>Fecha Final</td> 
+                        <td>
+                            <span class="text-rols-ffinal-{{$rol->id}}">
+                                {{ (isset($rol->ffinal)) ? Carbon\Carbon::parse($rol->ffinal)->format('d-m-Y') : '' }}
+                            </span>
+                        </td>
+                    </tr>
                 </table>                                 
               </div>
             </div>

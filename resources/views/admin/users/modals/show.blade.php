@@ -39,7 +39,7 @@
           </div>
           <div id="showuser_tab_{{$user->id}}_other2" class="tab-pane fade">
             {{-- <h3>Menu 2</h3> --}}
-            @include('admin.users.thumbnail.rols')
+            @include('admin.rols.thumbnail.rols')
           </div>
         </div>
 

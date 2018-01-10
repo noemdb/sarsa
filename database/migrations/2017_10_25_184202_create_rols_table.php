@@ -17,7 +17,7 @@ class CreateRolsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->enum('rol', ['CONTRA', 'DIRCP', 'CORCP','COMCP', 'ADMIN', 'USUARIO'])->default('USUARIO');
-            $table->enum('rango', ['admin', 'user'])->default('user');
+            $table->enum('rango', ['ADMIN','MASTER', 'USER'])->default('USER');
             $table->string('descripcion');
             $table->date('finicial');
             $table->date('ffinal');

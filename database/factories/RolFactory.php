@@ -6,7 +6,7 @@ use Illuminate\Support\Carbon;
 $factory->define(App\Models\sys\Rol::class, function (Faker $faker) {
     
 	$arr_rol = ['CONTRA'=>'CONTRA','DIRCP'=>'DIRCP','CORCP'=>'CORCP','COMCP'=>'COMCP','ADMIN'=>'ADMIN','USUARIO'=>'USUARIO'];
-	$arr_rango = ['admin'=>'admin','user'=>'user'];
+	$arr_rango = ['MASTER'=>'MASTER','USER'=>'USER'];
 	// $ffinal = $faker->dateTimeBetween(date('Y').'01-01',date('Y').'12-31');
     $ffinal = $faker->dateTimeBetween('2017-01-01', Carbon::now());
               // $faker->dateTimeBetween('2017-01-01',Carbon::now()),

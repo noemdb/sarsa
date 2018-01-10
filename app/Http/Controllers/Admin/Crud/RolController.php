@@ -5,6 +5,19 @@ namespace App\Http\Controllers\Admin\Crud;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+//validation request
+// use App\Http\Requests\Admin\CreateProfileRequest;
+// use App\Http\Requests\Admin\UpdateProfileRequest;
+
+//Helpers
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Session;
+
+//models
+use App\User;
+use App\Models\sys\Profile;
+use App\Models\sys\Rol;
+
 class RolController extends Controller
 {
     /**
@@ -14,7 +27,15 @@ class RolController extends Controller
      */
     public function index()
     {
-        //
+        $rols = Rol::OrderBy('id','DESC')
+            // ->username($arr_get)
+            ->with('User')
+            ->with('Profile')
+            ->get();
+
+        // dd($rols->toarray());
+
+        return view('admin.rols.index', compact('rols'));
     }
 
     /**

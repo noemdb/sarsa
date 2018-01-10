@@ -87,6 +87,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
     //INI CRUD modelos
     Route::resource('models/crud/users','Crud\UserController');
     Route::resource('models/crud/profiles','Crud\ProfileController');
+    Route::resource('models/crud/rols','Crud\RolController');
     //FIN CRUD modelos
     
     //INI Charts modelos

@@ -541,6 +541,10 @@ a.text-Activo:focus {
   color: #001A35;
 }
 
+.text-weight{
+  font-weight: bold;
+}
+
 .text-Desactivo {
   color: #a94442;
 }
@@ -560,14 +564,21 @@ a.text-Activo:focus {
   color: #a94442;
 }
 
-.rango-admin {
+.rango-ADMIN {
   /*background-color: #dff0d8;*/
   border-color: #d6e9c6;
   color: #3c763d;
   font-weight: bold;
 }
 
-.rango-user {
+.rango-MASTER {
+  /*background-color: #dff0d8;*/
+  border-color: #d6e9c6;
+  color: #032149;
+  font-weight: bold;
+}
+
+.rango-USER {
   /*background-color: #fcf8e3;*/
   border-color: #faebcc;
   color: #8a6d3b;
