@@ -89,11 +89,11 @@
                                             @component('elements.charts.widgets.canvas')
                                                 @slot('ulpanel')
                                                     <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-urlapi="{{ $chart['urlapi'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
-                                                        <li class="active"><a href="#" data-range="Todos">Todos</a></li>
-                                                        <li title="365 Días"><a href="#" data-range='365'>365D</a></li>
-                                                        <li title="90 Días"><a href="#" data-range='90'>90D</a></li>
-                                                        <li title="30 Días"><a href="#" data-range='30'>30D</a></li>
-                                                        <li title="7 Días"><a href="#" data-range='7'>7D</a></li>
+                                                        <li class="active" title="Todo los datos"><a href="#" data-range='Todos'>Todos</a></li>
+                                                        <li title="12 Meses"><a href="#" data-range='12'>12M</a></li>
+                                                        <li title="9 Meses"><a href="#" data-range='9'>9M</a></li>
+                                                        <li title="6 Meses"><a href="#" data-range='6'>6M</a></li>
+                                                        <li title="3 Meses"><a href="#" data-range='3'>3M</a></li>
                                                     </ul>
                                                 @endslot
                                                 @slot('id', $chart['id_chart'])

@@ -49,7 +49,7 @@ class ProfileController extends Controller
             $finicial = Carbon::now()->SubYear(10);
             $ffinal = Carbon::now()->AddYear(10);
         }else{
-            $finicial = Carbon::now()->subDay($range);
+            $finicial = Carbon::now()->subMonth($range);
             $ffinal = Carbon::now();
         }
 
@@ -69,7 +69,7 @@ class ProfileController extends Controller
         	if (isset($count[$domain]))
         		$count[$domain]++;
         	else
-        		$count[$domain] = 0;
+        		$count[$domain] = 1;
         	
         }
 

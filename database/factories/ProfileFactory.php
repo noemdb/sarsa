@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use Illuminate\Support\Carbon;
 
 $factory->define(App\Models\sys\Profile::class, function (Faker $faker) {
 
@@ -9,6 +10,7 @@ $factory->define(App\Models\sys\Profile::class, function (Faker $faker) {
         'lastname' => $faker->lastName,
         // 'url_img' => 'img/profile_'.rand().'.png',
         'email' => $faker->unique()->safeEmail,
+        'created_at' => $faker->dateTimeBetween('2017-01-01',Carbon::now()),
         'user_id' => function () { 
         	return 
         	DB::table('users')
