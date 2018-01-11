@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Session;
 use App\User;
 use App\Models\sys\Profile;
 use App\Models\sys\Rol;
+use App\Models\sys\SelectOpt;
 
 class RolController extends Controller
 {
@@ -45,7 +46,32 @@ class RolController extends Controller
      */
     public function create()
     {
-        //
+        
+        // $user = new User;
+        $user_list = User::select('users.*')
+                ->leftJoin('rols', 'users.id', '=', 'rols.user_id')
+                ->whereNull('rols.user_id')
+                ->OrWhere('rols.deleted_at','<>',NULL)
+                ->orderby('users.username','asc')
+                ->pluck('username', 'id');
+
+        $opt_list_rol = SelectOpt::select('select_opts.*')
+            ->where('table','rols')
+            ->where('view','rol.create')
+            ->where('name','rol')
+            ->orderby('value')
+            ->pluck('value','value');
+
+        $opt_list_rango = SelectOpt::select('select_opts.*')
+            ->where('table','rols')
+            ->where('view','rol.create')
+            ->where('name','rango')
+            ->orderby('value')
+            ->pluck('value','value');
+
+        // dd($user_list,$sel_opt_list);
+
+        return view('admin.rols.create',compact('user_list','opt_list_rol','opt_list_rango'));
     }
 
     /**
@@ -56,7 +82,33 @@ class RolController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rol = Profile::onlyTrashed()->Where('user_id','=',$request->user_id);
+
+        if ($rol) {
+
+            $rol->forceDelete();
+
+        }
+
+        $rol = Profile::create($request->all());
+
+        $messenge = trans('db_oper_result.profile_create_ok');
+
+        if($request->ajax()){
+
+            return response()->json([
+                "rol"=>$request->rol,
+                "rango"=>$request->rango,
+                "descripcion"=>$request->descripcion,
+                "finicial"=>$request->finicial,
+                "ffinal"=>$request->ffinal,
+            ]);
+
+        }
+        
+        Session::flash('operp_ok',$messenge);
+
+        return redirect()->route('profiles.index');
     }
 
     /**

@@ -15,17 +15,17 @@
             <div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
                 
                <h1>
-                    Nuevos Perfiles
+                    Nuevos Roles
 
                     <div class="btn-group pull-right">
-                        <a title="CRUD" class="btn btn-primary" href="{{ route('profiles.index') }}" role="button">
+                        <a title="CRUD" class="btn btn-primary" href="{{ route('rols.index') }}" role="button">
                             <i class="fa fa-list" aria-hidden="true"></i>
                         </a>
                     </div>
 
                 </h1>
                 
-                @include('admin.profiles.forms.create',['class_form_create_profile'=>'info']) 
+                @include('admin.rols.forms.create',['class_form_create_rol'=>'info']) 
                
             </div>
         </div>
@@ -37,6 +37,6 @@
 @section('scripts')
     @parent
 
-    <script src="{{ asset("js/models/profiles/create.js") }}"></script>
+    <script src="{{ asset("js/models/rols/create.js") }}"></script>
 
 @endsection

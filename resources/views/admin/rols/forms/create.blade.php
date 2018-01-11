@@ -1,13 +1,17 @@
-<div class="panel panel-{{ $class_form_create_profile or 'default' }}" >
+<div class="panel panel-{{ $class_form_create_rol or 'default' }}" >
+
   <div class="panel-heading">
-    Formulario para el Registro de Nuevo Perfil. <strong>{{ $user->username or '' }}</strong>
+
+    Formulario para el Registro de Nuevo Rol. <strong>{{ $user->username or '' }}</strong>
+
   </div>
+
   <div class="panel-body">
 
-    {!! Form::open(['route' => 'profiles.store', 'method' => 'POST', 'id'=>'form-profile-create-'.$user->id]) !!}
+    <div class="well">
 
-    <div class="row">
-      <div class="col-md-12">
+      {{-- <form> --}}
+      {!! Form::open(['route' => 'rols.store', 'method' => 'POST', 'id'=>'form-rol-create-'. (isset($user->id)? $user->id : 'new')]) !!}
 
         @if(isset($user->id))
 
@@ -16,34 +20,41 @@
         @else
 
           <div class="form-group {{ $errors->has('user_id') ? ' has-error' : '' }}">
+
             <label for="user_id">Usuario</label>
-            {!! Form::select('user_id',$user_list,old('user_id'),['class' => 'form-control']); !!}
+
+            {!! Form::select('user_id',$user_list,old('user_id'),['class' => 'form-control','autofocus']); !!}
           
-            <div class="div-alert-error alert alert-danger {{ $errors->has('user_id') ? 'show' : 'hide' }}" id="error_msg_user_id_{{$profile->id or 'create'}}" role="alert" align="center">
+            <div class="div-alert-error alert alert-danger {{ $errors->has('user_id') ? 'show' : 'hide' }}" id="error_msg_user_id_{{$rol->id or 'create'}}" role="alert" align="center">
          
                 {{ $errors->first('user_id') }}
 
             </div>
+
           </div>
 
         @endif
 
-        {{-- partial con el formulario y campos --}}       
-        @include('admin.profiles.forms.fields')
+        {{-- partial con el formulario y campos --}}            
+        @include('admin.rols.forms.fields')
+        
+        <button type="submit" class="btn-rol-create btn btn-primary btn-block" value="create" data-user="{{$user->id or 'create'}}">
 
-        <button type="submit" class="btn-profile-create btn btn-primary btn-block" value="create" data-user="{{$user->id}}">
-            <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
-            Registrar 
-        </button>
-        <button type="reset" class="btn-profile-reset btn btn-info btn-block" value="Reset">
-            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
-            Reset 
+            <span class="glyphicon glyphicon-save" aria-hidden="true"></span>Registrar 
+
         </button>
 
-      </div>
+        <button type="reset" class="btn-rol-reset btn btn-info btn-block" value="Reset">
+
+            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>Reset 
+
+        </button>
+        
+      {!! Form::close() !!}
+      {{-- </form> --}}
+
     </div>
-    
-    {{-- </form> --}}
-  {!! Form::close() !!}    
+
+  </div>   
   </div>
 </div>

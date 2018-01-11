@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(LoginoutTableSeeder::class);
         $this->call(LogdbTableSeeder::class);
         $this->call(SettingTableSeeder::class);
+        $this->call(SelectOptTableSeeder::class);
     }
 }

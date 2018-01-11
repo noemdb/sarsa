@@ -13,7 +13,7 @@
     </thead>
 
     <tbody id="tdatos">
-    @php ($n=1)
+
     @foreach($rols as $rol)
 
         @php ($user = $rol->user)
@@ -22,7 +22,7 @@
         <tr data-rol="{{$rol->id}}" data-user="{{$user->id or ''}}">
 
             <td>
-                {{$n++}}
+                {{ ($loop->index + 1) }}
             </td>
 
             <td id="td-users-username-{{ $user->id or '' }}">

@@ -11,13 +11,13 @@
             <h3>
                 Listados de Roles Registrados<br>
                 <small class="text-default">
-                    <strong><span id="profile_counter">{{$rols->count()}}</span> Perfiles</strong>
+                    <strong><span id="profile_counter">{{$rols->count()}}</span> Roles</strong>
                 </small>
                 
                 <div class="btn-group pull-right">
 
-                    <a title="Crear nuevo Perfil" class="btn btn-primary" href="{{ route('rols.create') }}" role="button">
-                        <i class="fa fa-id-card" aria-hidden="true"></i>
+                    <a title="Crear nuevo Rol" class="btn btn-primary" href="{{ route('rols.create') }}" role="button">
+                        <i class="fa fa-id-badge" aria-hidden="true"></i>
                     </a>
 
                 </div>
@@ -38,6 +38,7 @@
             @endif
 
             {{-- partial con el listado de los usuarios --}}
+            {{-- @php ($user = $rols->user) --}}
             @include('admin.rols.table.list')
 
         </div>

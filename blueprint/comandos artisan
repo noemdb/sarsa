@@ -7,6 +7,7 @@ php artisan make:model 'Models\sys\Alert' -m
 php artisan make:model 'Models\sys\Loginout' -m
 php artisan make:model 'Models\sys\Logdb' -m
 php artisan make:model 'Models\sys\Setting' -m
+php artisan make:model 'Models\sys\SelectOpt' -m
 
 -. definicion de los seeder
 php artisan make:seeder UsersAdminTableSeeder
@@ -51,6 +52,10 @@ php artisan db:seed --class=LogdbTableSeeder
 php artisan make:seeder SettingTableSeeder
 php artisan make:factory 'SettingFactory' --model='App\Models\sys\Setting'
 php artisan db:seed --class=SettingTableSeeder
+
+php artisan make:seeder SelectOptTableSeeder
+php artisan make:factory 'SelectOptFactory' --model='App\Models\sys\Setting'
+php artisan db:seed --class=SelectOptTableSeeder
 
 
 php artisan migrate:fresh --seed

@@ -29,17 +29,22 @@
 
         <div class="tab-content">
           <div id="showuser_tab_{{$user->id}}_general" class="tab-pane fade in active">
+
             {{-- <h3>General</h3> --}}
               @include('admin.users.thumbnail.user')
+              
           </div>
           <div id="showuser_tab_{{$user->id}}_other1" class="tab-pane fade">
+
             {{-- <h3>Menu 1</h3> --}}
             @php($profile = $user->profile )
             @include('admin.profiles.thumbnail.profile')
+
           </div>
           <div id="showuser_tab_{{$user->id}}_other2" class="tab-pane fade">
             {{-- <h3>Menu 2</h3> --}}
             @include('admin.rols.thumbnail.rols')
+
           </div>
         </div>
 

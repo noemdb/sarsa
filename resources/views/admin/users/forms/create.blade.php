@@ -10,34 +10,29 @@
   </div>
   <div class="panel-body">
     
-    {{-- INI form --}}
-    {!! Form::open(['route' => 'users.store', 'method' => 'POST', 'id'=>'form-user-create']) !!}
+    <div class="well">
+      {{-- INI form --}}
+      {!! Form::open(['route' => 'users.store', 'method' => 'POST', 'id'=>'form-user-create']) !!}
+            
+            {{-- partial con el formulario y campos --}}
+            @include('admin.users.forms.fields')
 
-    {{-- {{ csrf_field() }} --}}
+            <button type="submit" class="btn-user-create btn btn-primary btn-block" value="create" data-id="create" id="create">
 
-    <div class="row">
+                <span class="glyphicon glyphicon-save" aria-hidden="true"></span>Registrar
 
-      <div class="col-md-10 col-md-offset-1">
-        
-        {{-- partial con el formulario y campos --}}
-        @include('admin.users.forms.fields')
+            </button>
 
-        <button type="submit" class="btn-user-create btn btn-primary btn-block" value="create" data-id="create" id="create">
-            <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
-            Registrar 
-        </button>
+            <button type="reset" class="btn-user-reset btn btn-info btn-block" value="Reset">
 
-        <button type="reset" class="btn-user-reset btn btn-info btn-block" value="Reset">
-            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
-            Reset 
-        </button>
+                <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>Reset 
 
-      </div>
+            </button>
+      
+      {!! Form::close() !!}    
+      {{-- FIN form --}}
 
     </div>
-    
-  {!! Form::close() !!}    
-  {{-- FIN form --}}
 
   </div>
 </div>

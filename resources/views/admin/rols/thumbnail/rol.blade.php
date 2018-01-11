@@ -4,7 +4,7 @@
     {{-- </p> --}}
 
     <div class="row">
-
+            
         <div class="col-sm-4" align="center">
 
             <img alt="{{$user->username}}" class="img-thumbnail img-rounded" src="{{ (isset($profile->url_img)) ? asset($profile->url_img) : asset('images/avatar/user_default.png') }}">
