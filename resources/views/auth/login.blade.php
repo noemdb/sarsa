@@ -7,6 +7,7 @@
                     @slot ('panelTitle', 'Ingresar sus datos de acceso')
                     @slot ('class','info')
                     @slot ('panelBody')
+                        <div class="well">
                         <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
                             {{ csrf_field() }}
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -71,6 +72,7 @@
                                 </div>
                             </div>
                         </form>
+                        </div>
                     @endslot
                 @endcomponent
             </div>

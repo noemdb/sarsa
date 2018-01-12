@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 //validation request
-// use App\Http\Requests\Admin\CreateProfileRequest;
-// use App\Http\Requests\Admin\UpdateProfileRequest;
+use App\Http\Requests\Admin\CreateRolRequest;
+use App\Http\Requests\Admin\UpdateRolRequest;
 
 //Helpers
 use Illuminate\Support\Carbon;
@@ -49,9 +49,9 @@ class RolController extends Controller
         
         // $user = new User;
         $user_list = User::select('users.*')
-                ->leftJoin('rols', 'users.id', '=', 'rols.user_id')
-                ->whereNull('rols.user_id')
-                ->OrWhere('rols.deleted_at','<>',NULL)
+                // ->leftJoin('rols', 'users.id', '=', 'rols.user_id')
+                // ->whereNull('rols.user_id')
+                // ->OrWhere('rols.deleted_at','<>',NULL)
                 ->orderby('users.username','asc')
                 ->pluck('username', 'id');
 
@@ -80,9 +80,12 @@ class RolController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateRolRequest $request)
     {
-        $rol = Profile::onlyTrashed()->Where('user_id','=',$request->user_id);
+        
+        // dd($request);
+
+        $rol = Rol::onlyTrashed()->Where('user_id','=',$request->user_id);
 
         if ($rol) {
 

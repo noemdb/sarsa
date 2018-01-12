@@ -2985,7 +2985,9 @@ select[multiple].input-lg {
 .form-horizontal .checkbox-inline {
   padding-top: 7px;
   margin-top: 0;
-  margin-bottom: 0;
+  /*nmdb
+  margin-bottom: 0;*/
+  margin-bottom: 4px;
 }
 .form-horizontal .radio,
 .form-horizontal .checkbox {
@@ -5867,7 +5869,10 @@ button.list-group-item-danger.active:focus {
 }
 .well {
   min-height: 20px;
-  padding: 19px;
+  /* nmdb
+  padding: 20px;
+   */
+  padding: 4px 20px;
   margin-bottom: 20px;
   background-color: #f5f5f5;
   border: 1px solid #e3e3e3;

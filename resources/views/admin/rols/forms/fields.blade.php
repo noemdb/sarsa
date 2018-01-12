@@ -5,7 +5,7 @@
 
     {!! Form::select('rol',$opt_list_rol,old('rol'),['class' => 'form-control']); !!}
 
-    <div class="div-alert-error alert alert-danger {{ $errors->has('rol') ? 'show' : 'hide' }}" id="error_msg_rol_{{$Rol->id or 'create'}}" role="alert" align="center">
+    <div class="div-alert-error alert alert-danger {{ $errors->has('rol') ? 'show' : 'hide' }}" id="error_msg_rol_{{$rol->id or 'create'}}" role="alert" align="center">
         
         {{ $errors->first('rol') }}
 
@@ -47,47 +47,36 @@
 </div>
 {{-- FIN campo descripcion --}}
 
-{{-- INI campo finicial --}}
-<div class="form-group div-form-input {{ $errors->has('finicial') ? ' has-error' : '' }}" id="div_input_finicial_{{ $rol->id or 'create' }}">
+{{-- INI campo rango --}}
+<div class="form-group div-form-input {{ $errors->has('finicial') ? ' has-error' : '' }} {{ $errors->has('ffinal') ? ' has-error' : '' }}">
 
-    <label for="finicial">Fecha Inicial</label>
+    <label for="rage">Rango de Fechas</label>
+    <div class="input-group input-daterange">
 
-    <div class="input-group date">
-        {!! Form::text('finicial', old('finicial'), ['class' => 'form-control date','required']); !!}
-        <div class="input-group-addon">
-            <span class="fa fa-calendar"></span>
-        </div>
+        <div class="input-group-addon"><span class="fa fa-calendar"></span></div>
+        {!! Form::text('finicial', old('finicial'), ['class' => 'form-control','placeholder'=>'F.Inicial','required','id'=>'div_input_finicial_'.(isset($rol->id)?$rol->id : 'create')]); !!}
+
+        {{-- <div class="input-group-addon">Hasta</div> --}}
+
+        <div class="input-group-addon"><span class="fa fa-calendar"></span></div>
+        {!! Form::text('ffinal', old('ffinal'), ['class' => 'form-control','placeholder'=>'F.Final','required', 'id'=>'div_input_ffinal_'.(isset($rol->id)?$rol->id : 'create')]); !!}
+
     </div>
-
+    
     <div class="div-alert-error alert alert-danger {{ $errors->has('finicial') ? 'show' : 'hide' }}" id="error_msg_finicial_{{$rol->id or 'create'}}" role="alert" align="center">
-       
+   
         {{ $errors->first('finicial') }}
 
     </div>
 
-</div>
-{{-- FIN campo finicial --}}
-
-{{-- INI campo ffinal --}}
-<div class="form-group div-form-input {{ $errors->has('ffinal') ? ' has-error' : '' }}" id="div_input_ffinal_{{ $rol->id or 'create' }}">
-
-    <label for="ffinal">Fecha Final</label>
-
-    <div class="input-group date">
-        {!! Form::text('ffinal', old('ffinal'), ['class' => 'form-control','required']); !!}
-        <div class="input-group-addon">
-            <span class="fa fa-calendar"></span>
-        </div>
-    </div>
-
     <div class="div-alert-error alert alert-danger {{ $errors->has('ffinal') ? 'show' : 'hide' }}" id="error_msg_ffinal_{{$rol->id or 'create'}}" role="alert" align="center">
-       
+   
         {{ $errors->first('ffinal') }}
 
     </div>
 
 </div>
-{{-- FIN campo ffinal --}}
+{{-- FIN campo rango --}}
 
 @section('stylesheet')
 
@@ -106,13 +95,20 @@
 
     <script type="text/javascript">
 
-        $('.date').datepicker({  
+        // $('.date').datepicker({  
+        //    format: 'yyyy-mm-dd',
+        //    autoclose: true,
+        //    language: 'es'
+        //  });
 
-           format: 'yyyy-mm-dd',
-           autoclose: true,
-           language: 'es'
-
-         });  
+        $('.input-daterange input').each(function() {
+            $(this).datepicker({
+                format: 'yyyy-mm-dd',
+                clearDates: true,
+                language: 'es',
+                autoclose:true
+            });
+        }); 
 
     </script>  
 

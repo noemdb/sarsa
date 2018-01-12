@@ -4,6 +4,10 @@
 
     Formulario para el Registro de Nuevo Rol. <strong>{{ $user->username or '' }}</strong>
 
+    {{ $errors->has('finicial') ? ' has-error' : '' }}
+
+    {{ $errors->first('finicial') }}
+
   </div>
 
   <div class="panel-body">
@@ -19,7 +23,7 @@
 
         @else
 
-          <div class="form-group {{ $errors->has('user_id') ? ' has-error' : '' }}">
+          <div class="form-group div-form-input {{ $errors->has('user_id') ? ' has-error' : '' }}">
 
             <label for="user_id">Usuario</label>
 
