@@ -35,6 +35,7 @@
 @endsection
 
 @section('scripts')
+
     @parent
 
     <script src="{{ asset("js/models/rols/create.js") }}"></script>

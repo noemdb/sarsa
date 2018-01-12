@@ -54,39 +54,8 @@
 
 @endsection
 
-@section('stylesheet')
-
-    @parent
-
-    <link rel="stylesheet" href="{{ asset('vendor/datatables/DataTables-1.10.16/css/dataTables.bootstrap.css') }}">
-
-@endsection
-
 @section('scripts')
     @parent
-
-    <script src="{{ asset("vendor/datatables/DataTables-1.10.16/js/jquery.dataTables.js") }}"></script>
-    <script src="{{ asset("vendor/datatables/DataTables-1.10.16/js/dataTables.bootstrap.js") }}"></script>
-
-    {{-- INI datatable --}}
-    <script>
-        $(document).ready(function() {
-            $('#table-data-user').DataTable({
-                responsive: false,
-                pageLength: {{ Auth::user()->getSetting('numregpag_userlist') }},
-                // order: [[ 0, "asc" ]],
-                language: {
-                    url: "{{ asset("vendor/datatables/lang/spanish.lang") }}"
-                },
-                 columnDefs: [ {
-                      targets: 'no-sort',
-                      orderable: false,
-                } ]
-
-            });
-        });
-    </script>
-    {{-- FIN datatable --}}
 
     {{-- INI script ajax json models --}}
     <script src="{{ asset("js/models/users/upgrade.js") }}"></script>
@@ -94,6 +63,5 @@
     <script src="{{ asset("js/models/profiles/upgrade.js") }}"></script>
     <script src="{{ asset("js/models/profiles/create.js") }}"></script>
     {{-- FIN script ajax json models --}}
-
 
 @endsection

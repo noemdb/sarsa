@@ -20,3 +20,12 @@ composer require "laravelcollective/html":"^5.4.0"
       'Html' => Collective\Html\HtmlFacade::class,
     // ...
 	],
+
+
+******************************************************************************************
+ERROR
+
+composer dump-autoload
+Cannot create cache directory /home/vagrant/.composer/cache/repo/https---packagist.org/,
+FIX
+sudo chown -R $USER $HOME/.composer

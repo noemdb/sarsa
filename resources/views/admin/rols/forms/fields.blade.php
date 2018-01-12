@@ -101,8 +101,6 @@
 
     @parent
 
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script> --}}
-
     <script src="{{ asset("vendor/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js") }}"></script>
     <script src="{{ asset("vendor/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.es.min.js") }}"></script>
 
@@ -111,7 +109,8 @@
         $('.date').datepicker({  
 
            format: 'yyyy-mm-dd',
-           autoclose: true
+           autoclose: true,
+           language: 'es'
 
          });  
 
