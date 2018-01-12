@@ -54,15 +54,15 @@
     <div class="input-group input-daterange">
 
         <div class="input-group-addon"><span class="fa fa-calendar"></span></div>
-        {!! Form::text('finicial', old('finicial'), ['class' => 'form-control','placeholder'=>'F.Inicial','required','id'=>'div_input_finicial_'.(isset($rol->id)?$rol->id : 'create')]); !!}
+        {!! Form::text('finicial', old('finicial'), ['class' => 'form-control','placeholder'=>'Fecha Inicial','required','id'=>'div_input_finicial_'.(isset($rol->id)?$rol->id : 'create')]); !!}
 
         {{-- <div class="input-group-addon">Hasta</div> --}}
 
         <div class="input-group-addon"><span class="fa fa-calendar"></span></div>
-        {!! Form::text('ffinal', old('ffinal'), ['class' => 'form-control','placeholder'=>'F.Final','required', 'id'=>'div_input_ffinal_'.(isset($rol->id)?$rol->id : 'create')]); !!}
+        {!! Form::text('ffinal', old('ffinal'), ['class' => 'form-control','placeholder'=>'Fecha Final','required', 'id'=>'div_input_ffinal_'.(isset($rol->id)?$rol->id : 'create')]); !!}
 
     </div>
-    
+
     <div class="div-alert-error alert alert-danger {{ $errors->has('finicial') ? 'show' : 'hide' }}" id="error_msg_finicial_{{$rol->id or 'create'}}" role="alert" align="center">
    
         {{ $errors->first('finicial') }}

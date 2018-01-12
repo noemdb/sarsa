@@ -1,4 +1,4 @@
-<div class="panel panel-{{ $class_form_create_rol or 'default' }}" >
+<div class="panel panel-{{ Session::get('class_panel') ? Session::get('class_panel') : 'info' }}" >
 
   <div class="panel-heading">
 

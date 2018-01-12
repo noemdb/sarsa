@@ -83,9 +83,11 @@ class RolController extends Controller
     public function store(CreateRolRequest $request)
     {
         
-        // dd($request);
+        // dd($request->all());
 
         $rol = Rol::onlyTrashed()->Where('user_id','=',$request->user_id);
+
+        // dd($rol);
 
         if ($rol) {
 
@@ -93,7 +95,7 @@ class RolController extends Controller
 
         }
 
-        $rol = Profile::create($request->all());
+        $rol = Rol::create($request->all());
 
         $messenge = trans('db_oper_result.profile_create_ok');
 
@@ -111,7 +113,9 @@ class RolController extends Controller
         
         Session::flash('operp_ok',$messenge);
 
-        return redirect()->route('profiles.index');
+        Session::flash('class_panel','success');
+
+        return redirect()->route('rols.create');
     }
 
     /**

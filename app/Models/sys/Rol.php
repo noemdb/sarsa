@@ -15,6 +15,10 @@ class Rol extends Model
 	use Notifiable;
 	use SoftDeletes;
 
+    protected $fillable = [
+        'user_id','rol', 'rango','descripcion','finicial','ffinal'
+    ];
+
 	/*INI relaciones entre modelos*/
 	public function user()
     {

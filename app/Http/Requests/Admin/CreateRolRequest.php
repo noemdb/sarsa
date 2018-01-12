@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+// use Illuminate\Routing\Route;
+use Illuminate\Http\Request;
 
 class CreateRolRequest extends FormRequest
 {
@@ -23,13 +25,15 @@ class CreateRolRequest extends FormRequest
      */
     public function rules()
     {
+        $request = Request::All();
+        // dd($request);
         return [
-            'user_id' => 'required|max:1',
-            'rol' => 'required|max:1',
-            'rango' => 'required|max:1',
-            'descripcion' => 'required|max:1',
-            'finicial' => 'date|max:1',
-            'ffinal' => 'date|max:1',
+            'user_id' => 'required',
+            'rol' => 'required|max:16',
+            'rango' => 'required|max:16',
+            'descripcion' => 'required|max:255',
+            'finicial' => 'required|date|date_format:"Y-m-d"',
+            'ffinal' => 'required|date|date_format:"Y-m-d"|after:'.$request['finicial'],
         ];
     }
 }
