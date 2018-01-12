@@ -93,7 +93,7 @@
 
     @parent
 
-    <script src="{{ asset("vendor/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css") }}"></script>
+    <link href="{{ asset('vendor/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
 
 @endsection
 
