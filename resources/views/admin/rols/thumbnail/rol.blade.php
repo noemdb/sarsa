@@ -54,10 +54,31 @@
                         @slot('text', $ffinal)
                     @endcomponent
 
+                    <li class="list-group-item">
+
+                        <div align="center">
+                            @if (isset($rol->id))
+                                <a title="Actualizar" class="btn btn-warning btn-ms btn-block" href="{{ route('rols.update',$rol->id) }}" role="button">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    Actualizar
+                                </a>
+                            @else
+                                <a title="Crear" class="btn btn-primary btn-ms" href="{{ route('rols.create') }}" role="button">
+                                    <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+                                    Crear
+                                </a>
+                            @endif
+                        </div>  
+
+                    </li>
+
                 </ul>
             </div>
 
         </div>
 
     </div>
+
+
+
 </div>

@@ -75,7 +75,8 @@
 
     </div>
 
-</div>
+</div>           
+
 {{-- FIN campo rango --}}
 
 @section('stylesheet')
@@ -99,11 +100,26 @@
         $('.input-daterange-{{ $rol->id or 'create' }} input').each(function() {
             $(this).datepicker({
                 format: 'yyyy-mm-dd',
-                clearDates: true,
+                // clearDates: true,
                 language: 'es',
-                autoclose:true
+                autoclose:true,
+                // todayHighlight:true,
+                // beforeShowYear: true,
+                // minViewMode: "years"
+                // startDate: '-3d',
+                daysOfWeekHighlighted: [0,6],
+                startView: 'years',
+                templates: {
+                    leftArrow: '<i class="fa fa-arrow-left" aria-hidden="true"></i>',
+                    rightArrow: '<i class="fa fa-arrow-right" aria-hidden="true"></i>',
+                },
+                // title: 'Rango de Fechas',
+                
             });
         }); 
 
-    </script>  
+    </script> 
+
 @endsection
+
+

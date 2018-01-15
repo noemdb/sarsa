@@ -132,7 +132,15 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $profile = Profile::findOrFail($id);
+
+        $user = User::findOrFail($profile->user_id);
+
+        // dd($profile,$user);
+
+        return view('admin.profiles.edit',compact('profile','user'));
+
     }
 
     /**

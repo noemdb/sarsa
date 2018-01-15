@@ -15,7 +15,7 @@
 
         <div align="center">
 
-            <div class="form-group">
+            <div class="form-group" data-rol="{{$profile->id}}">
 
                 <button type="submit" class="btn-update-profile btn btn-warning btn-block" id="btn-update-profile-{{$profile->id}}">
                     <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
@@ -33,3 +33,11 @@
       
     </div>
 </div>
+
+@section('scripts')
+
+    @parent
+
+    <script src="{{ asset("js/models/profiles/update.js") }}"></script>
+
+@endsection

@@ -22,9 +22,11 @@
 
         <ul class="nav nav-tabs">
 
-          <li class="active"><a data-toggle="tab" href="#showrol_tab_{{$rol->id}}">Info. General</a></li>
+          <li class="active"><a data-toggle="tab" href="#showrol_tab_{{$rol->id}}">Info. General del Rol</a></li>
 
-          <li><a data-toggle="tab" href="#showuser_tab_{{$user->id}}">Usuario</a></li>
+          <li><a data-toggle="tab" href="#showuser_tab_{{$rol->id}}">Usuario</a></li>
+
+          <li><a data-toggle="tab" href="#showprofile_tab_{{$rol->id}}">Perfil</a></li>
 
         </ul>
 
@@ -37,10 +39,17 @@
             
           </div>
 
-          <div id="showuser_tab_{{$user->id}}" class="tab-pane">
+          <div id="showuser_tab_{{$rol->id}}" class="tab-pane">
 
               @php($user = $rol->user)
               @include('admin.users.thumbnail.user')
+
+          </div>
+
+          <div id="showprofile_tab_{{$rol->id}}" class="tab-pane">
+
+              @php($profile = $rol->profile)
+              @include('admin.profiles.thumbnail.profile')
 
           </div>
 

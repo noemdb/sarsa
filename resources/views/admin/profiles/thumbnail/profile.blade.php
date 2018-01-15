@@ -7,7 +7,7 @@
 
         <div class="col-sm-4" align="center">
 
-            <img alt="{{$user->username}}" class="img-thumbnail img-rounded" src="{{ (isset($profile->url_img)) ? asset($profile->url_img) : asset('images/avatar/user_default.png') }}">
+            <img alt="{{$user->username or ''}}" class="img-thumbnail img-rounded" src="{{ (isset($profile->url_img)) ? asset($profile->url_img) : asset('images/avatar/user_default.png') }}">
         
         </div>
 
@@ -16,7 +16,9 @@
             <div align="left">
                 {{-- <h4></h4> --}}
 
+                
                 <ul class="list-group" style="margin: 0px;">
+                    {{-- 
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-xs-4 col-sm-4 col-md-4">Usuario:</div>
@@ -41,7 +43,8 @@
                                 </strong>
                             </div>
                         </div>
-                    </li>
+                    </li> 
+                    --}}
 
                     <li class="list-group-item">
                         <div class="row">
@@ -93,11 +96,29 @@
                             </div>
                         </div>
                     </li>
-                    
+
+                    <li class="list-group-item">
+
+                        <div align="center">
+                            @if (isset($profile->id))
+                                <a title="Actualizar" class="btn btn-warning btn-ms btn-block" href="{{ route('profiles.edit',$profile->id) }}" role="button">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                    Actualizar
+                                </a>
+                            @else
+                                <a title="Crear" class="btn btn-primary btn-ms btn-block" href="{{ route('profiles.create') }}" role="button">
+                                    <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+                                    Crear
+                                </a>
+                            @endif
+                        </div>  
+
+                    </li>                    
                 </ul>
             </div>
 
         </div>
 
     </div>
+
 </div>

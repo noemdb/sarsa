@@ -100,7 +100,7 @@ class RolController extends Controller
     public function store(CreateRolRequest $request)
     {
         
-        // dd($request->all());
+        dd($request->all());
 
         $rol = Rol::onlyTrashed()->Where('user_id','=',$request->user_id);
 
