@@ -1,28 +1,28 @@
-<div class="panel panel-{{ $class_form_update_profile or 'default' }}" id="panel_profile_{{$profile->id or 'create'}}">
+<div class="panel panel-{{ Session::get('class_panel') ? Session::get('class_panel') : 'info' }}" id="panel_rol_{{$rol->id or ''}}">
 
-    <div class="panel-heading">Formulario para la edición del Usuario: <strong>{{$user->username}}</strong></div>
+    <div class="panel-heading">Formulario para la edición del rol <b>ID{{$rol->id or ''}}</b> del usuario: <strong>{{$user->username or ''}}</strong></div>
 
     <div class="panel-body">
 
       {{-- INI form --}}
-      {!! Form::model($profile,['route' => ['profiles.update', $profile->id], 'method' => 'PUT', 'id'=>'form-update-profile_'.$profile->id, 'role'=>'form']) !!}
+      {!! Form::model($rol,['route' => ['rols.update', $rol->id], 'method' => 'PUT', 'id'=>'form-update-rol_'.$rol->id, 'role'=>'form']) !!}
         
-        {{ Form::hidden('id', $profile->id) }}
+        {{ Form::hidden('id', $rol->id) }}
 
-        {{ Form::hidden('user_id', $profile->user_id) }}
+        {{ Form::hidden('user_id', $rol->user_id) }}
 
-        @include('admin.profiles.forms.fields')
+        @include('admin.rols.forms.fields')
 
         <div align="center">
 
-            <div class="form-group">
+            <div class="form-group" data-rol="{{$rol->id}}">
 
-                <button type="submit" class="btn-update-profile btn btn-warning btn-block" id="btn-update-profile-{{$profile->id}}">
+                <button type="submit" class="btn-update-rol btn btn-warning btn-block" id="btn-update-rol-{{$rol->id}}">
                     <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
                     Actualizar 
                 </button>
                 {{-- Mensaje flash sobreo operaciones con base de datos --}}
-                <div class="div-alert alert alert-success hide" id="alert_result_ok_{{$profile->id or 'create'}}" role="alert" align="center"></div>
+                <div class="div-alert alert alert-success hide" id="alert_result_ok_{{$rol->id or 'create'}}" role="alert" align="center"></div>
 
             </div>
 
@@ -33,3 +33,11 @@
       
     </div>
 </div>
+
+@section('scripts')
+
+    @parent
+
+    <script src="{{ asset("js/models/rols/update.js") }}"></script>
+
+@endsection

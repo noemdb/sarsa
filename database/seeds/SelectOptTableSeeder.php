@@ -31,6 +31,16 @@ class SelectOptTableSeeder extends Seeder
 	            'view' => "rol.create",
         	]);
     	}
+
+        $arr_estado = ['Activo'=>'Activo','Desactivo'=>'Desactivo'];
+        foreach ($arr_estado as $key => $value) {
+            DB::table('select_opts')->insert([
+                'table' => "users",
+                'name' => "is_active",
+                'value' => $value,
+                'view' => "rol.index",
+            ]);
+        }
         
     }
 }

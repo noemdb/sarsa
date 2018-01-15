@@ -13,6 +13,10 @@ return [
     |
     */
 
+    'create_ok' => 'Buen trabajo! El registro fué creado exitosamente',
+    'update_ok' => 'Buen trabajo! El registro fué actualizado exitosamente',
+    'delete_ok' => 'Buen trabajo! El registro fué eliminado exitosamente',
+
     'user_create_ok' => 'Buen trabajo! El usuario fué registrado exitosamente',
     'user_create_not' => 'Algo salió mal! El usuario no fué Creado',
     'user_update_ok' => 'Buen trabajo! El usuario fué Actualizado exitosamente',

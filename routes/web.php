@@ -28,6 +28,7 @@ Route::get('/setting', function () {
         //view report
         'numregpag_userlist' => '10',
         'numregpag_profilelist' => '10',
+        'numregpag_rollist' => '10',
 
         //view topnavbar
         'topnavbar_messages' => 'true',

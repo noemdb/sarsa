@@ -3,7 +3,7 @@
 
     <label for="rol">Rol</label>
 
-    {!! Form::select('rol',$opt_list_rol,old('rol'),['class' => 'form-control']); !!}
+    {!! Form::select('rol',$rol_list,old('rol'),['class' => 'form-control']); !!}
 
     <div class="div-alert-error alert alert-danger {{ $errors->has('rol') ? 'show' : 'hide' }}" id="error_msg_rol_{{$rol->id or 'create'}}" role="alert" align="center">
         
@@ -15,13 +15,13 @@
 {{-- FIN campo rol --}}
 
 {{-- INI campo rango --}}
-<div class="form-group div-form-input {{ $errors->has('rol') ? ' has-error' : '' }}" id="div_input_rango_{{ $rol->id or 'create' }}">
+<div class="form-group div-form-input {{ $errors->has('rango') ? ' has-error' : '' }}" id="div_input_rango_{{ $rol->id or 'create' }}">
 
     <label for="rango">Rango</label>
 
-    {!! Form::select('rango',$opt_list_rango,old('rango'),['class' => 'form-control']); !!}
+    {!! Form::select('rango',$rango_list,old('rango'),['class' => 'form-control']); !!}
 
-    <div class="div-alert-error alert alert-danger {{ $errors->has('rol') ? 'show' : 'hide' }}" id="error_msg_rango_{{$rol->id or 'create'}}" role="alert" align="center">
+    <div class="div-alert-error alert alert-danger {{ $errors->has('rango') ? 'show' : 'hide' }}" id="error_msg_rango_{{$rol->id or 'create'}}" role="alert" align="center">
         
         {{ $errors->first('rango') }}
 
@@ -51,7 +51,7 @@
 <div class="form-group div-form-input {{ $errors->has('finicial') ? ' has-error' : '' }} {{ $errors->has('ffinal') ? ' has-error' : '' }}">
 
     <label for="rage">Rango de Fechas</label>
-    <div class="input-group input-daterange">
+    <div class="input-group input-daterange-{{ $rol->id or 'create' }}">
 
         <div class="input-group-addon"><span class="fa fa-calendar"></span></div>
         {!! Form::text('finicial', old('finicial'), ['class' => 'form-control','placeholder'=>'Fecha Inicial','required','id'=>'div_input_finicial_'.(isset($rol->id)?$rol->id : 'create')]); !!}
@@ -79,17 +79,12 @@
 {{-- FIN campo rango --}}
 
 @section('stylesheet')
-
     @parent
-
     <link href="{{ asset('vendor/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
-
 @endsection
 
 @section('scripts')
-
     @parent
-
     <script src="{{ asset("vendor/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js") }}"></script>
     <script src="{{ asset("vendor/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.es.min.js") }}"></script>
 
@@ -101,7 +96,7 @@
         //    language: 'es'
         //  });
 
-        $('.input-daterange input').each(function() {
+        $('.input-daterange-{{ $rol->id or 'create' }} input').each(function() {
             $(this).datepicker({
                 format: 'yyyy-mm-dd',
                 clearDates: true,
@@ -111,5 +106,4 @@
         }); 
 
     </script>  
-
 @endsection

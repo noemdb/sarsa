@@ -30,7 +30,7 @@
 
     <label for="is_active">{{ trans('validation.attributes.is_active') }}</label>
 
-    {!! Form::select('is_active',[ 'Desactivo' => 'Desactivo','Activo' => 'Activo'],null,['class' => 'form-control']); !!}
+    {!! Form::select('is_active',$is_active_list,old('is_active'),['class' => 'form-control']); !!}
 
     <div class="div-alert-error alert alert-danger {{ $errors->has('is_active') ? 'show' : 'hide' }}" id="error_msg_is_active_{{$user->id or 'create' }}" role="alert" align="center">
        

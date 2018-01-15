@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Session;
 use App\User;
 use App\Models\sys\Profile;
 use App\Models\sys\Rol;
+use App\Models\sys\SelectOpt;
 
 class UserController extends Controller
 {
@@ -44,7 +45,15 @@ class UserController extends Controller
             ->with('rols')
             ->get();
 
-        return view('admin.users.index', compact('users'));
+        $is_active_list = SelectOpt::select('select_opts.*')
+            ->where('table','users')
+            ->where('name','is_active')
+            ->where('view','rol.index')
+            ->orderby('value')
+            ->pluck('value','value')
+            ->prepend('Seleccionar','');
+
+        return view('admin.users.index', compact('users','is_active_list'));
     }
 
     /**

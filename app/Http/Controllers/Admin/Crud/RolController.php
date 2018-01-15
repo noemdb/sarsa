@@ -29,14 +29,29 @@ class RolController extends Controller
     public function index()
     {
         $rols = Rol::OrderBy('id','DESC')
-            // ->username($arr_get)
             ->with('User')
             ->with('Profile')
             ->get();
 
-        // dd($rols->toarray());
+        //lista para los roles
+        $rol_list = SelectOpt::select('select_opts.*')
+            ->where('table','rols')
+            ->where('view','rol.create')
+            ->where('name','rol')
+            ->orderby('value')
+            ->pluck('value','value')
+            ->prepend('Seleccionar','');
 
-        return view('admin.rols.index', compact('rols'));
+        //lista para los rangos
+        $rango_list = SelectOpt::select('select_opts.*')
+            ->where('table','rols')
+            ->where('view','rol.create')
+            ->where('name','rango')
+            ->orderby('value')
+            ->pluck('value','value')
+            ->prepend('Seleccionar','');
+
+        return view('admin.rols.index', compact('rols','rol_list','rango_list'));
     }
 
     /**
@@ -49,29 +64,31 @@ class RolController extends Controller
         
         // $user = new User;
         $user_list = User::select('users.*')
-                // ->leftJoin('rols', 'users.id', '=', 'rols.user_id')
-                // ->whereNull('rols.user_id')
-                // ->OrWhere('rols.deleted_at','<>',NULL)
                 ->orderby('users.username','asc')
-                ->pluck('username', 'id');
+                ->pluck('username', 'id')
+                ->prepend('Seleccionar','');
 
-        $opt_list_rol = SelectOpt::select('select_opts.*')
+        //lista para los roles
+        $rol_list = SelectOpt::select('select_opts.*')
             ->where('table','rols')
             ->where('view','rol.create')
             ->where('name','rol')
             ->orderby('value')
-            ->pluck('value','value');
+            ->pluck('value','value')
+            ->prepend('Seleccionar','');
 
-        $opt_list_rango = SelectOpt::select('select_opts.*')
+        //lista para los rangos
+        $rango_list = SelectOpt::select('select_opts.*')
             ->where('table','rols')
             ->where('view','rol.create')
             ->where('name','rango')
             ->orderby('value')
-            ->pluck('value','value');
+            ->pluck('value','value')
+            ->prepend('Seleccionar','');
 
-        // dd($user_list,$sel_opt_list);
+        // dd($user_list,$rol_list,$rango_list);
 
-        return view('admin.rols.create',compact('user_list','opt_list_rol','opt_list_rango'));
+        return view('admin.rols.create',compact('user_list','rol_list','rango_list'));
     }
 
     /**
@@ -97,7 +114,7 @@ class RolController extends Controller
 
         $rol = Rol::create($request->all());
 
-        $messenge = trans('db_oper_result.profile_create_ok');
+        $messenge = trans('db_oper_result.create_ok');
 
         if($request->ajax()){
 
@@ -137,7 +154,39 @@ class RolController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $rol = Rol::findOrFail($id);
+
+        $user = User::findOrFail($rol->user_id);
+
+        // $rol = Rol::where('id',$id)->with('User')->first();
+
+        $user_list = User::select('users.*')
+                ->orderby('users.username','asc')
+                ->pluck('username', 'id')
+                ->prepend('Seleccionar','');
+
+        //lista para los roles
+        $rol_list = SelectOpt::select('select_opts.*')
+            ->where('table','rols')
+            ->where('view','rol.create')
+            ->where('name','rol')
+            ->orderby('value')
+            ->pluck('value','value')
+            ->prepend('Seleccionar','');
+
+        //lista para los rangos
+        $rango_list = SelectOpt::select('select_opts.*')
+            ->where('table','rols')
+            ->where('view','rol.create')
+            ->where('name','rango')
+            ->orderby('value')
+            ->pluck('value','value')
+            ->prepend('Seleccionar','');
+
+        // dd($rol,$rol_list,$rango_list);       
+
+        return view('admin.rols.edit',compact('rol','user','user_list','rol_list','rango_list'));
     }
 
     /**
@@ -147,9 +196,34 @@ class RolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRolRequest $request, $id)
     {
-        //
+        $rol = Rol::findOrFail($id);
+        
+        $rol->fill($request->all());
+
+        $rol->save();
+
+        $messenge = trans('db_oper_result.update_ok');
+
+        if($request->ajax()){
+
+            return response()->json([
+                "rol"=>$request->rol,
+                "rango"=>$request->rango,
+                "descripcion"=>$request->descripcion,
+                "finicial"=>$request->finicial,
+                "ffinal"=>$request->ffinal,
+                "messenge"=>$messenge
+            ]);
+            
+        }
+
+        Session::flash('operp_ok',$messenge);
+
+        Session::flash('class_panel','success');
+
+        return redirect()->route('rols.edit',$id);
     }
 
     /**

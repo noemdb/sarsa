@@ -16,7 +16,7 @@
 
                <h1>
                     
-                    Nuevos Roles
+                    Actualizar Rol
 
                     <div class="btn-group pull-right">
 
@@ -28,11 +28,11 @@
 
                 </h1>
                 
-                <small class="text text-success text-weight text-right {{ Session::get('operp_ok') ? 'show' : 'hide' }}" >
+                <small id="rol_update_ok_{{$rol->id or ''}}" class="text text-weight text-right {{ Session::get('operp_ok') ? 'text-success show' : 'hide' }}" >
                     {{ Session::get('operp_ok') ? Session::get('operp_ok'): '' }}
                 </small>
 
-                @include('admin.rols.forms.create') 
+                @include('admin.rols.forms.update')
                
             </div>
         </div>
@@ -41,10 +41,17 @@
 
 @endsection
 
-@section('scripts')
 
+
+{{-- 
+@section('stylesheet')
     @parent
-
-    <script src="{{ asset("js/models/rols/create.js") }}"></script>
-
+    <link href="{{ asset('vendor/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
 @endsection
+
+@section('scripts')
+    @parent
+    <script src="{{ asset("vendor/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js") }}"></script>
+    <script src="{{ asset("vendor/bootstrap-datepicker/1.6.4/locales/bootstrap-datepicker.es.min.js") }}"></script>
+@endsection 
+--}}

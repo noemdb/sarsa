@@ -8,26 +8,28 @@
           <i class="fa fa-close" aria-hidden="true"></i>
         </button>
 
-        <h5 class="modal-title" align="left" id="myModalLabel"><strong>Datos de Usuario</strong></h5>
+        <h5 class="modal-title" align="left" id="myModalLabel"><strong>Datos del Rol</strong></h5>
       </div>
 
       {{-- <div class="modal-body panel panel-{{ ($user->is_active=='Activo') ? 'info': 'danger' }}"> --}}
       <div class="modal-body panel panel-{{ ($user->is_active=='Activo') ? 'info': 'danger' }} panel-user-{{$user->id or ''}}">
 
         <ul class="nav nav-tabs">
-          <li class="active"><a data-toggle="tab" href="#editprofile_tab_{{$user->id}}_general">Perfil</a></li>
-          <li><a data-toggle="tab" href="#edituser_tab_{{$user->id}}_general">Usuario</a></li>
+          <li class="active"><a data-toggle="tab" href="#editrol_tab_{{$rol->id}}_general">Rol</a></li>
+          <li><a data-toggle="tab" href="#edituser_tab_{{$user->id}}_general">Info Usuario</a></li>
           <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
         </ul>
 
         <div class="tab-content">
-          <div id="editprofile_tab_{{$user->id}}_general" class="tab-pane fade in active">
+          <div id="editrol_tab_{{$rol->id}}_general" class="tab-pane fade in active">
             {{-- <h3>HOME</h3> --}}
-            @include('admin.profiles.forms.update',['class_form_update_profile'=>'warning'])
+            @include('admin.rols.forms.update',['class_form_update_rol'=>'warning'])
           </div>
           <div id="edituser_tab_{{$user->id}}_general" class="tab-pane fade">
             {{-- <h3>Menu 1</h3><p>Some content in menu 1.</p> --}}
-            @include('admin.users.forms.update',['class_form_update_user'=>'warning'])
+            {{-- @include('admin.users.forms.update',['class_form_update_user'=>'warning']) --}}
+            {{-- @php($user = $rol->user) --}}
+            @include('admin.users.thumbnail.user')
           </div>
           <div id="menu2" class="tab-pane fade">
             <h3>Menu 2</h3>
