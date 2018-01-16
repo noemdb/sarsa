@@ -34,6 +34,10 @@
                 </h1>
                 
                 @include('admin.profiles.forms.create',['class_form_create_profile'=>'info']) 
+
+                <small id="profile_create_ok_{{$profile->id or 'create'}}" class="text text-weight text-right {{ Session::get('operp_ok') ? 'text-success show' : 'hide' }}" >
+                    {{ Session::get('operp_ok') ? Session::get('operp_ok'): '' }}
+                </small>
                
             </div>
         </div>

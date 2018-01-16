@@ -70,7 +70,8 @@ class ProfileController extends Controller
                 ->OrWhere('profiles.deleted_at','<>',NULL)
                 // ->whereNotNull('profiles.deleted_at')
                 ->orderby('users.username','asc')
-                ->pluck('username', 'id');
+                ->pluck('username', 'id')
+                ->prepend('Seleccionar','');
 
         return view('admin.profiles.create',compact('user','user_list'));
     }

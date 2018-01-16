@@ -7,7 +7,7 @@
     <div class="well">
 
       {{-- <form> --}}
-      {!! Form::open(['route' => 'profiles.store', 'method' => 'POST', 'id'=>'form-profile-create-'.$user->id]) !!}
+      {!! Form::open(['route' => 'profiles.store', 'method' => 'POST', 'id'=>'form-profile-create-'. (isset($user->id)? $user->id : 'create')]) !!}
 
 
 
@@ -33,7 +33,7 @@
           {{-- partial con el formulario y campos --}}       
           @include('admin.profiles.forms.fields')
 
-          <button type="submit" class="btn-profile-create btn btn-primary btn-block" value="create" data-user="{{$user->id}}">
+          <button type="submit" class="btn-profile-create btn btn-primary btn-block" value="create" data-user="{{$user->id or 'create'}}">
               <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
               Registrar 
           </button>

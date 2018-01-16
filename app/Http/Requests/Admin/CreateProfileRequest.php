@@ -41,7 +41,7 @@ class CreateProfileRequest extends FormRequest
             'lastname' => 'required|max:255',
             'email' => 'required|unique:profiles,email',
             // 'user_id' => 'required|unique:profiles,user_id',
-            'user_id' => 'exists:users,id,deleted_at,NULL',
+            'user_id' => 'unique:profiles,user_id|exists:users,id,deleted_at,NULL',
         ];
     }
 }

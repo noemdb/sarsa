@@ -1,48 +1,50 @@
-$(document).ready(function() {
+$(document).ready(function () {
+  // script para realizar para actualizar registros usando peticiones ajax
     $('.btn-profile-create').click(function (e) {
         e.preventDefault();
-        var row = $(this).parents('tr'); //console.log(row);
-        var id_user = row.data('user'); //console.log('id_user: '+id_user);
+        // var div = $(this).parents('div'); //console.log(row);
+        var user_id = $(this).data('user'); console.log('user_id: '+user_id);
 
-        var idform = '#form-profile-create-'+id_user; //console.log(idform);
-        var form = $(idform); // console.log(form);
-        var user_id = form.data('user_id'); console.log('user_id: '+user_id);
-        var url = form.attr('action'); //console.log(url);
-        var data = form.serialize(); //console.log(data);
-        var modal_active = '#edit_modal_'+id_user; //console.log('modal_active: '+modal_active);
+        var idform = '#form-profile-create-'+user_id; console.log(idform);
+        var form = $(idform); console.log(form);
+        // var user_id = form.data('user_id'); console.log('user_id: '+user_id);
+        var url = form.attr('action'); console.log(url);
+        var data = form.serialize(); console.log(data);
+        
+        var profile_create_ok = "#profile_create_ok_"+user_id; console.log('profile_create_ok: '+profile_create_ok);
 
-        //limpia los div de errores anteriores
+        //oculta los div de errores anteriores
         $(".div-alert-error").each(function(){
-          $(this).removeClass("show");
-          $(this).addClass("hide");
-        });     
+          $(this).removeClass("show").addClass("hide");
+          // $(this).addClass("hide");
+        });
 
         //limpia los div de los input del form
         $(".div-form-input").each(function(){
           $(this).removeClass("has-error");
-        });          
+        });
+        $(".form-control").each(function(){
+          $(this).removeClass("has-error");
+        });
 
         $.post(url, data, function (result){
-            //console.log(result.messenge);
-            var id_div = '#alert-result-oper';
-            $(id_div).removeClass("hide");
-            $(id_div).addClass("show");
-            $(id_div).text(result.messenge+': '+result.username);
-            
-            location.reload(true);
+            console.log(result.messenge);
+            $(profile_create_ok).removeClass("text-danger").addClass("text-success show").text(result.messenge);
+            // $("#selectBox option:selected").remove();
+            $("select#mySelect option[value='option1']").remove();
+            $(idform).trigger("reset");
         }).fail(function (result) {
+            // console.log(result.messenge);
             $.each(result.responseJSON.errors,function(index,valor){
-
-              var id_error_msg = "#error_msg_"+index+"_create";
-              var id_div_input = "#div_input_"+index+"_create";
-
-              $(id_error_msg).text(valor);
-              $(id_error_msg).removeClass("hide");
-              $(id_error_msg).addClass( "show" );
-              $(id_div_input).addClass( "has-error" );
-
+                var id_error_msg = "#error_msg_"+index+"_"+user_id;
+                var id_div_input = "#div_input_"+index+"_"+user_id;
+                $(id_error_msg).text(valor).removeClass("hide").addClass( "show" );
+                $(id_div_input).addClass("has-error");
             });
-
+            $(profile_create_ok).addClass("text-danger show").text('Ocurrieron errores');
+            
         });
+
     });
+    //fin del evento clic
 });
