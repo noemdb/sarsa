@@ -17,11 +17,19 @@
                <h1>
                     Nuevos Perfiles
 
+                    {{-- INI Menu rapido --}}
                     <div class="btn-group pull-right">
-                        <a title="CRUD" class="btn btn-primary" href="{{ route('profiles.index') }}" role="button">
-                            <i class="fa fa-list" aria-hidden="true"></i>
-                        </a>
+
+                        @include('admin.elements.buttons.profile-index')
+
+                        @include('admin.elements.buttons.user-index')
+
+                        @include('admin.elements.buttons.rol-index')       
+
+                        @include('admin.elements.buttons.url-refresh')
+
                     </div>
+                    {{-- FIN Menu rapido --}}
 
                 </h1>
                 

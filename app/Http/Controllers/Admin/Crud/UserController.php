@@ -63,7 +63,16 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        
+        $is_active_list = SelectOpt::select('select_opts.*')
+        ->where('table','users')
+        ->where('name','is_active')
+        ->where('view','rol.index')
+        ->orderby('value')
+        ->pluck('value','value')
+        ->prepend('Seleccionar','');
+
+        return view('admin.users.create', compact('is_active_list'));
     }
 
     /**

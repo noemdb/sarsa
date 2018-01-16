@@ -20,9 +20,25 @@
 
                     <div class="btn-group pull-right">
 
+                        {{-- INI Menu rapido --}}
+                        <div class="btn-group pull-right">
+
+                            @include('admin.elements.buttons.rol-index')
+
+                            @include('admin.elements.buttons.user-index')
+
+                            @include('admin.elements.buttons.profile-index')        
+
+                            @include('admin.elements.buttons.url-refresh')
+
+                        </div>
+                        {{-- FIN Menu rapido --}}
+
+                        {{-- 
                         <a title="CRUD" class="btn btn-primary" href="{{ route('rols.index') }}" role="button">
                             <i class="fa fa-list" aria-hidden="true"></i>
                         </a>
+                        --}}
 
                     </div>
 

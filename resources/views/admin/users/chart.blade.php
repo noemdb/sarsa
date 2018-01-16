@@ -15,7 +15,7 @@
     {{-- INI section--}}
 
     @component('elements.widgets.panel')
-        @slot('panelTitle', 'Gráficas')
+        @slot('panelTitle', 'Análisis Estadístico')
         @slot('class', 'info')
         @slot('panelBody')
 
@@ -54,6 +54,7 @@
                                         @slot('iconTitle', 'fa fa-pie-chart fa-lg')
                                         @slot('panelBody')
                                             @component('elements.charts.widgets.canvas')
+                                                @slot('class', 'borderALL')
                                                 @slot('id', $chart['id_chart'])
                                             @endcomponent
                                         @endslot
@@ -77,6 +78,7 @@
                                         @slot('iconTitle', 'fa fa-pie-chart fa-lg')
                                         @slot('panelBody')
                                             @component('elements.charts.widgets.canvas')
+                                                @slot('class', 'borderRBL')
                                                 @slot('ulpanel')
                                                     <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-urlapi="{{ $chart['urlapi'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
                                                         <li class="active"><a href="#" data-range="Todos">Todos</a></li>
@@ -118,6 +120,7 @@
                                         @slot('iconTitle', 'fa fa-line-chart fa-lg')
                                         @slot('panelBody')
                                             @component('elements.charts.widgets.canvas')
+                                                @slot('class', 'borderRBL')
                                                 @slot('ulpanel')
                                                     <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-urlapi="{{ $chart['urlapi'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
                                                         <li class="active" title="Todo los datos"><a href="#" data-range='Todos'>Todos</a></li>

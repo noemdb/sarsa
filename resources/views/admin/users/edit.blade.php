@@ -24,7 +24,7 @@
                             <i class="fa fa-list" aria-hidden="true"></i>
                         </a>
                         
-                        <a title="Edición" class="btn btn-info" href="{{ route('users.edit',$user->id) }}" profilee="button">
+                        <a title="Refrescar" class="btn btn-info" href="{{ route('users.edit',$user->id) }}" profilee="button">
                             <i class="fa fa-refresh" aria-hidden="true"></i>
                         </a>
 

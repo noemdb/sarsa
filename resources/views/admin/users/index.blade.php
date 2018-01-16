@@ -14,15 +14,19 @@
                         <strong><span id="user_counter">{{$users->count()}}</span> Usuarios</strong>
                     </small>
                     
+                    {{-- INI Menu rapido --}}
                     <div class="btn-group pull-right">
 
-                        <a title="Crear nuevo Usuario" class="btn btn-primary" href="{{ route('users.create') }}" role="button">
-                            <i class="fa fa-user-plus" aria-hidden="true"></i>
-                        </a>
+                        @include('admin.elements.buttons.user-create')
+
+                        @include('admin.elements.buttons.profile-index')
+
+                        @include('admin.elements.buttons.rol-index')
+
+                        @include('admin.elements.buttons.url-refresh')
 
                     </div>
-
-
+                    {{-- FIN Menu rapido --}}
 
                 </h3>
             </div>

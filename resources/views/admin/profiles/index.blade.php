@@ -13,14 +13,20 @@
                 <small class="text-default">
                     <strong><span id="profile_counter">{{$profiles->count()}}</span> Perfiles</strong>
                 </small>
-                
+
+                {{-- INI Menu rapido --}}
                 <div class="btn-group pull-right">
 
-                    <a title="Crear nuevo Perfil" class="btn btn-primary" href="{{ route('profiles.create') }}" role="button">
-                        <i class="fa fa-id-card" aria-hidden="true"></i>
-                    </a>
+                    @include('admin.elements.buttons.profile-create')
+
+                    @include('admin.elements.buttons.user-index')
+
+                    @include('admin.elements.buttons.rol-index')
+
+                    @include('admin.elements.buttons.url-refresh')
 
                 </div>
+                {{-- FIN Menu rapido --}}
 
             </h3>
         </div>

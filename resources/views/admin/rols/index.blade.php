@@ -12,14 +12,20 @@
                     <small class="text-default">
                         <strong><span id="rol_counter">{{$rols->count()}}</span> Roles</strong>
                     </small>
-                    
+
+                    {{-- INI Menu rapido --}}
                     <div class="btn-group pull-right">
 
-                        <a title="Crear nuevo Rol" class="btn btn-primary" href="{{ route('rols.create') }}" role="button">
-                            <i class="fa fa-id-badge" aria-hidden="true"></i>
-                        </a>
+                        @include('admin.elements.buttons.rol-create')
+
+                        @include('admin.elements.buttons.user-index')
+
+                        @include('admin.elements.buttons.profile-index')        
+
+                        @include('admin.elements.buttons.url-refresh')
 
                     </div>
+                    {{-- FIN Menu rapido --}}
 
                 </h3>
             </div>
