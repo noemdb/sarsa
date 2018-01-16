@@ -39,7 +39,6 @@ class UpdateProfileRequest extends FormRequest
         return [
             'firstname' => 'required|max:255',
             'lastname' => 'required|max:255',
-            // 'email' => 'required|unique:profiles,email',
             'email' => 'required|max:255|unique:profiles,email,'.$this->route->parameter('profile'),
             'user_id' => 'required',
         ];

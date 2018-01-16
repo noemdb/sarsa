@@ -19,6 +19,7 @@ class UsersAdminTableSeeder extends Seeder
             'created_at'=> "20000101",
             'last_login_at' => "20000101",
             'remember_token' => str_random(10),
+            'created_at' => '2000-01-01',
         ]);
 
         DB::table('profiles')->insert([
@@ -27,6 +28,7 @@ class UsersAdminTableSeeder extends Seeder
             'url_img' => "images/avatar/default_user_admin.png",
             'email' => "admin@admin.com",
             'user_id' => $id,
+            'created_at' => '2000-01-01',
         ]);
 
         DB::table('rols')->insert([
@@ -36,6 +38,7 @@ class UsersAdminTableSeeder extends Seeder
             'finicial' => "20000101",
             'ffinal' => "20200101",
             'user_id' => $id,
+            'created_at' => '2000-01-01',
         ]);
     }
 }

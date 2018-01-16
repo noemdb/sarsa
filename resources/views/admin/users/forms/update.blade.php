@@ -1,4 +1,4 @@
-<div class="panel panel-{{ $class_form_update_user or 'default' }}" id="panel_user_{{$user->id}}">
+<div class="panel panel-{{ Session::get('class_panel') ? Session::get('class_panel') : 'info' }}" id="panel_user_{{$user->id}}">
     
     <div class="panel-heading">
       Formulario para la edición del Usuario: <strong>{{$user->username}}</strong>
@@ -13,7 +13,7 @@
 
           <div align="center">
 
-              <div class="form-group">
+              <div class="form-group" data-user="{{$user->id}}">
 
                   <button type="submit" class="btn-update-user btn btn-warning btn-block" id="btn-update-user-{{$user->id}}">
                       <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
@@ -28,3 +28,11 @@
         {{-- </form> --}}
     </div>
 </div>
+
+@section('scripts')
+
+    @parent
+
+    <script src="{{ asset("js/models/users/update.js") }}"></script>
+
+@endsection

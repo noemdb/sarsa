@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Session;
 //models
 use App\User;
 use App\Models\sys\Profile;
-// use App\Models\sys\Rol;
+use App\Models\sys\Rol;
 use App\Models\sys\SelectOpt;
 
 class ProfileController extends Controller
@@ -40,7 +40,7 @@ class ProfileController extends Controller
         $profiles = Profile::OrderBy('id','DESC')
             // ->username($arr_get)
             ->with('User')
-            // ->with('rols')
+            ->with('rols')
             ->get();
 
         $is_active_list = SelectOpt::select('select_opts.*')
@@ -163,7 +163,7 @@ class ProfileController extends Controller
 
         $profile->save();
 
-        $messenge = 'Operación exitosa';
+        $messenge = trans('db_oper_result.update_ok');
 
         if($request->ajax()){
 

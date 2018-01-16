@@ -1,4 +1,4 @@
-<div class="panel panel-{{ $class_form_update_profile or 'default' }}" id="panel_profile_{{$profile->id or 'create'}}">
+<div class="panel panel-{{ Session::get('class_panel') ? Session::get('class_panel') : 'info' }}" id="panel_rol_{{$profile->id or ''}}">
 
     <div class="panel-heading">Formulario para la edición del Usuario: <strong>{{$user->username}}</strong></div>
 
@@ -15,7 +15,7 @@
 
         <div align="center">
 
-            <div class="form-group" data-rol="{{$profile->id}}">
+            <div class="form-group" data-profile="{{$profile->id}}">
 
                 <button type="submit" class="btn-update-profile btn btn-warning btn-block" id="btn-update-profile-{{$profile->id}}">
                     <span class="glyphicon glyphicon-save" aria-hidden="true"></span>

@@ -100,7 +100,7 @@
 
                         <div align="center">
                             @if (isset($user->id))
-                                <a title="Actualizar" class="btn btn-warning btn-ms btn-block" href="{{ route('users.update',$user->id) }}" role="button">
+                                <a title="Actualizar" class="btn btn-warning btn-ms btn-block" href="{{ route('users.edit',$user->id) }}" role="button">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                     Actualizar
                                 </a>

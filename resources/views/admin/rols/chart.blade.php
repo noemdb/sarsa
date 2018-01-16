@@ -15,7 +15,7 @@
     {{-- INI section--}}
 
     @component('elements.widgets.panel')
-        @slot('panelTitle', 'Gráficas')
+        @slot('panelTitle', 'Análisis Estadístico')
         @slot('class', 'info')
         @slot('panelBody')
 
@@ -41,7 +41,7 @@
 
                                 {{-- INI chart perfiles registrados por Mes --}}
                                 <div class="col-lg-6 col-md-6 col-sm-12">
-                                    @php ($chart = ['range'=>'Todos','id_chart'=>'chartprofilesmonth','urlapi'=>route('profilesmonth'),'tipo'=>'line','limit'=>8 ])
+                                    @php ($chart = ['range'=>'Todos','id_chart'=>'chartrolsmonth','urlapi'=>route('rolsmonth'),'tipo'=>'line','limit'=>8 ])
                                     @section('scripts')
                                         @parent
                                         {{-- Llamado a la funcion responsable de inicilizar el Chart --}}
@@ -51,7 +51,7 @@
                                         @slot('class', 'danger')
                                         @slot('panelControls', 'true')
                                         @slot('id', $chart['id_chart'] )
-                                        @slot('panelTitle', 'N. Perfiles registrados por Mes')
+                                        @slot('panelTitle', 'N. Roles registrados por Mes')
                                         @slot('iconTitle', 'fa fa-line-chart fa-lg')
                                         @slot('panelBody')
                                             @component('elements.charts.widgets.canvas')
@@ -71,20 +71,20 @@
                                 </div>
                                 {{-- FIN chart perfiles registrados por Mes --}}
 
-                                {{-- INI chart perfiles por dominio de email --}}
+                                {{-- INI chart Tipos de rol registrados --}}
                                 <div class="col-lg-6 col-md-6 col-sm-12">
-                                    @php ($chart = ['range'=>'Todos','id_chart'=>'chartprofilesdominio','urlapi'=>route('profilesdominio'),'tipo'=>'bar','limit'=>8 ])
+                                    @php ($chart = ['range'=>'Todos','id_chart'=>'chartrolestipos','urlapi'=>route('rolestipos'),'tipo'=>'bar','limit'=>8 ])
                                     @section('scripts')
                                         @parent
                                         {{-- Llamado a la funcion responsable de inicilizar el Chart --}}
                                         <script> requestData('{{ $chart['range'] }}','{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
                                     @endsection
                                     @component('elements.widgets.panel')
-                                        @slot('class', 'info')
+                                        @slot('class', 'success')
                                         @slot('panelControls', 'true')
                                         @slot('id', $chart['id_chart'] )
-                                        @slot('panelTitle', 'Dominios de Email')
-                                        @slot('iconTitle', 'fa fa-pie-chart fa-lg')
+                                        @slot('panelTitle', 'Tipos de Roles')
+                                        @slot('iconTitle', 'fa fa-bar-chart fa-lg')
                                         @slot('panelBody')
                                             @component('elements.charts.widgets.canvas')
                                                 @slot('ulpanel')
@@ -101,9 +101,47 @@
                                         @endslot
                                     @endcomponent
                                 </div>
-                                {{-- FIN chart perfiles por dominio de email --}}
+                                {{-- FIN chart Tipos de rol registrados --}}
+
                             </div>
                             {{-- FIN row chart1 --}}
+
+                            <div class="row">
+                                {{-- INI chart Tipos de ragos registrados --}}
+                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                    @php ($chart = ['range'=>'Todos','id_chart'=>'chartrangostipos','urlapi'=>route('rangostipos'),'tipo'=>'bar','limit'=>8 ])
+                                    @section('scripts')
+                                        @parent
+                                        {{-- Llamado a la funcion responsable de inicilizar el Chart --}}
+                                        <script> requestData('{{ $chart['range'] }}','{{ $chart['id_chart'] }}','{{ $chart['urlapi'] }}','{{ $chart['tipo'] }}','{{ $chart['limit'] }}'); </script>
+                                    @endsection
+                                    @component('elements.widgets.panel')
+                                        @slot('class', 'info')
+                                        @slot('panelControls', 'true')
+                                        @slot('id', $chart['id_chart'] )
+                                        @slot('panelTitle', 'Tipos de Rangos')
+                                        @slot('iconTitle', 'fa fa-bar-chart fa-lg')
+                                        @slot('panelBody')
+                                            @component('elements.charts.widgets.canvas')
+                                                @slot('ulpanel')
+                                                    <ul class="nav nav-tabs ranges" data-canvas="{{ $chart['id_chart'] }}" data-urlapi="{{ $chart['urlapi'] }}" data-tipo="{{ $chart['tipo'] }}" data-limit="{{ $chart['limit'] }}">
+                                                        <li class="active" title="Todo los datos"><a href="#" data-range='Todos'>Todos</a></li>
+                                                        <li title="12 Meses"><a href="#" data-range='12'>12M</a></li>
+                                                        <li title="9 Meses"><a href="#" data-range='9'>9M</a></li>
+                                                        <li title="6 Meses"><a href="#" data-range='6'>6M</a></li>
+                                                        <li title="3 Meses"><a href="#" data-range='3'>3M</a></li>
+                                                    </ul>
+                                                @endslot
+                                                @slot('id', $chart['id_chart'])
+                                            @endcomponent
+                                        @endslot
+                                    @endcomponent
+                                </div>
+                                {{-- FIN chart Tipos de rol registrados --}}
+
+                                <div class="col-lg-6 col-md-6 col-sm-12"></div>
+
+                            </div>
 
                         </div>
 

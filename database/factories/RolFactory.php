@@ -17,6 +17,7 @@ $factory->define(App\Models\sys\Rol::class, function (Faker $faker) {
         'descripcion' => $faker->sentence(10),
         'finicial' => $finicial,
         'ffinal' => $ffinal,
+        'created_at' => $faker->dateTimeBetween('2017-01-01',Carbon::now()),
         'user_id' => function () { 
         	return 
         	DB::table('users')

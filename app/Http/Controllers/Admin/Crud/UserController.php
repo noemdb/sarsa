@@ -116,7 +116,28 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        $user = User::findOrFail($id);
+
+        // dd($user);
+
+        $profile = Profile::Where('user_id',$user->id)->first();
+
+        // dd($user,$profile);
+
+        $rols = Rol::Where('user_id',$user->id)->get();
+
+        $is_active_list = SelectOpt::select('select_opts.*')
+            ->where('table','users')
+            ->where('name','is_active')
+            ->where('view','rol.index')
+            ->orderby('value')
+            ->pluck('value','value')
+            ->prepend('Seleccionar','');
+
+        // dd($user,$profile,$rols);
+
+        return view('admin.users.edit',compact('user','profile','rols','is_active_list'));
     }
 
     /**

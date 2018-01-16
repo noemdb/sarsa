@@ -18,6 +18,7 @@
         <ul class="nav nav-tabs">
           <li class="active"><a data-toggle="tab" href="#showprofile_tab_{{$profile->id}}">Perfíl</a></li>
           <li><a data-toggle="tab" href="#showuser_tab_{{$user->id}}">Usuario</a></li>
+          <li><a data-toggle="tab" href="#showrols_tab_{{$profile->id or ''}}">Roles</a></li>
         </ul>
 
         <div class="tab-content">
@@ -31,6 +32,12 @@
 
               {{-- @php($user = $profile->user) --}}
               @include('admin.users.thumbnail.user')
+
+          </div>
+
+          <div id="showrols_tab_{{$profile->id or ''}}" class="tab-pane fade">
+            {{-- <h3>Menu 2</h3> --}}
+            @include('admin.rols.thumbnail.rols')
 
           </div>
         </div>

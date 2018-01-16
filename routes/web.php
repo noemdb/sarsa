@@ -94,6 +94,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
     //INI Charts modelos
     Route::get('models/charts/users', 'Chart\UserController@index')->name('viewchartusers');
     Route::get('models/charts/profiles', 'Chart\ProfileController@index')->name('viewchartprofiles');
+    Route::get('models/charts/rols', 'Chart\RolController@index')->name('viewchartrols');
     //FIN Charts modelos
 
     //INI rutas para los json
@@ -116,6 +117,14 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
                 Route::get('/profilesdominio', 'ProfileController@ProfilesDominio')->name('profilesdominio');
             });
             //FIN graficas para profiles
+
+            //INI graficas para rols
+            Route::group(['prefix'=>'rols'], function(){
+                Route::get('/rolsmonth', 'RolController@RolsMonth')->name('rolsmonth');
+                Route::get('/rolestipos', 'RolController@RolsType')->name('rolestipos');
+                Route::get('/rangostipos', 'RolController@RangeType')->name('rangostipos');
+            });
+            //FIN graficas para rols
             
             //INI graficas para tasks
             Route::group(['prefix'=>'tasks'], function(){

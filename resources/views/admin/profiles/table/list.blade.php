@@ -62,10 +62,16 @@
                     @include('admin.profiles.modals.show')
 
                     {{-- boton para mostrar en un modal de edicion de regsitro --}}
+                    {{-- 
                     <a title="Editar resgistro" class="btn btn-warning btn-xs" href="#" data-toggle="modal" id="btn-editprofile_{{$profile->id}}" data-target="#edit_modal_{{$user->id}}">
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                     </a>
-                    @include('admin.profiles.modals.edit')
+                    @include('admin.profiles.modals.edit') 
+                    --}}
+
+                    <a title="Editar resgistro" class="btn btn-warning btn-xs" href="{{ route('profiles.edit',$profile->id) }}" id="btn-editprofile_{{$profile->id}}">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    </a>
 
                     <a title="Eliminar" class="btn-delete btn btn-danger btn-xs" href="" id="btn-delete-userid_{{$profile->id}}" data-target="#modal-del-confirm_{{$profile->id}}" data-toggle="modal" role="button">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>

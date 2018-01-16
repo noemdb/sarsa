@@ -58,7 +58,7 @@
 
                         <div align="center">
                             @if (isset($rol->id))
-                                <a title="Actualizar" class="btn btn-warning btn-ms btn-block" href="{{ route('rols.update',$rol->id) }}" role="button">
+                                <a title="Actualizar" class="btn btn-warning btn-ms btn-block" href="{{ route('rols.edit',$rol->id) }}" role="button">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                     Actualizar
                                 </a>
