@@ -2,19 +2,17 @@ $(document).ready(function () {
 	// script para realizar para actualizar registros usando peticiones ajax
     $('.btn-update-user').click(function (e) {
         e.preventDefault();
-        var div = $(this).parents('div'); console.log('div: '+div); //fila contentiva de la data
-        var id_user = div.data('user');  console.log('id_user: '+id_user);
-        var idform = '#form-update-user_'+id_user; console.log(idform);
-        var form = $(idform); console.log(form.attr('action'));
-        var url = form.attr('action'); console.log(url);
-        var data = form.serialize(); console.log(data);
-        
-        var user_update_ok = "#user_update_ok_"+id_user; console.log('user_update_ok: '+user_update_ok);
+        var div = $(this).parents('div'); //console.log('div: '+div); //fila contentiva de la data
+        var id_user = div.data('user');  //console.log('id_user: '+id_user);
+        var idform = '#form-update-user_'+id_user; //console.log(idform);
+        var form = $(idform); //console.log(form.attr('action'));
+        var url = form.attr('action'); //console.log(url);
+        var data = form.serialize(); //console.log(data);        
+        var user_update_ok = "#user_update_ok_"+id_user; //console.log('user_update_ok: '+user_update_ok);
 
         //oculta los div de errores anteriores
         $(".div-alert-error").each(function(){
           $(this).removeClass("show").addClass("hide");
-          // $(this).addClass("hide");
         });
 
         //limpia los div de los input del form
@@ -26,7 +24,7 @@ $(document).ready(function () {
         });
 
         $.post(url, data, function (result){
-            console.log(result.messenge);
+            //console.log(result.messenge);
             $(user_update_ok).removeClass("text-danger").addClass("text-success show").text(result.messenge);
         }).fail(function (result) {
             // console.log(result.messenge);

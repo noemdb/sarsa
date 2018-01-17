@@ -40,6 +40,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $users = User::OrderBy('users.id','DESC')
+            ->withTrashed()
             // ->username($arr_get)
             ->with('profile')
             ->with('rols')
@@ -190,19 +191,30 @@ class UserController extends Controller
      */
     public function destroy($id, Request $request)
     {
-        $user = User::findOrFail($id);
+        $user = User::withTrashed()->findOrFail($id);
 
-        $user->profile()->delete();
+        if (empty($user->deleted_at)) {
+            $user->profile()->delete();        
+            $user->rols()->delete();
+            $user->delete();
+            $messenge = trans('db_oper_result.delete_ok');
+            $operation= 'delete';
+        } else {
+            $user->profile()->forceDelete();
+            $user->rols()->forceDelete();
+            $user->forceDelete();
+            $messenge = trans('db_oper_result.forceDelete_ok');
+            $operation= 'forceDelete';
+        }
+
         
-        $user->rols()->delete();
-
-        $user->delete();
-
-        $messenge = trans('db_oper_result.user_destroy_ok');
 
         if($request->ajax()){
 
-            return $messenge;
+            return response()->json([
+                "messenge"=>$messenge,
+                "operation"=>$operation,
+            ]);
 
         }
         

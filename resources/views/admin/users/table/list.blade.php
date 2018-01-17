@@ -56,36 +56,23 @@
             <td style="padding: 2px; vertical-align: middle;" id="btn-action-{{ $user->id }}">
                 <div class="btn-group">
                     
+                    
                     {{-- boton para mostrar en un modal de info de regsitro --}}
                     <a title="Mostrar detalles" class="btn btn-info btn-xs" href="#" data-toggle="modal" id="showuser_modal" data-target="#showuser_modal_{{$user->id}}">
                         <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
                     </a>
-
                     @include('admin.users.modals.show')
 
-                    {{-- boton para mostrar en un modal de edicion de regsitro --}}
-                    {{-- 
-                    <a title="Editar resgistro" class="btn btn-warning btn-xs" href="#" data-toggle="modal" id="btn-edituser_{{$user->id}}" data-target="#edit_modal_{{$user->id}}">
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                    </a> 
-                    --}}
+                    @empty($user->deleted_at)
+                        <a title="Editar resgistro" class="btn btn-warning btn-xs btn-action-group-{{ $user->id }}" href="{{ route('users.edit',$user->id) }}" id="btn-edituser_{{$user->id}}">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        </a>
+                    @endempty
 
-                    <a title="Editar resgistro" class="btn btn-warning btn-xs" href="{{ route('users.edit',$user->id) }}" id="btn-edituser_{{$user->id}}">
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                    </a>
-
-                    {{-- modal confirmacion de borrado del registro --}}
-                    {{-- @include('admin.users.modal.del_corfirm') --}}
-
-                    {{-- modal para la edición del registro --}}
-                    {{-- @include('admin.users.modal.edituser') --}}
-
-                    @include('admin.users.modals.edit')
-
-                    <a title="Eliminar" class="btn-delete btn btn-danger btn-xs" href="" id="btn-delete-userid_{{$user->id}}" data-target="#modal-del-confirm_{{$user->id}}" data-toggle="modal" role="button">
+                    <a title="Eliminar {{(isset($user->deleted_at) ? 'DEFINITIVAMENTE':'')}}" class="btn-delete btn btn-danger btn-xs" href="" id="btn-delete-userid_{{$user->id}}" data-target="#modal-del-confirm_{{$user->id}}" data-toggle="modal" role="button">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                     </a>
-
+                    
                 </div>
             </td>
 
@@ -94,6 +81,12 @@
         @endforeach
     </tbody>
 </table>
+
+<strong>
+  <small>
+    <span id="text-user-delete-result-oper" class="hide text-success"></span>
+  </small>
+</strong>
 
 @section('stylesheet')
 

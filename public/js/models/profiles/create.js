@@ -3,15 +3,13 @@ $(document).ready(function () {
     $('.btn-profile-create').click(function (e) {
         e.preventDefault();
         // var div = $(this).parents('div'); //console.log(row);
-        var user_id = $(this).data('user'); console.log('user_id: '+user_id);
+        var user_id = $(this).data('user'); //console.log('user_id: '+user_id);
 
-        var idform = '#form-profile-create-'+user_id; console.log(idform);
-        var form = $(idform); console.log(form);
-        // var user_id = form.data('user_id'); console.log('user_id: '+user_id);
-        var url = form.attr('action'); console.log(url);
-        var data = form.serialize(); console.log(data);
-        
-        var profile_create_ok = "#profile_create_ok_"+user_id; console.log('profile_create_ok: '+profile_create_ok);
+        var idform = '#form-profile-create-'+user_id; //console.log(idform);
+        var form = $(idform); //console.log(form);
+        var url = form.attr('action'); //console.log(url);
+        var data = form.serialize(); //console.log(data);
+        var profile_create_ok = "#profile_create_ok_"+user_id; //console.log('profile_create_ok: '+profile_create_ok);
 
         //oculta los div de errores anteriores
         $(".div-alert-error").each(function(){
@@ -28,10 +26,10 @@ $(document).ready(function () {
         });
 
         $.post(url, data, function (result){
-            console.log(result.messenge);
+            //console.log(result.messenge);
             $(profile_create_ok).removeClass("text-danger").addClass("text-success show").text(result.messenge);
-            // $("#selectBox option:selected").remove();
-            $("select#mySelect option[value='option1']").remove();
+            var opt_user_id = $("select[name='user_id'] :selected"); //console.log('opt_user_id: '+opt_user_id);
+            $(opt_user_id).remove();
             $(idform).trigger("reset");
         }).fail(function (result) {
             // console.log(result.messenge);
