@@ -62,10 +62,10 @@
     @parent
 
     {{-- INI script ajax json models --}}
-    <script src="{{ asset("js/models/users/upgrade.js") }}"></script>
+    {{-- <script src="{{ asset("js/models/users/upgrade.js") }}"></script> --}}
     <script src="{{ asset("js/models/users/delete.js") }}"></script>
-    <script src="{{ asset("js/models/profiles/upgrade.js") }}"></script>
-    <script src="{{ asset("js/models/profiles/create.js") }}"></script>
+    {{-- <script src="{{ asset("js/models/profiles/upgrade.js") }}"></script> --}}
+    {{-- <script src="{{ asset("js/models/profiles/create.js") }}"></script> --}}
     {{-- FIN script ajax json models --}}
 
 @endsection

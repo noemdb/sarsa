@@ -28,7 +28,7 @@ class CreateRolRequest extends FormRequest
         $request = Request::All();
         // dd($request);
         return [
-            'user_id' => 'required',
+            'user_id' => 'required|exists:users,id,deleted_at,NULL',
             'rol' => 'required|max:16',
             'rango' => 'required|max:16',
             'descripcion' => 'required|max:255',

@@ -13,13 +13,15 @@ $('.btn-delete').click(function (e) {
 
         $.post(url, data, function (result){
             //console.log(result.messenge+result.operation);
-            if (result.operation=='delete') {
-                $('.btn-action-group-'+id).fadeOut();
-            }
-            if (result.operation=='forceDelete') {
-                row.fadeOut();
-                // row_info.fadeOut();
-            }
+            // if (result.operation=='delete') {
+            //     $('.btn-action-group-'+id).fadeOut();
+            // }
+            // if (result.operation=='forceDelete') {
+            //     row.fadeOut();
+            //     // row_info.fadeOut();
+            // }
+            
+            row.fadeOut();
 
             $(text_user_delete).removeClass("text-danger").addClass("text-success show").text(result.messenge);
             
