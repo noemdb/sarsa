@@ -12,14 +12,6 @@ $('.btn-delete').click(function (e) {
         var text_user_delete = "#text-user-delete-result-oper"; //console.log('profile_create_ok: '+profile_create_ok);
 
         $.post(url, data, function (result){
-            //console.log(result.messenge+result.operation);
-            // if (result.operation=='delete') {
-            //     $('.btn-action-group-'+id).fadeOut();
-            // }
-            // if (result.operation=='forceDelete') {
-            //     row.fadeOut();
-            //     // row_info.fadeOut();
-            // }
             
             row.fadeOut();
 
