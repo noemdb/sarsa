@@ -28,20 +28,15 @@ require (__DIR__ . '/settings/users.php');
 Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], function(){
 
     //INI Route iniciales
-    Route::get('/', 'HomeController@index')->name('home');
-    Route::get('/dashboard', 'HomeController@index')->name('home');
+    require (__DIR__ . '/admin/iniciales.php');
     //FIN Route iniciales
 
     //INI CRUD modelos
-    Route::resource('models/crud/users','Crud\UserController', ['except' => ['show']]);
-    Route::resource('models/crud/profiles','Crud\ProfileController', ['except' => ['show']]);
-    Route::resource('models/crud/rols','Crud\RolController', ['except' => ['show']]);
+    require (__DIR__ . '/admin/crud.php');
     //FIN CRUD modelos
     
     //INI Charts modelos
-    Route::get('models/charts/users', 'Chart\UserController@index')->name('viewchartusers');
-    Route::get('models/charts/profiles', 'Chart\ProfileController@index')->name('viewchartprofiles');
-    Route::get('models/charts/rols', 'Chart\RolController@index')->name('viewchartrols');
+    require (__DIR__ . '/admin/charts.php');
     //FIN Charts modelos
 
     //INI rutas para los json
@@ -51,59 +46,29 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
         Route::group(['prefix'=>'charts','namespace'=>'Charts'], function(){
 
             //INI graficas para users
-            Route::group(['prefix'=>'users'], function(){
-                Route::get('/usersmonth', 'UserController@UsersMonth')->name('usersmonth');
-                Route::get('/usersactive', 'UserController@UserActive')->name('usersactive');
-                Route::get('/usersconnect', 'UserController@UserConnect')->name('usersconnect');
-            });
+            require (__DIR__ . '/admin/json/charts/users.php');            
             //INI graficas para users
 
             //INI graficas para profiles
-            Route::group(['prefix'=>'profiles'], function(){
-                Route::get('/profilesmonth', 'ProfileController@ProfilesMonth')->name('profilesmonth');
-                Route::get('/profilesdominio', 'ProfileController@ProfilesDominio')->name('profilesdominio');
-            });
+            require (__DIR__ . '/admin/json/charts/profiles.php');            
             //FIN graficas para profiles
 
             //INI graficas para rols
-            Route::group(['prefix'=>'rols'], function(){
-                Route::get('/rolsmonth', 'RolController@RolsMonth')->name('rolsmonth');
-                Route::get('/rolestipos', 'RolController@RolsType')->name('rolestipos');
-                Route::get('/rangostipos', 'RolController@RangeType')->name('rangostipos');
-            });
+            require (__DIR__ . '/admin/json/charts/rols.php');            
             //FIN graficas para rols
             
             //INI graficas para tasks
-            Route::group(['prefix'=>'tasks'], function(){
-                Route::get('/taskmonth', 'TasksController@getApiTaskMonth')->name('taskmonth');
-                Route::get('/uservrstask', 'TasksController@getApiUserTaskLoad')->name('uservrstask');
-                Route::get('/uservrstaskasig', 'TasksController@getApiUserTaskAsig')->name('uservrstaskasig');
-                Route::get('/uservrstaskdone', 'TasksController@getApiUserTaskDone')->name('uservrstaskdone');
-            });
+            require (__DIR__ . '/admin/json/charts/tasks.php');            
             //FIN graficas para tasks
             
         });
         //FIN Charts
         
         //INI Navbar
-        Route::group(['prefix'=>'navbar','namespace'=>'Navbar'], function(){
-            Route::get('/messenges', 'TopController@getApiMesseges')->name('getmessenges');
-            Route::get('/tasks', 'TopController@getApiTasks')->name('gettasks');
-            Route::get('/alerts', 'TopController@getApiAlerts')->name('getalerts');
-            Route::get('/logdbs', 'TopController@getApiLogdbs')->name('getlogdbs');
-            Route::get('/loginouts', 'TopController@getApiLoginouts')->name('getloginouts');
-        });
-        //FIN Navbar
-        
+        require (__DIR__ . '/admin/json/navbar/top.php');
+        //FIN Navbar        
 
     });
     //FIN rutas para los json
     
-	// Route::get('/charts/sbadmin', function () {
-	//     return View::make('elements.charts.sbadmin');
-	// });
-
 });
-
-// rutas para los Charts
-// Route::get('charts/api', 'Charts/ChartController@getApiUserTaskLoad');
