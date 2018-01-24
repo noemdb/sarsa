@@ -34,7 +34,7 @@
             <div class="panel-body">
 
                 {{-- modal con el formulario para crear usuarios --}}
-                @include('admin.users.modals.create')                    
+                {{-- @include('admin.users.modals.create')                     --}}
                 
                 {{-- Mensaje flash sobreo operaciones con base de datos --}}
                 @if (Session::has('operp_ok'))

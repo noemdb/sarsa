@@ -10,7 +10,6 @@
 |
 */
 
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -40,35 +39,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth'],'namespace'=>'Admin'], fu
     //FIN Charts modelos
 
     //INI rutas para los json
-    Route::group(['prefix'=>'json','namespace'=>'Json'], function(){
-
-        //INI Charts
-        Route::group(['prefix'=>'charts','namespace'=>'Charts'], function(){
-
-            //INI graficas para users
-            require (__DIR__ . '/admin/json/charts/users.php');            
-            //INI graficas para users
-
-            //INI graficas para profiles
-            require (__DIR__ . '/admin/json/charts/profiles.php');            
-            //FIN graficas para profiles
-
-            //INI graficas para rols
-            require (__DIR__ . '/admin/json/charts/rols.php');            
-            //FIN graficas para rols
-            
-            //INI graficas para tasks
-            require (__DIR__ . '/admin/json/charts/tasks.php');            
-            //FIN graficas para tasks
-            
-        });
-        //FIN Charts
-        
-        //INI Navbar
-        require (__DIR__ . '/admin/json/navbar/top.php');
-        //FIN Navbar        
-
-    });
-    //FIN rutas para los json
+    require (__DIR__ . '/admin/json/index.php');
+    //FIN rutas para los json    
     
 });

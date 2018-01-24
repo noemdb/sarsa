@@ -1,4 +1,6 @@
 <?php 
+//INI establecer setting para los usuarios
+
 Route::get('/setting', function () {
     $user = \App\User::find(\Auth::user()->id);
     // $user->setSetting('first_name','Admin');
@@ -53,4 +55,6 @@ Route::get('/setting', function () {
     ]);
     return "registrado";
 });
+
+//FIN establecer setting para los usuarios
 ?>
